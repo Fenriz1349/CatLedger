@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "institutionCategory.bank" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -116,6 +119,74 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enseigne commerciale"
+          }
+        }
+      }
+    },
+    "institutionError.duplicateName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An institution with this name already exists."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un établissement avec ce nom existe déjà."
+          }
+        }
+      }
+    },
+    "institutionError.nameTooLong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The institution name cannot exceed 50 characters."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nom de l'établissement ne peut pas dépasser 50 caractères."
+          }
+        }
+      }
+    },
+    "institutionError.nameTooShort" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The institution name must be at least 2 characters long."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nom de l'établissement doit contenir au moins 2 caractères."
+          }
+        }
+      }
+    },
+    "institutionError.notFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Institution not found."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Établissement introuvable."
           }
         }
       }

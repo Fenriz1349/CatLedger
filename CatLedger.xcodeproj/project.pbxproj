@@ -15,6 +15,10 @@
 		6839EA3D30387358006E2AD4 /* InstitutionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */; };
 		6839EA41303874A2006E2AD4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA40303874A2006E2AD4 /* Localizable.xcstrings */; };
 		6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4430387567006E2AD4 /* InstitutionCategory+Display.swift */; };
+		6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA463038790C006E2AD4 /* InstitutionError.swift */; };
+		6839EA4930387918006E2AD4 /* InstitutionProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4830387918006E2AD4 /* InstitutionProviding.swift */; };
+		6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */; };
+		6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionCategory.swift; sourceTree = "<group>"; };
 		6839EA40303874A2006E2AD4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6839EA4430387567006E2AD4 /* InstitutionCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstitutionCategory+Display.swift"; sourceTree = "<group>"; };
+		6839EA463038790C006E2AD4 /* InstitutionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionError.swift; sourceTree = "<group>"; };
+		6839EA4830387918006E2AD4 /* InstitutionProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionProviding.swift; sourceTree = "<group>"; };
+		6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitutionInput.swift; sourceTree = "<group>"; };
+		6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,10 @@
 			children = (
 				6839EA3A3038734E006E2AD4 /* Institution.swift */,
 				6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */,
+				6839EA463038790C006E2AD4 /* InstitutionError.swift */,
+				6839EA4830387918006E2AD4 /* InstitutionProviding.swift */,
+				6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */,
+				6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -210,10 +222,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				6839EA3D30387358006E2AD4 /* InstitutionCategory.swift in Sources */,
+				6839EA4930387918006E2AD4 /* InstitutionProviding.swift in Sources */,
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
+				6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */,
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
+				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
+				6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
