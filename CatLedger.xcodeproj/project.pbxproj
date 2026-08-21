@@ -38,6 +38,10 @@
 		6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7430388ED6006E2AD4 /* AuthSession.swift */; };
 		6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7630388EE0006E2AD4 /* AuthError.swift */; };
 		6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7830388EE8006E2AD4 /* AuthProviding.swift */; };
+		6839EA7D3038909F006E2AD4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7C3038909F006E2AD4 /* User.swift */; };
+		6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7E303890A9006E2AD4 /* UserError.swift */; };
+		6839EA81303890B1006E2AD4 /* UpdateUserInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */; };
+		6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA82303890B8006E2AD4 /* UserProviding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +77,10 @@
 		6839EA7430388ED6006E2AD4 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		6839EA7630388EE0006E2AD4 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		6839EA7830388EE8006E2AD4 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
+		6839EA7C3038909F006E2AD4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6839EA7E303890A9006E2AD4 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
+		6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInput.swift; sourceTree = "<group>"; };
+		6839EA82303890B8006E2AD4 /* UserProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProviding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA7230388EC5006E2AD4 /* Authentication */,
+				6839EA7A30388FDC006E2AD4 /* User */,
 				6839EA38303872FD006E2AD4 /* Institution */,
 				6839EA4E30387B34006E2AD4 /* Account */,
 				6839EA6230388864006E2AD4 /* Transaction */,
@@ -252,6 +261,25 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		6839EA7A30388FDC006E2AD4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7B30388FE8006E2AD4 /* Domain */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6839EA7B30388FE8006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7C3038909F006E2AD4 /* User.swift */,
+				6839EA7E303890A9006E2AD4 /* UserError.swift */,
+				6839EA82303890B8006E2AD4 /* UserProviding.swift */,
+				6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -334,10 +362,12 @@
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
 				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
 				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
+				6839EA7D3038909F006E2AD4 /* User.swift in Sources */,
 				6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
 				6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */,
 				6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */,
+				6839EA81303890B1006E2AD4 /* UpdateUserInput.swift in Sources */,
 				6839EA5130387BE5006E2AD4 /* Account.swift in Sources */,
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
@@ -348,12 +378,14 @@
 				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
 				6839EA693038889F006E2AD4 /* TransactionSplit.swift in Sources */,
 				6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */,
+				6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
 				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
 				6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */,
+				6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

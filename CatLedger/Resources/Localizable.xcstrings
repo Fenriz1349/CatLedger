@@ -1,8 +1,56 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
+    "userError.invalidEmail" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The email address is not valid."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "L'adresse email n'est pas valide."
+          }
+        }
+      }
+    },
+    "userError.nameTooLong" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The name cannot exceed 50 characters."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nom ne peut pas dépasser 50 caractères."
+          }
+        }
+      }
+    },
+    "userError.notFound" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User not found."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilisateur introuvable."
+          }
+        }
+      }
     },
     "accountCategory.cash" : {
       "extractionState" : "manual",
