@@ -1,0 +1,22 @@
+name: Release Please
+
+# release-please only runs off main: it inspects the Conventional Commits merged there since
+# the last release and keeps a standing "release PR" up to date with the next version bump.
+on:
+  push:
+    branches: [main]
+
+# Needed so the action can open/update the release PR and, once merged, create the GitHub
+# release and tag.
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

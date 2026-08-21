@@ -1,0 +1,14 @@
+//
+//  Version.xcconfig
+//  CatLedger
+//
+//  Created by Julien Cotte on 21/08/2026.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://developer.apple.com/documentation/xcode/adding-a-build-configuration-file-to-your-project
+
+// Single source of truth for the app's marketing version.
+// Bumped automatically by release-please based on Conventional Commits.
+MARKETING_VERSION = 0.0.0 // x-release-please-version
+CURRENT_PROJECT_VERSION = 1
