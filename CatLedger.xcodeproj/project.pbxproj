@@ -35,6 +35,9 @@
 		6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6C303888C1006E2AD4 /* Transaction+Effective.swift */; };
 		6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6E303888CD006E2AD4 /* TransactionProviding.swift */; };
 		6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */; };
+		6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7430388ED6006E2AD4 /* AuthSession.swift */; };
+		6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7630388EE0006E2AD4 /* AuthError.swift */; };
+		6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7830388EE8006E2AD4 /* AuthProviding.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +70,9 @@
 		6839EA6C303888C1006E2AD4 /* Transaction+Effective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+Effective.swift"; sourceTree = "<group>"; };
 		6839EA6E303888CD006E2AD4 /* TransactionProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionProviding.swift; sourceTree = "<group>"; };
 		6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionCategory+Display.swift"; sourceTree = "<group>"; };
+		6839EA7430388ED6006E2AD4 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		6839EA7630388EE0006E2AD4 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		6839EA7830388EE8006E2AD4 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +126,7 @@
 		6839EA37303872F1006E2AD4 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6839EA7230388EC5006E2AD4 /* Authentication */,
 				6839EA38303872FD006E2AD4 /* Institution */,
 				6839EA4E30387B34006E2AD4 /* Account */,
 				6839EA6230388864006E2AD4 /* Transaction */,
@@ -227,6 +234,24 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		6839EA7230388EC5006E2AD4 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7330388ECA006E2AD4 /* Domain */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		6839EA7330388ECA006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7430388ED6006E2AD4 /* AuthSession.swift */,
+				6839EA7630388EE0006E2AD4 /* AuthError.swift */,
+				6839EA7830388EE8006E2AD4 /* AuthProviding.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -307,6 +332,7 @@
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
+				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
 				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
 				6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
@@ -316,6 +342,7 @@
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
 				6839EA653038888C006E2AD4 /* Transaction.swift in Sources */,
+				6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */,
 				6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */,
 				6839EA5530387BFA006E2AD4 /* AccountFilter.swift in Sources */,
 				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
@@ -325,6 +352,7 @@
 				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
+				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
 				6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
