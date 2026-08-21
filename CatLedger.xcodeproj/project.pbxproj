@@ -11,6 +11,39 @@
 		6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2F30386BAC006E2AD4 /* ContentView.swift */; };
 		6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA2D30386BAC006E2AD4 /* Assets.xcassets */; };
 		6839EA3630386BCE006E2AD4 /* Version.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA3530386BCE006E2AD4 /* Version.xcconfig */; };
+		6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA3A3038734E006E2AD4 /* Institution.swift */; };
+		6839EA3D30387358006E2AD4 /* InstitutionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */; };
+		6839EA41303874A2006E2AD4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA40303874A2006E2AD4 /* Localizable.xcstrings */; };
+		6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4430387567006E2AD4 /* InstitutionCategory+Display.swift */; };
+		6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA463038790C006E2AD4 /* InstitutionError.swift */; };
+		6839EA4930387918006E2AD4 /* InstitutionProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4830387918006E2AD4 /* InstitutionProviding.swift */; };
+		6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */; };
+		6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */; };
+		6839EA5130387BE5006E2AD4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5030387BE5006E2AD4 /* Account.swift */; };
+		6839EA5330387BEF006E2AD4 /* AccountCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5230387BEF006E2AD4 /* AccountCategory.swift */; };
+		6839EA5530387BFA006E2AD4 /* AccountFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5430387BFA006E2AD4 /* AccountFilter.swift */; };
+		6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5630387C05006E2AD4 /* AccountDisplayItem.swift */; };
+		6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5830387C10006E2AD4 /* AccountError.swift */; };
+		6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5A30387C19006E2AD4 /* AccountProviding.swift */; };
+		6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5C30387C22006E2AD4 /* AccountRecencySorter.swift */; };
+		6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA5E30387C34006E2AD4 /* UpdateAccountInput.swift */; };
+		6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6030387C4F006E2AD4 /* AccountCategory+Display.swift */; };
+		6839EA653038888C006E2AD4 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA643038888C006E2AD4 /* Transaction.swift */; };
+		6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6630388895006E2AD4 /* TransactionCategory.swift */; };
+		6839EA693038889F006E2AD4 /* TransactionSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA683038889F006E2AD4 /* TransactionSplit.swift */; };
+		6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6A303888B5006E2AD4 /* TransactionError.swift */; };
+		6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6C303888C1006E2AD4 /* Transaction+Effective.swift */; };
+		6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA6E303888CD006E2AD4 /* TransactionProviding.swift */; };
+		6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */; };
+		6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7430388ED6006E2AD4 /* AuthSession.swift */; };
+		6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7630388EE0006E2AD4 /* AuthError.swift */; };
+		6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7830388EE8006E2AD4 /* AuthProviding.swift */; };
+		6839EA7D3038909F006E2AD4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7C3038909F006E2AD4 /* User.swift */; };
+		6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7E303890A9006E2AD4 /* UserError.swift */; };
+		6839EA81303890B1006E2AD4 /* UpdateUserInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */; };
+		6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA82303890B8006E2AD4 /* UserProviding.swift */; };
+		6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA85303892BB006E2AD4 /* Transfer.swift */; };
+		6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA87303892C4006E2AD4 /* TransferFormInput.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +52,39 @@
 		6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLedgerApp.swift; sourceTree = "<group>"; };
 		6839EA2F30386BAC006E2AD4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6839EA3530386BCE006E2AD4 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		6839EA3A3038734E006E2AD4 /* Institution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Institution.swift; sourceTree = "<group>"; };
+		6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionCategory.swift; sourceTree = "<group>"; };
+		6839EA40303874A2006E2AD4 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		6839EA4430387567006E2AD4 /* InstitutionCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InstitutionCategory+Display.swift"; sourceTree = "<group>"; };
+		6839EA463038790C006E2AD4 /* InstitutionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionError.swift; sourceTree = "<group>"; };
+		6839EA4830387918006E2AD4 /* InstitutionProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionProviding.swift; sourceTree = "<group>"; };
+		6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitutionInput.swift; sourceTree = "<group>"; };
+		6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionInput.swift; sourceTree = "<group>"; };
+		6839EA5030387BE5006E2AD4 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		6839EA5230387BEF006E2AD4 /* AccountCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCategory.swift; sourceTree = "<group>"; };
+		6839EA5430387BFA006E2AD4 /* AccountFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountFilter.swift; sourceTree = "<group>"; };
+		6839EA5630387C05006E2AD4 /* AccountDisplayItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDisplayItem.swift; sourceTree = "<group>"; };
+		6839EA5830387C10006E2AD4 /* AccountError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountError.swift; sourceTree = "<group>"; };
+		6839EA5A30387C19006E2AD4 /* AccountProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProviding.swift; sourceTree = "<group>"; };
+		6839EA5C30387C22006E2AD4 /* AccountRecencySorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRecencySorter.swift; sourceTree = "<group>"; };
+		6839EA5E30387C34006E2AD4 /* UpdateAccountInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountInput.swift; sourceTree = "<group>"; };
+		6839EA6030387C4F006E2AD4 /* AccountCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountCategory+Display.swift"; sourceTree = "<group>"; };
+		6839EA643038888C006E2AD4 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		6839EA6630388895006E2AD4 /* TransactionCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionCategory.swift; sourceTree = "<group>"; };
+		6839EA683038889F006E2AD4 /* TransactionSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionSplit.swift; sourceTree = "<group>"; };
+		6839EA6A303888B5006E2AD4 /* TransactionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionError.swift; sourceTree = "<group>"; };
+		6839EA6C303888C1006E2AD4 /* Transaction+Effective.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+Effective.swift"; sourceTree = "<group>"; };
+		6839EA6E303888CD006E2AD4 /* TransactionProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionProviding.swift; sourceTree = "<group>"; };
+		6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionCategory+Display.swift"; sourceTree = "<group>"; };
+		6839EA7430388ED6006E2AD4 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
+		6839EA7630388EE0006E2AD4 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
+		6839EA7830388EE8006E2AD4 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
+		6839EA7C3038909F006E2AD4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6839EA7E303890A9006E2AD4 /* UserError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserError.swift; sourceTree = "<group>"; };
+		6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserInput.swift; sourceTree = "<group>"; };
+		6839EA82303890B8006E2AD4 /* UserProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProviding.swift; sourceTree = "<group>"; };
+		6839EA85303892BB006E2AD4 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
+		6839EA87303892C4006E2AD4 /* TransferFormInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferFormInput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +117,10 @@
 		6839EA3030386BAC006E2AD4 /* CatLedger */ = {
 			isa = PBXGroup;
 			children = (
+				6839EA3E3038743E006E2AD4 /* App */,
+				6839EA37303872F1006E2AD4 /* Features */,
+				6839EA4230387543006E2AD4 /* Core */,
 				6839EA3430386BAF006E2AD4 /* Resources */,
-				6839EA2D30386BAC006E2AD4 /* Assets.xcassets */,
-				6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */,
-				6839EA2F30386BAC006E2AD4 /* ContentView.swift */,
 			);
 			path = CatLedger;
 			sourceTree = "<group>";
@@ -63,8 +129,177 @@
 			isa = PBXGroup;
 			children = (
 				6839EA3530386BCE006E2AD4 /* Version.xcconfig */,
+				6839EA2D30386BAC006E2AD4 /* Assets.xcassets */,
+				6839EA40303874A2006E2AD4 /* Localizable.xcstrings */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		6839EA37303872F1006E2AD4 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7230388EC5006E2AD4 /* Authentication */,
+				6839EA7A30388FDC006E2AD4 /* User */,
+				6839EA38303872FD006E2AD4 /* Institution */,
+				6839EA4E30387B34006E2AD4 /* Account */,
+				6839EA6230388864006E2AD4 /* Transaction */,
+				6839EA84303892AB006E2AD4 /* Transfer */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		6839EA38303872FD006E2AD4 /* Institution */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA3930387304006E2AD4 /* Domain */,
+			);
+			path = Institution;
+			sourceTree = "<group>";
+		};
+		6839EA3930387304006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA3A3038734E006E2AD4 /* Institution.swift */,
+				6839EA3C30387358006E2AD4 /* InstitutionCategory.swift */,
+				6839EA463038790C006E2AD4 /* InstitutionError.swift */,
+				6839EA4830387918006E2AD4 /* InstitutionProviding.swift */,
+				6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */,
+				6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6839EA3E3038743E006E2AD4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */,
+				6839EA3F3038745F006E2AD4 /* Presentation */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		6839EA3F3038745F006E2AD4 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA2F30386BAC006E2AD4 /* ContentView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		6839EA4230387543006E2AD4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA4330387552006E2AD4 /* Branding */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6839EA4330387552006E2AD4 /* Branding */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA4430387567006E2AD4 /* InstitutionCategory+Display.swift */,
+				6839EA6030387C4F006E2AD4 /* AccountCategory+Display.swift */,
+				6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */,
+			);
+			path = Branding;
+			sourceTree = "<group>";
+		};
+		6839EA4E30387B34006E2AD4 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA4F30387B83006E2AD4 /* Domain */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		6839EA4F30387B83006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA5030387BE5006E2AD4 /* Account.swift */,
+				6839EA5230387BEF006E2AD4 /* AccountCategory.swift */,
+				6839EA5430387BFA006E2AD4 /* AccountFilter.swift */,
+				6839EA5630387C05006E2AD4 /* AccountDisplayItem.swift */,
+				6839EA5830387C10006E2AD4 /* AccountError.swift */,
+				6839EA5A30387C19006E2AD4 /* AccountProviding.swift */,
+				6839EA5C30387C22006E2AD4 /* AccountRecencySorter.swift */,
+				6839EA5E30387C34006E2AD4 /* UpdateAccountInput.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6839EA6230388864006E2AD4 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA6330388880006E2AD4 /* Domain */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		6839EA6330388880006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA643038888C006E2AD4 /* Transaction.swift */,
+				6839EA683038889F006E2AD4 /* TransactionSplit.swift */,
+				6839EA6630388895006E2AD4 /* TransactionCategory.swift */,
+				6839EA6A303888B5006E2AD4 /* TransactionError.swift */,
+				6839EA6C303888C1006E2AD4 /* Transaction+Effective.swift */,
+				6839EA6E303888CD006E2AD4 /* TransactionProviding.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6839EA7230388EC5006E2AD4 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7330388ECA006E2AD4 /* Domain */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		6839EA7330388ECA006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7430388ED6006E2AD4 /* AuthSession.swift */,
+				6839EA7630388EE0006E2AD4 /* AuthError.swift */,
+				6839EA7830388EE8006E2AD4 /* AuthProviding.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6839EA7A30388FDC006E2AD4 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7B30388FE8006E2AD4 /* Domain */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		6839EA7B30388FE8006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA7C3038909F006E2AD4 /* User.swift */,
+				6839EA7E303890A9006E2AD4 /* UserError.swift */,
+				6839EA82303890B8006E2AD4 /* UserProviding.swift */,
+				6839EA80303890B1006E2AD4 /* UpdateUserInput.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		6839EA84303892AB006E2AD4 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA89303892E0006E2AD4 /* Domain */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
+		6839EA89303892E0006E2AD4 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				6839EA85303892BB006E2AD4 /* Transfer.swift */,
+				6839EA87303892C4006E2AD4 /* TransferFormInput.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +365,7 @@
 			files = (
 				6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */,
 				6839EA3630386BCE006E2AD4 /* Version.xcconfig in Resources */,
+				6839EA41303874A2006E2AD4 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,8 +376,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6839EA3D30387358006E2AD4 /* InstitutionCategory.swift in Sources */,
+				6839EA4930387918006E2AD4 /* InstitutionProviding.swift in Sources */,
+				6839EA5330387BEF006E2AD4 /* AccountCategory.swift in Sources */,
+				6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */,
+				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
+				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
+				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
+				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
+				6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */,
+				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
+				6839EA7D3038909F006E2AD4 /* User.swift in Sources */,
+				6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
+				6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */,
+				6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */,
+				6839EA81303890B1006E2AD4 /* UpdateUserInput.swift in Sources */,
+				6839EA5130387BE5006E2AD4 /* Account.swift in Sources */,
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
+				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
+				6839EA653038888C006E2AD4 /* Transaction.swift in Sources */,
+				6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */,
+				6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */,
+				6839EA5530387BFA006E2AD4 /* AccountFilter.swift in Sources */,
+				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
+				6839EA693038889F006E2AD4 /* TransactionSplit.swift in Sources */,
+				6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */,
+				6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */,
+				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
+				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,
+				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
+				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
+				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
+				6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */,
+				6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +475,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -263,6 +532,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
