@@ -8,7 +8,6 @@
 import Foundation
 
 /// Archives a single account record.
-/// Cascading concerns (e.g. its parent institution) are a separate concern, orchestrated elsewhere.
 final class ArchiveAccount {
 
     private let repository: AccountProviding

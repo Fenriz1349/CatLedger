@@ -8,7 +8,6 @@
 import Foundation
 
 /// Restores a single account record to active status.
-/// Cascading concerns (e.g. its parent institution) are a separate concern, orchestrated elsewhere.
 final class UnarchiveAccount {
 
     private let repository: AccountProviding

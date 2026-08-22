@@ -8,7 +8,6 @@
 import Foundation
 
 /// Permanently deletes a single account record.
-/// Cleaning up its transactions is a separate concern, orchestrated elsewhere.
 final class DeleteAccount {
 
     private let repository: AccountProviding
