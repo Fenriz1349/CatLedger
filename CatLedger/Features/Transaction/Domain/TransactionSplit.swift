@@ -1,0 +1,29 @@
+//
+//  TransactionSplit.swift
+//  CatLedger
+//
+//  Created by Julien Cotte on 21/08/2026.
+//
+
+import Foundation
+
+/// Represents the allocation of a portion of a Transaction to a specific Account.
+/// Acts as a join entity between Transaction and Account.
+/// The sum of all splits for a given transaction must equal the transaction's totalAmount.
+struct TransactionSplit: Identifiable, Equatable, Codable, Sendable, Hashable {
+
+    let id: UUID
+    var accountId: UUID
+    var amount: Double
+
+    /// Creates a new TransactionSplit.
+    /// - Parameters:
+    ///   - id: Unique identifier. Defaults to a new UUID.
+    ///   - accountId: The identifier of the Account this split is allocated to.
+    ///   - amount: The portion of the total transaction amount for this account. Must be positive.
+    init(id: UUID = UUID(), accountId: UUID, amount: Double) {
+        self.id = id
+        self.accountId = accountId
+        self.amount = amount
+    }
+}

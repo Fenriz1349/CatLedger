@@ -12,7 +12,7 @@ on:
       - ".release-please-manifest.json"
       - "CHANGELOG.md"
   push:
-    branches: [dev, main]
+    branches: [main]
     paths:
       - "CatLedger/Resources/Version.xcconfig"
       - ".release-please-manifest.json"
