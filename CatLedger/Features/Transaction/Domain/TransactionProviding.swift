@@ -17,6 +17,28 @@ protocol TransactionProviding {
     /// - Returns: An array of transactions, ordered by date descending.
     func fetchAll(for userId: UUID) async throws -> [Transaction]
 
+    /// Fetches all transactions with a split allocated to a given account.
+    /// - Parameters:
+    ///   - userId: The identifier of the user.
+    ///   - accountId: The identifier of the account.
+    /// - Returns: An array of transactions, ordered by date descending.
+    func fetchAllByAccount(for userId: UUID, accountId: UUID) async throws -> [Transaction]
+
+    /// Fetches all transactions belonging to a given category.
+    /// - Parameters:
+    ///   - userId: The identifier of the user.
+    ///   - category: The category to filter by.
+    /// - Returns: An array of transactions, ordered by date descending.
+    func fetchAllByCategory(for userId: UUID, category: TransactionCategory) async throws -> [Transaction]
+
+    /// Fetches all transactions within a date range.
+    /// - Parameters:
+    ///   - userId: The identifier of the user.
+    ///   - from: The start of the date range, inclusive.
+    ///   - to: The end of the date range, inclusive.
+    /// - Returns: An array of transactions, ordered by date descending.
+    func fetchAllByDateRange(for userId: UUID, from: Date, to: Date) async throws -> [Transaction]
+
     /// Fetches a single transaction by its identifier.
     /// - Parameter id: The unique identifier of the transaction.
     /// - Returns: The matching transaction.
