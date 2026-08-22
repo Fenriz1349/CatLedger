@@ -128,6 +128,7 @@
 		687ADC5C303973EF0004166C /* UnarchiveInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveInstitutionTests.swift; sourceTree = "<group>"; };
 		687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInstitutionTests.swift; sourceTree = "<group>"; };
 		687ADC60303974630004166C /* InstitutionDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionDouble.swift; sourceTree = "<group>"; };
+		687ADC643039781B0004166C /* CatLedgerTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLedgerTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +152,7 @@
 		6839EA1630386BA2006E2AD4 = {
 			isa = PBXGroup;
 			children = (
+				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
 				6839EA3030386BAC006E2AD4 /* CatLedger */,
 				687ADC4E3039724E0004166C /* CatLedgerTests */,
 				6839EA2030386BA2006E2AD4 /* Products */,
