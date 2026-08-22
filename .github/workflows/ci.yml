@@ -72,11 +72,22 @@ jobs:
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO
 
-      # Run the unit tests (default test plan) on an actual simulator instance, since "test" needs
-      # a concrete device to run the app on, unlike "build" which only needs a platform.
-      # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
-      # device name is the one place that may need adjusting if it isn't on the runner (the
-      # failure log lists the actually available simulators).
+      # GitHub's macOS runners start from a fresh VM every run, so CoreSimulator has never booted
+      # anything on this machine yet — leaving the boot to `xcodebuild test` itself measured at
+      # ~7 minutes just to reach "Testing started" (the actual test run took 24s). Booting
+      # explicitly first and waiting for a real "Booted" state is the standard workaround.
+      - name: Boot Simulator
+        run: |
+          UDID=$(xcrun simctl list devices available | grep 'iPhone 17 (' | head -1 | grep -oE '[0-9A-F-]{36}')
+          echo "Booting simulator $UDID"
+          xcrun simctl boot "$UDID"
+          xcrun simctl bootstatus "$UDID" -b
+
+      # Run the unit tests (default test plan) on the simulator instance booted above, since
+      # "test" needs a concrete device to run the app on, unlike "build" which only needs a
+      # platform. Unlike "latest-stable" above, xcodebuild has no "any available device" keyword,
+      # so this device name is the one place that may need adjusting if it isn't on the runner
+      # (the failure log lists the actually available simulators).
       - name: Test
         run: |
           xcodebuild test \
