@@ -65,4 +65,14 @@ enum TestData {
             isChecked: isChecked
         )
     }
+
+    static func user(
+        id: UUID = UUID(),
+        firstName: String = "Bruce",
+        lastName: String = "Wayne",
+        email: String = "batman@gotham.com",
+        photoURL: String? = nil
+    ) -> User {
+        User(id: id, displayName: "\(firstName)|\(lastName)", email: email, photoURL: photoURL)
+    }
 }
