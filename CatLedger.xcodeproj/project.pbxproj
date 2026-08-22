@@ -60,6 +60,13 @@
 		687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC5C303973EF0004166C /* UnarchiveInstitutionTests.swift */; };
 		687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */; };
 		687ADC61303974630004166C /* InstitutionDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC60303974630004166C /* InstitutionDouble.swift */; };
+		687ADC6730397B590004166C /* GetAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6630397B590004166C /* GetAccount.swift */; };
+		687ADC6930397B640004166C /* GetAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6830397B640004166C /* GetAccounts.swift */; };
+		687ADC6B30397B730004166C /* AddAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6A30397B730004166C /* AddAccount.swift */; };
+		687ADC6D30397B7B0004166C /* UpdateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6C30397B7B0004166C /* UpdateAccount.swift */; };
+		687ADC6F30397B820004166C /* ArchiveAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6E30397B820004166C /* ArchiveAccount.swift */; };
+		687ADC7130397B890004166C /* UnarchiveAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7030397B890004166C /* UnarchiveAccount.swift */; };
+		687ADC7330397B930004166C /* DeleteAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7230397B930004166C /* DeleteAccount.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +136,13 @@
 		687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInstitutionTests.swift; sourceTree = "<group>"; };
 		687ADC60303974630004166C /* InstitutionDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionDouble.swift; sourceTree = "<group>"; };
 		687ADC643039781B0004166C /* CatLedgerTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLedgerTests.xctestplan; sourceTree = "<group>"; };
+		687ADC6630397B590004166C /* GetAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccount.swift; sourceTree = "<group>"; };
+		687ADC6830397B640004166C /* GetAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccounts.swift; sourceTree = "<group>"; };
+		687ADC6A30397B730004166C /* AddAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccount.swift; sourceTree = "<group>"; };
+		687ADC6C30397B7B0004166C /* UpdateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccount.swift; sourceTree = "<group>"; };
+		687ADC6E30397B820004166C /* ArchiveAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccount.swift; sourceTree = "<group>"; };
+		687ADC7030397B890004166C /* UnarchiveAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveAccount.swift; sourceTree = "<group>"; };
+		687ADC7230397B930004166C /* DeleteAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccount.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +292,7 @@
 				6839EA5A30387C19006E2AD4 /* AccountProviding.swift */,
 				6839EA5C30387C22006E2AD4 /* AccountRecencySorter.swift */,
 				6839EA5E30387C34006E2AD4 /* UpdateAccountInput.swift */,
+				687ADC6530397B480004166C /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -403,6 +418,20 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		687ADC6530397B480004166C /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				687ADC6630397B590004166C /* GetAccount.swift */,
+				687ADC6830397B640004166C /* GetAccounts.swift */,
+				687ADC6A30397B730004166C /* AddAccount.swift */,
+				687ADC6C30397B7B0004166C /* UpdateAccount.swift */,
+				687ADC6E30397B820004166C /* ArchiveAccount.swift */,
+				687ADC7030397B890004166C /* UnarchiveAccount.swift */,
+				687ADC7230397B930004166C /* DeleteAccount.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -516,6 +545,7 @@
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
 				687ADC32303970460004166C /* GetInstitution.swift in Sources */,
 				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
+				687ADC6930397B640004166C /* GetAccounts.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
 				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
@@ -534,20 +564,26 @@
 				6839EA5130387BE5006E2AD4 /* Account.swift in Sources */,
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
+				687ADC6F30397B820004166C /* ArchiveAccount.swift in Sources */,
 				6839EA653038888C006E2AD4 /* Transaction.swift in Sources */,
+				687ADC6730397B590004166C /* GetAccount.swift in Sources */,
 				6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */,
 				6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */,
+				687ADC6D30397B7B0004166C /* UpdateAccount.swift in Sources */,
 				6839EA5530387BFA006E2AD4 /* AccountFilter.swift in Sources */,
 				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
 				6839EA693038889F006E2AD4 /* TransactionSplit.swift in Sources */,
 				6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */,
 				6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */,
+				687ADC7330397B930004166C /* DeleteAccount.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
 				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,
+				687ADC6B30397B730004166C /* AddAccount.swift in Sources */,
 				687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
+				687ADC7130397B890004166C /* UnarchiveAccount.swift in Sources */,
 				6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */,
 				6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */,
 			);
