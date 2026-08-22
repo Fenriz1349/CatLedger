@@ -8,7 +8,6 @@
 import Foundation
 
 /// Archives a single institution record.
-/// Cascading the archive to its accounts is a separate concern, orchestrated elsewhere.
 final class ArchiveInstitution {
 
     private let repository: InstitutionProviding

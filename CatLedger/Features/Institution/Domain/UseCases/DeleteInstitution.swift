@@ -8,7 +8,6 @@
 import Foundation
 
 /// Permanently deletes a single institution record.
-/// Cleaning up its accounts (and their transactions) is a separate concern, orchestrated elsewhere.
 final class DeleteInstitution {
 
     private let repository: InstitutionProviding
