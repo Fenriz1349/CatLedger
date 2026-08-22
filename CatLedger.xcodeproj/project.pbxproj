@@ -51,7 +51,26 @@
 		687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC393039706A0004166C /* ArchiveInstitution.swift */; };
 		687ADC3C303970720004166C /* UnarchiveInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC3B303970720004166C /* UnarchiveInstitution.swift */; };
 		687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC3D3039707A0004166C /* DeleteInstitution.swift */; };
+		687ADC4F3039724E0004166C /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC4D3039724E0004166C /* TestData.swift */; };
+		687ADC53303973B20004166C /* GetInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC52303973B20004166C /* GetInstitutionTests.swift */; };
+		687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC54303973BE0004166C /* GetInstitutionsTests.swift */; };
+		687ADC57303973C90004166C /* AddInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC56303973C90004166C /* AddInstitutionTests.swift */; };
+		687ADC59303973D60004166C /* UpdateInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC58303973D60004166C /* UpdateInstitutionTests.swift */; };
+		687ADC5B303973E20004166C /* ArchiveInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC5A303973E20004166C /* ArchiveInstitutionTests.swift */; };
+		687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC5C303973EF0004166C /* UnarchiveInstitutionTests.swift */; };
+		687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */; };
+		687ADC61303974630004166C /* InstitutionDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC60303974630004166C /* InstitutionDouble.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		687ADC483039722B0004166C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6839EA1730386BA2006E2AD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6839EA1E30386BA2006E2AD4;
+			remoteInfo = CatLedger;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		6839EA1F30386BA2006E2AD4 /* CatLedger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLedger.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,10 +118,27 @@
 		687ADC393039706A0004166C /* ArchiveInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveInstitution.swift; sourceTree = "<group>"; };
 		687ADC3B303970720004166C /* UnarchiveInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveInstitution.swift; sourceTree = "<group>"; };
 		687ADC3D3039707A0004166C /* DeleteInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInstitution.swift; sourceTree = "<group>"; };
+		687ADC443039722B0004166C /* CatLedgerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLedgerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		687ADC4D3039724E0004166C /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
+		687ADC52303973B20004166C /* GetInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC54303973BE0004166C /* GetInstitutionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutionsTests.swift; sourceTree = "<group>"; };
+		687ADC56303973C90004166C /* AddInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC58303973D60004166C /* UpdateInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC5A303973E20004166C /* ArchiveInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC5C303973EF0004166C /* UnarchiveInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInstitutionTests.swift; sourceTree = "<group>"; };
+		687ADC60303974630004166C /* InstitutionDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionDouble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6839EA1C30386BA2006E2AD4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		687ADC413039722B0004166C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -116,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA3030386BAC006E2AD4 /* CatLedger */,
+				687ADC4E3039724E0004166C /* CatLedgerTests */,
 				6839EA2030386BA2006E2AD4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -124,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA1F30386BA2006E2AD4 /* CatLedger.app */,
+				687ADC443039722B0004166C /* CatLedgerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -331,6 +369,38 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		687ADC4E3039724E0004166C /* CatLedgerTests */ = {
+			isa = PBXGroup;
+			children = (
+				687ADC50303973880004166C /* Institution */,
+				687ADC4D3039724E0004166C /* TestData.swift */,
+			);
+			path = CatLedgerTests;
+			sourceTree = "<group>";
+		};
+		687ADC50303973880004166C /* Institution */ = {
+			isa = PBXGroup;
+			children = (
+				687ADC60303974630004166C /* InstitutionDouble.swift */,
+				687ADC51303973950004166C /* UseCases */,
+			);
+			path = Institution;
+			sourceTree = "<group>";
+		};
+		687ADC51303973950004166C /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				687ADC52303973B20004166C /* GetInstitutionTests.swift */,
+				687ADC54303973BE0004166C /* GetInstitutionsTests.swift */,
+				687ADC56303973C90004166C /* AddInstitutionTests.swift */,
+				687ADC58303973D60004166C /* UpdateInstitutionTests.swift */,
+				687ADC5A303973E20004166C /* ArchiveInstitutionTests.swift */,
+				687ADC5C303973EF0004166C /* UnarchiveInstitutionTests.swift */,
+				687ADC5E303973FB0004166C /* DeleteInstitutionTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -353,6 +423,26 @@
 			productReference = 6839EA1F30386BA2006E2AD4 /* CatLedger.app */;
 			productType = "com.apple.product-type.application";
 		};
+		687ADC433039722B0004166C /* CatLedgerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 687ADC4A3039722B0004166C /* Build configuration list for PBXNativeTarget "CatLedgerTests" */;
+			buildPhases = (
+				687ADC403039722B0004166C /* Sources */,
+				687ADC413039722B0004166C /* Frameworks */,
+				687ADC423039722B0004166C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				687ADC493039722B0004166C /* PBXTargetDependency */,
+			);
+			name = CatLedgerTests;
+			packageProductDependencies = (
+			);
+			productName = CatLedgerTests;
+			productReference = 687ADC443039722B0004166C /* CatLedgerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -365,6 +455,10 @@
 				TargetAttributes = {
 					6839EA1E30386BA2006E2AD4 = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					687ADC433039722B0004166C = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 6839EA1E30386BA2006E2AD4;
 					};
 				};
 			};
@@ -383,6 +477,7 @@
 			projectRoot = "";
 			targets = (
 				6839EA1E30386BA2006E2AD4 /* CatLedger */,
+				687ADC433039722B0004166C /* CatLedgerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -395,6 +490,13 @@
 				6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */,
 				6839EA3630386BCE006E2AD4 /* Version.xcconfig in Resources */,
 				6839EA41303874A2006E2AD4 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		687ADC423039722B0004166C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +551,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		687ADC403039722B0004166C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				687ADC4F3039724E0004166C /* TestData.swift in Sources */,
+				687ADC59303973D60004166C /* UpdateInstitutionTests.swift in Sources */,
+				687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */,
+				687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */,
+				687ADC5B303973E20004166C /* ArchiveInstitutionTests.swift in Sources */,
+				687ADC57303973C90004166C /* AddInstitutionTests.swift in Sources */,
+				687ADC53303973B20004166C /* GetInstitutionTests.swift in Sources */,
+				687ADC61303974630004166C /* InstitutionDouble.swift in Sources */,
+				687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		687ADC493039722B0004166C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6839EA1E30386BA2006E2AD4 /* CatLedger */;
+			targetProxy = 687ADC483039722B0004166C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6839EA2830386BA4006E2AD4 /* Debug */ = {
@@ -662,6 +788,53 @@
 			};
 			name = Release;
 		};
+		687ADC4B3039722B0004166C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A9J8B8CPN4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLedger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatLedger";
+			};
+			name = Debug;
+		};
+		687ADC4C3039722B0004166C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A9J8B8CPN4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLedger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatLedger";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -679,6 +852,15 @@
 			buildConfigurations = (
 				6839EA2B30386BA4006E2AD4 /* Debug */,
 				6839EA2C30386BA4006E2AD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		687ADC4A3039722B0004166C /* Build configuration list for PBXNativeTarget "CatLedgerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				687ADC4B3039722B0004166C /* Debug */,
+				687ADC4C3039722B0004166C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
