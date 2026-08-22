@@ -44,6 +44,14 @@
 		6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA82303890B8006E2AD4 /* UserProviding.swift */; };
 		6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA85303892BB006E2AD4 /* Transfer.swift */; };
 		6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA87303892C4006E2AD4 /* TransferFormInput.swift */; };
+		68558A4D303992AC00FE562D /* AccountDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A4C303992AC00FE562D /* AccountDouble.swift */; };
+		68558A52303992D500FE562D /* GetAccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A51303992D500FE562D /* GetAccountsTests.swift */; };
+		68558A54303992DE00FE562D /* AddAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A53303992DE00FE562D /* AddAccountTests.swift */; };
+		68558A56303992EB00FE562D /* UpdateAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A55303992EB00FE562D /* UpdateAccountTests.swift */; };
+		68558A58303992F700FE562D /* ArchiveAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A57303992F700FE562D /* ArchiveAccountTests.swift */; };
+		68558A5A3039930700FE562D /* UnarchiveAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A593039930700FE562D /* UnarchiveAccountTests.swift */; };
+		68558A5C3039931100FE562D /* DeleteAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A5B3039931100FE562D /* DeleteAccountTests.swift */; };
+		68558A5E303994CE00FE562D /* GetAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A5D303994CE00FE562D /* GetAccountTests.swift */; };
 		687ADC32303970460004166C /* GetInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC31303970460004166C /* GetInstitution.swift */; };
 		687ADC34303970500004166C /* GetInstitutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC33303970500004166C /* GetInstitutions.swift */; };
 		687ADC363039705A0004166C /* AddInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC353039705A0004166C /* AddInstitution.swift */; };
@@ -118,6 +126,14 @@
 		6839EA82303890B8006E2AD4 /* UserProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProviding.swift; sourceTree = "<group>"; };
 		6839EA85303892BB006E2AD4 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		6839EA87303892C4006E2AD4 /* TransferFormInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferFormInput.swift; sourceTree = "<group>"; };
+		68558A4C303992AC00FE562D /* AccountDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDouble.swift; sourceTree = "<group>"; };
+		68558A51303992D500FE562D /* GetAccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsTests.swift; sourceTree = "<group>"; };
+		68558A53303992DE00FE562D /* AddAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountTests.swift; sourceTree = "<group>"; };
+		68558A55303992EB00FE562D /* UpdateAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAccountTests.swift; sourceTree = "<group>"; };
+		68558A57303992F700FE562D /* ArchiveAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccountTests.swift; sourceTree = "<group>"; };
+		68558A593039930700FE562D /* UnarchiveAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveAccountTests.swift; sourceTree = "<group>"; };
+		68558A5B3039931100FE562D /* DeleteAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountTests.swift; sourceTree = "<group>"; };
+		68558A5D303994CE00FE562D /* GetAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountTests.swift; sourceTree = "<group>"; };
 		687ADC31303970460004166C /* GetInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitution.swift; sourceTree = "<group>"; };
 		687ADC33303970500004166C /* GetInstitutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutions.swift; sourceTree = "<group>"; };
 		687ADC353039705A0004166C /* AddInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitution.swift; sourceTree = "<group>"; };
@@ -372,6 +388,29 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		68558A4B3039929200FE562D /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				68558A4C303992AC00FE562D /* AccountDouble.swift */,
+				68558A4E303992B400FE562D /* UseCases */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		68558A4E303992B400FE562D /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				68558A5D303994CE00FE562D /* GetAccountTests.swift */,
+				68558A51303992D500FE562D /* GetAccountsTests.swift */,
+				68558A53303992DE00FE562D /* AddAccountTests.swift */,
+				68558A55303992EB00FE562D /* UpdateAccountTests.swift */,
+				68558A57303992F700FE562D /* ArchiveAccountTests.swift */,
+				68558A593039930700FE562D /* UnarchiveAccountTests.swift */,
+				68558A5B3039931100FE562D /* DeleteAccountTests.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 		687ADC30303970360004166C /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				687ADC50303973880004166C /* Institution */,
+				68558A4B3039929200FE562D /* Account */,
 				687ADC4D3039724E0004166C /* TestData.swift */,
 			);
 			path = CatLedgerTests;
@@ -593,12 +633,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68558A54303992DE00FE562D /* AddAccountTests.swift in Sources */,
 				687ADC4F3039724E0004166C /* TestData.swift in Sources */,
+				68558A5E303994CE00FE562D /* GetAccountTests.swift in Sources */,
 				687ADC59303973D60004166C /* UpdateInstitutionTests.swift in Sources */,
 				687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */,
+				68558A5C3039931100FE562D /* DeleteAccountTests.swift in Sources */,
 				687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */,
 				687ADC5B303973E20004166C /* ArchiveInstitutionTests.swift in Sources */,
 				687ADC57303973C90004166C /* AddInstitutionTests.swift in Sources */,
+				68558A56303992EB00FE562D /* UpdateAccountTests.swift in Sources */,
+				68558A4D303992AC00FE562D /* AccountDouble.swift in Sources */,
+				68558A58303992F700FE562D /* ArchiveAccountTests.swift in Sources */,
+				68558A5A3039930700FE562D /* UnarchiveAccountTests.swift in Sources */,
+				68558A52303992D500FE562D /* GetAccountsTests.swift in Sources */,
 				687ADC53303973B20004166C /* GetInstitutionTests.swift in Sources */,
 				687ADC61303974630004166C /* InstitutionDouble.swift in Sources */,
 				687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */,
