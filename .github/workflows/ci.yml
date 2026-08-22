@@ -68,5 +68,16 @@ jobs:
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO
 
-      # No test target exists yet — this step will run `xcodebuild test` once CatLedgerTests
-      # is added to the project.
+      # Run the unit tests (default test plan) on an actual simulator instance, since "test" needs
+      # a concrete device to run the app on, unlike "build" which only needs a platform.
+      # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
+      # device name is the one place that may need adjusting if it isn't on the runner (the
+      # failure log lists the actually available simulators).
+      - name: Test
+        run: |
+          xcodebuild test \
+            -project CatLedger.xcodeproj \
+            -scheme CatLedger \
+            -destination 'platform=iOS Simulator,name=iPhone 17' \
+            -derivedDataPath DerivedData \
+            CODE_SIGNING_ALLOWED=NO
