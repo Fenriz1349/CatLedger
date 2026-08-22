@@ -14,11 +14,12 @@
       "containerPath" : "container:CatLedger.xcodeproj",
       "identifier" : "6839EA1E30386BA2006E2AD4",
       "name" : "CatLedger"
-    }
+    },
+    "testExecutionOrdering" : "random"
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:CatLedger.xcodeproj",
         "identifier" : "687ADC433039722B0004166C",
