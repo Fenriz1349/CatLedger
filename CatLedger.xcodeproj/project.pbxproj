@@ -44,6 +44,13 @@
 		6839EA83303890B8006E2AD4 /* UserProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA82303890B8006E2AD4 /* UserProviding.swift */; };
 		6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA85303892BB006E2AD4 /* Transfer.swift */; };
 		6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA87303892C4006E2AD4 /* TransferFormInput.swift */; };
+		687ADC32303970460004166C /* GetInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC31303970460004166C /* GetInstitution.swift */; };
+		687ADC34303970500004166C /* GetInstitutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC33303970500004166C /* GetInstitutions.swift */; };
+		687ADC363039705A0004166C /* AddInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC353039705A0004166C /* AddInstitution.swift */; };
+		687ADC38303970610004166C /* UpdateInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC37303970610004166C /* UpdateInstitution.swift */; };
+		687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC393039706A0004166C /* ArchiveInstitution.swift */; };
+		687ADC3C303970720004166C /* UnarchiveInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC3B303970720004166C /* UnarchiveInstitution.swift */; };
+		687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC3D3039707A0004166C /* DeleteInstitution.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +92,13 @@
 		6839EA82303890B8006E2AD4 /* UserProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProviding.swift; sourceTree = "<group>"; };
 		6839EA85303892BB006E2AD4 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		6839EA87303892C4006E2AD4 /* TransferFormInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferFormInput.swift; sourceTree = "<group>"; };
+		687ADC31303970460004166C /* GetInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitution.swift; sourceTree = "<group>"; };
+		687ADC33303970500004166C /* GetInstitutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutions.swift; sourceTree = "<group>"; };
+		687ADC353039705A0004166C /* AddInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitution.swift; sourceTree = "<group>"; };
+		687ADC37303970610004166C /* UpdateInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateInstitution.swift; sourceTree = "<group>"; };
+		687ADC393039706A0004166C /* ArchiveInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveInstitution.swift; sourceTree = "<group>"; };
+		687ADC3B303970720004166C /* UnarchiveInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveInstitution.swift; sourceTree = "<group>"; };
+		687ADC3D3039707A0004166C /* DeleteInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInstitution.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +179,7 @@
 				6839EA4830387918006E2AD4 /* InstitutionProviding.swift */,
 				6839EA4A30387A74006E2AD4 /* AddInstitutionInput.swift */,
 				6839EA4C30387A7F006E2AD4 /* UpdateInstitutionInput.swift */,
+				687ADC30303970360004166C /* UseCases */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -302,6 +317,20 @@
 			path = Domain;
 			sourceTree = "<group>";
 		};
+		687ADC30303970360004166C /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				687ADC31303970460004166C /* GetInstitution.swift */,
+				687ADC33303970500004166C /* GetInstitutions.swift */,
+				687ADC353039705A0004166C /* AddInstitution.swift */,
+				687ADC37303970610004166C /* UpdateInstitution.swift */,
+				687ADC393039706A0004166C /* ArchiveInstitution.swift */,
+				687ADC3B303970720004166C /* UnarchiveInstitution.swift */,
+				687ADC3D3039707A0004166C /* DeleteInstitution.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -381,14 +410,20 @@
 				6839EA5330387BEF006E2AD4 /* AccountCategory.swift in Sources */,
 				6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */,
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
+				687ADC32303970460004166C /* GetInstitution.swift in Sources */,
+				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
 				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
 				6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */,
 				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
+				687ADC38303970610004166C /* UpdateInstitution.swift in Sources */,
+				687ADC3C303970720004166C /* UnarchiveInstitution.swift in Sources */,
 				6839EA7D3038909F006E2AD4 /* User.swift in Sources */,
 				6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */,
+				687ADC34303970500004166C /* GetInstitutions.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
+				687ADC363039705A0004166C /* AddInstitution.swift in Sources */,
 				6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */,
 				6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */,
 				6839EA81303890B1006E2AD4 /* UpdateUserInput.swift in Sources */,
@@ -405,6 +440,7 @@
 				6839EA7F303890A9006E2AD4 /* UserError.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
 				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,
+				687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
