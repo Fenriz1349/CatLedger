@@ -18,25 +18,20 @@ struct GetInstitutionTests {
         useCase = GetInstitution(repository: repository)
     }
 
-    /// Seeds and returns an institution with a known id.
-    private func seedInstitution() async throws -> UUID {
-        let institution = Institution(userId: UUID(), name: "BNP Paribas", category: .bank)
-        try await repository.save(institution)
-        return institution.id
-    }
-
     @Test("Returns the institution matching an existing id")
     func execute_existingId_returnsInstitution() async throws {
-        let id = try await seedInstitution()
-        let result = try await useCase.execute(id: id)
-        #expect(result.id == id)
+        let institution = TestData.institution()
+        try await repository.save(institution)
+        let result = try await useCase.execute(id: institution.id)
+        #expect(result.id == institution.id)
     }
 
     @Test("Returns the institution with its expected name")
     func execute_existingId_returnsCorrectName() async throws {
-        let id = try await seedInstitution()
-        let result = try await useCase.execute(id: id)
-        #expect(result.name == "BNP Paribas")
+        let institution = TestData.institution()
+        try await repository.save(institution)
+        let result = try await useCase.execute(id: institution.id)
+        #expect(result.name == institution.name)
     }
 
     @Test("Throws notFound when no institution matches the id")

@@ -19,13 +19,9 @@ struct UnarchiveInstitutionTests {
         useCase = UnarchiveInstitution(repository: repository)
     }
 
-    private func seedArchivedInstitution() async throws {
-        try await repository.save(TestData.institution(id: institutionId, isArchived: true))
-    }
-
     @Test("Restores the institution to active status")
     func execute_unarchivesInstitution() async throws {
-        try await seedArchivedInstitution()
+        try await repository.save(TestData.institution(id: institutionId, isArchived: true))
         try await useCase.execute(id: institutionId)
         let institution = try await repository.fetch(by: institutionId)
         #expect(!institution.isArchived)

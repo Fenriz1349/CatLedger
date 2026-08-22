@@ -19,13 +19,9 @@ struct DeleteInstitutionTests {
         useCase = DeleteInstitution(repository: repository)
     }
 
-    private func seedInstitution() async throws {
-        try await repository.save(TestData.institution(id: institutionId))
-    }
-
     @Test("Removes the institution record")
     func execute_existingId_institutionDeleted() async throws {
-        try await seedInstitution()
+        try await repository.save(TestData.institution(id: institutionId))
         try await useCase.execute(id: institutionId)
         await #expect(throws: InstitutionError.notFound) {
             try await repository.fetch(by: institutionId)
