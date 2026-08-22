@@ -8,7 +8,6 @@
 import Foundation
 
 /// Restores a single institution record to active status.
-/// Cascading the restore to its accounts is a separate concern, orchestrated elsewhere.
 final class UnarchiveInstitution {
 
     private let repository: InstitutionProviding

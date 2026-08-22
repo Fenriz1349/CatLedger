@@ -19,23 +19,17 @@ struct GetInstitutionsTests {
         useCase = GetInstitutions(repository: repository)
     }
 
-    /// Seeds an institution belonging to the shared userId.
-    private func seedInstitution(name: String = "BNP Paribas") async throws {
-        let institution = Institution(userId: userId, name: name, category: .bank)
-        try await repository.save(institution)
-    }
-
     @Test("Returns all institutions belonging to the user")
     func execute_returnsAllInstitutionsForUser() async throws {
-        try await seedInstitution(name: "BNP Paribas")
-        try await seedInstitution(name: "Caisse d'Épargne")
+        try await repository.save(TestData.institution(userId: userId, name: "BNP Paribas"))
+        try await repository.save(TestData.institution(userId: userId, name: "Caisse d'Épargne"))
         let result = try await useCase.execute(for: userId)
         #expect(result.count == 2)
     }
 
     @Test("Does not return institutions belonging to another user")
     func execute_doesNotReturnInstitutionsFromOtherUser() async throws {
-        try await seedInstitution()
+        try await repository.save(TestData.institution(userId: userId))
         let result = try await useCase.execute(for: UUID())
         #expect(result.isEmpty)
     }

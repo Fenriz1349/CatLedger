@@ -21,4 +21,14 @@ enum TestData {
     ) -> Institution {
         Institution(id: id, userId: userId, name: name, category: category, isArchived: isArchived)
     }
+
+    static func account(
+        id: UUID = UUID(),
+        institutionId: UUID = UUID(),
+        name: String = "Compte courant",
+        category: AccountCategory = .checking,
+        isArchived: Bool = false
+    ) -> Account {
+        Account(id: id, institutionId: institutionId, name: name, category: category, isArchived: isArchived)
+    }
 }

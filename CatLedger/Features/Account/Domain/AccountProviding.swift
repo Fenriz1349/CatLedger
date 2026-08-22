@@ -40,6 +40,14 @@ protocol AccountProviding {
     /// - Parameter account: The account with updated values.
     func update(_ account: Account) async throws
 
+    /// Archives an account by marking it as inactive.
+    /// - Parameter id: The unique identifier of the account to archive.
+    func archive(by id: UUID) async throws
+
+    /// Restores an archived account to active status.
+    /// - Parameter id: The unique identifier of the account to unarchive.
+    func unarchive(by id: UUID) async throws
+
     /// Permanently deletes an account by its identifier.
     /// - Parameter id: The unique identifier of the account to delete.
     func delete(by id: UUID) async throws
