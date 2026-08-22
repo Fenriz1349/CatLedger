@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "08C37B65-C4A7-4DAD-AB96-031BFEC68CC5",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "performanceAntipatternCheckerEnabled" : true,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CatLedger.xcodeproj",
+      "identifier" : "6839EA1E30386BA2006E2AD4",
+      "name" : "CatLedger"
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:CatLedger.xcodeproj",
+        "identifier" : "687ADC433039722B0004166C",
+        "name" : "CatLedgerTests"
+      }
+    }
+  ],
+  "version" : 1
+}
