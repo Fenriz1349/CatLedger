@@ -77,6 +77,10 @@ jobs:
       - name: Resolve Swift Package dependencies
         run: xcodebuild -resolvePackageDependencies -project CatLedger.xcodeproj -scheme CatLedger -derivedDataPath DerivedData
 
+      # Recreates the Firebase config from a repo secret — never committed, see .gitignore.
+      - name: Write GoogleService-Info.plist
+        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" | base64 -d > CatLedger/GoogleService-Info.plist
+
       # Compile the app for the iOS Simulator. No real device/certificate involved, so no code
       # signing is needed.
       - name: Build
