@@ -148,10 +148,21 @@
 		68861CEA303B1A0C008E955B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 68861CE9303B1A0C008E955B /* FirebaseFirestore */; };
 		68861CED303B4900008E955B /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CEC303B4900008E955B /* AuthProvider.swift */; };
 		68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */; };
+		68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D00303B5055008E955B /* AuthE2ETests.swift */; };
+		68861D05303B5078008E955B /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 68861D04303B5078008E955B /* FirebaseAuth */; };
+		68861D0A303B5377008E955B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 68861D09303B5377008E955B /* FirebaseCore */; };
+		68861D0C303B539E008E955B /* TestDataE2E.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D0B303B539E008E955B /* TestDataE2E.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		687ADC483039722B0004166C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6839EA1730386BA2006E2AD4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6839EA1E30386BA2006E2AD4;
+			remoteInfo = CatLedger;
+		};
+		68861CFB303B504A008E955B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6839EA1730386BA2006E2AD4 /* Project object */;
 			proxyType = 1;
@@ -302,6 +313,10 @@
 		68861CE2303B18E5008E955B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68861CEC303B4900008E955B /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthSource.swift; sourceTree = "<group>"; };
+		68861CF7303B5049008E955B /* CatLedgerE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLedgerE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		68861D00303B5055008E955B /* AuthE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthE2ETests.swift; sourceTree = "<group>"; };
+		68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLedgerE2ETests.xctestplan; sourceTree = "<group>"; };
+		68861D0B303B539E008E955B /* TestDataE2E.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataE2E.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +337,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68861CF4303B5049008E955B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68861D05303B5078008E955B /* FirebaseAuth in Frameworks */,
+				68861D0A303B5377008E955B /* FirebaseCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -329,8 +353,11 @@
 			isa = PBXGroup;
 			children = (
 				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
+				68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */,
 				6839EA3030386BAC006E2AD4 /* CatLedger */,
 				687ADC4E3039724E0004166C /* CatLedgerTests */,
+				68861D01303B5055008E955B /* CatLedgerE2ETests */,
+				68861D03303B5078008E955B /* Frameworks */,
 				6839EA2030386BA2006E2AD4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -340,6 +367,7 @@
 			children = (
 				6839EA1F30386BA2006E2AD4 /* CatLedger.app */,
 				687ADC443039722B0004166C /* CatLedgerTests.xctest */,
+				68861CF7303B5049008E955B /* CatLedgerE2ETests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -840,6 +868,22 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		68861D01303B5055008E955B /* CatLedgerE2ETests */ = {
+			isa = PBXGroup;
+			children = (
+				68861D00303B5055008E955B /* AuthE2ETests.swift */,
+				68861D0B303B539E008E955B /* TestDataE2E.swift */,
+			);
+			path = CatLedgerE2ETests;
+			sourceTree = "<group>";
+		};
+		68861D03303B5078008E955B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -885,6 +929,28 @@
 			productReference = 687ADC443039722B0004166C /* CatLedgerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		68861CF6303B5049008E955B /* CatLedgerE2ETests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 68861CFD303B504A008E955B /* Build configuration list for PBXNativeTarget "CatLedgerE2ETests" */;
+			buildPhases = (
+				68861CF3303B5049008E955B /* Sources */,
+				68861CF4303B5049008E955B /* Frameworks */,
+				68861CF5303B5049008E955B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				68861CFC303B504A008E955B /* PBXTargetDependency */,
+			);
+			name = CatLedgerE2ETests;
+			packageProductDependencies = (
+				68861D04303B5078008E955B /* FirebaseAuth */,
+				68861D09303B5377008E955B /* FirebaseCore */,
+			);
+			productName = CatLedgerE2ETests;
+			productReference = 68861CF7303B5049008E955B /* CatLedgerE2ETests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -899,6 +965,10 @@
 						CreatedOnToolsVersion = 26.6;
 					};
 					687ADC433039722B0004166C = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = 6839EA1E30386BA2006E2AD4;
+					};
+					68861CF6303B5049008E955B = {
 						CreatedOnToolsVersion = 26.6;
 						TestTargetID = 6839EA1E30386BA2006E2AD4;
 					};
@@ -923,6 +993,7 @@
 			targets = (
 				6839EA1E30386BA2006E2AD4 /* CatLedger */,
 				687ADC433039722B0004166C /* CatLedgerTests */,
+				68861CF6303B5049008E955B /* CatLedgerE2ETests */,
 			);
 		};
 /* End PBXProject section */
@@ -940,6 +1011,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		687ADC423039722B0004166C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		68861CF5303B5049008E955B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1097,6 +1175,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		68861CF3303B5049008E955B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				68861D0C303B539E008E955B /* TestDataE2E.swift in Sources */,
+				68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1104,6 +1191,11 @@
 			isa = PBXTargetDependency;
 			target = 6839EA1E30386BA2006E2AD4 /* CatLedger */;
 			targetProxy = 687ADC483039722B0004166C /* PBXContainerItemProxy */;
+		};
+		68861CFC303B504A008E955B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6839EA1E30386BA2006E2AD4 /* CatLedger */;
+			targetProxy = 68861CFB303B504A008E955B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1367,6 +1459,53 @@
 			};
 			name = Release;
 		};
+		68861CFE303B504A008E955B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A9J8B8CPN4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerE2ETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLedger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatLedger";
+			};
+			name = Debug;
+		};
+		68861CFF303B504A008E955B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A9J8B8CPN4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerE2ETests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CatLedger.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CatLedger";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1393,6 +1532,15 @@
 			buildConfigurations = (
 				687ADC4B3039722B0004166C /* Debug */,
 				687ADC4C3039722B0004166C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		68861CFD303B504A008E955B /* Build configuration list for PBXNativeTarget "CatLedgerE2ETests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				68861CFE303B504A008E955B /* Debug */,
+				68861CFF303B504A008E955B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1425,6 +1573,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 68861CE4303B1A0C008E955B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		68861D04303B5078008E955B /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68861CE4303B1A0C008E955B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		68861D09303B5377008E955B /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68861CE4303B1A0C008E955B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

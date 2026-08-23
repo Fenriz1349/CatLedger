@@ -33,6 +33,9 @@
             reference = "container:CatLedgerTests.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:CatLedgerE2ETests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
@@ -43,6 +46,17 @@
                BlueprintIdentifier = "687ADC433039722B0004166C"
                BuildableName = "CatLedgerTests.xctest"
                BlueprintName = "CatLedgerTests"
+               ReferencedContainer = "container:CatLedger.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "68861CF6303B5049008E955B"
+               BuildableName = "CatLedgerE2ETests.xctest"
+               BlueprintName = "CatLedgerE2ETests"
                ReferencedContainer = "container:CatLedger.xcodeproj">
             </BuildableReference>
          </TestableReference>
