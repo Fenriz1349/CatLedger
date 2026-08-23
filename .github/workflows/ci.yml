@@ -92,16 +92,20 @@ jobs:
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO
 
-      # Run the unit tests (default test plan) on an actual simulator instance, since "test" needs
-      # a concrete device to run the app on, unlike "build" which only needs a platform.
+      # Run the unit tests on an actual simulator instance, since "test" needs a concrete device
+      # to run the app on, unlike "build" which only needs a platform.
       # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
       # device name is the one place that may need adjusting if it isn't on the runner (the
       # failure log lists the actually available simulators).
+      # -testPlan is explicit: without it, xcodebuild builds every test target attached to the
+      # scheme's Test action, not just the default plan — which would also build
+      # CatLedgerE2ETests here, even though it needs the Firebase emulator this runner doesn't have.
       - name: Test
         run: |
           xcodebuild test \
             -project CatLedger.xcodeproj \
             -scheme CatLedger \
+            -testPlan CatLedgerTests \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
             -derivedDataPath DerivedData \
             CODE_SIGNING_ALLOWED=NO
