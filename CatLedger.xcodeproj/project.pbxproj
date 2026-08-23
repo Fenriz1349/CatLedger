@@ -128,6 +128,15 @@
 		68861CBB303AFF1A008E955B /* SignUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CBA303AFF1A008E955B /* SignUpTests.swift */; };
 		68861CBD303B0161008E955B /* CreateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CBC303B0161008E955B /* CreateProfile.swift */; };
 		68861CBF303B0179008E955B /* CreateProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CBE303B0179008E955B /* CreateProfileTests.swift */; };
+		68861CC1303B023F008E955B /* RegisterProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CC0303B023F008E955B /* RegisterProfile.swift */; };
+		68861CC3303B024A008E955B /* RegisterAnonymousProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */; };
+		68861CC5303B0253008E955B /* LinkAnonymousProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */; };
+		68861CC7303B025C008E955B /* DeleteFirebaseRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */; };
+		68861CC9303B0265008E955B /* ExpireAnonymousProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CC8303B0265008E955B /* ExpireAnonymousProfile.swift */; };
+		68861CCB303B0986008E955B /* CreateAnonymousProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CCA303B0986008E955B /* CreateAnonymousProfile.swift */; };
+		68861CCD303B09C4008E955B /* CreateAnonymousProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CCC303B09C4008E955B /* CreateAnonymousProfileTests.swift */; };
+		68861CCF303B0A3B008E955B /* IsAnonymousSessionExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CCE303B0A3B008E955B /* IsAnonymousSessionExpired.swift */; };
+		68861CD1303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CD0303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +274,15 @@
 		68861CBA303AFF1A008E955B /* SignUpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpTests.swift; sourceTree = "<group>"; };
 		68861CBC303B0161008E955B /* CreateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile.swift; sourceTree = "<group>"; };
 		68861CBE303B0179008E955B /* CreateProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTests.swift; sourceTree = "<group>"; };
+		68861CC0303B023F008E955B /* RegisterProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfile.swift; sourceTree = "<group>"; };
+		68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAnonymousProfile.swift; sourceTree = "<group>"; };
+		68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousProfile.swift; sourceTree = "<group>"; };
+		68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFirebaseRegistration.swift; sourceTree = "<group>"; };
+		68861CC8303B0265008E955B /* ExpireAnonymousProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousProfile.swift; sourceTree = "<group>"; };
+		68861CCA303B0986008E955B /* CreateAnonymousProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnonymousProfile.swift; sourceTree = "<group>"; };
+		68861CCC303B09C4008E955B /* CreateAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnonymousProfileTests.swift; sourceTree = "<group>"; };
+		68861CCE303B0A3B008E955B /* IsAnonymousSessionExpired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsAnonymousSessionExpired.swift; sourceTree = "<group>"; };
+		68861CD0303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsAnonymousSessionExpiredTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -574,6 +592,7 @@
 				68558A8D3039FD4700FE562D /* SignInAnonymously.swift */,
 				68861CAE303AFAB0008E955B /* LinkAnonymousRegistration.swift */,
 				68861CB4303AFB10008E955B /* ExpireAnonymousSession.swift */,
+				68861CCE303B0A3B008E955B /* IsAnonymousSessionExpired.swift */,
 				68861CB2303AFAE0008E955B /* DeleteRegistration.swift */,
 			);
 			path = UseCases;
@@ -598,6 +617,7 @@
 				68558AA93039FEA800FE562D /* ResolveSessionTests.swift */,
 				68558AAB3039FEB400FE562D /* SignInAnonymouslyTests.swift */,
 				68861CB0303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift */,
+				68861CD0303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift */,
 				68558AAF3039FECB00FE562D /* ExpireAnonymousSessionTests.swift */,
 				68558AB13039FED600FE562D /* DeleteRegistrationTests.swift */,
 			);
@@ -608,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				68861CBC303B0161008E955B /* CreateProfile.swift */,
+				68861CCA303B0986008E955B /* CreateAnonymousProfile.swift */,
 				68558AB8303A045400FE562D /* GetCurrentProfile.swift */,
 				68558ABA303A045F00FE562D /* UpdateProfile.swift */,
 				68558ABC303A046A00FE562D /* DeleteProfile.swift */,
@@ -628,6 +649,7 @@
 			isa = PBXGroup;
 			children = (
 				68861CBE303B0179008E955B /* CreateProfileTests.swift */,
+				68861CCC303B09C4008E955B /* CreateAnonymousProfileTests.swift */,
 				68558ACB303A057900FE562D /* GetCurrentProfileTests.swift */,
 				68558ACD303A058600FE562D /* UpdateProfileTests.swift */,
 				68558ACF303A059300FE562D /* DeleteProfileTests.swift */,
@@ -731,16 +753,21 @@
 		68861CAC303AF26C008E955B /* CrossFeature */ = {
 			isa = PBXGroup;
 			children = (
-				68861CAD303AF7EE008E955B /* New Group */,
+				68861CAD303AF7EE008E955B /* AuthenticationProfile */,
 			);
 			path = CrossFeature;
 			sourceTree = "<group>";
 		};
-		68861CAD303AF7EE008E955B /* New Group */ = {
+		68861CAD303AF7EE008E955B /* AuthenticationProfile */ = {
 			isa = PBXGroup;
 			children = (
+				68861CC0303B023F008E955B /* RegisterProfile.swift */,
+				68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */,
+				68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */,
+				68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */,
+				68861CC8303B0265008E955B /* ExpireAnonymousProfile.swift */,
 			);
-			path = "New Group";
+			path = AuthenticationProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -899,14 +926,19 @@
 				6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */,
 				687ADC6D30397B7B0004166C /* UpdateAccount.swift in Sources */,
 				6839EA5530387BFA006E2AD4 /* AccountFilter.swift in Sources */,
+				68861CC7303B025C008E955B /* DeleteFirebaseRegistration.swift in Sources */,
 				6839EA473038790C006E2AD4 /* InstitutionError.swift in Sources */,
 				68558ABD303A046A00FE562D /* DeleteProfile.swift in Sources */,
+				68861CCB303B0986008E955B /* CreateAnonymousProfile.swift in Sources */,
+				68861CC3303B024A008E955B /* RegisterAnonymousProfile.swift in Sources */,
 				68558A963039FD7D00FE562D /* ResetPassword.swift in Sources */,
 				68558A733039F6FC00FE562D /* DeleteTransaction.swift in Sources */,
 				6839EA693038889F006E2AD4 /* TransactionSplit.swift in Sources */,
 				68861CB7303AFEF8008E955B /* SignUp.swift in Sources */,
 				6839EA4B30387A74006E2AD4 /* AddInstitutionInput.swift in Sources */,
 				6839EA7F303890A9006E2AD4 /* ProfileError.swift in Sources */,
+				68861CC5303B0253008E955B /* LinkAnonymousProfile.swift in Sources */,
+				68861CC9303B0265008E955B /* ExpireAnonymousProfile.swift in Sources */,
 				687ADC7330397B930004166C /* DeleteAccount.swift in Sources */,
 				68558A653039F6C800FE562D /* GetTransaction.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
@@ -914,9 +946,11 @@
 				687ADC6B30397B730004166C /* AddAccount.swift in Sources */,
 				68558AD5303A071300FE562D /* UpdateTransfer.swift in Sources */,
 				687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */,
+				68861CCF303B0A3B008E955B /* IsAnonymousSessionExpired.swift in Sources */,
 				68558A673039F6D100FE562D /* GetTransactions.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
 				68861CB5303AFB10008E955B /* ExpireAnonymousSession.swift in Sources */,
+				68861CC1303B023F008E955B /* RegisterProfile.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
 				687ADC7130397B890004166C /* UnarchiveAccount.swift in Sources */,
@@ -948,6 +982,7 @@
 				68558ACE303A058600FE562D /* UpdateProfileTests.swift in Sources */,
 				68558A813039FB1F00FE562D /* AddTransactionTests.swift in Sources */,
 				68558ADD303A07F000FE562D /* UpdateTransfer.swift in Sources */,
+				68861CD1303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift in Sources */,
 				68558AAA3039FEA800FE562D /* ResolveSessionTests.swift in Sources */,
 				68558A873039FBF100FE562D /* GetTransactionsByCategoryTests.swift in Sources */,
 				687ADC5B303973E20004166C /* ArchiveInstitutionTests.swift in Sources */,
@@ -969,6 +1004,7 @@
 				68558A833039FB2B00FE562D /* UpdateTransactionTests.swift in Sources */,
 				68558A7D3039FB0600FE562D /* GetTransactionsByAccountTests.swift in Sources */,
 				68558AAC3039FEB400FE562D /* SignInAnonymouslyTests.swift in Sources */,
+				68861CCD303B09C4008E955B /* CreateAnonymousProfileTests.swift in Sources */,
 				68558A763039FAD100FE562D /* TransactionDouble.swift in Sources */,
 				687ADC61303974630004166C /* InstitutionDouble.swift in Sources */,
 				687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */,
