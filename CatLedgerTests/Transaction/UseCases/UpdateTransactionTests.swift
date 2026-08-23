@@ -19,23 +19,19 @@ struct UpdateTransactionTests {
         useCase = UpdateTransaction(repository: repository)
     }
 
-    /// Returns a valid UpdateTransactionInput with sensible defaults.
+    /// Returns a valid UpdateTransactionInput with sensible defaults, scoped to the shared profileId.
     private func makeInput(
         id: UUID,
         label: String = "Restaurant",
         totalAmount: Double = 20,
         splits: [TransactionSplit]? = nil
     ) -> UpdateTransactionInput {
-        UpdateTransactionInput(
+        TestData.updateTransactionInput(
             id: id,
             profileId: profileId,
             label: label,
-            date: Date(),
             totalAmount: totalAmount,
-            note: nil,
-            isExpense: true,
-            category: .restaurant,
-            splits: splits ?? [TestData.transactionSplit(amount: totalAmount)]
+            splits: splits
         )
     }
 

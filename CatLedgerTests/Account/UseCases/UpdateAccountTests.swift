@@ -26,13 +26,13 @@ struct UpdateAccountTests {
         return account.id
     }
 
-    /// Returns a valid UpdateAccountInput with sensible defaults.
+    /// Returns a valid UpdateAccountInput with sensible defaults, scoped to the shared institutionId.
     private func makeInput(
         id: UUID,
         name: String = "PEL",
         category: AccountCategory = .savings
     ) -> UpdateAccountInput {
-        UpdateAccountInput(id: id, institutionId: institutionId, name: name, category: category)
+        TestData.updateAccountInput(id: id, institutionId: institutionId, name: name, category: category)
     }
 
     @Test("Persists the new values for a valid update")

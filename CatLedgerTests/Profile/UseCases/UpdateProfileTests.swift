@@ -26,7 +26,13 @@ struct UpdateProfileTests {
         email: String = "batman@gotham.com",
         photoURL: String? = nil
     ) -> UpdateProfileInput {
-        UpdateProfileInput(id: id, firstName: firstName, lastName: lastName, email: email, photoURL: photoURL)
+        TestData.updateProfileInput(
+            id: id,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            photoURL: photoURL
+        )
     }
 
     @Test("Persists the new values for a valid update")

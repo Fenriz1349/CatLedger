@@ -66,6 +66,36 @@ enum TestData {
         )
     }
 
+    static func transfer(
+        profileId: UUID = UUID(),
+        sourceId: UUID = UUID(),
+        destinationId: UUID = UUID(),
+        sourceAccountId: UUID = UUID(),
+        destinationAccountId: UUID = UUID(),
+        amount: Double = 100,
+        label: String = "Virement"
+    ) -> Transfer {
+        let source = transaction(
+            id: sourceId,
+            profileId: profileId,
+            label: label,
+            totalAmount: amount,
+            isExpense: true,
+            category: .transfer,
+            splits: [transactionSplit(accountId: sourceAccountId, amount: amount)]
+        )
+        let destination = transaction(
+            id: destinationId,
+            profileId: profileId,
+            label: label,
+            totalAmount: amount,
+            isExpense: false,
+            category: .transfer,
+            splits: [transactionSplit(accountId: destinationAccountId, amount: amount)]
+        )
+        return Transfer(source: source, destination: destination)
+    }
+
     static func profile(
         id: UUID = UUID(),
         firstName: String = "Bruce",
@@ -74,5 +104,107 @@ enum TestData {
         photoURL: String? = nil
     ) -> Profile {
         Profile(id: id, displayName: "\(firstName)|\(lastName)", email: email, photoURL: photoURL)
+    }
+
+    static func addInstitutionInput(
+        profileId: UUID = UUID(),
+        name: String = "BNP Paribas",
+        category: InstitutionCategory = .bank,
+        logoURL: String? = nil
+    ) -> AddInstitutionInput {
+        AddInstitutionInput(profileId: profileId, name: name, category: category, logoURL: logoURL)
+    }
+
+    static func updateInstitutionInput(
+        id: UUID = UUID(),
+        profileId: UUID = UUID(),
+        name: String = "Caisse d'Épargne",
+        category: InstitutionCategory = .bank,
+        logoURL: String? = nil
+    ) -> UpdateInstitutionInput {
+        UpdateInstitutionInput(id: id, profileId: profileId, name: name, category: category, logoURL: logoURL)
+    }
+
+    static func updateAccountInput(
+        id: UUID = UUID(),
+        institutionId: UUID = UUID(),
+        name: String = "PEL",
+        category: AccountCategory = .savings
+    ) -> UpdateAccountInput {
+        UpdateAccountInput(id: id, institutionId: institutionId, name: name, category: category)
+    }
+
+    static func addTransactionInput(
+        profileId: UUID = UUID(),
+        label: String = "Courses",
+        date: Date = Date(),
+        totalAmount: Double = 20,
+        note: String? = nil,
+        isExpense: Bool = true,
+        category: TransactionCategory = .grocery,
+        splits: [TransactionSplit]? = nil
+    ) -> AddTransactionInput {
+        AddTransactionInput(
+            profileId: profileId,
+            label: label,
+            date: date,
+            totalAmount: totalAmount,
+            note: note,
+            isExpense: isExpense,
+            category: category,
+            splits: splits ?? [transactionSplit(amount: totalAmount)]
+        )
+    }
+
+    static func updateTransactionInput(
+        id: UUID = UUID(),
+        profileId: UUID = UUID(),
+        label: String = "Restaurant",
+        date: Date = Date(),
+        totalAmount: Double = 20,
+        note: String? = nil,
+        isExpense: Bool = true,
+        category: TransactionCategory = .restaurant,
+        splits: [TransactionSplit]? = nil
+    ) -> UpdateTransactionInput {
+        UpdateTransactionInput(
+            id: id,
+            profileId: profileId,
+            label: label,
+            date: date,
+            totalAmount: totalAmount,
+            note: note,
+            isExpense: isExpense,
+            category: category,
+            splits: splits ?? [transactionSplit(amount: totalAmount)]
+        )
+    }
+
+    static func transferFormInput(
+        profileId: UUID = UUID(),
+        sourceAccountId: UUID = UUID(),
+        destinationAccountId: UUID = UUID(),
+        amount: Double = 100,
+        date: Date = Date(),
+        label: String = "Virement"
+    ) -> TransferFormInput {
+        TransferFormInput(
+            sourceAccountId: sourceAccountId,
+            destinationAccountId: destinationAccountId,
+            amount: amount,
+            date: date,
+            label: label,
+            profileId: profileId
+        )
+    }
+
+    static func updateProfileInput(
+        id: UUID = UUID(),
+        firstName: String = "Bruce",
+        lastName: String = "Wayne",
+        email: String = "batman@gotham.com",
+        photoURL: String? = nil
+    ) -> UpdateProfileInput {
+        UpdateProfileInput(id: id, firstName: firstName, lastName: lastName, email: email, photoURL: photoURL)
     }
 }

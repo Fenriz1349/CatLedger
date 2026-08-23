@@ -19,13 +19,13 @@ struct AddInstitutionTests {
         useCase = AddInstitution(repository: repository)
     }
 
-    /// Returns a valid AddInstitutionInput with sensible defaults.
+    /// Returns a valid AddInstitutionInput with sensible defaults, scoped to the shared profileId.
     private func makeInput(
         name: String = "BNP Paribas",
         category: InstitutionCategory = .bank,
         logoURL: String? = nil
     ) -> AddInstitutionInput {
-        AddInstitutionInput(profileId: profileId, name: name, category: category, logoURL: logoURL)
+        TestData.addInstitutionInput(profileId: profileId, name: name, category: category, logoURL: logoURL)
     }
 
     @Test("Saves a valid institution to the repository")
@@ -99,7 +99,7 @@ struct AddInstitutionTests {
     func execute_sameNameDifferentUser_succeeds() async throws {
         try await repository.save(TestData.institution(profileId: profileId, name: "BNP Paribas"))
         let otherProfileId = UUID()
-        let otherInput = AddInstitutionInput(profileId: otherProfileId, name: "BNP Paribas", category: .bank, logoURL: nil)
+        let otherInput = TestData.addInstitutionInput(profileId: otherProfileId, name: "BNP Paribas")
         try await useCase.execute(otherInput)
         let otherInstitutions = try await repository.fetchAll(for: otherProfileId)
         #expect(otherInstitutions.count == 1)

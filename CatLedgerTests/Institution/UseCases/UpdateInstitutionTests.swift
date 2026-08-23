@@ -19,13 +19,13 @@ struct UpdateInstitutionTests {
         useCase = UpdateInstitution(repository: repository)
     }
 
-    /// Returns a valid UpdateInstitutionInput with sensible defaults.
+    /// Returns a valid UpdateInstitutionInput with sensible defaults, scoped to the shared profileId.
     private func makeInput(
         id: UUID,
         name: String = "Caisse d'Épargne",
         category: InstitutionCategory = .bank
     ) -> UpdateInstitutionInput {
-        UpdateInstitutionInput(id: id, profileId: profileId, name: name, category: category, logoURL: nil)
+        TestData.updateInstitutionInput(id: id, profileId: profileId, name: name, category: category)
     }
 
     @Test("Persists the new values for a valid update")

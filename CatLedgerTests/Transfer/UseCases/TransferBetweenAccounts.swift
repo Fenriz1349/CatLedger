@@ -21,15 +21,14 @@ struct TransferBetweenAccountsTests {
         useCase = TransferBetweenAccounts(repository: repository)
     }
 
-    /// Returns a valid TransferFormInput with sensible defaults.
+    /// Returns a valid TransferFormInput with sensible defaults, scoped to the shared ids.
     private func makeInput(amount: Double = 100, label: String = "Virement") -> TransferFormInput {
-        TransferFormInput(
+        TestData.transferFormInput(
+            profileId: profileId,
             sourceAccountId: sourceAccountId,
             destinationAccountId: destinationAccountId,
             amount: amount,
-            date: Date(),
-            label: label,
-            profileId: profileId
+            label: label
         )
     }
 
@@ -67,13 +66,11 @@ struct TransferBetweenAccountsTests {
 
     @Test("Throws redundantSplitsAccounts when source and destination are the same account")
     func execute_sameAccount_throwsRedundantSplitsAccounts() async throws {
-        let input = TransferFormInput(
+        let input = TestData.transferFormInput(
+            profileId: profileId,
             sourceAccountId: sourceAccountId,
             destinationAccountId: sourceAccountId,
-            amount: 100,
-            date: Date(),
-            label: "Virement",
-            profileId: profileId
+            amount: 100
         )
         await #expect(throws: TransactionError.redundantSplitsAccounts) {
             try await useCase.execute(input)

@@ -19,7 +19,7 @@ struct AddTransactionTests {
         useCase = AddTransaction(repository: repository)
     }
 
-    /// Returns a valid AddTransactionInput with sensible defaults.
+    /// Returns a valid AddTransactionInput with sensible defaults, scoped to the shared profileId.
     private func makeInput(
         label: String = "Courses",
         totalAmount: Double = 20,
@@ -27,15 +27,13 @@ struct AddTransactionTests {
         category: TransactionCategory = .grocery,
         splits: [TransactionSplit]? = nil
     ) -> AddTransactionInput {
-        AddTransactionInput(
+        TestData.addTransactionInput(
             profileId: profileId,
             label: label,
-            date: Date(),
             totalAmount: totalAmount,
-            note: nil,
             isExpense: isExpense,
             category: category,
-            splits: splits ?? [TestData.transactionSplit(amount: totalAmount)]
+            splits: splits
         )
     }
 
