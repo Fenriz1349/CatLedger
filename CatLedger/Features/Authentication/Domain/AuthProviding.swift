@@ -16,50 +16,36 @@ protocol AuthProviding {
     /// - Returns: The stored session, or nil if none exists (absence, not an error).
     func resolveSession() async -> AuthSession?
 
-    /// Signs in an existing profile with email and password.
+    /// Signs in with an existing email and password.
     /// - Parameters:
-    ///   - email: The profile's email address.
-    ///   - password: The profile's password.
-    /// - Returns: A session for the authenticated profile.
+    ///   - email: The email address to sign in with.
+    ///   - password: The password to sign in with.
+    /// - Returns: A session for the authenticated registration.
     func signInWithEmail(email: String, password: String) async throws -> AuthSession
 
-    /// Creates a new profile with email, password, and display name.
+    /// Creates a new permanent registration with email and password.
     /// - Parameters:
-    ///   - email: The profile's email address.
-    ///   - password: The profile's password.
-    ///   - firstName: The profile's first name.
-    ///   - lastName: The profile's last name.
-    /// - Returns: A session for the newly created profile.
-    func createProfile(
-        email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession
+    ///   - email: The registration's email address.
+    ///   - password: The registration's password.
+    /// - Returns: A session for the newly created registration.
+    func signUp(email: String, password: String) async throws -> AuthSession
 
     /// Signs in anonymously, creating a demo session without a permanent account.
     /// - Returns: An anonymous session.
     func signInAnonymously() async throws -> AuthSession
 
-    /// Signs out the current profile and clears the local session.
+    /// Signs out the current registration and clears the local session.
     func signOut() async throws
 
-    /// Permanently deletes the current authentication account and all associated remote data.
-    func deleteAuthAccount() async throws
+    /// Permanently deletes the current registration.
+    func deleteRegistration() async throws
 
-    /// Links the current anonymous account to a permanent email/password account.
+    /// Links the current anonymous registration to a permanent email/password registration.
     /// - Parameters:
-    ///   - email: The email address for the new permanent account.
-    ///   - password: The password for the new permanent account.
-    ///   - firstName: The profile's first name.
-    ///   - lastName: The profile's last name.
+    ///   - email: The email address for the new permanent registration.
+    ///   - password: The password for the new permanent registration.
     /// - Returns: An updated, non-anonymous session.
-    func linkAnonymousAccount(
-        toEmail email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession
 
     /// Sends a password reset email to the given address.
     /// - Parameter email: The email address of the account to reset.

@@ -20,10 +20,10 @@ struct ResolveSessionTests {
 
     @Test("Returns the stored session when one exists")
     func execute_storedSession_returnsSession() async {
-        let session = AuthSession(profileId: UUID(), isAnonymous: false)
+        let session = AuthSession(registrationId: UUID(), isAnonymous: false)
         repository.sessionToResolve = session
         let result = await useCase.execute()
-        #expect(result?.profileId == session.profileId)
+        #expect(result?.registrationId == session.registrationId)
     }
 
     @Test("Returns nil when no session is stored")

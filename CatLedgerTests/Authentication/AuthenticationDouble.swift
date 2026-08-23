@@ -12,7 +12,7 @@ import Foundation
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
 final class AuthenticationDouble: AuthProviding {
 
-    var sessionToReturn = AuthSession(profileId: UUID(), isAnonymous: false)
+    var sessionToReturn = AuthSession(registrationId: UUID(), isAnonymous: false)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).
     var sessionToResolve: AuthSession?
     var isExpired = false
@@ -21,8 +21,8 @@ final class AuthenticationDouble: AuthProviding {
     /// Tracks whether expireAnonymousSession() was called.
     var didCallExpire = false
 
-    /// Tracks whether deleteAuthAccount() was called.
-    var didCallDeleteAuthAccount = false
+    /// Tracks whether deleteRegistration() was called.
+    var didCallDeleteRegistration = false
 
     /// Tracks whether signOut() was called.
     var didCallSignOut = false
@@ -39,12 +39,7 @@ final class AuthenticationDouble: AuthProviding {
         return sessionToReturn
     }
 
-    func createProfile(
-        email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession {
+    func signUp(email: String, password: String) async throws -> AuthSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
@@ -59,17 +54,12 @@ final class AuthenticationDouble: AuthProviding {
         didCallSignOut = true
     }
 
-    func deleteAuthAccount() async throws {
+    func deleteRegistration() async throws {
         if let error = errorToThrow { throw error }
-        didCallDeleteAuthAccount = true
+        didCallDeleteRegistration = true
     }
 
-    func linkAnonymousAccount(
-        toEmail email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession {
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
