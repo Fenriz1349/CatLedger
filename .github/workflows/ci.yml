@@ -28,6 +28,22 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Informational only: never fails the workflow (continue-on-error below) and isn't added to
+  # branch protection, so a strict rule can't block a merge. Findings show up as inline PR
+  # annotations via SwiftLint's github-actions-logging reporter, no extra service involved.
+  lint:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install SwiftLint
+        run: brew install swiftlint
+
+      - name: Run SwiftLint
+        run: swiftlint lint --reporter github-actions-logging
+        continue-on-error: true
+
   build-and-test:
     # "macos-latest" always resolves to GitHub's current default macOS image, so this stays
     # correct without us tracking Apple/GitHub's release naming over time.

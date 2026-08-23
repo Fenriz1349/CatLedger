@@ -61,3 +61,7 @@ firestore-debug.log
 # Local environment files
 .env
 .env.*
+
+# SonarQube local analysis
+.scannerwork/
+sonar-reports/
