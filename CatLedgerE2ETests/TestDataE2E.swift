@@ -12,7 +12,7 @@ import FirebaseAuth
 /// Ports match `firebase.json`; start the emulators with `firebase emulators:start` before running.
 enum TestDataE2E {
 
-    static let authEmulatorPort: Int32 = 9099
+    static let authEmulatorPort = 9099
 
     /// Points Firebase Auth at the local emulator. Safe to call multiple times: only the first
     /// call has an effect, later ones are no-ops guarded by this same static initializer.
