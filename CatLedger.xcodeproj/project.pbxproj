@@ -72,23 +72,17 @@
 		68558A853039FB3700FE562D /* DeleteTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A843039FB3700FE562D /* DeleteTransactionTests.swift */; };
 		68558A873039FBF100FE562D /* GetTransactionsByCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A863039FBF100FE562D /* GetTransactionsByCategoryTests.swift */; };
 		68558A8A3039FD3000FE562D /* SignInWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A893039FD3000FE562D /* SignInWithEmail.swift */; };
-		68558A8C3039FD3B00FE562D /* CreateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8B3039FD3B00FE562D /* CreateProfile.swift */; };
 		68558A8E3039FD4700FE562D /* SignInAnonymously.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8D3039FD4700FE562D /* SignInAnonymously.swift */; };
 		68558A903039FD5600FE562D /* SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8F3039FD5600FE562D /* SignOut.swift */; };
-		68558A923039FD5F00FE562D /* DeleteAuthAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A913039FD5F00FE562D /* DeleteAuthAccount.swift */; };
-		68558A943039FD7600FE562D /* LinkAnonymousAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A933039FD7600FE562D /* LinkAnonymousAccount.swift */; };
 		68558A963039FD7D00FE562D /* ResetPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A953039FD7D00FE562D /* ResetPassword.swift */; };
 		68558A983039FD8E00FE562D /* ResolveSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A973039FD8E00FE562D /* ResolveSession.swift */; };
-		68558A9A3039FD9D00FE562D /* ExpireAnonymousSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A993039FD9D00FE562D /* ExpireAnonymousSession.swift */; };
 		68558A9D3039FE5600FE562D /* AuthenticationDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A9C3039FE5600FE562D /* AuthenticationDouble.swift */; };
 		68558AA63039FE9100FE562D /* SignOutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AA53039FE9100FE562D /* SignOutTests.swift */; };
 		68558AA83039FE9D00FE562D /* ResetPasswordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AA73039FE9C00FE562D /* ResetPasswordTests.swift */; };
 		68558AAA3039FEA800FE562D /* ResolveSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AA93039FEA800FE562D /* ResolveSessionTests.swift */; };
 		68558AAC3039FEB400FE562D /* SignInAnonymouslyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AAB3039FEB400FE562D /* SignInAnonymouslyTests.swift */; };
-		68558AAE3039FEBF00FE562D /* LinkAnonymousAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AAD3039FEBF00FE562D /* LinkAnonymousAccountTests.swift */; };
 		68558AB03039FECB00FE562D /* ExpireAnonymousSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AAF3039FECB00FE562D /* ExpireAnonymousSessionTests.swift */; };
-		68558AB23039FED600FE562D /* DeleteAuthAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AB13039FED600FE562D /* DeleteAuthAccountTests.swift */; };
-		68558AB4303A004800FE562D /* CreateProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AB3303A004800FE562D /* CreateProfileTests.swift */; };
+		68558AB23039FED600FE562D /* DeleteRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AB13039FED600FE562D /* DeleteRegistrationTests.swift */; };
 		68558AB6303A005700FE562D /* SignInWithEmailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AB5303A005700FE562D /* SignInWithEmailTests.swift */; };
 		68558AB9303A045400FE562D /* GetCurrentProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558AB8303A045400FE562D /* GetCurrentProfile.swift */; };
 		68558ABB303A045F00FE562D /* UpdateProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558ABA303A045F00FE562D /* UpdateProfile.swift */; };
@@ -126,6 +120,10 @@
 		687ADC6F30397B820004166C /* ArchiveAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC6E30397B820004166C /* ArchiveAccount.swift */; };
 		687ADC7130397B890004166C /* UnarchiveAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7030397B890004166C /* UnarchiveAccount.swift */; };
 		687ADC7330397B930004166C /* DeleteAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7230397B930004166C /* DeleteAccount.swift */; };
+		68861CAF303AFAB0008E955B /* LinkAnonymousRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CAE303AFAB0008E955B /* LinkAnonymousRegistration.swift */; };
+		68861CB1303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CB0303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift */; };
+		68861CB3303AFAE0008E955B /* DeleteRegistration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CB2303AFAE0008E955B /* DeleteRegistration.swift */; };
+		68861CB5303AFB10008E955B /* ExpireAnonymousSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CB4303AFB10008E955B /* ExpireAnonymousSession.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,23 +203,17 @@
 		68558A843039FB3700FE562D /* DeleteTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransactionTests.swift; sourceTree = "<group>"; };
 		68558A863039FBF100FE562D /* GetTransactionsByCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionsByCategoryTests.swift; sourceTree = "<group>"; };
 		68558A893039FD3000FE562D /* SignInWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmail.swift; sourceTree = "<group>"; };
-		68558A8B3039FD3B00FE562D /* CreateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile.swift; sourceTree = "<group>"; };
 		68558A8D3039FD4700FE562D /* SignInAnonymously.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAnonymously.swift; sourceTree = "<group>"; };
 		68558A8F3039FD5600FE562D /* SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOut.swift; sourceTree = "<group>"; };
-		68558A913039FD5F00FE562D /* DeleteAuthAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAuthAccount.swift; sourceTree = "<group>"; };
-		68558A933039FD7600FE562D /* LinkAnonymousAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousAccount.swift; sourceTree = "<group>"; };
 		68558A953039FD7D00FE562D /* ResetPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPassword.swift; sourceTree = "<group>"; };
 		68558A973039FD8E00FE562D /* ResolveSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveSession.swift; sourceTree = "<group>"; };
-		68558A993039FD9D00FE562D /* ExpireAnonymousSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousSession.swift; sourceTree = "<group>"; };
 		68558A9C3039FE5600FE562D /* AuthenticationDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDouble.swift; sourceTree = "<group>"; };
 		68558AA53039FE9100FE562D /* SignOutTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOutTests.swift; sourceTree = "<group>"; };
 		68558AA73039FE9C00FE562D /* ResetPasswordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordTests.swift; sourceTree = "<group>"; };
 		68558AA93039FEA800FE562D /* ResolveSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveSessionTests.swift; sourceTree = "<group>"; };
 		68558AAB3039FEB400FE562D /* SignInAnonymouslyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAnonymouslyTests.swift; sourceTree = "<group>"; };
-		68558AAD3039FEBF00FE562D /* LinkAnonymousAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousAccountTests.swift; sourceTree = "<group>"; };
 		68558AAF3039FECB00FE562D /* ExpireAnonymousSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousSessionTests.swift; sourceTree = "<group>"; };
-		68558AB13039FED600FE562D /* DeleteAuthAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAuthAccountTests.swift; sourceTree = "<group>"; };
-		68558AB3303A004800FE562D /* CreateProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileTests.swift; sourceTree = "<group>"; };
+		68558AB13039FED600FE562D /* DeleteRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRegistrationTests.swift; sourceTree = "<group>"; };
 		68558AB5303A005700FE562D /* SignInWithEmailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithEmailTests.swift; sourceTree = "<group>"; };
 		68558AB8303A045400FE562D /* GetCurrentProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCurrentProfile.swift; sourceTree = "<group>"; };
 		68558ABA303A045F00FE562D /* UpdateProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfile.swift; sourceTree = "<group>"; };
@@ -261,6 +253,10 @@
 		687ADC6E30397B820004166C /* ArchiveAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveAccount.swift; sourceTree = "<group>"; };
 		687ADC7030397B890004166C /* UnarchiveAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnarchiveAccount.swift; sourceTree = "<group>"; };
 		687ADC7230397B930004166C /* DeleteAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccount.swift; sourceTree = "<group>"; };
+		68861CAE303AFAB0008E955B /* LinkAnonymousRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousRegistration.swift; sourceTree = "<group>"; };
+		68861CB0303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousRegistrationTests.swift; sourceTree = "<group>"; };
+		68861CB2303AFAE0008E955B /* DeleteRegistration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteRegistration.swift; sourceTree = "<group>"; };
+		68861CB4303AFB10008E955B /* ExpireAnonymousSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousSession.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +372,7 @@
 		6839EA4230387543006E2AD4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				68861CAC303AF26C008E955B /* CrossFeature */,
 				6839EA4330387552006E2AD4 /* Branding */,
 			);
 			path = Core;
@@ -561,15 +558,14 @@
 		68558A883039FD2600FE562D /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				68558A8B3039FD3B00FE562D /* CreateProfile.swift */,
 				68558A893039FD3000FE562D /* SignInWithEmail.swift */,
 				68558A8F3039FD5600FE562D /* SignOut.swift */,
 				68558A953039FD7D00FE562D /* ResetPassword.swift */,
 				68558A973039FD8E00FE562D /* ResolveSession.swift */,
 				68558A8D3039FD4700FE562D /* SignInAnonymously.swift */,
-				68558A933039FD7600FE562D /* LinkAnonymousAccount.swift */,
-				68558A993039FD9D00FE562D /* ExpireAnonymousSession.swift */,
-				68558A913039FD5F00FE562D /* DeleteAuthAccount.swift */,
+				68861CAE303AFAB0008E955B /* LinkAnonymousRegistration.swift */,
+				68861CB4303AFB10008E955B /* ExpireAnonymousSession.swift */,
+				68861CB2303AFAE0008E955B /* DeleteRegistration.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -586,15 +582,14 @@
 		68558A9E3039FE5A00FE562D /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				68558AB3303A004800FE562D /* CreateProfileTests.swift */,
 				68558AB5303A005700FE562D /* SignInWithEmailTests.swift */,
 				68558AA53039FE9100FE562D /* SignOutTests.swift */,
 				68558AA73039FE9C00FE562D /* ResetPasswordTests.swift */,
 				68558AA93039FEA800FE562D /* ResolveSessionTests.swift */,
 				68558AAB3039FEB400FE562D /* SignInAnonymouslyTests.swift */,
-				68558AAD3039FEBF00FE562D /* LinkAnonymousAccountTests.swift */,
+				68861CB0303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift */,
 				68558AAF3039FECB00FE562D /* ExpireAnonymousSessionTests.swift */,
-				68558AB13039FED600FE562D /* DeleteAuthAccountTests.swift */,
+				68558AB13039FED600FE562D /* DeleteRegistrationTests.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -721,6 +716,21 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		68861CAC303AF26C008E955B /* CrossFeature */ = {
+			isa = PBXGroup;
+			children = (
+				68861CAD303AF7EE008E955B /* New Group */,
+			);
+			path = CrossFeature;
+			sourceTree = "<group>";
+		};
+		68861CAD303AF7EE008E955B /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -837,8 +847,6 @@
 				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
 				687ADC6930397B640004166C /* GetAccounts.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
-				68558A9A3039FD9D00FE562D /* ExpireAnonymousSession.swift in Sources */,
-				68558A8C3039FD3B00FE562D /* CreateProfile.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
 				68558AB9303A045400FE562D /* GetCurrentProfile.swift in Sources */,
 				68558A6D3039F6E700FE562D /* GetTransactionsByDateRange.swift in Sources */,
@@ -851,11 +859,11 @@
 				68558A983039FD8E00FE562D /* ResolveSession.swift in Sources */,
 				6839EA6130387C4F006E2AD4 /* AccountCategory+Display.swift in Sources */,
 				68558A6B3039F6E000FE562D /* GetTransactionsByCategory.swift in Sources */,
+				68861CAF303AFAB0008E955B /* LinkAnonymousRegistration.swift in Sources */,
 				68558A623039F6B100FE562D /* UpdateTransactionInput.swift in Sources */,
 				687ADC34303970500004166C /* GetInstitutions.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
 				687ADC363039705A0004166C /* AddInstitution.swift in Sources */,
-				68558A943039FD7600FE562D /* LinkAnonymousAccount.swift in Sources */,
 				68558A8E3039FD4700FE562D /* SignInAnonymously.swift in Sources */,
 				6839EA4D30387A7F006E2AD4 /* UpdateInstitutionInput.swift in Sources */,
 				68558ABB303A045F00FE562D /* UpdateProfile.swift in Sources */,
@@ -874,7 +882,6 @@
 				6839EA653038888C006E2AD4 /* Transaction.swift in Sources */,
 				68558AD3303A070800FE562D /* TransferBetweenAccounts.swift in Sources */,
 				687ADC6730397B590004166C /* GetAccount.swift in Sources */,
-				68558A923039FD5F00FE562D /* DeleteAuthAccount.swift in Sources */,
 				6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */,
 				6839EA5D30387C22006E2AD4 /* AccountRecencySorter.swift in Sources */,
 				687ADC6D30397B7B0004166C /* UpdateAccount.swift in Sources */,
@@ -895,10 +902,12 @@
 				687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */,
 				68558A673039F6D100FE562D /* GetTransactions.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
+				68861CB5303AFB10008E955B /* ExpireAnonymousSession.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */,
 				687ADC7130397B890004166C /* UnarchiveAccount.swift in Sources */,
 				6839EA5F30387C34006E2AD4 /* UpdateAccountInput.swift in Sources */,
+				68861CB3303AFAE0008E955B /* DeleteRegistration.swift in Sources */,
 				6839EA83303890B8006E2AD4 /* ProfileProviding.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,6 +916,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				68861CB1303AFAC8008E955B /* LinkAnonymousRegistrationTests.swift in Sources */,
 				68558AB6303A005700FE562D /* SignInWithEmailTests.swift in Sources */,
 				68558A9D3039FE5600FE562D /* AuthenticationDouble.swift in Sources */,
 				68558A54303992DE00FE562D /* AddAccountTests.swift in Sources */,
@@ -918,7 +928,6 @@
 				68558A5E303994CE00FE562D /* GetAccountTests.swift in Sources */,
 				687ADC59303973D60004166C /* UpdateInstitutionTests.swift in Sources */,
 				687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */,
-				68558AB4303A004800FE562D /* CreateProfileTests.swift in Sources */,
 				68558A5C3039931100FE562D /* DeleteAccountTests.swift in Sources */,
 				687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */,
 				68558ACE303A058600FE562D /* UpdateProfileTests.swift in Sources */,
@@ -931,12 +940,11 @@
 				68558A56303992EB00FE562D /* UpdateAccountTests.swift in Sources */,
 				68558A4D303992AC00FE562D /* AccountDouble.swift in Sources */,
 				68558AD0303A059300FE562D /* DeleteProfileTests.swift in Sources */,
-				68558AB23039FED600FE562D /* DeleteAuthAccountTests.swift in Sources */,
+				68558AB23039FED600FE562D /* DeleteRegistrationTests.swift in Sources */,
 				68558A58303992F700FE562D /* ArchiveAccountTests.swift in Sources */,
 				68558A793039FAF000FE562D /* GetTransactionTests.swift in Sources */,
 				68558A7F3039FB1300FE562D /* GetTransactionsByDateRangeTests.swift in Sources */,
 				68558AA63039FE9100FE562D /* SignOutTests.swift in Sources */,
-				68558AAE3039FEBF00FE562D /* LinkAnonymousAccountTests.swift in Sources */,
 				68558ADB303A07E700FE562D /* TransferBetweenAccounts.swift in Sources */,
 				68558A5A3039930700FE562D /* UnarchiveAccountTests.swift in Sources */,
 				68558A52303992D500FE562D /* GetAccountsTests.swift in Sources */,

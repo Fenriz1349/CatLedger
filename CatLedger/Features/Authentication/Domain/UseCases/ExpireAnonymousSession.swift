@@ -2,13 +2,13 @@
 //  ExpireAnonymousSession.swift
 //  CatLedger
 //
-//  Created by Julien Cotte on 22/08/2026.
+//  Created by Julien Cotte on 23/08/2026.
 //
 
 import Foundation
 
 /// Checks whether the current anonymous session has exceeded its validity period.
-/// If so, deletes the account, its data, and clears the local session state.
+/// If so, deletes the underlying registration and clears the local session state.
 final class ExpireAnonymousSession {
 
     private let repository: AuthProviding
