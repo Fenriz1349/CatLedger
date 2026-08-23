@@ -13,7 +13,7 @@ struct DeleteTransferTests {
 
     private let repository = TransactionDouble()
     private let useCase: DeleteTransfer
-    private let userId = UUID()
+    private let profileId = UUID()
     private let sourceId = UUID()
     private let destinationId = UUID()
 
@@ -24,7 +24,7 @@ struct DeleteTransferTests {
     private func makeLeg(id: UUID, isExpense: Bool) -> Transaction {
         Transaction(
             id: id,
-            userId: userId,
+            profileId: profileId,
             label: "Transfer",
             date: Date(),
             totalAmount: 100,
@@ -47,7 +47,7 @@ struct DeleteTransferTests {
         try await repository.save(transfer.source)
         try await repository.save(transfer.destination)
         try await useCase.execute(transfer)
-        let remaining = try await repository.fetchAll(for: userId)
+        let remaining = try await repository.fetchAll(for: profileId)
         #expect(remaining.isEmpty)
     }
 

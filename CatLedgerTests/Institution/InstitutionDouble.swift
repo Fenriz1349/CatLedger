@@ -26,10 +26,10 @@ final class InstitutionDouble: InstitutionProviding {
         return institution
     }
 
-    /// Returns all institutions in the store belonging to the given user.
-    func fetchAll(for userId: UUID) async throws -> [Institution] {
+    /// Returns all institutions in the store belonging to the given profile.
+    func fetchAll(for profileId: UUID) async throws -> [Institution] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.userId == userId }
+        return store.filter { $0.profileId == profileId }
     }
 
     /// Appends the institution to the in-memory store.
@@ -67,7 +67,7 @@ final class InstitutionDouble: InstitutionProviding {
         let current = store[index]
         store[index] = Institution(
             id: current.id,
-            userId: current.userId,
+            profileId: current.profileId,
             name: current.name,
             category: current.category,
             logoURL: current.logoURL,

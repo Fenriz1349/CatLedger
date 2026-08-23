@@ -13,7 +13,7 @@ struct GetTransactionsByDateRangeTests {
 
     private let repository = TransactionDouble()
     private let useCase: GetTransactionsByDateRange
-    private let userId = UUID()
+    private let profileId = UUID()
 
     init() {
         useCase = GetTransactionsByDateRange(repository: repository)
@@ -23,9 +23,9 @@ struct GetTransactionsByDateRangeTests {
     func execute_returnsTransactionsWithinRange() async throws {
         let calendar = Calendar.current
         let now = Date()
-        try await repository.save(TestData.transaction(userId: userId, date: now))
+        try await repository.save(TestData.transaction(profileId: profileId, date: now))
         let result = try await useCase.execute(
-            for: userId,
+            for: profileId,
             from: calendar.date(byAdding: .day, value: -1, to: now)!,
             to: calendar.date(byAdding: .day, value: 1, to: now)!
         )
@@ -36,9 +36,9 @@ struct GetTransactionsByDateRangeTests {
     func execute_doesNotReturnTransactionsOutsideRange() async throws {
         let calendar = Calendar.current
         let now = Date()
-        try await repository.save(TestData.transaction(userId: userId, date: now))
+        try await repository.save(TestData.transaction(profileId: profileId, date: now))
         let result = try await useCase.execute(
-            for: userId,
+            for: profileId,
             from: calendar.date(byAdding: .day, value: -10, to: now)!,
             to: calendar.date(byAdding: .day, value: -5, to: now)!
         )
@@ -50,7 +50,7 @@ struct GetTransactionsByDateRangeTests {
         let now = Date()
         let earlier = Calendar.current.date(byAdding: .day, value: -1, to: now)!
         await #expect(throws: TransactionError.invalidDateRange) {
-            try await useCase.execute(for: userId, from: now, to: earlier)
+            try await useCase.execute(for: profileId, from: now, to: earlier)
         }
     }
 }

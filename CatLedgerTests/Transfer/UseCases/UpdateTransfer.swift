@@ -13,7 +13,7 @@ struct UpdateTransferTests {
 
     private let repository = TransactionDouble()
     private let useCase: UpdateTransfer
-    private let userId = UUID()
+    private let profileId = UUID()
     private let sourceId = UUID()
     private let destinationId = UUID()
     private let sourceAccountId = UUID()
@@ -26,7 +26,7 @@ struct UpdateTransferTests {
     private func makeLeg(id: UUID, accountId: UUID, isExpense: Bool, amount: Double = 100) -> Transaction {
         Transaction(
             id: id,
-            userId: userId,
+            profileId: profileId,
             label: "Initial",
             date: Date(),
             totalAmount: amount,
@@ -53,7 +53,7 @@ struct UpdateTransferTests {
             amount: amount,
             date: Date(),
             label: label,
-            userId: userId
+            profileId: profileId
         )
     }
 
@@ -85,7 +85,7 @@ struct UpdateTransferTests {
             amount: 50,
             date: Date(),
             label: "Updated",
-            userId: userId
+            profileId: profileId
         )
         await #expect(throws: TransactionError.redundantSplitsAccounts) {
             try await useCase.execute(transfer, input: input)

@@ -17,28 +17,28 @@ final class TransactionDouble: TransactionProviding {
     /// Set this to force any method to throw a specific error.
     var errorToThrow: Error?
 
-    /// Returns all transactions in the store belonging to the given user.
-    func fetchAll(for userId: UUID) async throws -> [Transaction] {
+    /// Returns all transactions in the store belonging to the given profile.
+    func fetchAll(for profileId: UUID) async throws -> [Transaction] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.userId == userId }
+        return store.filter { $0.profileId == profileId }
     }
 
     /// Returns all transactions in the store holding a split on the given account.
-    func fetchAllByAccount(for userId: UUID, accountId: UUID) async throws -> [Transaction] {
+    func fetchAllByAccount(for profileId: UUID, accountId: UUID) async throws -> [Transaction] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.userId == userId && $0.belongs(to: accountId) }
+        return store.filter { $0.profileId == profileId && $0.belongs(to: accountId) }
     }
 
     /// Returns all transactions in the store matching the given category.
-    func fetchAllByCategory(for userId: UUID, category: TransactionCategory) async throws -> [Transaction] {
+    func fetchAllByCategory(for profileId: UUID, category: TransactionCategory) async throws -> [Transaction] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.userId == userId && $0.category == category }
+        return store.filter { $0.profileId == profileId && $0.category == category }
     }
 
     /// Returns all transactions in the store within the given date range.
-    func fetchAllByDateRange(for userId: UUID, from: Date, to: Date) async throws -> [Transaction] {
+    func fetchAllByDateRange(for profileId: UUID, from: Date, to: Date) async throws -> [Transaction] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.userId == userId && $0.date >= from && $0.date <= to }
+        return store.filter { $0.profileId == profileId && $0.date >= from && $0.date <= to }
     }
 
     /// Returns the transaction in the store matching the given id.

@@ -14,12 +14,12 @@ enum TestData {
 
     static func institution(
         id: UUID = UUID(),
-        userId: UUID = UUID(),
+        profileId: UUID = UUID(),
         name: String = "BNP Paribas",
         category: InstitutionCategory = .bank,
         isArchived: Bool = false
     ) -> Institution {
-        Institution(id: id, userId: userId, name: name, category: category, isArchived: isArchived)
+        Institution(id: id, profileId: profileId, name: name, category: category, isArchived: isArchived)
     }
 
     static func account(
@@ -42,7 +42,7 @@ enum TestData {
 
     static func transaction(
         id: UUID = UUID(),
-        userId: UUID = UUID(),
+        profileId: UUID = UUID(),
         label: String = "Courses",
         date: Date = Date(),
         totalAmount: Double = 10,
@@ -54,7 +54,7 @@ enum TestData {
     ) -> Transaction {
         Transaction(
             id: id,
-            userId: userId,
+            profileId: profileId,
             label: label,
             date: date,
             totalAmount: totalAmount,
@@ -66,13 +66,13 @@ enum TestData {
         )
     }
 
-    static func user(
+    static func profile(
         id: UUID = UUID(),
         firstName: String = "Bruce",
         lastName: String = "Wayne",
         email: String = "batman@gotham.com",
         photoURL: String? = nil
-    ) -> User {
-        User(id: id, displayName: "\(firstName)|\(lastName)", email: email, photoURL: photoURL)
+    ) -> Profile {
+        Profile(id: id, displayName: "\(firstName)|\(lastName)", email: email, photoURL: photoURL)
     }
 }

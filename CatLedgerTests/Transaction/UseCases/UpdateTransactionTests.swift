@@ -13,7 +13,7 @@ struct UpdateTransactionTests {
 
     private let repository = TransactionDouble()
     private let useCase: UpdateTransaction
-    private let userId = UUID()
+    private let profileId = UUID()
 
     init() {
         useCase = UpdateTransaction(repository: repository)
@@ -28,7 +28,7 @@ struct UpdateTransactionTests {
     ) -> UpdateTransactionInput {
         UpdateTransactionInput(
             id: id,
-            userId: userId,
+            profileId: profileId,
             label: label,
             date: Date(),
             totalAmount: totalAmount,
@@ -41,7 +41,7 @@ struct UpdateTransactionTests {
 
     @Test("Persists the new values for a valid update")
     func execute_validInput_updatesTransaction() async throws {
-        let transaction = TestData.transaction(userId: userId)
+        let transaction = TestData.transaction(profileId: profileId)
         try await repository.save(transaction)
         try await useCase.execute(makeInput(id: transaction.id, label: "Restaurant"))
         let updated = try await repository.fetch(by: transaction.id)
@@ -50,7 +50,7 @@ struct UpdateTransactionTests {
 
     @Test("Preserves isChecked from the existing transaction")
     func execute_validInput_preservesIsChecked() async throws {
-        let transaction = TestData.transaction(userId: userId, isChecked: true)
+        let transaction = TestData.transaction(profileId: profileId, isChecked: true)
         try await repository.save(transaction)
         try await useCase.execute(makeInput(id: transaction.id))
         let updated = try await repository.fetch(by: transaction.id)
@@ -59,7 +59,7 @@ struct UpdateTransactionTests {
 
     @Test("Throws emptyLabel for a blank label")
     func execute_emptyLabel_throwsEmptyLabel() async throws {
-        let transaction = TestData.transaction(userId: userId)
+        let transaction = TestData.transaction(profileId: profileId)
         try await repository.save(transaction)
         await #expect(throws: TransactionError.emptyLabel) {
             try await useCase.execute(makeInput(id: transaction.id, label: "   "))
@@ -68,7 +68,7 @@ struct UpdateTransactionTests {
 
     @Test("Throws missingSplits when no split is provided")
     func execute_missingSplits_throwsMissingSplits() async throws {
-        let transaction = TestData.transaction(userId: userId)
+        let transaction = TestData.transaction(profileId: profileId)
         try await repository.save(transaction)
         await #expect(throws: TransactionError.missingSplits) {
             try await useCase.execute(makeInput(id: transaction.id, splits: []))
@@ -77,7 +77,7 @@ struct UpdateTransactionTests {
 
     @Test("Throws splitAmountMismatch when splits don't sum to the total")
     func execute_splitAmountMismatch_throwsSplitAmountMismatch() async throws {
-        let transaction = TestData.transaction(userId: userId)
+        let transaction = TestData.transaction(profileId: profileId)
         try await repository.save(transaction)
         await #expect(throws: TransactionError.splitAmountMismatch) {
             try await useCase.execute(makeInput(

@@ -13,7 +13,7 @@ struct AddInstitutionTests {
 
     private let repository = InstitutionDouble()
     private let useCase: AddInstitution
-    private let userId = UUID()
+    private let profileId = UUID()
 
     init() {
         useCase = AddInstitution(repository: repository)
@@ -25,13 +25,13 @@ struct AddInstitutionTests {
         category: InstitutionCategory = .bank,
         logoURL: String? = nil
     ) -> AddInstitutionInput {
-        AddInstitutionInput(userId: userId, name: name, category: category, logoURL: logoURL)
+        AddInstitutionInput(profileId: profileId, name: name, category: category, logoURL: logoURL)
     }
 
     @Test("Saves a valid institution to the repository")
     func execute_validInput_savesInstitution() async throws {
         try await useCase.execute(makeInput())
-        let institutions = try await repository.fetchAll(for: userId)
+        let institutions = try await repository.fetchAll(for: profileId)
         #expect(institutions.count == 1)
         #expect(institutions.first?.name == "BNP Paribas")
     }
@@ -39,7 +39,7 @@ struct AddInstitutionTests {
     @Test("Trims whitespace from the name before saving")
     func execute_nameWithWhitespace_isTrimmed() async throws {
         try await useCase.execute(makeInput(name: "  BNP  "))
-        let institutions = try await repository.fetchAll(for: userId)
+        let institutions = try await repository.fetchAll(for: profileId)
         #expect(institutions.first?.name == "BNP")
     }
 
@@ -75,13 +75,13 @@ struct AddInstitutionTests {
     func execute_nameExactly50Chars_succeeds() async throws {
         let name = String(repeating: "A", count: 50)
         try await useCase.execute(makeInput(name: name))
-        let institutions = try await repository.fetchAll(for: userId)
+        let institutions = try await repository.fetchAll(for: profileId)
         #expect(institutions.first?.name == name)
     }
 
     @Test("Throws duplicateName when the name is already used")
     func execute_duplicateName_throwsDuplicateName() async throws {
-        try await repository.save(TestData.institution(userId: userId, name: "BNP Paribas"))
+        try await repository.save(TestData.institution(profileId: profileId, name: "BNP Paribas"))
         await #expect(throws: InstitutionError.duplicateName) {
             try await useCase.execute(makeInput(name: "BNP Paribas"))
         }
@@ -89,7 +89,7 @@ struct AddInstitutionTests {
 
     @Test("Duplicate name check is case-insensitive")
     func execute_duplicateNameCaseInsensitive_throwsDuplicateName() async throws {
-        try await repository.save(TestData.institution(userId: userId, name: "BNP Paribas"))
+        try await repository.save(TestData.institution(profileId: profileId, name: "BNP Paribas"))
         await #expect(throws: InstitutionError.duplicateName) {
             try await useCase.execute(makeInput(name: "bnp paribas"))
         }
@@ -97,11 +97,11 @@ struct AddInstitutionTests {
 
     @Test("Allows the same name to be used by different users")
     func execute_sameNameDifferentUser_succeeds() async throws {
-        try await repository.save(TestData.institution(userId: userId, name: "BNP Paribas"))
-        let otherUserId = UUID()
-        let otherInput = AddInstitutionInput(userId: otherUserId, name: "BNP Paribas", category: .bank, logoURL: nil)
+        try await repository.save(TestData.institution(profileId: profileId, name: "BNP Paribas"))
+        let otherProfileId = UUID()
+        let otherInput = AddInstitutionInput(profileId: otherProfileId, name: "BNP Paribas", category: .bank, logoURL: nil)
         try await useCase.execute(otherInput)
-        let otherInstitutions = try await repository.fetchAll(for: otherUserId)
+        let otherInstitutions = try await repository.fetchAll(for: otherProfileId)
         #expect(otherInstitutions.count == 1)
     }
 }

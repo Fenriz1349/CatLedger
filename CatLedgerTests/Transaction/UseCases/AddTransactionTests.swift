@@ -13,7 +13,7 @@ struct AddTransactionTests {
 
     private let repository = TransactionDouble()
     private let useCase: AddTransaction
-    private let userId = UUID()
+    private let profileId = UUID()
 
     init() {
         useCase = AddTransaction(repository: repository)
@@ -28,7 +28,7 @@ struct AddTransactionTests {
         splits: [TransactionSplit]? = nil
     ) -> AddTransactionInput {
         AddTransactionInput(
-            userId: userId,
+            profileId: profileId,
             label: label,
             date: Date(),
             totalAmount: totalAmount,
@@ -42,7 +42,7 @@ struct AddTransactionTests {
     @Test("Saves a valid transaction to the repository")
     func execute_validInput_savesTransaction() async throws {
         try await useCase.execute(makeInput())
-        let transactions = try await repository.fetchAll(for: userId)
+        let transactions = try await repository.fetchAll(for: profileId)
         #expect(transactions.count == 1)
     }
 
@@ -67,7 +67,7 @@ struct AddTransactionTests {
             category: .initialBalance,
             splits: [TestData.transactionSplit(amount: 0)]
         ))
-        let transactions = try await repository.fetchAll(for: userId)
+        let transactions = try await repository.fetchAll(for: profileId)
         #expect(transactions.count == 1)
     }
 

@@ -1,5 +1,5 @@
 //
-//  CreateUserProfileTests.swift
+//  CreateProfileTests.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,18 +9,18 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct CreateUserProfileTests {
+struct CreateProfileTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: CreateUserProfile
+    private let useCase: CreateProfile
 
     init() {
-        useCase = CreateUserProfile(repository: repository)
+        useCase = CreateProfile(repository: repository)
     }
 
     @Test("Returns the session provided by the repository")
     func execute_validInput_returnsSession() async throws {
-        let session = AuthSession(userId: UUID(), isAnonymous: false)
+        let session = AuthSession(profileId: UUID(), isAnonymous: false)
         repository.sessionToReturn = session
         let result = try await useCase.execute(
             email: "batman@gotham.com",
@@ -28,7 +28,7 @@ struct CreateUserProfileTests {
             firstName: "Bruce",
             lastName: "Wayne"
         )
-        #expect(result.userId == session.userId)
+        #expect(result.profileId == session.profileId)
     }
 
     @Test("Propagates a repository error")

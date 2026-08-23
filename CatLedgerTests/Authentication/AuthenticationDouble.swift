@@ -12,7 +12,7 @@ import Foundation
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
 final class AuthenticationDouble: AuthProviding {
 
-    var sessionToReturn = AuthSession(userId: UUID(), isAnonymous: false)
+    var sessionToReturn = AuthSession(profileId: UUID(), isAnonymous: false)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).
     var sessionToResolve: AuthSession?
     var isExpired = false
@@ -21,8 +21,8 @@ final class AuthenticationDouble: AuthProviding {
     /// Tracks whether expireAnonymousSession() was called.
     var didCallExpire = false
 
-    /// Tracks whether deleteUserProfile() was called.
-    var didCallDeleteUserProfile = false
+    /// Tracks whether deleteAuthAccount() was called.
+    var didCallDeleteAuthAccount = false
 
     /// Tracks whether signOut() was called.
     var didCallSignOut = false
@@ -39,7 +39,7 @@ final class AuthenticationDouble: AuthProviding {
         return sessionToReturn
     }
 
-    func createUserProfile(
+    func createProfile(
         email: String,
         password: String,
         firstName: String,
@@ -59,9 +59,9 @@ final class AuthenticationDouble: AuthProviding {
         didCallSignOut = true
     }
 
-    func deleteUserProfile() async throws {
+    func deleteAuthAccount() async throws {
         if let error = errorToThrow { throw error }
-        didCallDeleteUserProfile = true
+        didCallDeleteAuthAccount = true
     }
 
     func linkAnonymousAccount(

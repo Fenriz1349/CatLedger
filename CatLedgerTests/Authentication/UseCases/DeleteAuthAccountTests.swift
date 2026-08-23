@@ -1,5 +1,5 @@
 //
-//  DeleteUserProfileTests.swift
+//  DeleteAuthAccountTests.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,19 +9,19 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct DeleteUserProfileTests {
+struct DeleteAuthAccountTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: DeleteUserProfile
+    private let useCase: DeleteAuthAccount
 
     init() {
-        useCase = DeleteUserProfile(repository: repository)
+        useCase = DeleteAuthAccount(repository: repository)
     }
 
-    @Test("Calls deleteUserProfile on the repository")
-    func execute_callsDeleteUserProfile() async throws {
+    @Test("Calls deleteAuthAccount on the repository")
+    func execute_callsDeleteAuthAccount() async throws {
         try await useCase.execute()
-        #expect(repository.didCallDeleteUserProfile)
+        #expect(repository.didCallDeleteAuthAccount)
     }
 
     @Test("Propagates a repository error")

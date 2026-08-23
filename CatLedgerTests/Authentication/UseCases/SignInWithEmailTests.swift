@@ -20,10 +20,10 @@ struct SignInWithEmailTests {
 
     @Test("Returns the session provided by the repository")
     func execute_validCredentials_returnsSession() async throws {
-        let session = AuthSession(userId: UUID(), isAnonymous: false)
+        let session = AuthSession(profileId: UUID(), isAnonymous: false)
         repository.sessionToReturn = session
         let result = try await useCase.execute(email: "batman@gotham.com", password: "password123")
-        #expect(result.userId == session.userId)
+        #expect(result.profileId == session.profileId)
     }
 
     @Test("Propagates a repository error")
