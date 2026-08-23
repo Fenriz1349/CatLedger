@@ -25,8 +25,9 @@ final class DeleteFirebaseRegistration {
         self.deleteRegistration = deleteRegistration
     }
 
-    func execute() async throws {
-        let profile = try await getCurrentProfile.execute()
+    /// - Parameter registrationId: The registration whose profile and registration to delete.
+    func execute(registrationId: UUID) async throws {
+        let profile = try await getCurrentProfile.execute(registrationId: registrationId)
         try await deleteProfile.execute(id: profile.id)
         try await deleteRegistration.execute()
     }

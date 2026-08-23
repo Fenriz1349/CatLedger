@@ -20,6 +20,7 @@ final class CreateProfile {
 
     /// Creates and persists a new profile.
     /// - Parameters:
+    ///   - registrationId: The registration this profile belongs to.
     ///   - firstName: The profile's first name.
     ///   - lastName: The profile's last name.
     ///   - email: The profile's email address.
@@ -27,6 +28,7 @@ final class CreateProfile {
     /// - Returns: The newly created profile.
     /// - Throws: `ProfileError` if any business rule is violated.
     func execute(
+        registrationId: UUID,
         firstName: String,
         lastName: String,
         email: String,
@@ -39,6 +41,7 @@ final class CreateProfile {
         guard email.contains("@") else { throw ProfileError.invalidEmail }
 
         let profile = Profile(
+            registrationId: registrationId,
             displayName: "\(trimmedFirstName)|\(trimmedLastName)",
             email: email,
             photoURL: photoURL

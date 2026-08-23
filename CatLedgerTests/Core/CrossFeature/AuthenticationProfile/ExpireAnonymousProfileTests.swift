@@ -30,19 +30,19 @@ struct ExpireAnonymousProfileTests {
         try await profileRepository.save(profile)
         authRepository.isExpired = true
 
-        let result = try await useCase.execute()
+        let result = try await useCase.execute(registrationId: profile.registrationId)
 
         #expect(result)
         #expect(authRepository.didCallExpire)
         await #expect(throws: ProfileError.notFound) {
-            try await profileRepository.fetchCurrent()
+            try await profileRepository.fetch(by: profile.registrationId)
         }
     }
 
     @Test("Does nothing and returns false when the session is still valid")
     func execute_validSession_returnsFalse() async throws {
         authRepository.isExpired = false
-        let result = try await useCase.execute()
+        let result = try await useCase.execute(registrationId: UUID())
         #expect(!result)
         #expect(!authRepository.didCallExpire)
     }

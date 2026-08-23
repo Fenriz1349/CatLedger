@@ -35,7 +35,7 @@ struct RegisterProfileTests {
         )
 
         #expect(result.registrationId == session.registrationId)
-        let profile = try await profileRepository.fetchCurrent()
+        let profile = try await profileRepository.fetch(by: session.registrationId)
         #expect(profile.firstName == "Bruce")
         #expect(profile.email == "batman@gotham.com")
     }
@@ -52,7 +52,7 @@ struct RegisterProfileTests {
             )
         }
         await #expect(throws: ProfileError.notFound) {
-            try await profileRepository.fetchCurrent()
+            try await profileRepository.fetch(by: UUID())
         }
     }
 }

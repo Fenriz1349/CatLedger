@@ -17,10 +17,11 @@ final class GetCurrentProfile {
         self.repository = repository
     }
 
-    /// Fetches the current profile.
-    /// - Returns: The current profile.
-    /// - Throws: `ProfileError.notFound` if no profile currently exists.
-    func execute() async throws -> Profile {
-        try await repository.fetchCurrent()
+    /// Fetches the profile belonging to the given registration.
+    /// - Parameter registrationId: The registration whose profile to fetch.
+    /// - Returns: The matching profile.
+    /// - Throws: `ProfileError.notFound` if no profile exists for that registration.
+    func execute(registrationId: UUID) async throws -> Profile {
+        try await repository.fetch(by: registrationId)
     }
 }

@@ -12,33 +12,41 @@ import Foundation
 /// Used exclusively in unit tests to isolate UseCases from persistence layers.
 final class ProfileDouble: ProfileProviding {
 
-    private var current: Profile?
+    private var store: [Profile] = []
 
     /// Set this to force any method to throw a specific error.
     var errorToThrow: Error?
 
-    /// Returns the current profile if one exists.
-    func fetchCurrent() async throws -> Profile {
+    /// Returns the profile in the store matching the given registration.
+    func fetch(by registrationId: UUID) async throws -> Profile {
         if let error = errorToThrow { throw error }
-        guard let profile = current else { throw ProfileError.notFound }
+        guard let profile = store.first(where: { $0.registrationId == registrationId }) else {
+            throw ProfileError.notFound
+        }
         return profile
     }
 
-    /// Stores the profile as the current profile.
+    /// Appends the profile to the in-memory store.
     func save(_ profile: Profile) async throws {
         if let error = errorToThrow { throw error }
-        current = profile
+        store.append(profile)
     }
 
-    /// Replaces the current profile with the updated one.
+    /// Replaces the existing profile in the store with the updated one.
     func update(_ profile: Profile) async throws {
         if let error = errorToThrow { throw error }
-        current = profile
+        guard let index = store.firstIndex(where: { $0.id == profile.id }) else {
+            throw ProfileError.notFound
+        }
+        store[index] = profile
     }
 
-    /// Clears the current profile.
+    /// Removes the profile matching the given id from the store.
     func delete(by id: UUID) async throws {
         if let error = errorToThrow { throw error }
-        current = nil
+        guard store.contains(where: { $0.id == id }) else {
+            throw ProfileError.notFound
+        }
+        store.removeAll { $0.id == id }
     }
 }

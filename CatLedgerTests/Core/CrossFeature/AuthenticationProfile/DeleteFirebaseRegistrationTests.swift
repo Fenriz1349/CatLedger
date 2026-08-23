@@ -28,10 +28,10 @@ struct DeleteFirebaseRegistrationTests {
         let profile = TestData.profile()
         try await profileRepository.save(profile)
 
-        try await useCase.execute()
+        try await useCase.execute(registrationId: profile.registrationId)
 
         await #expect(throws: ProfileError.notFound) {
-            try await profileRepository.fetchCurrent()
+            try await profileRepository.fetch(by: profile.registrationId)
         }
         #expect(authRepository.didCallDeleteRegistration)
     }
@@ -40,7 +40,7 @@ struct DeleteFirebaseRegistrationTests {
     func execute_profileFetchThrows_propagatesError() async throws {
         profileRepository.errorToThrow = ProfileError.notFound
         await #expect(throws: ProfileError.notFound) {
-            try await useCase.execute()
+            try await useCase.execute(registrationId: UUID())
         }
         #expect(!authRepository.didCallDeleteRegistration)
     }

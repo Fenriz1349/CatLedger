@@ -35,10 +35,11 @@ final class ExpireAnonymousProfile {
     }
 
     /// Expires the anonymous session and its profile if it has exceeded its validity period.
+    /// - Parameter registrationId: The registration whose profile to delete if the session is expired.
     /// - Returns: `true` if the session was expired and deleted, `false` if still valid.
-    func execute() async throws -> Bool {
+    func execute(registrationId: UUID) async throws -> Bool {
         guard isAnonymousSessionExpired.execute() else { return false }
-        let profile = try await getCurrentProfile.execute()
+        let profile = try await getCurrentProfile.execute(registrationId: registrationId)
         try await deleteProfile.execute(id: profile.id)
         _ = await expireAnonymousSession.execute()
         return true
