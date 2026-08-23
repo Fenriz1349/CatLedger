@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Retrieves the current authenticated profile.
+/// Retrieves the current profile.
 final class GetCurrentProfile {
 
     private let repository: ProfileProviding
@@ -17,9 +17,9 @@ final class GetCurrentProfile {
         self.repository = repository
     }
 
-    /// Fetches the current authenticated profile.
+    /// Fetches the current profile.
     /// - Returns: The current profile.
-    /// - Throws: `ProfileError.notFound` if no profile is currently authenticated.
+    /// - Throws: `ProfileError.notFound` if no profile currently exists.
     func execute() async throws -> Profile {
         try await repository.fetchCurrent()
     }

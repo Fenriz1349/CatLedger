@@ -12,10 +12,10 @@ import Foundation
 ///
 /// Named `Profile` rather than `User` on purpose. A `Profile` is not "the person signed in" —
 /// it's "the ledger being managed". Today, signing in resolves to exactly one `Profile` that the
-/// authenticated account owns, so the two happen to coincide. But keeping them as separate
+/// signed-in registration owns, so the two happen to coincide. But keeping them as separate
 /// concepts from the start means the rest of the app (Institution, Account, Transaction — every
 /// one of them scoped by `profileId`, never by an auth identifier) doesn't have to change shape
-/// if a single authenticated account ever needs to manage more than one space: a personal
+/// if a single registration ever needs to manage more than one space: a personal
 /// budget, a side business, an association's finances. `Authentication` stays limited to proving
 /// who is signed in; a `Profile` is which ledger they're currently looking at. Multi-profile
 /// support itself (switching, sharing, membership/roles) is not built and not planned yet — this

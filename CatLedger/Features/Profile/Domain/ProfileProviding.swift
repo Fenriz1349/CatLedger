@@ -12,7 +12,7 @@ import Foundation
 /// Conforming types live in the Data layer.
 protocol ProfileProviding {
 
-    /// Fetches the current authenticated profile.
+    /// Fetches the current profile.
     /// - Returns: The current profile.
     func fetchCurrent() async throws -> Profile
 
