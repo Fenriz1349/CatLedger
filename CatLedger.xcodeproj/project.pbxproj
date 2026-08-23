@@ -137,6 +137,11 @@
 		68861CCD303B09C4008E955B /* CreateAnonymousProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CCC303B09C4008E955B /* CreateAnonymousProfileTests.swift */; };
 		68861CCF303B0A3B008E955B /* IsAnonymousSessionExpired.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CCE303B0A3B008E955B /* IsAnonymousSessionExpired.swift */; };
 		68861CD1303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CD0303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift */; };
+		68861CD9303B0B71008E955B /* RegisterProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CD8303B0B71008E955B /* RegisterProfileTests.swift */; };
+		68861CDB303B0B78008E955B /* RegisterAnonymousProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CDA303B0B78008E955B /* RegisterAnonymousProfileTests.swift */; };
+		68861CDD303B0B80008E955B /* LinkAnonymousProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CDC303B0B80008E955B /* LinkAnonymousProfileTests.swift */; };
+		68861CDF303B0B87008E955B /* DeleteFirebaseRegistrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CDE303B0B87008E955B /* DeleteFirebaseRegistrationTests.swift */; };
+		68861CE1303B0B8E008E955B /* ExpireAnonymousProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CE0303B0B8E008E955B /* ExpireAnonymousProfileTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +288,11 @@
 		68861CCC303B09C4008E955B /* CreateAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAnonymousProfileTests.swift; sourceTree = "<group>"; };
 		68861CCE303B0A3B008E955B /* IsAnonymousSessionExpired.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsAnonymousSessionExpired.swift; sourceTree = "<group>"; };
 		68861CD0303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsAnonymousSessionExpiredTests.swift; sourceTree = "<group>"; };
+		68861CD8303B0B71008E955B /* RegisterProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProfileTests.swift; sourceTree = "<group>"; };
+		68861CDA303B0B78008E955B /* RegisterAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAnonymousProfileTests.swift; sourceTree = "<group>"; };
+		68861CDC303B0B80008E955B /* LinkAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkAnonymousProfileTests.swift; sourceTree = "<group>"; };
+		68861CDE303B0B87008E955B /* DeleteFirebaseRegistrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFirebaseRegistrationTests.swift; sourceTree = "<group>"; };
+		68861CE0303B0B8E008E955B /* ExpireAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousProfileTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -702,12 +712,8 @@
 		687ADC4E3039724E0004166C /* CatLedgerTests */ = {
 			isa = PBXGroup;
 			children = (
-				68558A9B3039FE4400FE562D /* Authentication */,
-				68558ABE303A04CB00FE562D /* Profile */,
-				687ADC50303973880004166C /* Institution */,
-				68558A4B3039929200FE562D /* Account */,
-				68558A743039FAA300FE562D /* Transaction */,
-				68558AD8303A07C000FE562D /* Transfer */,
+				68861CD3303B0B11008E955B /* Features */,
+				68861CD2303B0B0A008E955B /* Core */,
 				687ADC4D3039724E0004166C /* TestData.swift */,
 			);
 			path = CatLedgerTests;
@@ -764,8 +770,49 @@
 				68861CC0303B023F008E955B /* RegisterProfile.swift */,
 				68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */,
 				68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */,
-				68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */,
 				68861CC8303B0265008E955B /* ExpireAnonymousProfile.swift */,
+				68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */,
+			);
+			path = AuthenticationProfile;
+			sourceTree = "<group>";
+		};
+		68861CD2303B0B0A008E955B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				68861CD4303B0B56008E955B /* CrossFeature */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		68861CD3303B0B11008E955B /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				68558A9B3039FE4400FE562D /* Authentication */,
+				68558ABE303A04CB00FE562D /* Profile */,
+				687ADC50303973880004166C /* Institution */,
+				68558A4B3039929200FE562D /* Account */,
+				68558A743039FAA300FE562D /* Transaction */,
+				68558AD8303A07C000FE562D /* Transfer */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		68861CD4303B0B56008E955B /* CrossFeature */ = {
+			isa = PBXGroup;
+			children = (
+				68861CD7303B0B68008E955B /* AuthenticationProfile */,
+			);
+			path = CrossFeature;
+			sourceTree = "<group>";
+		};
+		68861CD7303B0B68008E955B /* AuthenticationProfile */ = {
+			isa = PBXGroup;
+			children = (
+				68861CD8303B0B71008E955B /* RegisterProfileTests.swift */,
+				68861CDA303B0B78008E955B /* RegisterAnonymousProfileTests.swift */,
+				68861CDC303B0B80008E955B /* LinkAnonymousProfileTests.swift */,
+				68861CE0303B0B8E008E955B /* ExpireAnonymousProfileTests.swift */,
+				68861CDE303B0B87008E955B /* DeleteFirebaseRegistrationTests.swift */,
 			);
 			path = AuthenticationProfile;
 			sourceTree = "<group>";
@@ -969,6 +1016,8 @@
 				68558A9D3039FE5600FE562D /* AuthenticationDouble.swift in Sources */,
 				68558A54303992DE00FE562D /* AddAccountTests.swift in Sources */,
 				68558ACC303A057900FE562D /* GetCurrentProfileTests.swift in Sources */,
+				68861CE1303B0B8E008E955B /* ExpireAnonymousProfileTests.swift in Sources */,
+				68861CD9303B0B71008E955B /* RegisterProfileTests.swift in Sources */,
 				68558A7B3039FAFB00FE562D /* GetTransactionsTests.swift in Sources */,
 				68558ADF303A07F800FE562D /* DeleteTransfer.swift in Sources */,
 				68861CBF303B0179008E955B /* CreateProfileTests.swift in Sources */,
@@ -979,7 +1028,9 @@
 				687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */,
 				68558A5C3039931100FE562D /* DeleteAccountTests.swift in Sources */,
 				687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */,
+				68861CDB303B0B78008E955B /* RegisterAnonymousProfileTests.swift in Sources */,
 				68558ACE303A058600FE562D /* UpdateProfileTests.swift in Sources */,
+				68861CDD303B0B80008E955B /* LinkAnonymousProfileTests.swift in Sources */,
 				68558A813039FB1F00FE562D /* AddTransactionTests.swift in Sources */,
 				68558ADD303A07F000FE562D /* UpdateTransfer.swift in Sources */,
 				68861CD1303B0A51008E955B /* IsAnonymousSessionExpiredTests.swift in Sources */,
@@ -1003,6 +1054,7 @@
 				68558AC0303A04DD00FE562D /* ProfileDouble.swift in Sources */,
 				68558A833039FB2B00FE562D /* UpdateTransactionTests.swift in Sources */,
 				68558A7D3039FB0600FE562D /* GetTransactionsByAccountTests.swift in Sources */,
+				68861CDF303B0B87008E955B /* DeleteFirebaseRegistrationTests.swift in Sources */,
 				68558AAC3039FEB400FE562D /* SignInAnonymouslyTests.swift in Sources */,
 				68861CCD303B09C4008E955B /* CreateAnonymousProfileTests.swift in Sources */,
 				68558A763039FAD100FE562D /* TransactionDouble.swift in Sources */,
