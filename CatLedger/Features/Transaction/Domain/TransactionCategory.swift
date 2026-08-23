@@ -51,9 +51,9 @@ enum TransactionCategory: String, CaseIterable, Codable, Sendable {
         self != .transfer && self != .initialBalance
     }
 
-    /// Whether this category can be manually selected by the user in a transaction form.
+    /// Whether this category can be manually selected by the profile in a transaction form.
     /// Transfers and initial balances are created via dedicated flows, not free-form entry.
-    var isUserSelectable: Bool {
+    var isProfileSelectable: Bool {
         self != .transfer && self != .initialBalance
     }
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Retrieves all transactions for a given user with a split allocated to a given account.
+/// Retrieves all transactions for a given profile with a split allocated to a given account.
 final class GetTransactionsByAccount {
 
     private let repository: TransactionProviding
@@ -17,13 +17,13 @@ final class GetTransactionsByAccount {
         self.repository = repository
     }
 
-    /// Fetches transactions for a specific user holding a split on the given account.
+    /// Fetches transactions for a specific profile holding a split on the given account.
     /// - Parameters:
-    ///   - userId: The identifier of the user.
+    ///   - profileId: The identifier of the profile.
     ///   - accountId: The account whose transactions are requested.
     /// - Returns: An array of transactions, ordered by date descending.
     /// - Throws: `TransactionError` if the fetch fails.
-    func execute(for userId: UUID, accountId: UUID) async throws -> [Transaction] {
-        try await repository.fetchAllByAccount(for: userId, accountId: accountId)
+    func execute(for profileId: UUID, accountId: UUID) async throws -> [Transaction] {
+        try await repository.fetchAllByAccount(for: profileId, accountId: accountId)
     }
 }

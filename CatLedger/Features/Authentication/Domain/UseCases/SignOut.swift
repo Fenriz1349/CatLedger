@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Signs out the current user and clears the local session.
+/// Signs out the current profile and clears the local session.
 final class SignOut {
 
     private let repository: AuthProviding

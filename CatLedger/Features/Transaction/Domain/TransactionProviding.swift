@@ -12,32 +12,32 @@ import Foundation
 /// Conforming types live in the Data layer.
 protocol TransactionProviding {
 
-    /// Fetches all transactions belonging to a given user.
-    /// - Parameter userId: The identifier of the user.
+    /// Fetches all transactions belonging to a given profile.
+    /// - Parameter profileId: The identifier of the profile.
     /// - Returns: An array of transactions, ordered by date descending.
-    func fetchAll(for userId: UUID) async throws -> [Transaction]
+    func fetchAll(for profileId: UUID) async throws -> [Transaction]
 
     /// Fetches all transactions with a split allocated to a given account.
     /// - Parameters:
-    ///   - userId: The identifier of the user.
+    ///   - profileId: The identifier of the profile.
     ///   - accountId: The identifier of the account.
     /// - Returns: An array of transactions, ordered by date descending.
-    func fetchAllByAccount(for userId: UUID, accountId: UUID) async throws -> [Transaction]
+    func fetchAllByAccount(for profileId: UUID, accountId: UUID) async throws -> [Transaction]
 
     /// Fetches all transactions belonging to a given category.
     /// - Parameters:
-    ///   - userId: The identifier of the user.
+    ///   - profileId: The identifier of the profile.
     ///   - category: The category to filter by.
     /// - Returns: An array of transactions, ordered by date descending.
-    func fetchAllByCategory(for userId: UUID, category: TransactionCategory) async throws -> [Transaction]
+    func fetchAllByCategory(for profileId: UUID, category: TransactionCategory) async throws -> [Transaction]
 
     /// Fetches all transactions within a date range.
     /// - Parameters:
-    ///   - userId: The identifier of the user.
+    ///   - profileId: The identifier of the profile.
     ///   - from: The start of the date range, inclusive.
     ///   - to: The end of the date range, inclusive.
     /// - Returns: An array of transactions, ordered by date descending.
-    func fetchAllByDateRange(for userId: UUID, from: Date, to: Date) async throws -> [Transaction]
+    func fetchAllByDateRange(for profileId: UUID, from: Date, to: Date) async throws -> [Transaction]
 
     /// Fetches a single transaction by its identifier.
     /// - Parameter id: The unique identifier of the transaction.

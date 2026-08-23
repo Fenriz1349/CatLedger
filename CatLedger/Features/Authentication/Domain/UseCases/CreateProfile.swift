@@ -1,5 +1,5 @@
 //
-//  CreateUserProfile.swift
+//  CreateProfile.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// Creates a new permanent user profile with email, password, and display name.
-final class CreateUserProfile {
+/// Creates a new permanent profile with email, password, and display name.
+final class CreateProfile {
 
     private let repository: AuthProviding
 
@@ -18,13 +18,13 @@ final class CreateUserProfile {
     }
 
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
-    /// - Returns: A session for the newly created user.
+    ///   - email: The profile's email address.
+    ///   - password: The profile's password.
+    ///   - firstName: The profile's first name.
+    ///   - lastName: The profile's last name.
+    /// - Returns: A session for the newly created profile.
     func execute(email: String, password: String, firstName: String, lastName: String) async throws -> AuthSession {
-        try await repository.createUserProfile(
+        try await repository.createProfile(
             email: email,
             password: password,
             firstName: firstName,

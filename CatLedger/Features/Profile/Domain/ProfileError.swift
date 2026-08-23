@@ -1,5 +1,5 @@
 //
-//  UserError.swift
+//  ProfileError.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 21/08/2026.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-/// Represents domain-level errors for the User feature.
+/// Represents domain-level errors for the Profile feature.
 /// These errors are thrown by UseCases, not by repositories or data sources.
-enum UserError: Error, Equatable, LocalizedError {
+enum ProfileError: Error, Equatable, LocalizedError {
 
-    /// Thrown when no user is found for the given identifier.
+    /// Thrown when no profile is found for the given identifier.
     case notFound
 
-    /// Thrown when the user display name exceeds the maximum allowed length.
+    /// Thrown when the profile display name exceeds the maximum allowed length.
     case nameTooLong
 
     /// Thrown when the provided email address format is invalid.
@@ -24,11 +24,11 @@ enum UserError: Error, Equatable, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notFound:
-            return String(localized: .userErrorNotFound)
+            return String(localized: .profileErrorNotFound)
         case .nameTooLong:
-            return String(localized: .userErrorNameTooLong)
+            return String(localized: .profileErrorNameTooLong)
         case .invalidEmail:
-            return String(localized: .userErrorInvalidEmail)
+            return String(localized: .profileErrorInvalidEmail)
         }
     }
 }

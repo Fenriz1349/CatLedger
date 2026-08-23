@@ -8,7 +8,7 @@
 import Foundation
 
 /// Links the current anonymous session to a permanent email/password account,
-/// preserving all existing user data.
+/// preserving all existing profile data.
 final class LinkAnonymousAccount {
 
     private let repository: AuthProviding
@@ -21,8 +21,8 @@ final class LinkAnonymousAccount {
     /// - Parameters:
     ///   - email: The email address for the new permanent account.
     ///   - password: The password for the new permanent account.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
+    ///   - firstName: The profile's first name.
+    ///   - lastName: The profile's last name.
     /// - Returns: An updated, non-anonymous session.
     func execute(email: String, password: String, firstName: String, lastName: String) async throws -> AuthSession {
         try await repository.linkAnonymousAccount(

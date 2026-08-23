@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Retrieves all transactions belonging to a given user.
+/// Retrieves all transactions belonging to a given profile.
 final class GetTransactions {
 
     private let repository: TransactionProviding
@@ -17,11 +17,11 @@ final class GetTransactions {
         self.repository = repository
     }
 
-    /// Fetches all transactions for a specific user, ordered by date descending.
-    /// - Parameter userId: The identifier of the user.
-    /// - Returns: An array of transactions belonging to the user.
+    /// Fetches all transactions for a specific profile, ordered by date descending.
+    /// - Parameter profileId: The identifier of the profile.
+    /// - Returns: An array of transactions belonging to the profile.
     /// - Throws: `TransactionError` if the fetch fails.
-    func execute(for userId: UUID) async throws -> [Transaction] {
-        try await repository.fetchAll(for: userId)
+    func execute(for profileId: UUID) async throws -> [Transaction] {
+        try await repository.fetchAll(for: profileId)
     }
 }

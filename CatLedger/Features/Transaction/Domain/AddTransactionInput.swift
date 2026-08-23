@@ -9,7 +9,7 @@ import Foundation
 
 /// Encapsulates all parameters required to create a new transaction.
 struct AddTransactionInput {
-    let userId: UUID
+    let profileId: UUID
     let label: String
     let date: Date
     let totalAmount: Double

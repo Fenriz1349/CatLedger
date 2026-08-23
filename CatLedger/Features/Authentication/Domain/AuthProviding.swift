@@ -16,21 +16,21 @@ protocol AuthProviding {
     /// - Returns: The stored session, or nil if none exists (absence, not an error).
     func resolveSession() async -> AuthSession?
 
-    /// Signs in an existing user with email and password.
+    /// Signs in an existing profile with email and password.
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    /// - Returns: A session for the authenticated user.
+    ///   - email: The profile's email address.
+    ///   - password: The profile's password.
+    /// - Returns: A session for the authenticated profile.
     func signInWithEmail(email: String, password: String) async throws -> AuthSession
 
     /// Creates a new profile with email, password, and display name.
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
-    /// - Returns: A session for the newly created user.
-    func createUserProfile(
+    ///   - email: The profile's email address.
+    ///   - password: The profile's password.
+    ///   - firstName: The profile's first name.
+    ///   - lastName: The profile's last name.
+    /// - Returns: A session for the newly created profile.
+    func createProfile(
         email: String,
         password: String,
         firstName: String,
@@ -41,18 +41,18 @@ protocol AuthProviding {
     /// - Returns: An anonymous session.
     func signInAnonymously() async throws -> AuthSession
 
-    /// Signs out the current user and clears the local session.
+    /// Signs out the current profile and clears the local session.
     func signOut() async throws
 
-    /// Permanently deletes the current user account and all associated remote data.
-    func deleteUserProfile() async throws
+    /// Permanently deletes the current authentication account and all associated remote data.
+    func deleteAuthAccount() async throws
 
     /// Links the current anonymous account to a permanent email/password account.
     /// - Parameters:
     ///   - email: The email address for the new permanent account.
     ///   - password: The password for the new permanent account.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
+    ///   - firstName: The profile's first name.
+    ///   - lastName: The profile's last name.
     /// - Returns: An updated, non-anonymous session.
     func linkAnonymousAccount(
         toEmail email: String,

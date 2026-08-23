@@ -7,10 +7,10 @@
 
 import Foundation
 
-/// Represents an active authentication session for a user.
+/// Represents an active authentication session for a profile.
 struct AuthSession: Equatable, Sendable {
-    /// The unique identifier of the authenticated user.
-    let userId: UUID
+    /// The unique identifier of the authenticated profile.
+    let profileId: UUID
     /// Indicates whether the session is anonymous (no linked account).
     let isAnonymous: Bool
 }
