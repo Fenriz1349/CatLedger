@@ -30,7 +30,7 @@ protocol AuthProviding {
     /// - Returns: A session for the newly created registration.
     func signUp(email: String, password: String) async throws -> AuthSession
 
-    /// Signs in anonymously, creating a demo session without a permanent account.
+    /// Signs in anonymously, creating a demo session without a permanent registration.
     /// - Returns: An anonymous session.
     func signInAnonymously() async throws -> AuthSession
 
@@ -48,7 +48,7 @@ protocol AuthProviding {
     func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession
 
     /// Sends a password reset email to the given address.
-    /// - Parameter email: The email address of the account to reset.
+    /// - Parameter email: The email address of the registration to reset.
     func resetPassword(email: String) async throws
 
     /// Returns whether the current anonymous session has exceeded its validity period.
@@ -57,6 +57,6 @@ protocol AuthProviding {
     /// Returns the number of days remaining in the anonymous demo session, or nil if not anonymous.
     func anonymousDaysRemaining() -> Int?
 
-    /// Deletes the Firebase anonymous account and Firestore data, then clears local session state.
+    /// Deletes the Firebase anonymous registration, then clears local session state.
     func expireAnonymousSession() async
 }

@@ -16,7 +16,7 @@ enum AuthError: Error, Equatable, LocalizedError {
     case signOutFailed
     /// Thrown when no active session is found.
     case noSessionFound
-    /// Thrown when the email address is already linked to an existing account.
+    /// Thrown when the email address is already linked to an existing registration.
     case emailAlreadyInUse
     /// Thrown when the provided password does not meet strength requirements.
     case weakPassword
@@ -24,9 +24,9 @@ enum AuthError: Error, Equatable, LocalizedError {
     case invalidCredentials
     /// Thrown when the two password entries do not match.
     case passwordsDoNotMatch
-    /// Thrown when linking an anonymous account to a permanent account fails.
-    case accountLinkingFailed
-    /// Thrown when the account deletion process fails.
+    /// Thrown when linking an anonymous registration to a permanent registration fails.
+    case registrationLinkingFailed
+    /// Thrown when the registration deletion process fails.
     case deletionFailed
     /// Thrown when the password reset email fails to send.
     case resetPasswordFailed
@@ -50,8 +50,8 @@ enum AuthError: Error, Equatable, LocalizedError {
             return String(localized: .authErrorInvalidCredentials)
         case .passwordsDoNotMatch:
             return String(localized: .authErrorPasswordsDoNotMatch)
-        case .accountLinkingFailed:
-            return String(localized: .authErrorAccountLinkingFailed)
+        case .registrationLinkingFailed:
+            return String(localized: .authErrorRegistrationLinkingFailed)
         case .deletionFailed:
             return String(localized: .authErrorDeletionFailed)
         case .resetPasswordFailed:

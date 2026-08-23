@@ -256,7 +256,7 @@
         }
       }
     },
-    "authError.accountLinkingFailed" : {
+    "authError.registrationLinkingFailed" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
