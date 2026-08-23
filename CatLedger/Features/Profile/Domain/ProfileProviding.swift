@@ -12,9 +12,10 @@ import Foundation
 /// Conforming types live in the Data layer.
 protocol ProfileProviding {
 
-    /// Fetches the current profile.
-    /// - Returns: The current profile.
-    func fetchCurrent() async throws -> Profile
+    /// Fetches the profile belonging to the given registration.
+    /// - Parameter registrationId: The registration whose profile to fetch.
+    /// - Returns: The matching profile.
+    func fetch(by registrationId: UUID) async throws -> Profile
 
     /// Persists a new profile.
     /// - Parameter profile: The profile to save.

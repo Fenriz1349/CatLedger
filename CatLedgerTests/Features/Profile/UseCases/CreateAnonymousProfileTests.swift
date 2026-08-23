@@ -13,6 +13,7 @@ struct CreateAnonymousProfileTests {
 
     private let repository = ProfileDouble()
     private let useCase: CreateAnonymousProfile
+    private let registrationId = UUID()
 
     init() {
         useCase = CreateAnonymousProfile(repository: repository)
@@ -20,8 +21,8 @@ struct CreateAnonymousProfileTests {
 
     @Test("Saves a placeholder profile to the repository")
     func execute_savesPlaceholderProfile() async throws {
-        let profile = try await useCase.execute()
-        let saved = try await repository.fetchCurrent()
+        let profile = try await useCase.execute(registrationId: registrationId)
+        let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
         #expect(saved.displayName.isEmpty)
         #expect(saved.email.isEmpty)

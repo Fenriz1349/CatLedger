@@ -98,12 +98,19 @@ enum TestData {
 
     static func profile(
         id: UUID = UUID(),
+        registrationId: UUID = UUID(),
         firstName: String = "Bruce",
         lastName: String = "Wayne",
         email: String = "batman@gotham.com",
         photoURL: String? = nil
     ) -> Profile {
-        Profile(id: id, displayName: "\(firstName)|\(lastName)", email: email, photoURL: photoURL)
+        Profile(
+            id: id,
+            registrationId: registrationId,
+            displayName: "\(firstName)|\(lastName)",
+            email: email,
+            photoURL: photoURL
+        )
     }
 
     static func addInstitutionInput(
@@ -200,11 +207,19 @@ enum TestData {
 
     static func updateProfileInput(
         id: UUID = UUID(),
+        registrationId: UUID = UUID(),
         firstName: String = "Bruce",
         lastName: String = "Wayne",
         email: String = "batman@gotham.com",
         photoURL: String? = nil
     ) -> UpdateProfileInput {
-        UpdateProfileInput(id: id, firstName: firstName, lastName: lastName, email: email, photoURL: photoURL)
+        UpdateProfileInput(
+            id: id,
+            registrationId: registrationId,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            photoURL: photoURL
+        )
     }
 }

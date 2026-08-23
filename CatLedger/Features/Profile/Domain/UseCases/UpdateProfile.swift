@@ -30,6 +30,7 @@ final class UpdateProfile {
 
         let updated = Profile(
             id: input.id,
+            registrationId: input.registrationId,
             displayName: "\(firstName)|\(lastName)",
             email: input.email,
             photoURL: input.photoURL

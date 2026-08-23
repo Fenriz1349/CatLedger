@@ -24,7 +24,7 @@ struct DeleteProfileTests {
         try await repository.save(profile)
         try await useCase.execute(id: profile.id)
         await #expect(throws: ProfileError.notFound) {
-            try await repository.fetchCurrent()
+            try await repository.fetch(by: profile.registrationId)
         }
     }
 

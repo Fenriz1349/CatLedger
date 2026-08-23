@@ -18,9 +18,10 @@ final class CreateAnonymousProfile {
     }
 
     /// Creates and persists a new placeholder profile.
+    /// - Parameter registrationId: The registration this profile belongs to.
     /// - Returns: The newly created profile.
-    func execute() async throws -> Profile {
-        let profile = Profile(displayName: "", email: "")
+    func execute(registrationId: UUID) async throws -> Profile {
+        let profile = Profile(registrationId: registrationId, displayName: "", email: "")
         try await repository.save(profile)
         return profile
     }

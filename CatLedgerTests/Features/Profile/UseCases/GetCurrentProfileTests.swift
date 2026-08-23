@@ -22,14 +22,14 @@ struct GetCurrentProfileTests {
     func execute_profileExists_returnsProfile() async throws {
         let profile = TestData.profile()
         try await repository.save(profile)
-        let result = try await useCase.execute()
+        let result = try await useCase.execute(registrationId: profile.registrationId)
         #expect(result.id == profile.id)
     }
 
     @Test("Throws notFound when no profile exists")
     func execute_noProfile_throwsNotFound() async throws {
         await #expect(throws: ProfileError.notFound) {
-            try await useCase.execute()
+            try await useCase.execute(registrationId: UUID())
         }
     }
 }

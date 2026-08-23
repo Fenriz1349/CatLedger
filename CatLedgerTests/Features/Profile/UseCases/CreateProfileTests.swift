@@ -13,6 +13,7 @@ struct CreateProfileTests {
 
     private let repository = ProfileDouble()
     private let useCase: CreateProfile
+    private let registrationId = UUID()
 
     init() {
         useCase = CreateProfile(repository: repository)
@@ -20,8 +21,13 @@ struct CreateProfileTests {
 
     @Test("Saves a valid profile to the repository")
     func execute_validInput_savesProfile() async throws {
-        let profile = try await useCase.execute(firstName: "Bruce", lastName: "Wayne", email: "batman@gotham.com")
-        let saved = try await repository.fetchCurrent()
+        let profile = try await useCase.execute(
+            registrationId: registrationId,
+            firstName: "Bruce",
+            lastName: "Wayne",
+            email: "batman@gotham.com"
+        )
+        let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
         #expect(saved.firstName == "Bruce")
         #expect(saved.lastName == "Wayne")
@@ -31,6 +37,7 @@ struct CreateProfileTests {
     func execute_firstNameTooLong_throwsNameTooLong() async throws {
         await #expect(throws: ProfileError.nameTooLong) {
             try await useCase.execute(
+                registrationId: registrationId,
                 firstName: String(repeating: "A", count: 51),
                 lastName: "Wayne",
                 email: "batman@gotham.com"
@@ -42,6 +49,7 @@ struct CreateProfileTests {
     func execute_lastNameTooLong_throwsNameTooLong() async throws {
         await #expect(throws: ProfileError.nameTooLong) {
             try await useCase.execute(
+                registrationId: registrationId,
                 firstName: "Bruce",
                 lastName: String(repeating: "A", count: 51),
                 email: "batman@gotham.com"
@@ -52,7 +60,12 @@ struct CreateProfileTests {
     @Test("Throws invalidEmail for an email missing an @")
     func execute_invalidEmail_throwsInvalidEmail() async throws {
         await #expect(throws: ProfileError.invalidEmail) {
-            try await useCase.execute(firstName: "Bruce", lastName: "Wayne", email: "not-an-email")
+            try await useCase.execute(
+                registrationId: registrationId,
+                firstName: "Bruce",
+                lastName: "Wayne",
+                email: "not-an-email"
+            )
         }
     }
 }

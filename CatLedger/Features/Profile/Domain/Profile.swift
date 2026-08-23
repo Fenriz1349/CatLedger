@@ -26,6 +26,7 @@ import Foundation
 struct Profile: Identifiable, Equatable, Codable, Sendable {
 
     let id: UUID
+    let registrationId: UUID
     let displayName: String
     let email: String
     let photoURL: String?
@@ -39,16 +40,19 @@ struct Profile: Identifiable, Equatable, Codable, Sendable {
     /// Creates a new Profile.
     /// - Parameters:
     ///   - id: Internal unique identifier. Defaults to a new UUID.
+    ///   - registrationId: The registration this profile belongs to.
     ///   - displayName: Pipe-separated full name in the form `"firstName|lastName"`.
     ///   - email: Email address of the profile.
     ///   - photoURL: Optional URL string pointing to the profile's photo.
-    init(
+    nonisolated init(
         id: UUID = UUID(),
+        registrationId: UUID,
         displayName: String,
         email: String,
         photoURL: String? = nil
     ) {
         self.id = id
+        self.registrationId = registrationId
         self.displayName = displayName
         self.email = email
         self.photoURL = photoURL
