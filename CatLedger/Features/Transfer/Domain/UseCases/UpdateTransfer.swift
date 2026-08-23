@@ -34,7 +34,7 @@ final class UpdateTransfer {
 
         let updatedExpense = Transaction(
             id: transfer.source.id,
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.amount,
@@ -44,7 +44,7 @@ final class UpdateTransfer {
         )
         let updatedIncome = Transaction(
             id: transfer.destination.id,
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.amount,

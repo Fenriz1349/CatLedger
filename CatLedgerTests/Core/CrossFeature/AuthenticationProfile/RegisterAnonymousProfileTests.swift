@@ -1,0 +1,45 @@
+//
+//  RegisterAnonymousProfileTests.swift
+//  CatLedgerTests
+//
+//  Created by Julien Cotte on 23/08/2026.
+//
+
+import Foundation
+import Testing
+@testable import CatLedger
+
+struct RegisterAnonymousProfileTests {
+
+    private let authRepository = AuthenticationDouble()
+    private let profileRepository = ProfileDouble()
+    private let useCase: RegisterAnonymousProfile
+
+    init() {
+        useCase = RegisterAnonymousProfile(
+            signInAnonymously: SignInAnonymously(repository: authRepository),
+            createAnonymousProfile: CreateAnonymousProfile(repository: profileRepository)
+        )
+    }
+
+    @Test("Creates the anonymous registration and its placeholder profile")
+    func execute_createsRegistrationAndPlaceholderProfile() async throws {
+        let session = AuthSession(registrationId: UUID(), isAnonymous: true)
+        authRepository.sessionToReturn = session
+
+        let result = try await useCase.execute()
+
+        #expect(result.isAnonymous)
+        let profile = try await profileRepository.fetchCurrent()
+        #expect(profile.displayName.isEmpty)
+        #expect(profile.email.isEmpty)
+    }
+
+    @Test("Propagates a repository error")
+    func execute_repositoryThrows_propagatesError() async throws {
+        authRepository.errorToThrow = AuthError.signInFailed
+        await #expect(throws: AuthError.signInFailed) {
+            try await useCase.execute()
+        }
+    }
+}

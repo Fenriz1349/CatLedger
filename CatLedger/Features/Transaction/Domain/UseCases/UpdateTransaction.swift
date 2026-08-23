@@ -47,7 +47,7 @@ final class UpdateTransaction {
         let currentTransaction = try await repository.fetch(by: input.id)
         let updatedTransaction = Transaction(
             id: input.id,
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.totalAmount,

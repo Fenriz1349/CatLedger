@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Retrieves all transactions for a given user filtered by transaction category.
+/// Retrieves all transactions for a given profile filtered by transaction category.
 /// Useful for category-based charts and statistics.
 final class GetTransactionsByCategory {
 
@@ -18,13 +18,13 @@ final class GetTransactionsByCategory {
         self.repository = repository
     }
 
-    /// Fetches transactions for a specific user filtered by category.
+    /// Fetches transactions for a specific profile filtered by category.
     /// - Parameters:
-    ///   - userId: The identifier of the user.
+    ///   - profileId: The identifier of the profile.
     ///   - category: The transaction category to filter by.
     /// - Returns: An array of transactions matching the given category, ordered by date descending.
     /// - Throws: `TransactionError` if the fetch fails.
-    func execute(for userId: UUID, category: TransactionCategory) async throws -> [Transaction] {
-        try await repository.fetchAllByCategory(for: userId, category: category)
+    func execute(for profileId: UUID, category: TransactionCategory) async throws -> [Transaction] {
+        try await repository.fetchAllByCategory(for: profileId, category: category)
     }
 }

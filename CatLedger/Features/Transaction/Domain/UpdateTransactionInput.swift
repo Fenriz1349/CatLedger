@@ -12,7 +12,7 @@ import Foundation
 /// not through this general-purpose form update, and its current value is preserved instead.
 struct UpdateTransactionInput {
     let id: UUID
-    let userId: UUID
+    let profileId: UUID
     let label: String
     let date: Date
     let totalAmount: Double

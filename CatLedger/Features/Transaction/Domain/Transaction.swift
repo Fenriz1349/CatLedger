@@ -8,13 +8,13 @@
 import Foundation
 
 /// Represents a real-world financial event (e.g. a restaurant meal).
-/// Belongs directly to a User. Account relationships are managed via splits.
+/// Belongs directly to a Profile. Account relationships are managed via splits.
 /// The total amount is always positive — isExpense determines the direction.
 /// A transaction must always have at least one associated TransactionSplit.
 struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
 
     let id: UUID
-    let userId: UUID
+    let profileId: UUID
     let label: String
     let date: Date
     let totalAmount: Double
@@ -22,7 +22,7 @@ struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
     let isExpense: Bool
     let category: TransactionCategory
     let splits: [TransactionSplit]
-    /// Whether the user has manually reconciled this transaction against a bank statement.
+    /// Whether the profile has manually reconciled this transaction against a bank statement.
     let isChecked: Bool
     /// Date of the last local or remote modification, used for sync conflict resolution.
     let updatedAt: Date
@@ -30,7 +30,7 @@ struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
     /// Creates a new Transaction.
     /// - Parameters:
     ///   - id: Unique identifier. Defaults to a new UUID.
-    ///   - userId: The identifier of the user this transaction belongs to.
+    ///   - profileId: The identifier of the profile this transaction belongs to.
     ///   - label: Human-readable description of the transaction.
     ///   - date: The date the transaction occurred.
     ///   - totalAmount: The total amount of the transaction. Always positive.
@@ -42,7 +42,7 @@ struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - updatedAt: Last modification date. Defaults to the current date.
     init(
         id: UUID = UUID(),
-        userId: UUID,
+        profileId: UUID,
         label: String,
         date: Date,
         totalAmount: Double,
@@ -54,7 +54,7 @@ struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
         updatedAt: Date = Date()
     ) {
         self.id = id
-        self.userId = userId
+        self.profileId = profileId
         self.label = label
         self.date = date
         self.totalAmount = totalAmount

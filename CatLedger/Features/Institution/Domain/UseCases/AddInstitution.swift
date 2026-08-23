@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Handles the creation of a new institution for a given user.
+/// Handles the creation of a new institution for a given profile.
 /// Enforces all business rules before persisting.
 final class AddInstitution {
 
@@ -30,13 +30,13 @@ final class AddInstitution {
             throw InstitutionError.nameTooLong
         }
 
-        let existingInstitutions = try await repository.fetchAll(for: input.userId)
+        let existingInstitutions = try await repository.fetchAll(for: input.profileId)
         guard !existingInstitutions.contains(where: { $0.name.lowercased() == trimmedName.lowercased() }) else {
             throw InstitutionError.duplicateName
         }
 
         let institution = Institution(
-            userId: input.userId,
+            profileId: input.profileId,
             name: trimmedName,
             category: input.category,
             logoURL: input.logoURL

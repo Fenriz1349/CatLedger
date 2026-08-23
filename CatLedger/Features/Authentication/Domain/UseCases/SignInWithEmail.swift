@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Signs in an existing user using email and password.
+/// Signs in with an existing email and password.
 final class SignInWithEmail {
 
     private let repository: AuthProviding
@@ -18,9 +18,9 @@ final class SignInWithEmail {
     }
 
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    /// - Returns: A session for the authenticated user.
+    ///   - email: The email address to sign in with.
+    ///   - password: The password to sign in with.
+    /// - Returns: A session for the authenticated registration.
     func execute(email: String, password: String) async throws -> AuthSession {
         try await repository.signInWithEmail(email: email, password: password)
     }
