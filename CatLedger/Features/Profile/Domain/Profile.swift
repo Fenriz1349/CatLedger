@@ -44,7 +44,7 @@ struct Profile: Identifiable, Equatable, Codable, Sendable {
     ///   - displayName: Pipe-separated full name in the form `"firstName|lastName"`.
     ///   - email: Email address of the profile.
     ///   - photoURL: Optional URL string pointing to the profile's photo.
-    init(
+    nonisolated init(
         id: UUID = UUID(),
         registrationId: UUID,
         displayName: String,
