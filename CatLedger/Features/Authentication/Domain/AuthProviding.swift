@@ -16,53 +16,39 @@ protocol AuthProviding {
     /// - Returns: The stored session, or nil if none exists (absence, not an error).
     func resolveSession() async -> AuthSession?
 
-    /// Signs in an existing user with email and password.
+    /// Signs in with an existing email and password.
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    /// - Returns: A session for the authenticated user.
+    ///   - email: The email address to sign in with.
+    ///   - password: The password to sign in with.
+    /// - Returns: A session for the authenticated registration.
     func signInWithEmail(email: String, password: String) async throws -> AuthSession
 
-    /// Creates a new profile with email, password, and display name.
+    /// Creates a new permanent registration with email and password.
     /// - Parameters:
-    ///   - email: The user's email address.
-    ///   - password: The user's password.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
-    /// - Returns: A session for the newly created user.
-    func createUserProfile(
-        email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession
+    ///   - email: The registration's email address.
+    ///   - password: The registration's password.
+    /// - Returns: A session for the newly created registration.
+    func signUp(email: String, password: String) async throws -> AuthSession
 
-    /// Signs in anonymously, creating a demo session without a permanent account.
+    /// Signs in anonymously, creating a demo session without a permanent registration.
     /// - Returns: An anonymous session.
     func signInAnonymously() async throws -> AuthSession
 
-    /// Signs out the current user and clears the local session.
+    /// Signs out the current registration and clears the local session.
     func signOut() async throws
 
-    /// Permanently deletes the current user account and all associated remote data.
-    func deleteUserProfile() async throws
+    /// Permanently deletes the current registration.
+    func deleteRegistration() async throws
 
-    /// Links the current anonymous account to a permanent email/password account.
+    /// Links the current anonymous registration to a permanent email/password registration.
     /// - Parameters:
-    ///   - email: The email address for the new permanent account.
-    ///   - password: The password for the new permanent account.
-    ///   - firstName: The user's first name.
-    ///   - lastName: The user's last name.
+    ///   - email: The email address for the new permanent registration.
+    ///   - password: The password for the new permanent registration.
     /// - Returns: An updated, non-anonymous session.
-    func linkAnonymousAccount(
-        toEmail email: String,
-        password: String,
-        firstName: String,
-        lastName: String
-    ) async throws -> AuthSession
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession
 
     /// Sends a password reset email to the given address.
-    /// - Parameter email: The email address of the account to reset.
+    /// - Parameter email: The email address of the registration to reset.
     func resetPassword(email: String) async throws
 
     /// Returns whether the current anonymous session has exceeded its validity period.
@@ -71,6 +57,6 @@ protocol AuthProviding {
     /// Returns the number of days remaining in the anonymous demo session, or nil if not anonymous.
     func anonymousDaysRemaining() -> Int?
 
-    /// Deletes the Firebase anonymous account and Firestore data, then clears local session state.
+    /// Deletes the Firebase anonymous registration, then clears local session state.
     func expireAnonymousSession() async
 }

@@ -34,7 +34,7 @@ final class TransferBetweenAccounts {
         }
 
         let expense = Transaction(
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.amount,
@@ -43,7 +43,7 @@ final class TransferBetweenAccounts {
             splits: [TransactionSplit(accountId: input.sourceAccountId, amount: input.amount)]
         )
         let income = Transaction(
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.amount,

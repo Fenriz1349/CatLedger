@@ -17,7 +17,7 @@ final class ResetPassword {
         self.repository = repository
     }
 
-    /// - Parameter email: The email address of the account to reset.
+    /// - Parameter email: The email address of the registration to reset.
     func execute(email: String) async throws {
         try await repository.resetPassword(email: email)
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Signs in anonymously to start a demo session without a permanent account.
+/// Signs in anonymously to start a demo session without a permanent registration.
 final class SignInAnonymously {
 
     private let repository: AuthProviding

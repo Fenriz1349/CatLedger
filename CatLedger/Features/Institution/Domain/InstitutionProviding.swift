@@ -17,10 +17,10 @@ protocol InstitutionProviding {
     /// - Returns: The matching institution.
     func fetch(by id: UUID) async throws -> Institution
 
-    /// Fetches all institutions belonging to a given user.
-    /// - Parameter userId: The identifier of the user.
+    /// Fetches all institutions belonging to a given profile.
+    /// - Parameter profileId: The identifier of the profile.
     /// - Returns: An array of institutions ordered by name.
-    func fetchAll(for userId: UUID) async throws -> [Institution]
+    func fetchAll(for profileId: UUID) async throws -> [Institution]
 
     /// Persists a new institution.
     /// - Parameter institution: The institution to save.

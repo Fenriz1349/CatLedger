@@ -46,7 +46,7 @@ final class AddTransaction {
         }
 
         let transaction = Transaction(
-            userId: input.userId,
+            profileId: input.profileId,
             label: input.label,
             date: input.date,
             totalAmount: input.totalAmount,

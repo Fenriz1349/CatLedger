@@ -17,7 +17,7 @@ enum InstitutionError: Error, Equatable, LocalizedError {
     /// Thrown when the institution name exceeds the maximum allowed length.
     case nameTooLong
 
-    /// Thrown when an institution with the same name already exists for this user.
+    /// Thrown when an institution with the same name already exists for this profile.
     case duplicateName
 
     /// Thrown when no institution is found for the given identifier.

@@ -10,7 +10,7 @@ import Foundation
 /// Encapsulates all parameters required to update an existing institution.
 struct UpdateInstitutionInput {
     let id: UUID
-    let userId: UUID
+    let profileId: UUID
     let name: String
     let category: InstitutionCategory
     let logoURL: String?

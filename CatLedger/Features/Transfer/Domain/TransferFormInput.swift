@@ -19,6 +19,6 @@ struct TransferFormInput {
     let date: Date
     /// Optional description shown on both generated transactions.
     let label: String
-    /// The identifier of the user owning both accounts.
-    let userId: UUID
+    /// The identifier of the profile owning both accounts.
+    let profileId: UUID
 }

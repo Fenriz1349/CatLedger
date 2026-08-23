@@ -9,7 +9,7 @@ import Foundation
 
 /// Encapsulates all parameters required to create a new institution.
 struct AddInstitutionInput {
-    let userId: UUID
+    let profileId: UUID
     let name: String
     let category: InstitutionCategory
     let logoURL: String?

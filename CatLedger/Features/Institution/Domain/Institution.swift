@@ -7,16 +7,16 @@
 
 import Foundation
 
-/// Represents a financial institution belonging to a user.
+/// Represents a financial institution belonging to a profile.
 /// An institution owns one or more accounts.
 struct Institution: Identifiable, Equatable, Codable, Sendable, Hashable {
 
     let id: UUID
-    let userId: UUID
+    let profileId: UUID
     let name: String
     let category: InstitutionCategory
     let logoURL: String?
-    /// Whether this institution has been archived by the user.
+    /// Whether this institution has been archived by the profile.
     let isArchived: Bool
     /// Date of the last local or remote modification, used for sync conflict resolution.
     let updatedAt: Date
@@ -24,7 +24,7 @@ struct Institution: Identifiable, Equatable, Codable, Sendable, Hashable {
     /// Creates a new Institution.
     /// - Parameters:
     ///   - id: Unique identifier. Defaults to a new UUID.
-    ///   - userId: The identifier of the user this institution belongs to.
+    ///   - profileId: The identifier of the profile this institution belongs to.
     ///   - name: Human-readable name of the institution (e.g. "Caisse d'Épargne").
     ///   - category: Category of the institution.
     ///   - logoURL: Optional URL string pointing to the institution's logo.
@@ -32,7 +32,7 @@ struct Institution: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - updatedAt: Last modification date. Defaults to the current date.
     init(
         id: UUID = UUID(),
-        userId: UUID,
+        profileId: UUID,
         name: String,
         category: InstitutionCategory,
         logoURL: String? = nil,
@@ -40,7 +40,7 @@ struct Institution: Identifiable, Equatable, Codable, Sendable, Hashable {
         updatedAt: Date = Date()
     ) {
         self.id = id
-        self.userId = userId
+        self.profileId = profileId
         self.name = name
         self.category = category
         self.logoURL = logoURL

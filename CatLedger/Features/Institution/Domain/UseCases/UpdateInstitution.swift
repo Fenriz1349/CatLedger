@@ -30,7 +30,7 @@ final class UpdateInstitution {
             throw InstitutionError.nameTooLong
         }
 
-        let existingInstitutions = try await repository.fetchAll(for: input.userId)
+        let existingInstitutions = try await repository.fetchAll(for: input.profileId)
         let hasDuplicateName = existingInstitutions.contains {
             $0.name.lowercased() == trimmedName.lowercased() && $0.id != input.id
         }
@@ -41,7 +41,7 @@ final class UpdateInstitution {
         let currentInstitution = try await repository.fetch(by: input.id)
         let updatedInstitution = Institution(
             id: input.id,
-            userId: input.userId,
+            profileId: input.profileId,
             name: trimmedName,
             category: input.category,
             logoURL: input.logoURL,
