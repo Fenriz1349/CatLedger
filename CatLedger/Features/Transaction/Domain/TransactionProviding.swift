@@ -35,9 +35,9 @@ protocol TransactionProviding {
     /// - Parameters:
     ///   - profileId: The identifier of the profile.
     ///   - from: The start of the date range, inclusive.
-    ///   - to: The end of the date range, inclusive.
+    ///   - until: The end of the date range, inclusive.
     /// - Returns: An array of transactions, ordered by date descending.
-    func fetchAllByDateRange(for profileId: UUID, from: Date, to: Date) async throws -> [Transaction]
+    func fetchAllByDateRange(for profileId: UUID, from: Date, until: Date) async throws -> [Transaction]
 
     /// Fetches a single transaction by its identifier.
     /// - Parameter id: The unique identifier of the transaction.

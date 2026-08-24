@@ -13,11 +13,6 @@ struct UpdateTransferTests {
 
     private let repository = TransactionDouble()
     private let useCase: UpdateTransfer
-    private let profileId = UUID()
-    private let sourceId = UUID()
-    private let destinationId = UUID()
-    private let sourceAccountId = UUID()
-    private let destinationAccountId = UUID()
 
     init() {
         useCase = UpdateTransfer(repository: repository)
@@ -25,46 +20,39 @@ struct UpdateTransferTests {
 
     /// Seeds both legs and returns the corresponding Transfer.
     private func seedTransfer() async throws -> Transfer {
-        let transfer = TestData.transfer(
-            profileId: profileId,
-            sourceId: sourceId,
-            destinationId: destinationId,
-            sourceAccountId: sourceAccountId,
-            destinationAccountId: destinationAccountId,
-            label: "Initial"
-        )
+        let transfer = TestData.transfer()
         try await repository.save(transfer.source)
         try await repository.save(transfer.destination)
         return transfer
     }
 
-    /// Returns a valid TransferFormInput with sensible defaults, scoped to the shared ids.
-    private func makeInput(amount: Double = 50, label: String = "Updated") -> TransferFormInput {
+    /// Returns a valid TransferFormInput with sensible defaults, scoped to the given transfer's legs.
+    private func makeInput(for transfer: Transfer, amount: Double = 50) -> TransferFormInput {
         TestData.transferFormInput(
-            profileId: profileId,
-            sourceAccountId: sourceAccountId,
-            destinationAccountId: destinationAccountId,
-            amount: amount,
-            label: label
+            profileId: transfer.source.profileId,
+            sourceAccountId: transfer.source.splits[0].accountId,
+            destinationAccountId: transfer.destination.splits[0].accountId,
+            amount: amount
         )
     }
 
     @Test("Updates both legs with the new values")
     func execute_validInput_updatesBothLegs() async throws {
         let transfer = try await seedTransfer()
-        try await useCase.execute(transfer, input: makeInput(amount: 50, label: "Updated"))
-        let source = try await repository.fetch(by: sourceId)
-        let destination = try await repository.fetch(by: destinationId)
-        #expect(source.totalAmount == 50)
-        #expect(destination.totalAmount == 50)
-        #expect(source.label == "Updated")
+        let input = makeInput(for: transfer)
+        try await useCase.execute(transfer, input: input)
+        let source = try await repository.fetch(by: transfer.source.id)
+        let destination = try await repository.fetch(by: transfer.destination.id)
+        #expect(source.totalAmount == input.amount)
+        #expect(destination.totalAmount == input.amount)
+        #expect(source.label == input.label)
     }
 
     @Test("Throws invalidTotalAmount for a non-positive amount")
     func execute_zeroAmount_throwsInvalidTotalAmount() async throws {
         let transfer = try await seedTransfer()
         await #expect(throws: TransactionError.invalidTotalAmount) {
-            try await useCase.execute(transfer, input: makeInput(amount: 0))
+            try await useCase.execute(transfer, input: makeInput(for: transfer, amount: 0))
         }
     }
 
@@ -72,11 +60,10 @@ struct UpdateTransferTests {
     func execute_sameAccount_throwsRedundantSplitsAccounts() async throws {
         let transfer = try await seedTransfer()
         let input = TestData.transferFormInput(
-            profileId: profileId,
-            sourceAccountId: sourceAccountId,
-            destinationAccountId: sourceAccountId,
-            amount: 50,
-            label: "Updated"
+            profileId: transfer.source.profileId,
+            sourceAccountId: transfer.source.splits[0].accountId,
+            destinationAccountId: transfer.source.splits[0].accountId,
+            amount: 50
         )
         await #expect(throws: TransactionError.redundantSplitsAccounts) {
             try await useCase.execute(transfer, input: input)

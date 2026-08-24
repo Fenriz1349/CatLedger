@@ -36,9 +36,9 @@ final class TransactionDouble: TransactionProviding {
     }
 
     /// Returns all transactions in the store within the given date range.
-    func fetchAllByDateRange(for profileId: UUID, from: Date, to: Date) async throws -> [Transaction] {
+    func fetchAllByDateRange(for profileId: UUID, from: Date, until: Date) async throws -> [Transaction] {
         if let error = errorToThrow { throw error }
-        return store.filter { $0.profileId == profileId && $0.date >= from && $0.date <= to }
+        return store.filter { $0.profileId == profileId && $0.date >= from && $0.date <= until }
     }
 
     /// Returns the transaction in the store matching the given id.

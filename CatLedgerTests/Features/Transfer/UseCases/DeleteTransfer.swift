@@ -13,9 +13,6 @@ struct DeleteTransferTests {
 
     private let repository = TransactionDouble()
     private let useCase: DeleteTransfer
-    private let profileId = UUID()
-    private let sourceId = UUID()
-    private let destinationId = UUID()
 
     init() {
         useCase = DeleteTransfer(repository: repository)
@@ -23,17 +20,17 @@ struct DeleteTransferTests {
 
     @Test("Deletes both legs of the transfer")
     func execute_deletesBothLegs() async throws {
-        let transfer = TestData.transfer(profileId: profileId, sourceId: sourceId, destinationId: destinationId)
+        let transfer = TestData.transfer()
         try await repository.save(transfer.source)
         try await repository.save(transfer.destination)
         try await useCase.execute(transfer)
-        let remaining = try await repository.fetchAll(for: profileId)
+        let remaining = try await repository.fetchAll(for: transfer.source.profileId)
         #expect(remaining.isEmpty)
     }
 
     @Test("Throws notFound when the transfer's legs don't exist")
     func execute_unknownTransfer_throwsNotFound() async throws {
-        let transfer = TestData.transfer(profileId: profileId, sourceId: sourceId, destinationId: destinationId)
+        let transfer = TestData.transfer()
         await #expect(throws: TransactionError.notFound) {
             try await useCase.execute(transfer)
         }

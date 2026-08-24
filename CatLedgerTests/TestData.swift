@@ -193,7 +193,7 @@ enum TestData {
         destinationAccountId: UUID = UUID(),
         amount: Double = 100,
         date: Date = Date(),
-        label: String = "Virement"
+        label: String = "Virement modifié"
     ) -> TransferFormInput {
         TransferFormInput(
             sourceAccountId: sourceAccountId,
@@ -208,9 +208,9 @@ enum TestData {
     static func updateProfileInput(
         id: UUID = UUID(),
         registrationId: UUID = UUID(),
-        firstName: String = "Bruce",
-        lastName: String = "Wayne",
-        email: String = "batman@gotham.com",
+        firstName: String = "Richard",
+        lastName: String = "Grayson",
+        email: String = "nightwing@bludhaven.com",
         photoURL: String? = nil
     ) -> UpdateProfileInput {
         UpdateProfileInput(

@@ -18,37 +18,41 @@ import Testing
 /// CatLedgerE2ETests, then ⌘U) or from the command line:
 ///   `xcodebuild test -project CatLedger.xcodeproj -scheme CatLedger -testPlan CatLedgerE2ETests \
 ///   -destination 'platform=iOS Simulator,name=iPhone 17'`
+@MainActor
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct ProfileE2ETests {
 
     private let provider = ProfileProvider()
 
     init() {
-        _ = TestDataE2E.connectFirestoreToEmulator
+        _ = TestHelperE2E.connectFirestoreToEmulator
     }
 
     @Test("Saves, fetches, updates, then deletes a profile")
     func save_fetch_update_delete_roundTrips() async throws {
-        let registrationId = UUID()
-        let profile = Profile(registrationId: registrationId, displayName: "Bruce|Wayne", email: "batman@gotham.com")
-
+        let profile = TestData.profile()
         try await provider.save(profile)
-        let fetched = try await provider.fetch(by: registrationId)
-        #expect(fetched.id == profile.id)
-        #expect(fetched.firstName == "Bruce")
 
-        let updated = Profile(
-            id: profile.id,
-            registrationId: registrationId,
-            displayName: "Richard|Grayson",
-            email: profile.email
+        let fetched = try await provider.fetch(by: profile.registrationId)
+        #expect(fetched.id == profile.id)
+        #expect(fetched.firstName == profile.firstName)
+
+        let update = TestData.updateProfileInput(id: profile.id, registrationId: profile.registrationId)
+        let updated = TestData.profile(
+            id: update.id,
+            registrationId: update.registrationId,
+            firstName: update.firstName,
+            lastName: update.lastName,
+            email: update.email,
+            photoURL: update.photoURL
         )
         try await provider.update(updated)
-        let refetched = try await provider.fetch(by: registrationId)
-        #expect(refetched.firstName == "Richard")
+        let refetched = try await provider.fetch(by: profile.registrationId)
+        #expect(refetched.firstName == update.firstName)
 
         try await provider.delete(by: profile.id)
         await #expect(throws: ProfileError.notFound) {
-            try await provider.fetch(by: registrationId)
+            try await provider.fetch(by: profile.registrationId)
         }
     }
 }
