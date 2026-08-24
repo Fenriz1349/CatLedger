@@ -109,7 +109,7 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath DerivedData-unit \
             -clonedSourcePackagesDirPath SourcePackages \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
 
       - name: Build for testing (E2E tests)
         run: |
@@ -120,7 +120,7 @@ jobs:
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath DerivedData-e2e \
             -clonedSourcePackagesDirPath SourcePackages \
-            CODE_SIGNING_ALLOWED=NO
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
 
       - name: Upload unit test build
         uses: actions/upload-artifact@v4
