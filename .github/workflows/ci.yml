@@ -203,12 +203,16 @@ jobs:
 
       # "emulators:exec" starts the emulators, waits until they're ready, runs the given command,
       # then tears the emulators down and propagates its exit code — no manual polling needed.
+      # The xctestrun path is resolved into a variable *before* being handed to emulators:exec:
+      # "*" doesn't expand inside the double-quoted command string below, so xcodebuild would
+      # otherwise receive the literal, unexpanded "Products/*.xctestrun" and find no test bundle.
       - name: Run E2E tests against the Firebase emulators
         continue-on-error: true
         run: |
+          XCTESTRUN=$(ls Products/*.xctestrun)
           firebase emulators:exec --only auth,firestore \
             "xcodebuild test-without-building \
-              -xctestrun Products/*.xctestrun \
+              -xctestrun '$XCTESTRUN' \
               -destination 'platform=iOS Simulator,name=iPhone 17' \
               -resultBundlePath TestResults/e2e.xcresult"
 
