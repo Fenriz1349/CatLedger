@@ -27,7 +27,7 @@ struct Account: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - category: Category of the account.
     ///   - isArchived: Whether the account is archived. Defaults to false.
     ///   - updatedAt: Last modification date. Defaults to the current date.
-    nonisolated init(
+    init(
         id: UUID = UUID(),
         institutionId: UUID,
         name: String,

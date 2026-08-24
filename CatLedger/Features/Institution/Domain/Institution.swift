@@ -30,7 +30,7 @@ struct Institution: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - logoURL: Optional URL string pointing to the institution's logo.
     ///   - isArchived: Whether the institution is archived. Defaults to false.
     ///   - updatedAt: Last modification date. Defaults to the current date.
-    nonisolated init(
+    init(
         id: UUID = UUID(),
         profileId: UUID,
         name: String,

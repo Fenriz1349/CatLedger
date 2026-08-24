@@ -40,7 +40,7 @@ struct Transaction: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - splits: The account allocations for this transaction.
     ///   - isChecked: Whether the transaction has been reconciled. Defaults to false.
     ///   - updatedAt: Last modification date. Defaults to the current date.
-    nonisolated init(
+    init(
         id: UUID = UUID(),
         profileId: UUID,
         label: String,
