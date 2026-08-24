@@ -97,6 +97,9 @@
 		68558ADB303A07E700FE562D /* TransferBetweenAccounts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558ADA303A07E700FE562D /* TransferBetweenAccounts.swift */; };
 		68558ADD303A07F000FE562D /* UpdateTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558ADC303A07F000FE562D /* UpdateTransfer.swift */; };
 		68558ADF303A07F800FE562D /* DeleteTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558ADE303A07F800FE562D /* DeleteTransfer.swift */; };
+		68751F0A303CC1DE008C1E5C /* FirebaseTransactionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68751F09303CC1DE008C1E5C /* FirebaseTransactionSource.swift */; };
+		68751F0C303CC1E6008C1E5C /* TransactionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68751F0B303CC1E6008C1E5C /* TransactionProvider.swift */; };
+		68751F0E303CC1F8008C1E5C /* TransactionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68751F0D303CC1F8008C1E5C /* TransactionE2ETests.swift */; };
 		687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2B303C113B00BC953A /* InstitutionProvider.swift */; };
 		687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */; };
 		687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */; };
@@ -271,6 +274,9 @@
 		68558ADA303A07E700FE562D /* TransferBetweenAccounts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferBetweenAccounts.swift; sourceTree = "<group>"; };
 		68558ADC303A07F000FE562D /* UpdateTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTransfer.swift; sourceTree = "<group>"; };
 		68558ADE303A07F800FE562D /* DeleteTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransfer.swift; sourceTree = "<group>"; };
+		68751F09303CC1DE008C1E5C /* FirebaseTransactionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTransactionSource.swift; sourceTree = "<group>"; };
+		68751F0B303CC1E6008C1E5C /* TransactionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionProvider.swift; sourceTree = "<group>"; };
+		68751F0D303CC1F8008C1E5C /* TransactionE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionE2ETests.swift; sourceTree = "<group>"; };
 		687A3B2B303C113B00BC953A /* InstitutionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionProvider.swift; sourceTree = "<group>"; };
 		687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInstitutionSource.swift; sourceTree = "<group>"; };
 		687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionE2ETests.swift; sourceTree = "<group>"; };
@@ -367,8 +373,6 @@
 		6839EA1630386BA2006E2AD4 = {
 			isa = PBXGroup;
 			children = (
-				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
-				68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */,
 				6839EA3030386BAC006E2AD4 /* CatLedger */,
 				687ADC4E3039724E0004166C /* CatLedgerTests */,
 				68861D01303B5055008E955B /* CatLedgerE2ETests */,
@@ -510,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA6330388880006E2AD4 /* Domain */,
+				68751F08303CC1D0008C1E5C /* Data */,
 			);
 			path = Transaction;
 			sourceTree = "<group>";
@@ -755,6 +760,15 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		68751F08303CC1D0008C1E5C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				68751F0B303CC1E6008C1E5C /* TransactionProvider.swift */,
+				68751F09303CC1DE008C1E5C /* FirebaseTransactionSource.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		687A3B2A303C10E300BC953A /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,9 +804,10 @@
 		687ADC4E3039724E0004166C /* CatLedgerTests */ = {
 			isa = PBXGroup;
 			children = (
+				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
+				687ADC4D3039724E0004166C /* TestData.swift */,
 				68861CD3303B0B11008E955B /* Features */,
 				68861CD2303B0B0A008E955B /* Core */,
-				687ADC4D3039724E0004166C /* TestData.swift */,
 			);
 			path = CatLedgerTests;
 			sourceTree = "<group>";
@@ -907,11 +922,13 @@
 		68861D01303B5055008E955B /* CatLedgerE2ETests */ = {
 			isa = PBXGroup;
 			children = (
+				68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */,
 				68861D0B303B539E008E955B /* TestHelperE2E.swift */,
 				68861D00303B5055008E955B /* AuthE2ETests.swift */,
 				68861D15303B5DFA008E955B /* ProfileE2ETests.swift */,
 				687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */,
 				687A3B37303C168E00BC953A /* AccountE2ETests.swift */,
+				68751F0D303CC1F8008C1E5C /* TransactionE2ETests.swift */,
 			);
 			path = CatLedgerE2ETests;
 			sourceTree = "<group>";
@@ -1087,6 +1104,7 @@
 				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
 				687ADC6930397B640004166C /* GetAccounts.swift in Sources */,
 				687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */,
+				68751F0A303CC1DE008C1E5C /* FirebaseTransactionSource.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
 				68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */,
@@ -1118,6 +1136,7 @@
 				687A3B36303C167500BC953A /* FirebaseAccountSource.swift in Sources */,
 				6839EA5130387BE5006E2AD4 /* Account.swift in Sources */,
 				68558AD7303A071B00FE562D /* DeleteTransfer.swift in Sources */,
+				68751F0C303CC1E6008C1E5C /* TransactionProvider.swift in Sources */,
 				68558A8A3039FD3000FE562D /* SignInWithEmail.swift in Sources */,
 				68558A693039F6D800FE562D /* GetTransactionsByAccount.swift in Sources */,
 				68861D14303B5D51008E955B /* FirebaseProfileSource.swift in Sources */,
@@ -1236,6 +1255,7 @@
 				687A3B38303C168E00BC953A /* AccountE2ETests.swift in Sources */,
 				68861D0C303B539E008E955B /* TestHelperE2E.swift in Sources */,
 				687A3B31303C152000BC953A /* TestData.swift in Sources */,
+				68751F0E303CC1F8008C1E5C /* TransactionE2ETests.swift in Sources */,
 				68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

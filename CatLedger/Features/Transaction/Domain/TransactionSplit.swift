@@ -21,7 +21,7 @@ struct TransactionSplit: Identifiable, Equatable, Codable, Sendable, Hashable {
     ///   - id: Unique identifier. Defaults to a new UUID.
     ///   - accountId: The identifier of the Account this split is allocated to.
     ///   - amount: The portion of the total transaction amount for this account. Must be positive.
-    init(id: UUID = UUID(), accountId: UUID, amount: Double) {
+    nonisolated init(id: UUID = UUID(), accountId: UUID, amount: Double) {
         self.id = id
         self.accountId = accountId
         self.amount = amount
