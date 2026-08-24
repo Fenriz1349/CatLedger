@@ -28,14 +28,13 @@ struct InstitutionE2ETests {
 
     @Test("Saves, fetches, archives, updates, then deletes an institution")
     func save_fetch_archive_update_delete_roundTrips() async throws {
-        let profileId = UUID()
-        let institution = TestData.institution(profileId: profileId)
+        let institution = TestData.institution()
 
         try await provider.save(institution)
         let fetched = try await provider.fetch(by: institution.id)
-        #expect(fetched.name == "BNP Paribas")
+        #expect(fetched.name == institution.name)
 
-        let all = try await provider.fetchAll(for: profileId)
+        let all = try await provider.fetchAll(for: institution.profileId)
         #expect(all.map(\.id) == [institution.id])
 
         try await provider.archive(by: institution.id)
@@ -46,10 +45,16 @@ struct InstitutionE2ETests {
         let unarchived = try await provider.fetch(by: institution.id)
         #expect(!unarchived.isArchived)
 
-        let updated = TestData.institution(id: institution.id, profileId: profileId, name: "Caisse d'Épargne")
+        let update = TestData.updateInstitutionInput(id: institution.id, profileId: institution.profileId)
+        let updated = TestData.institution(
+            id: update.id,
+            profileId: update.profileId,
+            name: update.name,
+            category: update.category
+        )
         try await provider.update(updated)
         let refetched = try await provider.fetch(by: institution.id)
-        #expect(refetched.name == "Caisse d'Épargne")
+        #expect(refetched.name == update.name)
 
         try await provider.delete(by: institution.id)
         await #expect(throws: InstitutionError.notFound) {

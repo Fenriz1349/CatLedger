@@ -28,27 +28,29 @@ struct ProfileE2ETests {
 
     @Test("Saves, fetches, updates, then deletes a profile")
     func save_fetch_update_delete_roundTrips() async throws {
-        let registrationId = UUID()
-        let profile = TestData.profile(registrationId: registrationId)
+        let profile = TestData.profile()
 
         try await provider.save(profile)
-        let fetched = try await provider.fetch(by: registrationId)
+        let fetched = try await provider.fetch(by: profile.registrationId)
         #expect(fetched.id == profile.id)
-        #expect(fetched.firstName == "Bruce")
+        #expect(fetched.firstName == profile.firstName)
 
+        let update = TestData.updateProfileInput(id: profile.id, registrationId: profile.registrationId)
         let updated = TestData.profile(
-            id: profile.id,
-            registrationId: registrationId,
-            firstName: "Richard",
-            lastName: "Grayson"
+            id: update.id,
+            registrationId: update.registrationId,
+            firstName: update.firstName,
+            lastName: update.lastName,
+            email: update.email,
+            photoURL: update.photoURL
         )
         try await provider.update(updated)
-        let refetched = try await provider.fetch(by: registrationId)
-        #expect(refetched.firstName == "Richard")
+        let refetched = try await provider.fetch(by: profile.registrationId)
+        #expect(refetched.firstName == update.firstName)
 
         try await provider.delete(by: profile.id)
         await #expect(throws: ProfileError.notFound) {
-            try await provider.fetch(by: registrationId)
+            try await provider.fetch(by: profile.registrationId)
         }
     }
 }
