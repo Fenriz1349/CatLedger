@@ -177,6 +177,17 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
+      # firebase.json lives at the repo root, so emulators:exec needs it — but nothing else from
+      # the source tree, since the tests themselves are already built. This runs *before*
+      # downloading the build artifact below: actions/checkout deletes the contents of the
+      # workspace before checking out, which would silently wipe the downloaded Products/
+      # directory (including the .xctestrun) if it ran afterward instead.
+      - name: Checkout firebase.json
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: firebase.json
+          sparse-checkout-cone-mode: false
+
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -192,14 +203,6 @@ jobs:
       # no need for the Homebrew formula used for local setup.
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
-
-      # firebase.json lives at the repo root, so emulators:exec needs it — but nothing else from
-      # the source tree, since the tests themselves are already built.
-      - name: Checkout firebase.json
-        uses: actions/checkout@v4
-        with:
-          sparse-checkout: firebase.json
-          sparse-checkout-cone-mode: false
 
       # "emulators:exec" starts the emulators, waits until they're ready, runs the given command,
       # then tears the emulators down and propagates its exit code — no manual polling needed.
