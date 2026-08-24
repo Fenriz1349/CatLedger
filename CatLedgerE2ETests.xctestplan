@@ -9,10 +9,12 @@
     }
   ],
   "defaultOptions" : {
+    "maximumTestExecutionTimeAllowance" : 60,
     "testTimeoutsEnabled" : true
   },
   "testTargets" : [
     {
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:CatLedger.xcodeproj",
         "identifier" : "68861CF6303B5049008E955B",

@@ -18,6 +18,8 @@ import Testing
 /// CatLedgerE2ETests, then ⌘U) or from the command line:
 ///   `xcodebuild test -project CatLedger.xcodeproj -scheme CatLedger -testPlan CatLedgerE2ETests \
 ///   -destination 'platform=iOS Simulator,name=iPhone 17'`
+@MainActor
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct TransactionE2ETests {
 
     private let provider = TransactionProvider()
@@ -29,8 +31,8 @@ struct TransactionE2ETests {
     @Test("Saves, fetches, filters, updates, then deletes a transaction")
     func save_fetch_filter_update_delete_roundTrips() async throws {
         let transaction = TestData.transaction()
-
         try await provider.save(transaction)
+
         let fetched = try await provider.fetch(by: transaction.id)
         #expect(fetched.label == transaction.label)
 

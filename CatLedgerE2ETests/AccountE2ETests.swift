@@ -18,6 +18,8 @@ import Testing
 /// CatLedgerE2ETests, then ⌘U) or from the command line:
 ///   `xcodebuild test -project CatLedger.xcodeproj -scheme CatLedger -testPlan CatLedgerE2ETests \
 ///   -destination 'platform=iOS Simulator,name=iPhone 17'`
+@MainActor
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct AccountE2ETests {
 
     private let provider = AccountProvider()
@@ -29,8 +31,8 @@ struct AccountE2ETests {
     @Test("Saves, fetches, archives, updates, then deletes an account")
     func save_fetch_archive_update_delete_roundTrips() async throws {
         let account = TestData.account()
-
         try await provider.save(account)
+
         let fetched = try await provider.fetch(by: account.id)
         #expect(fetched.name == account.name)
 

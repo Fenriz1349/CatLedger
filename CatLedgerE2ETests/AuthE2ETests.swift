@@ -1,6 +1,6 @@
 //
 //  AuthE2ETests.swift
-//  AuthE2ETests
+//  CatLedgerE2ETests
 //
 //  Created by Julien Cotte on 23/08/2026.
 //
@@ -17,10 +17,7 @@ import Testing
 /// CatLedgerE2ETests, then ⌘U) or from the command line:
 ///   `xcodebuild test -project CatLedger.xcodeproj -scheme CatLedger -testPlan CatLedgerE2ETests \
 ///   -destination 'platform=iOS Simulator,name=iPhone 17'`
-///
-/// Tests run serialized: `Auth.auth()` is a process-wide singleton, so running them concurrently
-/// (Swift Testing's default) lets one test's sign-in/deletion interleave with another's session read.
-@Suite(.serialized)
+@Suite(.serialized, .timeLimit(.minutes(1)))
 struct AuthE2ETests {
 
     private let provider = AuthProvider()
