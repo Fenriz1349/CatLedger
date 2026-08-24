@@ -23,20 +23,20 @@ struct ProfileE2ETests {
     private let provider = ProfileProvider()
 
     init() {
-        _ = TestDataE2E.connectFirestoreToEmulator
+        _ = TestHelperE2E.connectFirestoreToEmulator
     }
 
     @Test("Saves, fetches, updates, then deletes a profile")
     func save_fetch_update_delete_roundTrips() async throws {
         let registrationId = UUID()
-        let profile = TestDataE2E.profile(registrationId: registrationId)
+        let profile = TestData.profile(registrationId: registrationId)
 
         try await provider.save(profile)
         let fetched = try await provider.fetch(by: registrationId)
         #expect(fetched.id == profile.id)
         #expect(fetched.firstName == "Bruce")
 
-        let updated = TestDataE2E.profile(
+        let updated = TestData.profile(
             id: profile.id,
             registrationId: registrationId,
             firstName: "Richard",

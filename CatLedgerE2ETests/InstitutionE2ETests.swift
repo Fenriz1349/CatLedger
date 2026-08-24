@@ -23,13 +23,13 @@ struct InstitutionE2ETests {
     private let provider = InstitutionProvider()
 
     init() {
-        _ = TestDataE2E.connectFirestoreToEmulator
+        _ = TestHelperE2E.connectFirestoreToEmulator
     }
 
     @Test("Saves, fetches, archives, updates, then deletes an institution")
     func save_fetch_archive_update_delete_roundTrips() async throws {
         let profileId = UUID()
-        let institution = TestDataE2E.institution(profileId: profileId)
+        let institution = TestData.institution(profileId: profileId)
 
         try await provider.save(institution)
         let fetched = try await provider.fetch(by: institution.id)
@@ -46,7 +46,7 @@ struct InstitutionE2ETests {
         let unarchived = try await provider.fetch(by: institution.id)
         #expect(!unarchived.isArchived)
 
-        let updated = TestDataE2E.institution(id: institution.id, profileId: profileId, name: "Caisse d'Épargne")
+        let updated = TestData.institution(id: institution.id, profileId: profileId, name: "Caisse d'Épargne")
         try await provider.update(updated)
         let refetched = try await provider.fetch(by: institution.id)
         #expect(refetched.name == "Caisse d'Épargne")

@@ -100,6 +100,7 @@
 		687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2B303C113B00BC953A /* InstitutionProvider.swift */; };
 		687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */; };
 		687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */; };
+		687A3B31303C152000BC953A /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC4D3039724E0004166C /* TestData.swift */; };
 		687ADC32303970460004166C /* GetInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC31303970460004166C /* GetInstitution.swift */; };
 		687ADC34303970500004166C /* GetInstitutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC33303970500004166C /* GetInstitutions.swift */; };
 		687ADC363039705A0004166C /* AddInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC353039705A0004166C /* AddInstitution.swift */; };
@@ -152,7 +153,7 @@
 		68861CED303B4900008E955B /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CEC303B4900008E955B /* AuthProvider.swift */; };
 		68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */; };
 		68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D00303B5055008E955B /* AuthE2ETests.swift */; };
-		68861D0C303B539E008E955B /* TestDataE2E.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D0B303B539E008E955B /* TestDataE2E.swift */; };
+		68861D0C303B539E008E955B /* TestHelperE2E.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D0B303B539E008E955B /* TestHelperE2E.swift */; };
 		68861D12303B5D38008E955B /* ProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D11303B5D38008E955B /* ProfileProvider.swift */; };
 		68861D14303B5D51008E955B /* FirebaseProfileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D13303B5D51008E955B /* FirebaseProfileSource.swift */; };
 		68861D16303B5DFA008E955B /* ProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D15303B5DFA008E955B /* ProfileE2ETests.swift */; };
@@ -323,7 +324,7 @@
 		68861CF7303B5049008E955B /* CatLedgerE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLedgerE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68861D00303B5055008E955B /* AuthE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthE2ETests.swift; sourceTree = "<group>"; };
 		68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLedgerE2ETests.xctestplan; sourceTree = "<group>"; };
-		68861D0B303B539E008E955B /* TestDataE2E.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDataE2E.swift; sourceTree = "<group>"; };
+		68861D0B303B539E008E955B /* TestHelperE2E.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelperE2E.swift; sourceTree = "<group>"; };
 		68861D11303B5D38008E955B /* ProfileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProvider.swift; sourceTree = "<group>"; };
 		68861D13303B5D51008E955B /* FirebaseProfileSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProfileSource.swift; sourceTree = "<group>"; };
 		68861D15303B5DFA008E955B /* ProfileE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileE2ETests.swift; sourceTree = "<group>"; };
@@ -890,7 +891,7 @@
 		68861D01303B5055008E955B /* CatLedgerE2ETests */ = {
 			isa = PBXGroup;
 			children = (
-				68861D0B303B539E008E955B /* TestDataE2E.swift */,
+				68861D0B303B539E008E955B /* TestHelperE2E.swift */,
 				68861D00303B5055008E955B /* AuthE2ETests.swift */,
 				68861D15303B5DFA008E955B /* ProfileE2ETests.swift */,
 				687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */,
@@ -1213,7 +1214,8 @@
 			files = (
 				68861D16303B5DFA008E955B /* ProfileE2ETests.swift in Sources */,
 				687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */,
-				68861D0C303B539E008E955B /* TestDataE2E.swift in Sources */,
+				68861D0C303B539E008E955B /* TestHelperE2E.swift in Sources */,
+				687A3B31303C152000BC953A /* TestData.swift in Sources */,
 				68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

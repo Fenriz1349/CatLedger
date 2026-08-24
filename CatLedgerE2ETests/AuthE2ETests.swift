@@ -26,12 +26,12 @@ struct AuthE2ETests {
     private let provider = AuthProvider()
 
     init() {
-        _ = TestDataE2E.connectAuthToEmulator
+        _ = TestHelperE2E.connectAuthToEmulator
     }
 
     @Test("Signs up, resolves the session, then deletes the registration")
     func signUp_resolveSession_deleteRegistration_roundTrips() async throws {
-        let session = try await provider.signUp(email: TestDataE2E.uniqueEmail(), password: "password123")
+        let session = try await provider.signUp(email: TestHelperE2E.uniqueEmail(), password: "password123")
         #expect(!session.isAnonymous)
 
         let resolved = await provider.resolveSession()
