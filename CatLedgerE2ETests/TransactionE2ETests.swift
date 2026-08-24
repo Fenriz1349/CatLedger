@@ -56,7 +56,7 @@ struct TransactionE2ETests {
         let byDateRange = try await provider.fetchAllByDateRange(
             for: transaction.profileId,
             from: try #require(dayBefore),
-            to: try #require(dayAfter)
+            until: try #require(dayAfter)
         )
         #expect(byDateRange.map(\.id) == [transaction.id])
 

@@ -38,8 +38,8 @@ final class TransactionProvider: TransactionProviding {
 
     /// Fetches all transactions within a date range.
     /// See `fetchAllByAccount` for why this filters client-side rather than querying Firestore.
-    func fetchAllByDateRange(for profileId: UUID, from: Date, to: Date) async throws -> [Transaction] {
-        try await fetchAll(for: profileId).filter { $0.date >= from && $0.date <= to }
+    func fetchAllByDateRange(for profileId: UUID, from: Date, until: Date) async throws -> [Transaction] {
+        try await fetchAll(for: profileId).filter { $0.date >= from && $0.date <= until }
     }
 
     /// Fetches a single transaction by its identifier.

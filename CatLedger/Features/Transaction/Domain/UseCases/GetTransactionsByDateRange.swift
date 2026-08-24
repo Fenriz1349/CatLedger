@@ -29,6 +29,6 @@ final class GetTransactionsByDateRange {
         guard fromDate <= toDate else {
             throw TransactionError.invalidDateRange
         }
-        return try await repository.fetchAllByDateRange(for: profileId, from: fromDate, to: toDate)
+        return try await repository.fetchAllByDateRange(for: profileId, from: fromDate, until: toDate)
     }
 }
