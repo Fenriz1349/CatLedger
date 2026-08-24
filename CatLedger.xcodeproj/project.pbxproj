@@ -99,6 +99,7 @@
 		68558ADF303A07F800FE562D /* DeleteTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558ADE303A07F800FE562D /* DeleteTransfer.swift */; };
 		687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2B303C113B00BC953A /* InstitutionProvider.swift */; };
 		687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */; };
+		687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */; };
 		687ADC32303970460004166C /* GetInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC31303970460004166C /* GetInstitution.swift */; };
 		687ADC34303970500004166C /* GetInstitutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC33303970500004166C /* GetInstitutions.swift */; };
 		687ADC363039705A0004166C /* AddInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC353039705A0004166C /* AddInstitution.swift */; };
@@ -268,6 +269,7 @@
 		68558ADE303A07F800FE562D /* DeleteTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTransfer.swift; sourceTree = "<group>"; };
 		687A3B2B303C113B00BC953A /* InstitutionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionProvider.swift; sourceTree = "<group>"; };
 		687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseInstitutionSource.swift; sourceTree = "<group>"; };
+		687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstitutionE2ETests.swift; sourceTree = "<group>"; };
 		687ADC31303970460004166C /* GetInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitution.swift; sourceTree = "<group>"; };
 		687ADC33303970500004166C /* GetInstitutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInstitutions.swift; sourceTree = "<group>"; };
 		687ADC353039705A0004166C /* AddInstitution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInstitution.swift; sourceTree = "<group>"; };
@@ -891,6 +893,7 @@
 				68861D0B303B539E008E955B /* TestDataE2E.swift */,
 				68861D00303B5055008E955B /* AuthE2ETests.swift */,
 				68861D15303B5DFA008E955B /* ProfileE2ETests.swift */,
+				687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */,
 			);
 			path = CatLedgerE2ETests;
 			sourceTree = "<group>";
@@ -1209,6 +1212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68861D16303B5DFA008E955B /* ProfileE2ETests.swift in Sources */,
+				687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */,
 				68861D0C303B539E008E955B /* TestDataE2E.swift in Sources */,
 				68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */,
 			);

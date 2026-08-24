@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+@testable import CatLedger
 
 /// Shared setup for E2E tests running against the Firebase Local Emulator Suite.
 /// Ports match `firebase.json`; start the emulators with `firebase emulators:start` before running.
@@ -37,5 +38,32 @@ enum TestDataE2E {
     /// Returns a unique email address, so repeated test runs never collide on an existing account.
     static func uniqueEmail() -> String {
         "e2e-\(UUID().uuidString)@catledger.test"
+    }
+
+    static func profile(
+        id: UUID = UUID(),
+        registrationId: UUID = UUID(),
+        firstName: String = "Bruce",
+        lastName: String = "Wayne",
+        email: String = "batman@gotham.com",
+        photoURL: String? = nil
+    ) -> Profile {
+        Profile(
+            id: id,
+            registrationId: registrationId,
+            displayName: "\(firstName)|\(lastName)",
+            email: email,
+            photoURL: photoURL
+        )
+    }
+
+    static func institution(
+        id: UUID = UUID(),
+        profileId: UUID = UUID(),
+        name: String = "BNP Paribas",
+        category: InstitutionCategory = .bank,
+        logoURL: String? = nil
+    ) -> Institution {
+        Institution(id: id, profileId: profileId, name: name, category: category, logoURL: logoURL)
     }
 }
