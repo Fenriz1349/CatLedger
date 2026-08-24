@@ -59,14 +59,15 @@ jobs:
           retention-days: 7
 
   # Compiles the app and both test targets once, without running anything. "build-for-testing"
-  # (rather than plain "build") also produces a .xctestrun file per test plan: a self-contained
-  # description of how to launch that test bundle without recompiling. The two downstream test
-  # jobs each download their own package and run it via "test-without-building", so the app is
-  # only ever compiled here, in one required job — a failure here fails fast, before either test
-  # job spends time spinning up a simulator.
-  # Two separate -derivedDataPath trees (one per test plan) are used deliberately: xcodebuild
-  # names the .xctestrun after the scheme, not the test plan, so building both plans into the
-  # same DerivedData would have the second build silently overwrite the first's .xctestrun.
+  # (rather than plain "build") also produces a .xctestrun file per test target: a self-contained
+  # description of how to launch that test bundle without recompiling. Omitting -testPlan builds
+  # every test target attached to the scheme's Test action in one pass — both CatLedgerTests and
+  # CatLedgerE2ETests land in the same DerivedData, each under its own .xctestrun (the filename
+  # includes the test target's name, e.g. CatLedger_CatLedgerTests_...xctestrun vs
+  # CatLedger_CatLedgerE2ETests_...xctestrun, so there's no collision between the two).
+  # The two downstream test jobs share this single artifact and each run their own .xctestrun via
+  # "test-without-building" — the app and its dependencies (Firebase's C++ layer in particular)
+  # are only ever compiled once here, in one required job, instead of twice.
   build:
     runs-on: macos-latest
     steps:
@@ -78,8 +79,6 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      # Both build-for-testing calls below resolve packages into this same path, so the SPM
-      # cache is shared between them even though their derived data trees aren't.
       - name: Cache resolved Swift packages
         uses: actions/cache@v4
         with:
@@ -100,40 +99,21 @@ jobs:
       - name: Write GoogleService-Info.plist
         run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" | base64 -d > CatLedger/GoogleService-Info.plist
 
-      - name: Build for testing (unit tests)
+      - name: Build for testing
         run: |
           xcodebuild build-for-testing \
             -project CatLedger.xcodeproj \
             -scheme CatLedger \
-            -testPlan CatLedgerTests \
             -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath DerivedData-unit \
+            -derivedDataPath DerivedData \
             -clonedSourcePackagesDirPath SourcePackages \
             CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
 
-      - name: Build for testing (E2E tests)
-        run: |
-          xcodebuild build-for-testing \
-            -project CatLedger.xcodeproj \
-            -scheme CatLedger \
-            -testPlan CatLedgerE2ETests \
-            -destination 'generic/platform=iOS Simulator' \
-            -derivedDataPath DerivedData-e2e \
-            -clonedSourcePackagesDirPath SourcePackages \
-            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
-
-      - name: Upload unit test build
+      - name: Upload test build
         uses: actions/upload-artifact@v4
         with:
-          name: unit-test-build
-          path: DerivedData-unit/Build/Products
-          retention-days: 1
-
-      - name: Upload E2E test build
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-test-build
-          path: DerivedData-e2e/Build/Products
+          name: test-build
+          path: DerivedData/Build/Products
           retention-days: 1
 
   # Required. Runs the pre-built unit test bundle from "build" — no recompilation here.
@@ -146,19 +126,21 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Download unit test build
+      - name: Download test build
         uses: actions/download-artifact@v4
         with:
-          name: unit-test-build
+          name: test-build
           path: Products
 
+      # The glob is scoped to the CatLedgerTests .xctestrun specifically: the shared artifact
+      # also contains CatLedgerE2ETests', and an unscoped "*.xctestrun" would match both.
       # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
       # device name is the one place that may need adjusting if it isn't on the runner (the
       # failure log lists the actually available simulators).
       - name: Run unit tests
         run: |
           xcodebuild test-without-building \
-            -xctestrun Products/*.xctestrun \
+            -xctestrun Products/*_CatLedgerTests_*.xctestrun \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
             -resultBundlePath TestResults/unit.xcresult
 
@@ -193,10 +175,10 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Download E2E test build
+      - name: Download test build
         uses: actions/download-artifact@v4
         with:
-          name: e2e-test-build
+          name: test-build
           path: Products
 
       # GitHub's macOS runners ship Node.js, so npm is the fastest way to get the CLI here —
@@ -208,11 +190,13 @@ jobs:
       # then tears the emulators down and propagates its exit code — no manual polling needed.
       # The xctestrun path is resolved into a variable *before* being handed to emulators:exec:
       # "*" doesn't expand inside the double-quoted command string below, so xcodebuild would
-      # otherwise receive the literal, unexpanded "Products/*.xctestrun" and find no test bundle.
+      # otherwise receive the literal, unexpanded glob and find no test bundle. The glob itself
+      # is scoped to CatLedgerE2ETests: the shared artifact also contains CatLedgerTests', and an
+      # unscoped "*.xctestrun" would match both.
       - name: Run E2E tests against the Firebase emulators
         continue-on-error: true
         run: |
-          XCTESTRUN=$(ls Products/*.xctestrun)
+          XCTESTRUN=$(ls Products/*_CatLedgerE2ETests_*.xctestrun)
           firebase emulators:exec --only auth,firestore \
             "xcodebuild test-without-building \
               -xctestrun '$XCTESTRUN' \
