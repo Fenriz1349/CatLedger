@@ -193,7 +193,7 @@ enum TestData {
         destinationAccountId: UUID = UUID(),
         amount: Double = 100,
         date: Date = Date(),
-        label: String = "Virement"
+        label: String = "Virement modifié"
     ) -> TransferFormInput {
         TransferFormInput(
             sourceAccountId: sourceAccountId,

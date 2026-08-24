@@ -18,38 +18,15 @@ struct UpdateProfileTests {
         useCase = UpdateProfile(repository: repository)
     }
 
-    /// Returns a valid UpdateProfileInput with sensible defaults.
-    private func makeInput(
-        id: UUID,
-        registrationId: UUID,
-        firstName: String = "Bruce",
-        lastName: String = "Wayne",
-        email: String = "batman@gotham.com",
-        photoURL: String? = nil
-    ) -> UpdateProfileInput {
-        TestData.updateProfileInput(
-            id: id,
-            registrationId: registrationId,
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            photoURL: photoURL
-        )
-    }
-
     @Test("Persists the new values for a valid update")
     func execute_validInput_updatesProfile() async throws {
         let profile = TestData.profile()
         try await repository.save(profile)
-        try await useCase.execute(makeInput(
-            id: profile.id,
-            registrationId: profile.registrationId,
-            firstName: "Richard",
-            lastName: "Grayson"
-        ))
+        let input = TestData.updateProfileInput(id: profile.id, registrationId: profile.registrationId)
+        try await useCase.execute(input)
         let updated = try await repository.fetch(by: profile.registrationId)
-        #expect(updated.firstName == "Richard")
-        #expect(updated.lastName == "Grayson")
+        #expect(updated.firstName == input.firstName)
+        #expect(updated.lastName == input.lastName)
     }
 
     @Test("Throws nameTooLong when the first name exceeds 50 characters")
@@ -57,7 +34,7 @@ struct UpdateProfileTests {
         let profile = TestData.profile()
         try await repository.save(profile)
         await #expect(throws: ProfileError.nameTooLong) {
-            try await useCase.execute(makeInput(
+            try await useCase.execute(TestData.updateProfileInput(
                 id: profile.id,
                 registrationId: profile.registrationId,
                 firstName: String(repeating: "A", count: 51)
@@ -70,7 +47,7 @@ struct UpdateProfileTests {
         let profile = TestData.profile()
         try await repository.save(profile)
         await #expect(throws: ProfileError.nameTooLong) {
-            try await useCase.execute(makeInput(
+            try await useCase.execute(TestData.updateProfileInput(
                 id: profile.id,
                 registrationId: profile.registrationId,
                 lastName: String(repeating: "A", count: 51)
@@ -83,7 +60,7 @@ struct UpdateProfileTests {
         let profile = TestData.profile()
         try await repository.save(profile)
         await #expect(throws: ProfileError.invalidEmail) {
-            try await useCase.execute(makeInput(
+            try await useCase.execute(TestData.updateProfileInput(
                 id: profile.id,
                 registrationId: profile.registrationId,
                 email: "not-an-email"

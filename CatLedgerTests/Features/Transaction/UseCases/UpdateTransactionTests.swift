@@ -39,9 +39,10 @@ struct UpdateTransactionTests {
     func execute_validInput_updatesTransaction() async throws {
         let transaction = TestData.transaction(profileId: profileId)
         try await repository.save(transaction)
-        try await useCase.execute(makeInput(id: transaction.id, label: "Restaurant"))
+        let input = makeInput(id: transaction.id)
+        try await useCase.execute(input)
         let updated = try await repository.fetch(by: transaction.id)
-        #expect(updated.label == "Restaurant")
+        #expect(updated.label == input.label)
     }
 
     @Test("Preserves isChecked from the existing transaction")

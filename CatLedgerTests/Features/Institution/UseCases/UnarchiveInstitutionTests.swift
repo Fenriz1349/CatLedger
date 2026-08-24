@@ -13,7 +13,6 @@ struct UnarchiveInstitutionTests {
 
     private let repository = InstitutionDouble()
     private let useCase: UnarchiveInstitution
-    private let institutionId = UUID()
 
     init() {
         useCase = UnarchiveInstitution(repository: repository)
@@ -21,10 +20,11 @@ struct UnarchiveInstitutionTests {
 
     @Test("Restores the institution to active status")
     func execute_unarchivesInstitution() async throws {
-        try await repository.save(TestData.institution(id: institutionId, isArchived: true))
-        try await useCase.execute(id: institutionId)
-        let institution = try await repository.fetch(by: institutionId)
-        #expect(!institution.isArchived)
+        let institution = TestData.institution(isArchived: true)
+        try await repository.save(institution)
+        try await useCase.execute(id: institution.id)
+        let updated = try await repository.fetch(by: institution.id)
+        #expect(!updated.isArchived)
     }
 
     @Test("Throws notFound for an unknown institution")

@@ -22,13 +22,12 @@ struct TransferBetweenAccountsTests {
     }
 
     /// Returns a valid TransferFormInput with sensible defaults, scoped to the shared ids.
-    private func makeInput(amount: Double = 100, label: String = "Virement") -> TransferFormInput {
+    private func makeInput(amount: Double = 100) -> TransferFormInput {
         TestData.transferFormInput(
             profileId: profileId,
             sourceAccountId: sourceAccountId,
             destinationAccountId: destinationAccountId,
-            amount: amount,
-            label: label
+            amount: amount
         )
     }
 

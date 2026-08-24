@@ -13,7 +13,6 @@ struct DeleteInstitutionTests {
 
     private let repository = InstitutionDouble()
     private let useCase: DeleteInstitution
-    private let institutionId = UUID()
 
     init() {
         useCase = DeleteInstitution(repository: repository)
@@ -21,10 +20,11 @@ struct DeleteInstitutionTests {
 
     @Test("Removes the institution record")
     func execute_existingId_institutionDeleted() async throws {
-        try await repository.save(TestData.institution(id: institutionId))
-        try await useCase.execute(id: institutionId)
+        let institution = TestData.institution()
+        try await repository.save(institution)
+        try await useCase.execute(id: institution.id)
         await #expect(throws: InstitutionError.notFound) {
-            try await repository.fetch(by: institutionId)
+            try await repository.fetch(by: institution.id)
         }
     }
 
