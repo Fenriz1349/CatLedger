@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Composition root for the Authentication feature: builds the concrete `AuthProviding`
+/// Composition root for the Authentication feature: builds the concrete `AuthenticationProviding`
 /// implementation once, then wires every Authentication use case on top of it.
 /// Holds no business logic itself — Presentation code reads its properties to get
 /// use cases already wired and ready to inject into view models.
@@ -23,8 +23,6 @@ final class AuthenticationContainer {
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
     let resetPassword: ResetPassword
-    let isAnonymousSessionExpired: IsAnonymousSessionExpired
-    let expireAnonymousSession: ExpireAnonymousSession
 
     /// - Parameter provider: The Authentication provider to wire every use case to.
     /// Defaults to the Firebase-backed implementation; override with a double in tests.
@@ -38,7 +36,5 @@ final class AuthenticationContainer {
         deleteRegistration = DeleteRegistration(repository: provider)
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
         resetPassword = ResetPassword(repository: provider)
-        isAnonymousSessionExpired = IsAnonymousSessionExpired(repository: provider)
-        expireAnonymousSession = ExpireAnonymousSession(repository: provider)
     }
 }

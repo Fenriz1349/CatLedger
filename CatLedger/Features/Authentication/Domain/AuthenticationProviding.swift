@@ -50,13 +50,4 @@ protocol AuthenticationProviding {
     /// Sends a password reset email to the given address.
     /// - Parameter email: The email address of the registration to reset.
     func resetPassword(email: String) async throws
-
-    /// Returns whether the current anonymous session has exceeded its validity period.
-    func isAnonymousSessionExpired() -> Bool
-
-    /// Returns the number of days remaining in the anonymous demo session, or nil if not anonymous.
-    func anonymousDaysRemaining() -> Int?
-
-    /// Deletes the Firebase anonymous registration, then clears local session state.
-    func expireAnonymousSession() async
 }

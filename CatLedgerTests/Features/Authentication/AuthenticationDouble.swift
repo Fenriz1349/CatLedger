@@ -8,18 +8,13 @@
 import Foundation
 @testable import CatLedger
 
-/// Spy/stub test double implementation of AuthProviding.
+/// Spy/stub test double implementation of AuthenticationProviding.
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
 final class AuthenticationDouble: AuthenticationProviding {
 
     var sessionToReturn = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).
     var sessionToResolve: AuthenticationSession?
-    var isExpired = false
-    var daysRemaining: Int?
-
-    /// Tracks whether expireAnonymousSession() was called.
-    var didCallExpire = false
 
     /// Tracks whether deleteRegistration() was called.
     var didCallDeleteRegistration = false
@@ -66,17 +61,5 @@ final class AuthenticationDouble: AuthenticationProviding {
 
     func resetPassword(email: String) async throws {
         if let error = errorToThrow { throw error }
-    }
-
-    func isAnonymousSessionExpired() -> Bool {
-        isExpired
-    }
-
-    func anonymousDaysRemaining() -> Int? {
-        daysRemaining
-    }
-
-    func expireAnonymousSession() async {
-        didCallExpire = true
     }
 }
