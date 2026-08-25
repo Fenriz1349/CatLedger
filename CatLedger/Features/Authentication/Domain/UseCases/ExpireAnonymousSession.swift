@@ -11,10 +11,10 @@ import Foundation
 /// If so, deletes the underlying registration and clears the local session state.
 final class ExpireAnonymousSession {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to check and expire the session.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

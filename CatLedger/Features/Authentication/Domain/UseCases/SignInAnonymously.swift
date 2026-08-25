@@ -10,10 +10,10 @@ import Foundation
 /// Signs in anonymously to start a demo session without a permanent registration.
 final class SignInAnonymously {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to sign in anonymously.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

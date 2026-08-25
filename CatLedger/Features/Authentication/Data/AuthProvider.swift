@@ -10,7 +10,7 @@ import CryptoKit
 import FirebaseAuth
 
 /// Concrete implementation of `AuthProviding` backed by Firebase, via `FirebaseAuthSource`.
-final class AuthProvider: AuthProviding {
+final class AuthProvider: AuthenticationProviding {
 
     private static let anonymousSessionValidityDays = 7
 

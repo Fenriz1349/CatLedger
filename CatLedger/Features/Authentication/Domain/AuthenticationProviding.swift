@@ -1,5 +1,5 @@
 //
-//  AuthProviding.swift
+//  AuthenticationProviding.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 21/08/2026.
@@ -10,7 +10,7 @@ import Foundation
 /// Defines the contract for all authentication operations.
 /// The Domain layer depends only on this protocol — it has no knowledge of Firebase.
 /// Conforming types live in the Data layer.
-protocol AuthProviding {
+protocol AuthenticationProviding {
 
     /// Resolves an existing session from local storage without creating a new one.
     /// - Returns: The stored session, or nil if none exists (absence, not an error).

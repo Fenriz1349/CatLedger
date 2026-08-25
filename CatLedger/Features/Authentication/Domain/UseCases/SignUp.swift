@@ -10,10 +10,10 @@ import Foundation
 /// Creates a new permanent registration with email and password.
 final class SignUp {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to create the registration.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

@@ -13,7 +13,7 @@ import Foundation
 /// use cases already wired and ready to inject into view models.
 final class AuthContainer {
 
-    let provider: AuthProviding
+    let provider: AuthenticationProviding
 
     let resolveSession: ResolveSession
     let signInWithEmail: SignInWithEmail
@@ -28,7 +28,7 @@ final class AuthContainer {
 
     /// - Parameter provider: The Authentication provider to wire every use case to.
     /// Defaults to the Firebase-backed implementation; override with a double in tests.
-    init(provider: AuthProviding = AuthProvider()) {
+    init(provider: AuthenticationProviding = AuthProvider()) {
         self.provider = provider
         resolveSession = ResolveSession(repository: provider)
         signInWithEmail = SignInWithEmail(repository: provider)

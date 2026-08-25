@@ -10,7 +10,7 @@ import Foundation
 
 /// Spy/stub test double implementation of AuthProviding.
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
-final class AuthenticationDouble: AuthProviding {
+final class AuthenticationDouble: AuthenticationProviding {
 
     var sessionToReturn = AuthSession(registrationId: UUID(), isAnonymous: false)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).

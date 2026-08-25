@@ -10,10 +10,10 @@ import Foundation
 /// Checks whether the current anonymous session has exceeded its validity period.
 final class IsAnonymousSessionExpired {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to check the session.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

@@ -10,10 +10,10 @@ import Foundation
 /// Links the current anonymous session to a permanent email/password registration.
 final class LinkAnonymousRegistration {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to link the registration.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

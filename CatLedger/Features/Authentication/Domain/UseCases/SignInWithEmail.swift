@@ -10,10 +10,10 @@ import Foundation
 /// Signs in with an existing email and password.
 final class SignInWithEmail {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to sign in.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

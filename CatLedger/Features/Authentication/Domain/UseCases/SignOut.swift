@@ -10,10 +10,10 @@ import Foundation
 /// Signs out the current registration and clears the local session.
 final class SignOut {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to sign out.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

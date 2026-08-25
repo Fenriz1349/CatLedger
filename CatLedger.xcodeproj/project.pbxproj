@@ -37,7 +37,7 @@
 		6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */; };
 		6839EA7530388ED6006E2AD4 /* AuthSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7430388ED6006E2AD4 /* AuthSession.swift */; };
 		6839EA7730388EE0006E2AD4 /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7630388EE0006E2AD4 /* AuthError.swift */; };
-		6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7830388EE8006E2AD4 /* AuthProviding.swift */; };
+		6839EA7930388EE8006E2AD4 /* AuthenticationProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7830388EE8006E2AD4 /* AuthenticationProviding.swift */; };
 		6839EA7D3038909F006E2AD4 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7C3038909F006E2AD4 /* Profile.swift */; };
 		6839EA7F303890A9006E2AD4 /* ProfileError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA7E303890A9006E2AD4 /* ProfileError.swift */; };
 		6839EA81303890B1006E2AD4 /* UpdateProfileInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA80303890B1006E2AD4 /* UpdateProfileInput.swift */; };
@@ -215,7 +215,7 @@
 		6839EA7030388B90006E2AD4 /* TransactionCategory+Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TransactionCategory+Display.swift"; sourceTree = "<group>"; };
 		6839EA7430388ED6006E2AD4 /* AuthSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSession.swift; sourceTree = "<group>"; };
 		6839EA7630388EE0006E2AD4 /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
-		6839EA7830388EE8006E2AD4 /* AuthProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProviding.swift; sourceTree = "<group>"; };
+		6839EA7830388EE8006E2AD4 /* AuthenticationProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProviding.swift; sourceTree = "<group>"; };
 		6839EA7C3038909F006E2AD4 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		6839EA7E303890A9006E2AD4 /* ProfileError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileError.swift; sourceTree = "<group>"; };
 		6839EA80303890B1006E2AD4 /* UpdateProfileInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProfileInput.swift; sourceTree = "<group>"; };
@@ -552,7 +552,7 @@
 			children = (
 				6839EA7430388ED6006E2AD4 /* AuthSession.swift */,
 				6839EA7630388EE0006E2AD4 /* AuthError.swift */,
-				6839EA7830388EE8006E2AD4 /* AuthProviding.swift */,
+				6839EA7830388EE8006E2AD4 /* AuthenticationProviding.swift */,
 				68558A883039FD2600FE562D /* UseCases */,
 			);
 			path = Domain;
@@ -1121,7 +1121,7 @@
 				68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */,
 				68558AB9303A045400FE562D /* GetCurrentProfile.swift in Sources */,
 				68558A6D3039F6E700FE562D /* GetTransactionsByDateRange.swift in Sources */,
-				6839EA7930388EE8006E2AD4 /* AuthProviding.swift in Sources */,
+				6839EA7930388EE8006E2AD4 /* AuthenticationProviding.swift in Sources */,
 				687A3B34303C166A00BC953A /* AccountProvider.swift in Sources */,
 				6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */,
 				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
