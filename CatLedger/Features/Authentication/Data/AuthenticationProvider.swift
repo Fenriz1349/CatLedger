@@ -14,10 +14,10 @@ final class AuthenticationProvider: AuthenticationProviding {
 
     private static let anonymousSessionValidityDays = 7
 
-    private let source: FirebaseAuthSource
+    private let source: FirebaseAuthenticationSource
 
     /// - Parameter source: The Firebase Auth wrapper used to perform the underlying calls.
-    init(source: FirebaseAuthSource = FirebaseAuthSource()) {
+    init(source: FirebaseAuthenticationSource = FirebaseAuthenticationSource()) {
         self.source = source
     }
 

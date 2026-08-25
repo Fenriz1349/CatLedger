@@ -158,7 +158,7 @@
 		68861CE8303B1A0C008E955B /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 68861CE7303B1A0C008E955B /* FirebaseCore */; };
 		68861CEA303B1A0C008E955B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 68861CE9303B1A0C008E955B /* FirebaseFirestore */; };
 		68861CED303B4900008E955B /* AuthenticationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CEC303B4900008E955B /* AuthenticationProvider.swift */; };
-		68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */; };
+		68861CF2303B4B53008E955B /* FirebaseAuthenticationSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861CF1303B4B53008E955B /* FirebaseAuthenticationSource.swift */; };
 		68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D00303B5055008E955B /* AuthE2ETests.swift */; };
 		68861D0C303B539E008E955B /* TestHelperE2E.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D0B303B539E008E955B /* TestHelperE2E.swift */; };
 		68861D12303B5D38008E955B /* ProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D11303B5D38008E955B /* ProfileProvider.swift */; };
@@ -334,7 +334,7 @@
 		68861CE0303B0B8E008E955B /* ExpireAnonymousProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpireAnonymousProfileTests.swift; sourceTree = "<group>"; };
 		68861CE2303B18E5008E955B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68861CEC303B4900008E955B /* AuthenticationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProvider.swift; sourceTree = "<group>"; };
-		68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthSource.swift; sourceTree = "<group>"; };
+		68861CF1303B4B53008E955B /* FirebaseAuthenticationSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthenticationSource.swift; sourceTree = "<group>"; };
 		68861CF7303B5049008E955B /* CatLedgerE2ETests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CatLedgerE2ETests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		68861D00303B5055008E955B /* AuthE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthE2ETests.swift; sourceTree = "<group>"; };
 		68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CatLedgerE2ETests.xctestplan; sourceTree = "<group>"; };
@@ -925,7 +925,7 @@
 			isa = PBXGroup;
 			children = (
 				68861CEC303B4900008E955B /* AuthenticationProvider.swift */,
-				68861CF1303B4B53008E955B /* FirebaseAuthSource.swift */,
+				68861CF1303B4B53008E955B /* FirebaseAuthenticationSource.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1118,7 +1118,7 @@
 				68751F0A303CC1DE008C1E5C /* FirebaseTransactionSource.swift in Sources */,
 				6839EA6D303888C1006E2AD4 /* Transaction+Effective.swift in Sources */,
 				6839EA6730388895006E2AD4 /* TransactionCategory.swift in Sources */,
-				68861CF2303B4B53008E955B /* FirebaseAuthSource.swift in Sources */,
+				68861CF2303B4B53008E955B /* FirebaseAuthenticationSource.swift in Sources */,
 				68558AB9303A045400FE562D /* GetCurrentProfile.swift in Sources */,
 				68558A6D3039F6E700FE562D /* GetTransactionsByDateRange.swift in Sources */,
 				6839EA7930388EE8006E2AD4 /* AuthenticationProviding.swift in Sources */,
