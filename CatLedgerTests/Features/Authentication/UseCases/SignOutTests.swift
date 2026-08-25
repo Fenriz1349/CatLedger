@@ -26,8 +26,8 @@ struct SignOutTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.signOutFailed
-        await #expect(throws: AuthError.signOutFailed) {
+        repository.errorToThrow = AuthenticationError.signOutFailed
+        await #expect(throws: AuthenticationError.signOutFailed) {
             try await useCase.execute()
         }
     }

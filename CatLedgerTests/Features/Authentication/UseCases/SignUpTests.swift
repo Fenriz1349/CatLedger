@@ -28,8 +28,8 @@ struct SignUpTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.emailAlreadyInUse
-        await #expect(throws: AuthError.emailAlreadyInUse) {
+        repository.errorToThrow = AuthenticationError.emailAlreadyInUse
+        await #expect(throws: AuthenticationError.emailAlreadyInUse) {
             try await useCase.execute(email: "batman@gotham.com", password: "password123")
         }
     }

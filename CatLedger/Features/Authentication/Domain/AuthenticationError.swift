@@ -1,5 +1,5 @@
 //
-//  AuthError.swift
+//  AuthenticationError.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 21/08/2026.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Errors that can occur during authentication operations.
-enum AuthError: Error, Equatable, LocalizedError {
+enum AuthenticationError: Error, Equatable, LocalizedError {
 
     /// Thrown when the sign-in process fails.
     case signInFailed

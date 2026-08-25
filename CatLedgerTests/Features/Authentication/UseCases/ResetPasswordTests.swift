@@ -25,8 +25,8 @@ struct ResetPasswordTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.resetPasswordFailed
-        await #expect(throws: AuthError.resetPasswordFailed) {
+        repository.errorToThrow = AuthenticationError.resetPasswordFailed
+        await #expect(throws: AuthenticationError.resetPasswordFailed) {
             try await useCase.execute(email: "batman@gotham.com")
         }
     }

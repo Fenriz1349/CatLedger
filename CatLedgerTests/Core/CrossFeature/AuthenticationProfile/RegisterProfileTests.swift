@@ -42,8 +42,8 @@ struct RegisterProfileTests {
 
     @Test("Propagates a sign-up error without creating a profile")
     func execute_signUpThrows_propagatesError() async throws {
-        authRepository.errorToThrow = AuthError.emailAlreadyInUse
-        await #expect(throws: AuthError.emailAlreadyInUse) {
+        authRepository.errorToThrow = AuthenticationError.emailAlreadyInUse
+        await #expect(throws: AuthenticationError.emailAlreadyInUse) {
             try await useCase.execute(
                 firstName: "Bruce",
                 lastName: "Wayne",

@@ -29,8 +29,8 @@ struct LinkAnonymousRegistrationTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.registrationLinkingFailed
-        await #expect(throws: AuthError.registrationLinkingFailed) {
+        repository.errorToThrow = AuthenticationError.registrationLinkingFailed
+        await #expect(throws: AuthenticationError.registrationLinkingFailed) {
             try await useCase.execute(email: "batman@gotham.com", password: "password123")
         }
     }

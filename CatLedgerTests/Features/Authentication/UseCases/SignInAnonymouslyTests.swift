@@ -28,8 +28,8 @@ struct SignInAnonymouslyTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.signInFailed
-        await #expect(throws: AuthError.signInFailed) {
+        repository.errorToThrow = AuthenticationError.signInFailed
+        await #expect(throws: AuthenticationError.signInFailed) {
             try await useCase.execute()
         }
     }

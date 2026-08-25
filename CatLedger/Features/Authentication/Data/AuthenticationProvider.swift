@@ -143,7 +143,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     }
 
     /// Maps a Firebase error to a domain `AuthError`, falling back to a context-appropriate default.
-    private func mapError(_ error: Error, fallback: AuthError) -> AuthError {
+    private func mapError(_ error: Error, fallback: AuthenticationError) -> AuthenticationError {
         guard let code = AuthErrorCode(rawValue: (error as NSError).code) else { return fallback }
         switch code {
         case .emailAlreadyInUse:

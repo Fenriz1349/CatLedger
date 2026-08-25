@@ -28,8 +28,8 @@ struct SignInWithEmailTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.invalidCredentials
-        await #expect(throws: AuthError.invalidCredentials) {
+        repository.errorToThrow = AuthenticationError.invalidCredentials
+        await #expect(throws: AuthenticationError.invalidCredentials) {
             try await useCase.execute(email: "batman@gotham.com", password: "wrong")
         }
     }

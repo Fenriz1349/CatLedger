@@ -47,9 +47,9 @@ struct LinkAnonymousProfileTests {
     func execute_linkThrows_propagatesError() async throws {
         let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
         try await profileRepository.save(placeholder)
-        authRepository.errorToThrow = AuthError.registrationLinkingFailed
+        authRepository.errorToThrow = AuthenticationError.registrationLinkingFailed
 
-        await #expect(throws: AuthError.registrationLinkingFailed) {
+        await #expect(throws: AuthenticationError.registrationLinkingFailed) {
             try await useCase.execute(
                 firstName: "Bruce",
                 lastName: "Wayne",
