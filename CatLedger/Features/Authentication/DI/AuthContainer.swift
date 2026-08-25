@@ -28,7 +28,7 @@ final class AuthContainer {
 
     /// - Parameter provider: The Authentication provider to wire every use case to.
     /// Defaults to the Firebase-backed implementation; override with a double in tests.
-    init(provider: AuthenticationProviding = AuthProvider()) {
+    init(provider: AuthenticationProviding = AuthenticationProvider()) {
         self.provider = provider
         resolveSession = ResolveSession(repository: provider)
         signInWithEmail = SignInWithEmail(repository: provider)

@@ -1,5 +1,5 @@
 //
-//  AuthProvider.swift
+//  AuthenticationProvider.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 23/08/2026.
@@ -10,7 +10,7 @@ import CryptoKit
 import FirebaseAuth
 
 /// Concrete implementation of `AuthProviding` backed by Firebase, via `FirebaseAuthSource`.
-final class AuthProvider: AuthenticationProviding {
+final class AuthenticationProvider: AuthenticationProviding {
 
     private static let anonymousSessionValidityDays = 7
 

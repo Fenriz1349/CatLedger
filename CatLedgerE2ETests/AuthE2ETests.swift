@@ -20,7 +20,7 @@ import Testing
 @Suite(.serialized, .timeLimit(.minutes(1)))
 struct AuthE2ETests {
 
-    private let provider = AuthProvider()
+    private let provider = AuthenticationProvider()
 
     init() {
         _ = TestHelperE2E.connectAuthToEmulator
