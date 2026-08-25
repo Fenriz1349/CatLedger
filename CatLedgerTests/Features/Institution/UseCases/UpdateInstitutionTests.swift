@@ -32,9 +32,10 @@ struct UpdateInstitutionTests {
     func execute_validInput_updatesInstitution() async throws {
         let institution = TestData.institution(profileId: profileId)
         try await repository.save(institution)
-        try await useCase.execute(makeInput(id: institution.id, name: "Caisse d'Épargne"))
+        let input = makeInput(id: institution.id)
+        try await useCase.execute(input)
         let updated = try await repository.fetch(by: institution.id)
-        #expect(updated.name == "Caisse d'Épargne")
+        #expect(updated.name == input.name)
     }
 
     @Test("Succeeds when updating with its own unchanged name")

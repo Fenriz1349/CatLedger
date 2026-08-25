@@ -13,22 +13,18 @@ struct DeleteAccountTests {
 
     private let repository = AccountDouble()
     private let useCase: DeleteAccount
-    private let accountId = UUID()
 
     init() {
         useCase = DeleteAccount(repository: repository)
     }
 
-    private func seedAccount() async throws {
-        try await repository.save(TestData.account(id: accountId))
-    }
-
     @Test("Removes the account record")
     func execute_existingId_accountDeleted() async throws {
-        try await seedAccount()
-        try await useCase.execute(id: accountId)
+        let account = TestData.account()
+        try await repository.save(account)
+        try await useCase.execute(id: account.id)
         await #expect(throws: AccountError.notFound) {
-            try await repository.fetch(by: accountId)
+            try await repository.fetch(by: account.id)
         }
     }
 

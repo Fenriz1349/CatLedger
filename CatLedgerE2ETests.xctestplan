@@ -1,0 +1,26 @@
+{
+  "configurations" : [
+    {
+      "id" : "A4762B5D-9B68-482D-AEEC-A255CF0CCC76",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "maximumTestExecutionTimeAllowance" : 60,
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:CatLedger.xcodeproj",
+        "identifier" : "68861CF6303B5049008E955B",
+        "name" : "CatLedgerE2ETests"
+      }
+    }
+  ],
+  "version" : 1
+}

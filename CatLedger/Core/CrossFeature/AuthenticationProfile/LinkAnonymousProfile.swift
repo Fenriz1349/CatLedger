@@ -37,9 +37,10 @@ final class LinkAnonymousProfile {
     /// - Returns: An updated, non-anonymous session.
     func execute(firstName: String, lastName: String, email: String, password: String) async throws -> AuthSession {
         let session = try await linkAnonymousRegistration.execute(email: email, password: password)
-        let currentProfile = try await getCurrentProfile.execute()
+        let currentProfile = try await getCurrentProfile.execute(registrationId: session.registrationId)
         let input = UpdateProfileInput(
             id: currentProfile.id,
+            registrationId: currentProfile.registrationId,
             firstName: firstName,
             lastName: lastName,
             email: email,

@@ -40,64 +40,242 @@ jobs:
       - name: Install SwiftLint
         run: brew install swiftlint
 
-      - name: Run SwiftLint
+      - name: Run SwiftLint (inline PR annotations)
         run: swiftlint lint --reporter github-actions-logging
         continue-on-error: true
 
-  build-and-test:
-    # "macos-latest" always resolves to GitHub's current default macOS image, so this stays
-    # correct without us tracking Apple/GitHub's release naming over time.
+      # Second pass, JSON this time: swiftlint only supports one reporter per run, and the
+      # "report" job needs structured data rather than the annotation-formatted output above.
+      - name: Run SwiftLint (JSON for the report job)
+        run: swiftlint lint --reporter json > lint-results.json
+        continue-on-error: true
+
+      - name: Upload lint results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: lint-results.json
+          retention-days: 7
+
+  # Compiles the app and both test targets once, without running anything. "build-for-testing"
+  # (rather than plain "build") also produces a .xctestrun file per test target: a self-contained
+  # description of how to launch that test bundle without recompiling. Omitting -testPlan builds
+  # every test target attached to the scheme's Test action in one pass — both CatLedgerTests and
+  # CatLedgerE2ETests land in the same DerivedData, each under its own .xctestrun (the filename
+  # includes the test target's name, e.g. CatLedger_CatLedgerTests_...xctestrun vs
+  # CatLedger_CatLedgerE2ETests_...xctestrun, so there's no collision between the two).
+  # The two downstream test jobs share this single artifact and each run their own .xctestrun via
+  # "test-without-building" — the app and its dependencies (Firebase's C++ layer in particular)
+  # are only ever compiled once here, in one required job, instead of twice.
+  build:
     runs-on: macos-latest
     steps:
-      # Clone the repo at the commit that triggered this run.
       - name: Checkout
         uses: actions/checkout@v4
 
-      # GitHub's macOS runners ship several Xcode versions at once; pick the one we build with.
-      # No official GitHub action does this, so we use this popular, widely-used third-party one.
-      # "latest-stable" avoids hardcoding a version number that may not exist on the runner yet.
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
 
-      # Xcode normally resolves packages into a hashed, unpredictable DerivedData path, which
-      # can't be cached reliably. Pin a fixed path instead (used by every xcodebuild call below)
-      # so the cache step can target it consistently across runs. No package is added yet, so
-      # this is a no-op for now and will start paying off once Firebase is added.
       - name: Cache resolved Swift packages
         uses: actions/cache@v4
         with:
-          path: DerivedData/SourcePackages
+          path: SourcePackages
           key: spm-${{ hashFiles('CatLedger.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: spm-
 
-      # Fetch Swift Package dependencies as its own step, so it's visible in the logs
-      # separately from the actual build. A cache hit above makes this near-instant.
       - name: Resolve Swift Package dependencies
-        run: xcodebuild -resolvePackageDependencies -project CatLedger.xcodeproj -scheme CatLedger -derivedDataPath DerivedData
-
-      # Compile the app for the iOS Simulator. No real device/certificate involved, so no code
-      # signing is needed.
-      - name: Build
         run: |
-          xcodebuild build \
+          xcodebuild -resolvePackageDependencies \
+            -project CatLedger.xcodeproj \
+            -scheme CatLedger \
+            -clonedSourcePackagesDirPath SourcePackages
+
+      # Recreates the Firebase config from a repo secret — never committed, see .gitignore.
+      # Only needed here: it's a Copy Bundle Resources input, baked into the .app at build time,
+      # so the downstream test jobs never need to recreate it themselves.
+      - name: Write GoogleService-Info.plist
+        run: echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" | base64 -d > CatLedger/GoogleService-Info.plist
+
+      - name: Build for testing
+        run: |
+          xcodebuild build-for-testing \
             -project CatLedger.xcodeproj \
             -scheme CatLedger \
             -destination 'generic/platform=iOS Simulator' \
             -derivedDataPath DerivedData \
-            CODE_SIGNING_ALLOWED=NO
+            -clonedSourcePackagesDirPath SourcePackages \
+            CODE_SIGN_IDENTITY="-" CODE_SIGNING_REQUIRED=NO
 
-      # Run the unit tests (default test plan) on an actual simulator instance, since "test" needs
-      # a concrete device to run the app on, unlike "build" which only needs a platform.
+      - name: Upload test build
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-build
+          path: DerivedData/Build/Products
+          retention-days: 1
+
+  # Required. Runs the pre-built unit test bundle from "build" — no recompilation here.
+  test:
+    needs: build
+    runs-on: macos-latest
+    steps:
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Download test build
+        uses: actions/download-artifact@v4
+        with:
+          name: test-build
+          path: Products
+
+      # The glob is scoped to the CatLedgerTests .xctestrun specifically: the shared artifact
+      # also contains CatLedgerE2ETests', and an unscoped "*.xctestrun" would match both.
       # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
       # device name is the one place that may need adjusting if it isn't on the runner (the
       # failure log lists the actually available simulators).
-      - name: Test
+      - name: Run unit tests
         run: |
-          xcodebuild test \
-            -project CatLedger.xcodeproj \
-            -scheme CatLedger \
+          xcodebuild test-without-building \
+            -xctestrun Products/*_CatLedgerTests_*.xctestrun \
             -destination 'platform=iOS Simulator,name=iPhone 17' \
-            -derivedDataPath DerivedData \
-            CODE_SIGNING_ALLOWED=NO
+            -resultBundlePath TestResults/unit.xcresult
+
+      - name: Upload unit test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-results
+          path: TestResults/unit.xcresult
+          retention-days: 7
+
+  # A failure here always shows as a red X in the PR's check list — it's only whether merging is
+  # actually blocked that differs, and that's controlled entirely on the GitHub side by which
+  # branch's ruleset lists e2e-test as a required check: dev doesn't (so CI-only emulator
+  # flakiness can't stall everyday feature work, but a real failure still stays visible), main
+  # does (the branch that actually ships, where it should be genuinely blocking).
+  e2e-test:
+    needs: build
+    runs-on: macos-latest
+    steps:
+      # firebase.json lives at the repo root, so emulators:exec needs it — but nothing else from
+      # the source tree, since the tests themselves are already built. This runs *before*
+      # downloading the build artifact below: actions/checkout deletes the contents of the
+      # workspace before checking out, which would silently wipe the downloaded Products/
+      # directory (including the .xctestrun) if it ran afterward instead.
+      - name: Checkout firebase.json
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: firebase.json
+          sparse-checkout-cone-mode: false
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Download test build
+        uses: actions/download-artifact@v4
+        with:
+          name: test-build
+          path: Products
+
+      # GitHub's macOS runners ship Node.js, so npm is the fastest way to get the CLI here —
+      # no need for the Homebrew formula used for local setup.
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      # "emulators:exec" starts the emulators, waits until they're ready, runs the given command,
+      # then tears the emulators down and propagates its exit code — no manual polling needed.
+      # The xctestrun path is resolved into a variable *before* being handed to emulators:exec:
+      # "*" doesn't expand inside the double-quoted command string below, so xcodebuild would
+      # otherwise receive the literal, unexpanded glob and find no test bundle. The glob itself
+      # is scoped to CatLedgerE2ETests: the shared artifact also contains CatLedgerTests', and an
+      # unscoped "*.xctestrun" would match both.
+      - name: Run E2E tests against the Firebase emulators
+        run: |
+          XCTESTRUN=$(ls Products/*_CatLedgerE2ETests_*.xctestrun)
+          firebase emulators:exec --only auth,firestore \
+            "xcodebuild test-without-building \
+              -xctestrun '$XCTESTRUN' \
+              -destination 'platform=iOS Simulator,name=iPhone 17' \
+              -resultBundlePath TestResults/e2e.xcresult"
+
+      - name: Upload E2E test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: TestResults/e2e.xcresult
+          retention-days: 7
+
+  # Always runs, even if test/e2e-test failed — that's exactly when a summary is most useful.
+  # Posts a human-readable pass/fail breakdown straight into the run's own summary page, so
+  # debugging a failure doesn't require downloading and opening an .xcresult bundle in Xcode
+  # first; the bundles themselves are still attached above for when that's actually needed.
+  report:
+    needs: [lint, test, e2e-test]
+    if: always()
+    runs-on: macos-latest
+    steps:
+      - name: Download lint results
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          name: lint-results
+          path: LintResults
+        continue-on-error: true
+
+      - name: Download unit test results
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          name: unit-test-results
+          path: TestResults/unit.xcresult
+        continue-on-error: true
+
+      - name: Download E2E test results
+        if: always()
+        uses: actions/download-artifact@v4
+        with:
+          name: e2e-test-results
+          path: TestResults/e2e.xcresult
+        continue-on-error: true
+
+      # xcresulttool's exact JSON shape can shift between Xcode versions — this is a first pass,
+      # written to degrade to "see the downloaded bundle above" rather than fail the job outright
+      # if a field it expects isn't there.
+      - name: Summarize test results
+        if: always()
+        run: |
+          {
+            echo "## Lint"
+            if [ -f "LintResults/lint-results.json" ]; then
+              jq -r 'if length == 0 then "No violations." else
+                "- Violations: \(length)\n\nTop offenders:\n" +
+                ([.[] | "\(.file | split("/") | last):\(.line) — \(.reason)"] | .[0:10] | map("- " + .) | join("\n"))
+                end' LintResults/lint-results.json \
+                || echo "_Could not parse lint-results.json — download the lint-results artifact._"
+            else
+              echo "_No lint results (job may not have run)._"
+            fi
+
+            echo ""
+            echo "## Test results"
+            for bundle in "unit:TestResults/unit.xcresult" "e2e:TestResults/e2e.xcresult"; do
+              label="${bundle%%:*}"
+              path="${bundle#*:}"
+              echo ""
+              echo "### ${label}"
+              if [ ! -d "$path" ]; then
+                echo "_No result bundle (job may not have run)._"
+                continue
+              fi
+              xcrun xcresulttool get test-results summary --path "$path" --format json > summary.json 2>/dev/null \
+                && jq -r '"- Passed: \(.passedTests // "?")\n- Failed: \(.failedTests // "?")\n- Skipped: \(.skippedTests // "?")"' summary.json \
+                || echo "_Could not parse summary — download the ${label}-test-results artifact and open it in Xcode._"
+            done
+          } >> "$GITHUB_STEP_SUMMARY"

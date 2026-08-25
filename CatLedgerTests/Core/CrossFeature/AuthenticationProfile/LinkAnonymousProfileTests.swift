@@ -27,7 +27,7 @@ struct LinkAnonymousProfileTests {
     func execute_validInput_linksAndUpdatesProfile() async throws {
         let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
         try await profileRepository.save(placeholder)
-        authRepository.sessionToReturn = AuthSession(registrationId: UUID(), isAnonymous: false)
+        authRepository.sessionToReturn = AuthSession(registrationId: placeholder.registrationId, isAnonymous: false)
 
         let result = try await useCase.execute(
             firstName: "Bruce",
@@ -37,7 +37,7 @@ struct LinkAnonymousProfileTests {
         )
 
         #expect(!result.isAnonymous)
-        let updated = try await profileRepository.fetchCurrent()
+        let updated = try await profileRepository.fetch(by: placeholder.registrationId)
         #expect(updated.id == placeholder.id)
         #expect(updated.firstName == "Bruce")
         #expect(updated.email == "batman@gotham.com")

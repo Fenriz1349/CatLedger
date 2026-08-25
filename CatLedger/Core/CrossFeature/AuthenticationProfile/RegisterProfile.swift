@@ -29,7 +29,12 @@ final class RegisterProfile {
     /// - Returns: A session for the newly created registration.
     func execute(firstName: String, lastName: String, email: String, password: String) async throws -> AuthSession {
         let session = try await signUp.execute(email: email, password: password)
-        _ = try await createProfile.execute(firstName: firstName, lastName: lastName, email: email)
+        _ = try await createProfile.execute(
+            registrationId: session.registrationId,
+            firstName: firstName,
+            lastName: lastName,
+            email: email
+        )
         return session
     }
 }

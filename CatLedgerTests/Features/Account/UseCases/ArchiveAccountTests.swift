@@ -13,22 +13,18 @@ struct ArchiveAccountTests {
 
     private let repository = AccountDouble()
     private let useCase: ArchiveAccount
-    private let accountId = UUID()
 
     init() {
         useCase = ArchiveAccount(repository: repository)
     }
 
-    private func seedAccount() async throws {
-        try await repository.save(TestData.account(id: accountId))
-    }
-
     @Test("Marks the account as archived")
     func execute_archivesAccount() async throws {
-        try await seedAccount()
-        try await useCase.execute(id: accountId)
-        let account = try await repository.fetch(by: accountId)
-        #expect(account.isArchived)
+        let account = TestData.account()
+        try await repository.save(account)
+        try await useCase.execute(id: account.id)
+        let updated = try await repository.fetch(by: account.id)
+        #expect(updated.isArchived)
     }
 
     @Test("Throws notFound for an unknown account")

@@ -30,7 +30,7 @@ struct RegisterAnonymousProfileTests {
         let result = try await useCase.execute()
 
         #expect(result.isAnonymous)
-        let profile = try await profileRepository.fetchCurrent()
+        let profile = try await profileRepository.fetch(by: session.registrationId)
         #expect(profile.displayName.isEmpty)
         #expect(profile.email.isEmpty)
     }

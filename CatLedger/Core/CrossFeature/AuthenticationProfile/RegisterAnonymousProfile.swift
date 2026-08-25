@@ -25,7 +25,7 @@ final class RegisterAnonymousProfile {
     /// - Returns: An anonymous session.
     func execute() async throws -> AuthSession {
         let session = try await signInAnonymously.execute()
-        _ = try await createAnonymousProfile.execute()
+        _ = try await createAnonymousProfile.execute(registrationId: session.registrationId)
         return session
     }
 }
