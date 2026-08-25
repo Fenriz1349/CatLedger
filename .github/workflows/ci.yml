@@ -152,9 +152,11 @@ jobs:
           path: TestResults/unit.xcresult
           retention-days: 7
 
-  # Informational only, same reasoning as lint: never fails the workflow (continue-on-error
-  # below) and isn't added to branch protection. The Firebase emulator is more prone to CI-only
-  # flakiness than the unit tests, so this stays observational until it's proven stable.
+  # A failure here always shows as a red X in the PR's check list — it's only whether merging is
+  # actually blocked that differs, and that's controlled entirely on the GitHub side by which
+  # branch's ruleset lists e2e-test as a required check: dev doesn't (so CI-only emulator
+  # flakiness can't stall everyday feature work, but a real failure still stays visible), main
+  # does (the branch that actually ships, where it should be genuinely blocking).
   e2e-test:
     needs: build
     runs-on: macos-latest
@@ -194,7 +196,6 @@ jobs:
       # is scoped to CatLedgerE2ETests: the shared artifact also contains CatLedgerTests', and an
       # unscoped "*.xctestrun" would match both.
       - name: Run E2E tests against the Firebase emulators
-        continue-on-error: true
         run: |
           XCTESTRUN=$(ls Products/*_CatLedgerE2ETests_*.xctestrun)
           firebase emulators:exec --only auth,firestore \
