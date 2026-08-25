@@ -23,7 +23,7 @@ final class AuthenticationProvider: AuthenticationProviding {
 
     /// Resolves the session from Firebase Auth's own locally persisted current user.
     /// - Returns: The stored session, or nil if none exists.
-    func resolveSession() async -> AuthSession? {
+    func resolveSession() async -> AuthenticationSession? {
         guard let user = source.currentUser else { return nil }
         return session(for: user)
     }
@@ -31,7 +31,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Signs in with an existing email and password.
     /// - Returns: A session for the authenticated registration.
     /// - Throws: `AuthError.invalidCredentials` for a wrong email/password, `AuthError.signInFailed` otherwise.
-    func signInWithEmail(email: String, password: String) async throws -> AuthSession {
+    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.signIn(email: email, password: password))
         } catch {
@@ -42,7 +42,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Creates a new permanent registration with email and password.
     /// - Returns: A session for the newly created registration.
     /// - Throws: `AuthError.emailAlreadyInUse`/`weakPassword` when relevant, `AuthError.signInFailed` otherwise.
-    func signUp(email: String, password: String) async throws -> AuthSession {
+    func signUp(email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.createUser(email: email, password: password))
         } catch {
@@ -53,7 +53,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Signs in anonymously, creating a demo session without a permanent registration.
     /// - Returns: An anonymous session.
     /// - Throws: `AuthError.signInFailed` if the anonymous sign-in fails.
-    func signInAnonymously() async throws -> AuthSession {
+    func signInAnonymously() async throws -> AuthenticationSession {
         do {
             return session(for: try await source.signInAnonymously())
         } catch {
@@ -84,7 +84,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Links the current anonymous registration to a permanent email/password registration.
     /// - Returns: An updated, non-anonymous session.
     /// - Throws: `AuthError.registrationLinkingFailed` if the link fails.
-    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession {
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.linkCurrentUser(toEmail: email, password: password))
         } catch {
@@ -128,8 +128,8 @@ final class AuthenticationProvider: AuthenticationProviding {
 
     /// Builds an AuthSession for the given Firebase user, deriving a stable registration
     /// identifier from its uid.
-    private func session(for user: FirebaseAuth.User) -> AuthSession {
-        AuthSession(registrationId: registrationId(for: user.uid), isAnonymous: user.isAnonymous)
+    private func session(for user: FirebaseAuth.User) -> AuthenticationSession {
+        AuthenticationSession(registrationId: registrationId(for: user.uid), isAnonymous: user.isAnonymous)
     }
 
     /// Derives a deterministic UUID from a Firebase uid, so the same registration always

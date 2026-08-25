@@ -21,7 +21,7 @@ final class SignInWithEmail {
     ///   - email: The email address to sign in with.
     ///   - password: The password to sign in with.
     /// - Returns: A session for the authenticated registration.
-    func execute(email: String, password: String) async throws -> AuthSession {
+    func execute(email: String, password: String) async throws -> AuthenticationSession {
         try await repository.signInWithEmail(email: email, password: password)
     }
 }

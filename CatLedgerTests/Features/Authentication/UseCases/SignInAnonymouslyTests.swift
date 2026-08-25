@@ -20,7 +20,7 @@ struct SignInAnonymouslyTests {
 
     @Test("Returns the anonymous session provided by the repository")
     func execute_returnsAnonymousSession() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: true)
+        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: true)
         repository.sessionToReturn = session
         let result = try await useCase.execute()
         #expect(result.isAnonymous)

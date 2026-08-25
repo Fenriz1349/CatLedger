@@ -24,7 +24,7 @@ struct RegisterProfileTests {
 
     @Test("Creates the registration and its profile")
     func execute_validInput_createsRegistrationAndProfile() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: false)
+        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute(

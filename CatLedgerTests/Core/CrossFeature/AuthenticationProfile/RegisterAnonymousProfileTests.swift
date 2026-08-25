@@ -24,7 +24,7 @@ struct RegisterAnonymousProfileTests {
 
     @Test("Creates the anonymous registration and its placeholder profile")
     func execute_createsRegistrationAndPlaceholderProfile() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: true)
+        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: true)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute()

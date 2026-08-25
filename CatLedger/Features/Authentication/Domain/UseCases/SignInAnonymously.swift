@@ -18,7 +18,7 @@ final class SignInAnonymously {
     }
 
     /// - Returns: An anonymous session.
-    func execute() async throws -> AuthSession {
+    func execute() async throws -> AuthenticationSession {
         try await repository.signInAnonymously()
     }
 }

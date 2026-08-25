@@ -18,7 +18,7 @@ final class ResolveSession {
     }
 
     /// - Returns: The existing session, or nil if none is stored.
-    func execute() async -> AuthSession? {
+    func execute() async -> AuthenticationSession? {
         await repository.resolveSession()
     }
 }

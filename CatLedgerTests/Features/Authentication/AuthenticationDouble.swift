@@ -12,9 +12,9 @@ import Foundation
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
 final class AuthenticationDouble: AuthenticationProviding {
 
-    var sessionToReturn = AuthSession(registrationId: UUID(), isAnonymous: false)
+    var sessionToReturn = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).
-    var sessionToResolve: AuthSession?
+    var sessionToResolve: AuthenticationSession?
     var isExpired = false
     var daysRemaining: Int?
 
@@ -30,21 +30,21 @@ final class AuthenticationDouble: AuthenticationProviding {
     /// Set this to force any throwing method to throw a specific error.
     var errorToThrow: Error?
 
-    func resolveSession() async -> AuthSession? {
+    func resolveSession() async -> AuthenticationSession? {
         sessionToResolve
     }
 
-    func signInWithEmail(email: String, password: String) async throws -> AuthSession {
+    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func signUp(email: String, password: String) async throws -> AuthSession {
+    func signUp(email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func signInAnonymously() async throws -> AuthSession {
+    func signInAnonymously() async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
@@ -59,7 +59,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         didCallDeleteRegistration = true
     }
 
-    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession {
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
