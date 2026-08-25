@@ -1,5 +1,5 @@
 //
-//  AuthContainer.swift
+//  AuthenticationContainer.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 25/08/2026.
@@ -11,7 +11,7 @@ import Foundation
 /// implementation once, then wires every Authentication use case on top of it.
 /// Holds no business logic itself — Presentation code reads its properties to get
 /// use cases already wired and ready to inject into view models.
-final class AuthContainer {
+final class AuthenticationContainer {
 
     let provider: AuthenticationProviding
 
