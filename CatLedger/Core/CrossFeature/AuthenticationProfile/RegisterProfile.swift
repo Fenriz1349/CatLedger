@@ -27,7 +27,12 @@ final class RegisterProfile {
     ///   - email: The email address for both the registration and the profile.
     ///   - password: The registration's password.
     /// - Returns: A session for the newly created registration.
-    func execute(firstName: String, lastName: String, email: String, password: String) async throws -> AuthenticationSession {
+    func execute(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String
+    ) async throws -> AuthenticationSession {
         let session = try await signUp.execute(email: email, password: password)
         _ = try await createProfile.execute(
             registrationId: session.registrationId,

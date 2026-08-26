@@ -13,13 +13,13 @@ import Toasty
 @main
 struct CatLedgerApp: App {
     @StateObject private var toasty: ToastyManager
-    
+
     init() {
         let toasty = ToastyManager()
         FirebaseApp.configure()
         _toasty = StateObject(wrappedValue: toasty)
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ToastyContainer(manager: toasty) {
