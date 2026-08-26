@@ -1,0 +1,46 @@
+//
+//  AuthenticationFeedbackTests.swift
+//  CatLedgerTests
+//
+//  Created by Julien Cotte on 26/08/2026.
+//
+
+import Foundation
+import Testing
+import Toasty
+@testable import CatLedger
+
+struct AuthenticationFeedbackTests {
+
+    private let toasty = ToastyManager()
+
+    @Test("Presents an error toast for a wrapped AuthenticationError")
+    func present_error_showsErrorToast() {
+        AuthenticationFeedback.error(.signInFailed).present(with: toasty)
+        #expect(toasty.currentToast?.type == .error)
+    }
+
+    @Test("Presents a success toast when an account is created")
+    func present_accountCreated_showsSuccessToast() {
+        AuthenticationFeedback.accountCreated.present(with: toasty)
+        #expect(toasty.currentToast?.type == .success)
+    }
+
+    @Test("Presents a success toast when signed in")
+    func present_signedIn_showsSuccessToast() {
+        AuthenticationFeedback.signedIn.present(with: toasty)
+        #expect(toasty.currentToast?.type == .success)
+    }
+
+    @Test("Presents an info toast when continuing as demo")
+    func present_continuedAsDemo_showsInfoToast() {
+        AuthenticationFeedback.continuedAsDemo.present(with: toasty)
+        #expect(toasty.currentToast?.type == .info)
+    }
+
+    @Test("Presents a success toast when a password reset email is sent")
+    func present_passwordResetSent_showsSuccessToast() {
+        AuthenticationFeedback.passwordResetSent.present(with: toasty)
+        #expect(toasty.currentToast?.type == .success)
+    }
+}
