@@ -31,18 +31,12 @@ struct AuthenticationView: View {
 
             AuthenticationFormContent(
                 isSignUp: $viewModel.isSignUp,
-                firstName: $viewModel.firstName,
-                lastName: $viewModel.lastName,
                 email: $viewModel.email,
                 password: $viewModel.password,
                 confirmPassword: $viewModel.confirmPassword,
-                firstNameState: $viewModel.firstNameState,
-                lastNameState: $viewModel.lastNameState,
                 emailState: $viewModel.emailState,
                 passwordState: $viewModel.passwordState,
                 confirmPasswordState: $viewModel.confirmPasswordState,
-                firstNameValidator: viewModel.isValidName,
-                lastNameValidator: viewModel.isValidName,
                 confirmPasswordValidator: viewModel.isValidConfirmPassword
             )
 
