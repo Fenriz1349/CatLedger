@@ -10,6 +10,7 @@ import Testing
 import Toasty
 @testable import CatLedger
 
+@MainActor
 struct AuthenticationFeedbackTests {
 
     private let toasty = ToastyManager()

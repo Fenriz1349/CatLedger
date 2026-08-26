@@ -7,6 +7,7 @@
 
 import Foundation
 import Testing
+import CustomTextFields
 @testable import CatLedger
 
 @MainActor
