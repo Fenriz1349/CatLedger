@@ -30,8 +30,6 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
     case deletionFailed
     /// Thrown when the password reset email fails to send.
     case resetPasswordFailed
-    /// Thrown when an anonymous demo session has exceeded its validity period.
-    case sessionExpired
 
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
@@ -56,8 +54,6 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
             return String(localized: .authErrorDeletionFailed)
         case .resetPasswordFailed:
             return String(localized: .authErrorResetPasswordFailed)
-        case .sessionExpired:
-            return String(localized: .authErrorSessionExpired)
         }
     }
 }
