@@ -117,14 +117,12 @@ enum TestData {
         registrationId: UUID = UUID(),
         firstName: String = TestData.firstName,
         lastName: String = TestData.lastName,
-        email: String = TestData.email,
         photoURL: String? = nil
     ) -> Profile {
         Profile(
             id: id,
             registrationId: registrationId,
             displayName: "\(firstName)|\(lastName)",
-            email: email,
             photoURL: photoURL
         )
     }
@@ -226,7 +224,6 @@ enum TestData {
         registrationId: UUID = UUID(),
         firstName: String = "Richard",
         lastName: String = "Grayson",
-        email: String = "nightwing@bludhaven.com",
         photoURL: String? = nil
     ) -> UpdateProfileInput {
         UpdateProfileInput(
@@ -234,7 +231,6 @@ enum TestData {
             registrationId: registrationId,
             firstName: firstName,
             lastName: lastName,
-            email: email,
             photoURL: photoURL
         )
     }

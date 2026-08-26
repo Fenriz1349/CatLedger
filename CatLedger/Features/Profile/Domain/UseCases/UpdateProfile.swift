@@ -26,13 +26,11 @@ final class UpdateProfile {
         let lastName = input.lastName.trimmingCharacters(in: .whitespaces)
         guard firstName.count <= 50 else { throw ProfileError.nameTooLong }
         guard lastName.count <= 50 else { throw ProfileError.nameTooLong }
-        guard input.email.contains("@") else { throw ProfileError.invalidEmail }
 
         let updated = Profile(
             id: input.id,
             registrationId: input.registrationId,
             displayName: "\(firstName)|\(lastName)",
-            email: input.email,
             photoURL: input.photoURL
         )
         try await repository.update(updated)

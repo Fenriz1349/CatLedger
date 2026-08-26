@@ -54,14 +54,12 @@ final class ProfileProvider: ProfileProviding {
             let id = UUID(uuidString: idString),
             let registrationIdString = data["registrationId"] as? String,
             let registrationId = UUID(uuidString: registrationIdString),
-            let displayName = data["displayName"] as? String,
-            let email = data["email"] as? String
+            let displayName = data["displayName"] as? String
         else { return nil }
         return Profile(
             id: id,
             registrationId: registrationId,
             displayName: displayName,
-            email: email,
             photoURL: data["photoURL"] as? String
         )
     }
@@ -73,8 +71,7 @@ final class ProfileProvider: ProfileProviding {
         var data: [String: Any] = [
             "id": profile.id.uuidString,
             "registrationId": profile.registrationId.uuidString,
-            "displayName": profile.displayName,
-            "email": profile.email
+            "displayName": profile.displayName
         ]
         if let photoURL = profile.photoURL {
             data["photoURL"] = photoURL

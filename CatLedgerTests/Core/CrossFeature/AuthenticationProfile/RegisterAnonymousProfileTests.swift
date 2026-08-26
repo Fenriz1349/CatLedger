@@ -24,7 +24,7 @@ struct RegisterAnonymousProfileTests {
 
     @Test("Creates the anonymous registration and its placeholder profile")
     func execute_createsRegistrationAndPlaceholderProfile() async throws {
-        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: true)
+        let session = AuthenticationSession(registrationId: UUID(), email: nil)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute()
@@ -32,7 +32,6 @@ struct RegisterAnonymousProfileTests {
         #expect(result.isAnonymous)
         let profile = try await profileRepository.fetch(by: session.registrationId)
         #expect(profile.displayName.isEmpty)
-        #expect(profile.email.isEmpty)
     }
 
     @Test("Propagates a repository error")

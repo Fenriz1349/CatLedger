@@ -23,7 +23,6 @@ final class CreateProfile {
     ///   - registrationId: The registration this profile belongs to.
     ///   - firstName: The profile's first name.
     ///   - lastName: The profile's last name.
-    ///   - email: The profile's email address.
     ///   - photoURL: Optional URL string pointing to the profile's photo.
     /// - Returns: The newly created profile.
     /// - Throws: `ProfileError` if any business rule is violated.
@@ -31,19 +30,16 @@ final class CreateProfile {
         registrationId: UUID,
         firstName: String,
         lastName: String,
-        email: String,
         photoURL: String? = nil
     ) async throws -> Profile {
         let trimmedFirstName = firstName.trimmingCharacters(in: .whitespaces)
         let trimmedLastName = lastName.trimmingCharacters(in: .whitespaces)
         guard trimmedFirstName.count <= 50 else { throw ProfileError.nameTooLong }
         guard trimmedLastName.count <= 50 else { throw ProfileError.nameTooLong }
-        guard email.contains("@") else { throw ProfileError.invalidEmail }
 
         let profile = Profile(
             registrationId: registrationId,
             displayName: "\(trimmedFirstName)|\(trimmedLastName)",
-            email: email,
             photoURL: photoURL
         )
         try await repository.save(profile)

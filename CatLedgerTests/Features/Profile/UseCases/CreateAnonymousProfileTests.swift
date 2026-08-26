@@ -25,6 +25,5 @@ struct CreateAnonymousProfileTests {
         let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
         #expect(saved.displayName.isEmpty)
-        #expect(saved.email.isEmpty)
     }
 }

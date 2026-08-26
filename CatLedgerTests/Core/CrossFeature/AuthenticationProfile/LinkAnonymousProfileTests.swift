@@ -23,13 +23,13 @@ struct LinkAnonymousProfileTests {
         )
     }
 
-    @Test("Links the registration and updates the profile with the real name and email")
+    @Test("Links the registration and updates the profile with the real name")
     func execute_validInput_linksAndUpdatesProfile() async throws {
-        let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
+        let placeholder = TestData.profile(firstName: "", lastName: "")
         try await profileRepository.save(placeholder)
         authRepository.sessionToReturn = AuthenticationSession(
             registrationId: placeholder.registrationId,
-            isAnonymous: false
+            email: TestData.email
         )
 
         let result = try await useCase.execute(
@@ -43,12 +43,11 @@ struct LinkAnonymousProfileTests {
         let updated = try await profileRepository.fetch(by: placeholder.registrationId)
         #expect(updated.id == placeholder.id)
         #expect(updated.firstName == TestData.firstName)
-        #expect(updated.email == TestData.email)
     }
 
     @Test("Propagates a link error without updating the profile")
     func execute_linkThrows_propagatesError() async throws {
-        let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
+        let placeholder = TestData.profile(firstName: "", lastName: "")
         try await profileRepository.save(placeholder)
         authRepository.errorToThrow = AuthenticationError.registrationLinkingFailed
 

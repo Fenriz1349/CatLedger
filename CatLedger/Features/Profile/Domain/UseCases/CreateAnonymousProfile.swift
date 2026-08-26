@@ -21,7 +21,7 @@ final class CreateAnonymousProfile {
     /// - Parameter registrationId: The registration this profile belongs to.
     /// - Returns: The newly created profile.
     func execute(registrationId: UUID) async throws -> Profile {
-        let profile = Profile(registrationId: registrationId, displayName: "", email: "")
+        let profile = Profile(registrationId: registrationId, displayName: "")
         try await repository.save(profile)
         return profile
     }

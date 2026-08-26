@@ -107,7 +107,7 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Builds an AuthenticationSession for the given Firebase user, deriving a stable registration
     /// identifier from its uid.
     private func session(for user: FirebaseAuth.User) -> AuthenticationSession {
-        AuthenticationSession(registrationId: registrationId(for: user.uid), isAnonymous: user.isAnonymous)
+        AuthenticationSession(registrationId: registrationId(for: user.uid), email: user.email)
     }
 
     /// Derives a deterministic UUID from a Firebase uid, so the same registration always

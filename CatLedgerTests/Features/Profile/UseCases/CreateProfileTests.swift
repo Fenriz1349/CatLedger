@@ -24,8 +24,7 @@ struct CreateProfileTests {
         let profile = try await useCase.execute(
             registrationId: registrationId,
             firstName: TestData.firstName,
-            lastName: TestData.lastName,
-            email: TestData.email
+            lastName: TestData.lastName
         )
         let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
@@ -39,8 +38,7 @@ struct CreateProfileTests {
             try await useCase.execute(
                 registrationId: registrationId,
                 firstName: String(repeating: "A", count: 51),
-                lastName: TestData.lastName,
-                email: TestData.email
+                lastName: TestData.lastName
             )
         }
     }
@@ -51,20 +49,7 @@ struct CreateProfileTests {
             try await useCase.execute(
                 registrationId: registrationId,
                 firstName: TestData.firstName,
-                lastName: String(repeating: "A", count: 51),
-                email: TestData.email
-            )
-        }
-    }
-
-    @Test("Throws invalidEmail for an email missing an @")
-    func execute_invalidEmail_throwsInvalidEmail() async throws {
-        await #expect(throws: ProfileError.invalidEmail) {
-            try await useCase.execute(
-                registrationId: registrationId,
-                firstName: TestData.firstName,
-                lastName: TestData.lastName,
-                email: "not-an-email"
+                lastName: String(repeating: "A", count: 51)
             )
         }
     }
