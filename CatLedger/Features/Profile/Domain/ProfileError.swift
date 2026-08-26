@@ -17,6 +17,9 @@ enum ProfileError: Error, Equatable, LocalizedError {
     /// Thrown when the profile display name exceeds the maximum allowed length.
     case nameTooLong
 
+    /// Thrown when persisting a profile update fails for a reason with no more specific case.
+    case updateFailed
+
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
         switch self {
@@ -24,6 +27,8 @@ enum ProfileError: Error, Equatable, LocalizedError {
             return String(localized: .profileErrorNotFound)
         case .nameTooLong:
             return String(localized: .profileErrorNameTooLong)
+        case .updateFailed:
+            return String(localized: .profileErrorUpdateFailed)
         }
     }
 }
