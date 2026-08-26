@@ -22,7 +22,7 @@ struct SignUpTests {
     func execute_validInput_returnsSession() async throws {
         let session = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
         repository.sessionToReturn = session
-        let result = try await useCase.execute(email: "batman@gotham.com", password: "password123")
+        let result = try await useCase.execute(email: TestData.email, password: TestData.password)
         #expect(result.registrationId == session.registrationId)
     }
 
@@ -30,7 +30,7 @@ struct SignUpTests {
     func execute_repositoryThrows_propagatesError() async throws {
         repository.errorToThrow = AuthenticationError.emailAlreadyInUse
         await #expect(throws: AuthenticationError.emailAlreadyInUse) {
-            try await useCase.execute(email: "batman@gotham.com", password: "password123")
+            try await useCase.execute(email: TestData.email, password: TestData.password)
         }
     }
 }

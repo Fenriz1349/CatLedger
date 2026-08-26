@@ -20,14 +20,14 @@ struct ResetPasswordTests {
 
     @Test("Succeeds for a valid email")
     func execute_validEmail_succeeds() async throws {
-        try await useCase.execute(email: "batman@gotham.com")
+        try await useCase.execute(email: TestData.email)
     }
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
         repository.errorToThrow = AuthenticationError.resetPasswordFailed
         await #expect(throws: AuthenticationError.resetPasswordFailed) {
-            try await useCase.execute(email: "batman@gotham.com")
+            try await useCase.execute(email: TestData.email)
         }
     }
 }

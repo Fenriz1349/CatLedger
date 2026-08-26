@@ -23,14 +23,14 @@ struct CreateProfileTests {
     func execute_validInput_savesProfile() async throws {
         let profile = try await useCase.execute(
             registrationId: registrationId,
-            firstName: "Bruce",
-            lastName: "Wayne",
-            email: "batman@gotham.com"
+            firstName: TestData.firstName,
+            lastName: TestData.lastName,
+            email: TestData.email
         )
         let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
-        #expect(saved.firstName == "Bruce")
-        #expect(saved.lastName == "Wayne")
+        #expect(saved.firstName == TestData.firstName)
+        #expect(saved.lastName == TestData.lastName)
     }
 
     @Test("Throws nameTooLong when the first name exceeds 50 characters")
@@ -39,8 +39,8 @@ struct CreateProfileTests {
             try await useCase.execute(
                 registrationId: registrationId,
                 firstName: String(repeating: "A", count: 51),
-                lastName: "Wayne",
-                email: "batman@gotham.com"
+                lastName: TestData.lastName,
+                email: TestData.email
             )
         }
     }
@@ -50,9 +50,9 @@ struct CreateProfileTests {
         await #expect(throws: ProfileError.nameTooLong) {
             try await useCase.execute(
                 registrationId: registrationId,
-                firstName: "Bruce",
+                firstName: TestData.firstName,
                 lastName: String(repeating: "A", count: 51),
-                email: "batman@gotham.com"
+                email: TestData.email
             )
         }
     }
@@ -62,8 +62,8 @@ struct CreateProfileTests {
         await #expect(throws: ProfileError.invalidEmail) {
             try await useCase.execute(
                 registrationId: registrationId,
-                firstName: "Bruce",
-                lastName: "Wayne",
+                firstName: TestData.firstName,
+                lastName: TestData.lastName,
                 email: "not-an-email"
             )
         }

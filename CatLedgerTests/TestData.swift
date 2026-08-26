@@ -12,6 +12,22 @@ import Foundation
 /// Keeps test setup short and consistent; pass only the fields a test actually cares about.
 enum TestData {
 
+    /// A valid, reusable email address. Centralized so a change to email validation
+    /// or format never requires touching every test that needs "some valid email".
+    static let email = "batman@gotham.com"
+
+    /// A password satisfying the current strength rules. Centralized so a change to
+    /// password strength rules only requires updating this one value, not every test.
+    static let password = "Test123!"
+
+    /// A valid first name. Centralized so a change to name-validation rules only
+    /// requires updating this one value, not every test.
+    static let firstName = "Bruce"
+
+    /// A valid last name. Centralized so a change to name-validation rules only
+    /// requires updating this one value, not every test.
+    static let lastName = "Wayne"
+
     static func institution(
         id: UUID = UUID(),
         profileId: UUID = UUID(),
@@ -99,9 +115,9 @@ enum TestData {
     static func profile(
         id: UUID = UUID(),
         registrationId: UUID = UUID(),
-        firstName: String = "Bruce",
-        lastName: String = "Wayne",
-        email: String = "batman@gotham.com",
+        firstName: String = TestData.firstName,
+        lastName: String = TestData.lastName,
+        email: String = TestData.email,
         photoURL: String? = nil
     ) -> Profile {
         Profile(
