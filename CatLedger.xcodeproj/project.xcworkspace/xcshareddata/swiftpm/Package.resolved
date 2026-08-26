@@ -1,5 +1,5 @@
 {
-  "originHash" : "c63c63846d9c539229e96de38d6af51417e28c0ee9a0bc48bd0f0f19d923c329",
+  "originHash" : "fe6ecdda9b36b5459ddc8e3fcb72a14d7975404fbcc08fbb376b7e48d1877fef",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "3e33dd27dd4c69bd81c7c81fe61d8ccf58846902",
         "version" : "11.3.1"
+      }
+    },
+    {
+      "identity" : "customtextfields",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fenriz1349/CustomTextFields",
+      "state" : {
+        "revision" : "c6c2ee72172f2b0e2841511238d5d3d1f1997690",
+        "version" : "1.3.1"
       }
     },
     {
@@ -116,6 +125,15 @@
       "state" : {
         "revision" : "f4a19a3c313dc2616c70bb49d29a799fb16be837",
         "version" : "2.4.1"
+      }
+    },
+    {
+      "identity" : "toasty",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Fenriz1349/Toasty",
+      "state" : {
+        "revision" : "ed7e70c0e3f74c24986e69b7b166f5641bfefae0",
+        "version" : "1.3.1"
       }
     }
   ],

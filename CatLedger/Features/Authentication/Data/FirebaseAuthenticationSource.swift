@@ -1,5 +1,5 @@
 //
-//  FirebaseAuthSource.swift
+//  FirebaseAuthenticationSource.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 23/08/2026.
@@ -10,7 +10,7 @@ import FirebaseAuth
 
 /// Thin wrapper around the Firebase Auth SDK. Holds no business logic, only raw SDK calls —
 /// error mapping and identifier derivation are the responsibility of the caller.
-final class FirebaseAuthSource {
+final class FirebaseAuthenticationSource {
 
     /// Thrown when an operation requires a signed-in user but none is currently set.
     struct NoCurrentUser: Error {}

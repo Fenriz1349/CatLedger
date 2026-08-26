@@ -35,7 +35,12 @@ final class LinkAnonymousProfile {
     ///   - email: The email address for both the registration and the profile.
     ///   - password: The password for the new permanent registration.
     /// - Returns: An updated, non-anonymous session.
-    func execute(firstName: String, lastName: String, email: String, password: String) async throws -> AuthSession {
+    func execute(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String
+    ) async throws -> AuthenticationSession {
         let session = try await linkAnonymousRegistration.execute(email: email, password: password)
         let currentProfile = try await getCurrentProfile.execute(registrationId: session.registrationId)
         let input = UpdateProfileInput(

@@ -1,5 +1,5 @@
 //
-//  AuthError.swift
+//  AuthenticationError.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 21/08/2026.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Errors that can occur during authentication operations.
-enum AuthError: Error, Equatable, LocalizedError {
+enum AuthenticationError: Error, Equatable, LocalizedError {
 
     /// Thrown when the sign-in process fails.
     case signInFailed
@@ -30,8 +30,6 @@ enum AuthError: Error, Equatable, LocalizedError {
     case deletionFailed
     /// Thrown when the password reset email fails to send.
     case resetPasswordFailed
-    /// Thrown when an anonymous demo session has exceeded its validity period.
-    case sessionExpired
 
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
@@ -56,8 +54,6 @@ enum AuthError: Error, Equatable, LocalizedError {
             return String(localized: .authErrorDeletionFailed)
         case .resetPasswordFailed:
             return String(localized: .authErrorResetPasswordFailed)
-        case .sessionExpired:
-            return String(localized: .authErrorSessionExpired)
         }
     }
 }

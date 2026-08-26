@@ -8,7 +8,7 @@
 import Testing
 @testable import CatLedger
 
-/// End-to-end tests running `AuthProvider` against a real Firebase Auth instance.
+/// End-to-end tests running `AuthenticationProvider` against a real Firebase Auth instance.
 ///
 /// Requires the Firebase Local Emulator Suite running locally before executing this test plan:
 ///   `firebase emulators:start`
@@ -20,7 +20,7 @@ import Testing
 @Suite(.serialized, .timeLimit(.minutes(1)))
 struct AuthE2ETests {
 
-    private let provider = AuthProvider()
+    private let provider = AuthenticationProvider()
 
     init() {
         _ = TestHelperE2E.connectAuthToEmulator
@@ -28,7 +28,7 @@ struct AuthE2ETests {
 
     @Test("Signs up, resolves the session, then deletes the registration")
     func signUp_resolveSession_deleteRegistration_roundTrips() async throws {
-        let session = try await provider.signUp(email: TestHelperE2E.uniqueEmail(), password: "password123")
+        let session = try await provider.signUp(email: TestHelperE2E.uniqueEmail(), password: TestData.password)
         #expect(!session.isAnonymous)
 
         let resolved = await provider.resolveSession()
@@ -37,15 +37,5 @@ struct AuthE2ETests {
         try await provider.deleteRegistration()
         let afterDeletion = await provider.resolveSession()
         #expect(afterDeletion == nil)
-    }
-
-    @Test("Signs in anonymously, then expiring the session clears it")
-    func signInAnonymously_expireAnonymousSession_clearsSession() async throws {
-        let session = try await provider.signInAnonymously()
-        #expect(session.isAnonymous)
-
-        await provider.expireAnonymousSession()
-        let afterExpiry = await provider.resolveSession()
-        #expect(afterExpiry == nil)
     }
 }

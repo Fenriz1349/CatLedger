@@ -27,34 +27,37 @@ struct LinkAnonymousProfileTests {
     func execute_validInput_linksAndUpdatesProfile() async throws {
         let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
         try await profileRepository.save(placeholder)
-        authRepository.sessionToReturn = AuthSession(registrationId: placeholder.registrationId, isAnonymous: false)
+        authRepository.sessionToReturn = AuthenticationSession(
+            registrationId: placeholder.registrationId,
+            isAnonymous: false
+        )
 
         let result = try await useCase.execute(
-            firstName: "Bruce",
-            lastName: "Wayne",
-            email: "batman@gotham.com",
-            password: "password123"
+            firstName: TestData.firstName,
+            lastName: TestData.lastName,
+            email: TestData.email,
+            password: TestData.password
         )
 
         #expect(!result.isAnonymous)
         let updated = try await profileRepository.fetch(by: placeholder.registrationId)
         #expect(updated.id == placeholder.id)
-        #expect(updated.firstName == "Bruce")
-        #expect(updated.email == "batman@gotham.com")
+        #expect(updated.firstName == TestData.firstName)
+        #expect(updated.email == TestData.email)
     }
 
     @Test("Propagates a link error without updating the profile")
     func execute_linkThrows_propagatesError() async throws {
         let placeholder = TestData.profile(firstName: "", lastName: "", email: "")
         try await profileRepository.save(placeholder)
-        authRepository.errorToThrow = AuthError.registrationLinkingFailed
+        authRepository.errorToThrow = AuthenticationError.registrationLinkingFailed
 
-        await #expect(throws: AuthError.registrationLinkingFailed) {
+        await #expect(throws: AuthenticationError.registrationLinkingFailed) {
             try await useCase.execute(
-                firstName: "Bruce",
-                lastName: "Wayne",
-                email: "batman@gotham.com",
-                password: "password123"
+                firstName: TestData.firstName,
+                lastName: TestData.lastName,
+                email: TestData.email,
+                password: TestData.password
             )
         }
     }

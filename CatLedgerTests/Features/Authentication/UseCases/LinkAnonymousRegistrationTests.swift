@@ -20,18 +20,18 @@ struct LinkAnonymousRegistrationTests {
 
     @Test("Returns the non-anonymous session provided by the repository")
     func execute_validInput_returnsSession() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: false)
+        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
         repository.sessionToReturn = session
-        let result = try await useCase.execute(email: "batman@gotham.com", password: "password123")
+        let result = try await useCase.execute(email: TestData.email, password: TestData.password)
         #expect(result.registrationId == session.registrationId)
         #expect(!result.isAnonymous)
     }
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.registrationLinkingFailed
-        await #expect(throws: AuthError.registrationLinkingFailed) {
-            try await useCase.execute(email: "batman@gotham.com", password: "password123")
+        repository.errorToThrow = AuthenticationError.registrationLinkingFailed
+        await #expect(throws: AuthenticationError.registrationLinkingFailed) {
+            try await useCase.execute(email: TestData.email, password: TestData.password)
         }
     }
 }

@@ -26,8 +26,8 @@ struct DeleteRegistrationTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.deletionFailed
-        await #expect(throws: AuthError.deletionFailed) {
+        repository.errorToThrow = AuthenticationError.deletionFailed
+        await #expect(throws: AuthenticationError.deletionFailed) {
             try await useCase.execute()
         }
     }

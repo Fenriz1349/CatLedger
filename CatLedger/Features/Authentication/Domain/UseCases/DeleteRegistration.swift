@@ -10,10 +10,10 @@ import Foundation
 /// Deletes the current registration and clears the local session.
 final class DeleteRegistration {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to delete the registration.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

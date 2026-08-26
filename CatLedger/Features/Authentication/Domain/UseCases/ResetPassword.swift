@@ -10,10 +10,10 @@ import Foundation
 /// Sends a password reset email to the given address.
 final class ResetPassword {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to send the reset email.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 

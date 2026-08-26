@@ -24,7 +24,7 @@ struct RegisterAnonymousProfileTests {
 
     @Test("Creates the anonymous registration and its placeholder profile")
     func execute_createsRegistrationAndPlaceholderProfile() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: true)
+        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: true)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute()
@@ -37,8 +37,8 @@ struct RegisterAnonymousProfileTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        authRepository.errorToThrow = AuthError.signInFailed
-        await #expect(throws: AuthError.signInFailed) {
+        authRepository.errorToThrow = AuthenticationError.signInFailed
+        await #expect(throws: AuthenticationError.signInFailed) {
             try await useCase.execute()
         }
     }
