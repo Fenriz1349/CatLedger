@@ -873,6 +873,14 @@
 			path = UseCases;
 			sourceTree = "<group>";
 		};
+		687CFC27303F780400968952 /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				687CFC26303F780400968952 /* ProfileContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
 		6883C1A1303EB2B7007A359E /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1207,6 +1215,7 @@
 				68861CC5303B0253008E955B /* LinkAnonymousProfile.swift in Sources */,
 				687ADC7330397B930004166C /* DeleteAccount.swift in Sources */,
 				68558A653039F6C800FE562D /* GetTransaction.swift in Sources */,
+				687CFC2E303F780400968952 /* ProfileContainer.swift in Sources */,
 				68785DB3303E2F9A002E0728 /* AuthenticationFeedback.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
 				6839EA7130388B90006E2AD4 /* TransactionCategory+Display.swift in Sources */,

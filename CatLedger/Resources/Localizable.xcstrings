@@ -728,8 +728,25 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Utilisateur introuvable."
+            "state" : "translated",
+            "value" : "Profil introuvable."
+          }
+        }
+      }
+    },
+    "profileError.updateFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The profile update failed."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La mise à jour du profil a échoué."
           }
         }
       }
