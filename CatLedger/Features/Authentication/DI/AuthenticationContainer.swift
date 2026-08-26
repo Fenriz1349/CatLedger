@@ -37,4 +37,14 @@ final class AuthenticationContainer {
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
         resetPassword = ResetPassword(repository: provider)
     }
+
+    /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
+    func makeViewModel() -> AuthenticationViewModel {
+        AuthenticationViewModel(
+            signUp: signUp,
+            signInWithEmail: signInWithEmail,
+            signInAnonymously: signInAnonymously,
+            resetPassword: resetPassword
+        )
+    }
 }

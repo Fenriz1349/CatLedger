@@ -7,18 +7,25 @@
 
 import SwiftUI
 import FirebaseCore
+import Toasty
 
 /// The app's entry point. Configures Firebase before the first scene is built.
 @main
 struct CatLedgerApp: App {
-
+    @StateObject private var toasty: ToastyManager
+    
     init() {
+        let toasty = ToastyManager()
         FirebaseApp.configure()
+        _toasty = StateObject(wrappedValue: toasty)
     }
-
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ToastyContainer(manager: toasty) {
+                ContentView()
+                    .environmentObject(toasty)
+            }
         }
     }
 }
