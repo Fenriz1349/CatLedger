@@ -15,15 +15,11 @@ import CustomTextFields
 final class AuthenticationViewModel {
 
     // MARK: Form Fields
-    var firstName = ""
-    var lastName = ""
     var email = ""
     var password = ""
     var confirmPassword = ""
 
     // MARK: Validation States
-    var firstNameState: ValidationState = .neutral
-    var lastNameState: ValidationState = .neutral
     var emailState: ValidationState = .neutral
     var passwordState: ValidationState = .neutral
     var confirmPasswordState: ValidationState = .neutral
@@ -56,12 +52,6 @@ final class AuthenticationViewModel {
         self.resetPassword = resetPassword
     }
 
-    /// A name is valid when it is not empty (ignoring whitespace).
-    /// Shared by the text fields (display) and the form validity checks so both stay in sync.
-    func isValidName(_ value: String) -> Bool {
-        !value.trimmingCharacters(in: .whitespaces).isEmpty
-    }
-
     /// The confirmation is valid when it is not empty and matches the password.
     /// Lets the confirm field show the mismatch live, instead of only via the disabled button.
     func isValidConfirmPassword(_ value: String) -> Bool {
@@ -72,10 +62,7 @@ final class AuthenticationViewModel {
     var isFormValid: Bool {
         let base = Validators.isValidEmail(email) && Validators.isStrongPassword(password)
         guard isSignUp else { return base }
-        return base
-            && isValidName(firstName)
-            && isValidName(lastName)
-            && password == confirmPassword
+        return base && password == confirmPassword
     }
 
     /// Validates and submits the form, signing in or creating an account depending on the current mode.
@@ -144,19 +131,9 @@ final class AuthenticationViewModel {
             passwordState = .invalid
             isValid = false
         }
-        if isSignUp {
-            if !isValidName(firstName) {
-                firstNameState = .invalid
-                isValid = false
-            }
-            if !isValidName(lastName) {
-                lastNameState = .invalid
-                isValid = false
-            }
-            if password != confirmPassword {
-                confirmPasswordState = .invalid
-                isValid = false
-            }
+        if isSignUp, password != confirmPassword {
+            confirmPasswordState = .invalid
+            isValid = false
         }
         return isValid
     }

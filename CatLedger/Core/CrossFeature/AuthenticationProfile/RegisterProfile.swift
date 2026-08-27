@@ -24,7 +24,7 @@ final class RegisterProfile {
     /// - Parameters:
     ///   - firstName: The profile's first name.
     ///   - lastName: The profile's last name.
-    ///   - email: The email address for both the registration and the profile.
+    ///   - email: The registration's email address.
     ///   - password: The registration's password.
     /// - Returns: A session for the newly created registration.
     func execute(
@@ -37,8 +37,7 @@ final class RegisterProfile {
         _ = try await createProfile.execute(
             registrationId: session.registrationId,
             firstName: firstName,
-            lastName: lastName,
-            email: email
+            lastName: lastName
         )
         return session
     }

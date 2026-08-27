@@ -24,7 +24,7 @@ struct RegisterProfileTests {
 
     @Test("Creates the registration and its profile")
     func execute_validInput_createsRegistrationAndProfile() async throws {
-        let session = AuthenticationSession(registrationId: UUID(), isAnonymous: false)
+        let session = AuthenticationSession(registrationId: UUID(), email: TestData.email)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute(
@@ -37,7 +37,6 @@ struct RegisterProfileTests {
         #expect(result.registrationId == session.registrationId)
         let profile = try await profileRepository.fetch(by: session.registrationId)
         #expect(profile.firstName == TestData.firstName)
-        #expect(profile.email == TestData.email)
     }
 
     @Test("Propagates a sign-up error without creating a profile")

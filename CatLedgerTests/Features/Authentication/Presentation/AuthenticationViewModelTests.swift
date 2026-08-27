@@ -41,8 +41,6 @@ struct AuthenticationViewModelTests {
         viewModel.isSignUp = true
         viewModel.email = TestData.email
         viewModel.password = TestData.password
-        viewModel.firstName = TestData.firstName
-        viewModel.lastName = TestData.lastName
         viewModel.confirmPassword = "Mismatch123!"
         #expect(!viewModel.isFormValid)
     }
@@ -52,8 +50,6 @@ struct AuthenticationViewModelTests {
         viewModel.isSignUp = true
         viewModel.email = TestData.email
         viewModel.password = TestData.password
-        viewModel.firstName = TestData.firstName
-        viewModel.lastName = TestData.lastName
         viewModel.confirmPassword = TestData.password
         #expect(viewModel.isFormValid)
     }
@@ -74,8 +70,6 @@ struct AuthenticationViewModelTests {
         viewModel.isSignUp = true
         viewModel.email = TestData.email
         viewModel.password = TestData.password
-        viewModel.firstName = TestData.firstName
-        viewModel.lastName = TestData.lastName
         viewModel.confirmPassword = TestData.password
         await viewModel.submit()
         #expect(viewModel.feedback == .accountCreated)

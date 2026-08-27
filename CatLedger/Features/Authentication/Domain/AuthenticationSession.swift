@@ -11,6 +11,9 @@ import Foundation
 struct AuthenticationSession: Equatable, Sendable {
     /// The unique identifier of the authenticated registration.
     let registrationId: UUID
-    /// Indicates whether the session is anonymous (not yet linked to a permanent registration).
-    let isAnonymous: Bool
+    /// The registration's email address, or nil for an anonymous session.
+    let email: String?
+
+    /// Firebase never assigns an email to an anonymous account, so its absence is authoritative.
+    var isAnonymous: Bool { email == nil }
 }

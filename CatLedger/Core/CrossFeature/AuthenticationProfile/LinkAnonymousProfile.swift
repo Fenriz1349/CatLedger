@@ -8,7 +8,7 @@
 import Foundation
 
 /// Links the current anonymous registration to a permanent one, and updates the placeholder
-/// profile created for the demo session with the real name and email provided at that point.
+/// profile created for the demo session with the real name provided at that point.
 final class LinkAnonymousProfile {
 
     private let linkAnonymousRegistration: LinkAnonymousRegistration
@@ -18,7 +18,7 @@ final class LinkAnonymousProfile {
     /// - Parameters:
     ///   - linkAnonymousRegistration: The Authentication UseCase used to link the registration.
     ///   - getCurrentProfile: The Profile UseCase used to find the profile to update.
-    ///   - updateProfile: The Profile UseCase used to persist the real name and email.
+    ///   - updateProfile: The Profile UseCase used to persist the real name.
     init(
         linkAnonymousRegistration: LinkAnonymousRegistration,
         getCurrentProfile: GetCurrentProfile,
@@ -48,7 +48,6 @@ final class LinkAnonymousProfile {
             registrationId: currentProfile.registrationId,
             firstName: firstName,
             lastName: lastName,
-            email: email,
             photoURL: currentProfile.photoURL
         )
         try await updateProfile.execute(input)

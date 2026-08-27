@@ -43,7 +43,6 @@ struct ProfileE2ETests {
             registrationId: update.registrationId,
             firstName: update.firstName,
             lastName: update.lastName,
-            email: update.email,
             photoURL: update.photoURL
         )
         try await provider.update(updated)
