@@ -1,10 +1,9 @@
 name: CI
 
-# Run on every PR targeting dev/main, and on every direct push to main.
-# dev is intentionally absent from the push trigger: dev/main are protected branches (merge only
-# via PR), so anything landing on dev is already covered by the pull_request trigger — keeping
-# push:dev too would just run CI twice for the same commits. main still needs push, since
-# release-please pushes its own commits/tags there directly once its release PR is merged.
+# Run on every PR targeting dev/main. No push trigger: dev and main are both protected branches
+# (merge only via PR, including release-please's own release PR), so anything landing on either
+# branch is already covered by the pull_request trigger — a push trigger would just run CI twice
+# for the same commits.
 # Skipped when a change only touches release-please's own files (see ci-skip.yml, which reports
 # a trivial success for this same check in that case instead).
 on:
@@ -14,15 +13,9 @@ on:
       - "CatLedger/Resources/Version.xcconfig"
       - ".release-please-manifest.json"
       - "CHANGELOG.md"
-  push:
-    branches: [main]
-    paths-ignore:
-      - "CatLedger/Resources/Version.xcconfig"
-      - ".release-please-manifest.json"
-      - "CHANGELOG.md"
 
-# Only one run at a time per branch/PR: a new run for the same ref cancels whatever was
-# already running for it (avoids duplicate runs when a push and a PR event fire close together).
+# Only one run at a time per PR: a new push to the PR cancels whatever run was already
+# in progress for it, instead of letting both run to completion.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
