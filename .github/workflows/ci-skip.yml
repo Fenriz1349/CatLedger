@@ -1,9 +1,11 @@
 name: CI
 
 # Mirror image of ci.yml's paths-ignore: triggers only when a change touches exclusively
-# release-please's own files, and reports an immediate success for the "build-and-test" check
-# (same job name as ci.yml) so the required status check is satisfied without a real build —
+# release-please's own files, and reports an immediate success for the "build" and "test" checks
+# (same job names as ci.yml) so the required status checks are satisfied without a real build —
 # a version bump alone can't break the app, re-running the full suite would be wasted time.
+# No push trigger: dev and main are both protected branches (merge only via PR), so this is
+# already covered by the pull_request trigger — see ci.yml for the full reasoning.
 on:
   pull_request:
     branches: [dev, main]
@@ -11,17 +13,16 @@ on:
       - "CatLedger/Resources/Version.xcconfig"
       - ".release-please-manifest.json"
       - "CHANGELOG.md"
-  push:
-    branches: [main]
-    paths:
-      - "CatLedger/Resources/Version.xcconfig"
-      - ".release-please-manifest.json"
-      - "CHANGELOG.md"
 
 jobs:
-  build-and-test:
-    # Must mirror ci.yml's job name exactly — GitHub matches branch protection required checks
-    # by job name, so this trivial job satisfies the same requirement without doing real work.
+  # Must mirror ci.yml's job names exactly — GitHub matches branch protection required checks
+  # by job name, so these trivial jobs satisfy the same requirements without doing real work.
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Only release-please's own files changed, skipping the real build/test."
+      - run: echo "Only release-please's own files changed, skipping the real build."
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Only release-please's own files changed, skipping the real tests."
