@@ -17,6 +17,7 @@
 		682AE8723040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8713040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift */; };
 		682AE875304034DC00DBA5DE /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */; };
 		682AE877304034EE00DBA5DE /* ProfileFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */; };
+		682AE8793040367700DBA5DE /* AuthenticationProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */; };
 		6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */; };
 		6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2F30386BAC006E2AD4 /* ContentView.swift */; };
 		6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA2D30386BAC006E2AD4 /* Assets.xcassets */; };
@@ -211,6 +212,7 @@
 		682AE8713040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileFeedbackTests.swift; sourceTree = "<group>"; };
 		682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedbackTests.swift; sourceTree = "<group>"; };
+		682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileE2ETests.swift; sourceTree = "<group>"; };
 		6839EA1F30386BA2006E2AD4 /* CatLedger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLedger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6839EA2D30386BAC006E2AD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLedgerApp.swift; sourceTree = "<group>"; };
@@ -475,6 +477,26 @@
 				682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		682AE87A3040367B00DBA5DE /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				68861D00303B5055008E955B /* AuthE2ETests.swift */,
+				68861D15303B5DFA008E955B /* ProfileE2ETests.swift */,
+				687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */,
+				687A3B37303C168E00BC953A /* AccountE2ETests.swift */,
+				68751F0D303CC1F8008C1E5C /* TransactionE2ETests.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		682AE87B3040369F00DBA5DE /* CrossFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */,
+			);
+			path = CrossFeatures;
 			sourceTree = "<group>";
 		};
 		6839EA1630386BA2006E2AD4 = {
@@ -1080,11 +1102,8 @@
 			children = (
 				68861D08303B520A008E955B /* CatLedgerE2ETests.xctestplan */,
 				68861D0B303B539E008E955B /* TestHelperE2E.swift */,
-				68861D00303B5055008E955B /* AuthE2ETests.swift */,
-				68861D15303B5DFA008E955B /* ProfileE2ETests.swift */,
-				687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */,
-				687A3B37303C168E00BC953A /* AccountE2ETests.swift */,
-				68751F0D303CC1F8008C1E5C /* TransactionE2ETests.swift */,
+				682AE87A3040367B00DBA5DE /* Features */,
+				682AE87B3040369F00DBA5DE /* CrossFeatures */,
 			);
 			path = CatLedgerE2ETests;
 			sourceTree = "<group>";
@@ -1432,6 +1451,7 @@
 				68861D0C303B539E008E955B /* TestHelperE2E.swift in Sources */,
 				687A3B31303C152000BC953A /* TestData.swift in Sources */,
 				68751F0E303CC1F8008C1E5C /* TransactionE2ETests.swift in Sources */,
+				682AE8793040367700DBA5DE /* AuthenticationProfileE2ETests.swift in Sources */,
 				68861D02303B5055008E955B /* AuthE2ETests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
