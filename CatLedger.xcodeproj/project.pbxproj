@@ -18,6 +18,7 @@
 		682AE875304034DC00DBA5DE /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */; };
 		682AE877304034EE00DBA5DE /* ProfileFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */; };
 		682AE8793040367700DBA5DE /* AuthenticationProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */; };
+		682AE87E30403C0000DBA5DE /* AppEntryViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE87D30403C0000DBA5DE /* AppEntryViewModelTests.swift */; };
 		6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */; };
 		6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2F30386BAC006E2AD4 /* ContentView.swift */; };
 		6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA2D30386BAC006E2AD4 /* Assets.xcassets */; };
@@ -213,6 +214,7 @@
 		682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
 		682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedbackTests.swift; sourceTree = "<group>"; };
 		682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileE2ETests.swift; sourceTree = "<group>"; };
+		682AE87D30403C0000DBA5DE /* AppEntryViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewModelTests.swift; sourceTree = "<group>"; };
 		6839EA1F30386BA2006E2AD4 /* CatLedger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLedger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6839EA2D30386BAC006E2AD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLedgerApp.swift; sourceTree = "<group>"; };
@@ -497,6 +499,14 @@
 				682AE8783040367700DBA5DE /* AuthenticationProfileE2ETests.swift */,
 			);
 			path = CrossFeatures;
+			sourceTree = "<group>";
+		};
+		682AE87C30403BF300DBA5DE /* App */ = {
+			isa = PBXGroup;
+			children = (
+				682AE87D30403C0000DBA5DE /* AppEntryViewModelTests.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		6839EA1630386BA2006E2AD4 = {
@@ -959,6 +969,7 @@
 			children = (
 				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
 				687ADC4D3039724E0004166C /* TestData.swift */,
+				682AE87C30403BF300DBA5DE /* App */,
 				68861CD3303B0B11008E955B /* Features */,
 				682AE86D3040345800DBA5DE /* CrossFeatures */,
 				68861CD2303B0B0A008E955B /* Core */,
@@ -1438,6 +1449,7 @@
 				687ADC61303974630004166C /* InstitutionDouble.swift in Sources */,
 				687ADC5F303973FB0004166C /* DeleteInstitutionTests.swift in Sources */,
 				68558AA83039FE9D00FE562D /* ResetPasswordTests.swift in Sources */,
+				682AE87E30403C0000DBA5DE /* AppEntryViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import Toasty
 
 struct ContentView: View {
+
+    let appContainer: AppContainer
+
     var body: some View {
-        AuthenticationView(viewModel: AuthenticationContainer().makeViewModel())
+        AppEntryView(
+            viewModel: AppEntryViewModel(
+                resolveSession: appContainer.authentication.resolveSession,
+                getCurrentProfile: appContainer.profile.getCurrentProfile
+            ),
+            appContainer: appContainer
+        )
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(appContainer: AppContainer())
+        .environmentObject(ToastyManager())
 }
