@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		682AE862304031D600DBA5DE /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE861304031D600DBA5DE /* AppContainer.swift */; };
+		682AE864304031E800DBA5DE /* AppEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE863304031E800DBA5DE /* AppEntryView.swift */; };
+		682AE866304031F300DBA5DE /* AppEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE865304031F300DBA5DE /* AppEntryViewModel.swift */; };
+		682AE8683040320800DBA5DE /* AuthenticationProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8673040320800DBA5DE /* AuthenticationProfileContainer.swift */; };
+		682AE86A3040321A00DBA5DE /* AuthenticationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */; };
 		6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */; };
 		6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2F30386BAC006E2AD4 /* ContentView.swift */; };
 		6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA2D30386BAC006E2AD4 /* Assets.xcassets */; };
@@ -191,6 +196,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		682AE861304031D600DBA5DE /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
+		682AE863304031E800DBA5DE /* AppEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryView.swift; sourceTree = "<group>"; };
+		682AE865304031F300DBA5DE /* AppEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewModel.swift; sourceTree = "<group>"; };
+		682AE8673040320800DBA5DE /* AuthenticationProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileContainer.swift; sourceTree = "<group>"; };
+		682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileViewModel.swift; sourceTree = "<group>"; };
 		6839EA1F30386BA2006E2AD4 /* CatLedger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLedger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6839EA2D30386BAC006E2AD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLedgerApp.swift; sourceTree = "<group>"; };
@@ -386,6 +396,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		682AE85430402D4000DBA5DE /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				682AE861304031D600DBA5DE /* AppContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		682AE85730402DDF00DBA5DE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				68785DAD303E2D12002E0728 /* AuthenticationView.swift */,
+				687CFC29303F780400968952 /* ProfileView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		682AE85B30402F5B00DBA5DE /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				682AE8673040320800DBA5DE /* AuthenticationProfileContainer.swift */,
+			);
+			path = DI;
+			sourceTree = "<group>";
+		};
+		682AE85D30402F6A00DBA5DE /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				68861CC0303B023F008E955B /* RegisterProfile.swift */,
+				68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */,
+				68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */,
+				68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		682AE85E3040301100DBA5DE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		6839EA1630386BA2006E2AD4 = {
 			isa = PBXGroup;
 			children = (
@@ -412,9 +466,11 @@
 			children = (
 				6839EA3E3038743E006E2AD4 /* App */,
 				6839EA37303872F1006E2AD4 /* Features */,
-				68861CE2303B18E5008E955B /* GoogleService-Info.plist */,
+				68861CAC303AF26C008E955B /* CrossFeature */,
 				6839EA4230387543006E2AD4 /* Core */,
+				682AE85730402DDF00DBA5DE /* Screens */,
 				6839EA3430386BAF006E2AD4 /* Resources */,
+				68861CE2303B18E5008E955B /* GoogleService-Info.plist */,
 			);
 			path = CatLedger;
 			sourceTree = "<group>";
@@ -469,6 +525,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */,
+				682AE85430402D4000DBA5DE /* DI */,
 				6839EA3F3038745F006E2AD4 /* Presentation */,
 			);
 			path = App;
@@ -478,6 +535,8 @@
 			isa = PBXGroup;
 			children = (
 				6839EA2F30386BAC006E2AD4 /* ContentView.swift */,
+				682AE865304031F300DBA5DE /* AppEntryViewModel.swift */,
+				682AE863304031E800DBA5DE /* AppEntryView.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -485,7 +544,6 @@
 		6839EA4230387543006E2AD4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				68861CAC303AF26C008E955B /* CrossFeature */,
 				6839EA4330387552006E2AD4 /* Branding */,
 			);
 			path = Core;
@@ -798,7 +856,6 @@
 			isa = PBXGroup;
 			children = (
 				68785DA9303E2CD2002E0728 /* AuthenticationViewModel.swift */,
-				68785DAD303E2D12002E0728 /* AuthenticationView.swift */,
 				68785DAB303E2CF1002E0728 /* AuthenticationFormContent.swift */,
 				68785DB2303E2F9A002E0728 /* AuthenticationFeedback.swift */,
 			);
@@ -897,7 +954,6 @@
 			isa = PBXGroup;
 			children = (
 				687CFC28303F780400968952 /* ProfileViewModel.swift */,
-				687CFC29303F780400968952 /* ProfileView.swift */,
 				687CFC2B303F780400968952 /* ProfileFeedback.swift */,
 				687CFC32303F7CD700968952 /* ProfileFormContent.swift */,
 			);
@@ -924,10 +980,9 @@
 		68861CAD303AF7EE008E955B /* AuthenticationProfile */ = {
 			isa = PBXGroup;
 			children = (
-				68861CC0303B023F008E955B /* RegisterProfile.swift */,
-				68861CC2303B024A008E955B /* RegisterAnonymousProfile.swift */,
-				68861CC4303B0253008E955B /* LinkAnonymousProfile.swift */,
-				68861CC6303B025C008E955B /* DeleteFirebaseRegistration.swift */,
+				682AE85D30402F6A00DBA5DE /* UseCases */,
+				682AE85B30402F5B00DBA5DE /* DI */,
+				682AE85E3040301100DBA5DE /* Presentation */,
 			);
 			path = AuthenticationProfile;
 			sourceTree = "<group>";
@@ -1169,6 +1224,7 @@
 				68785DAC303E2CF1002E0728 /* AuthenticationFormContent.swift in Sources */,
 				68785DAA303E2CD2002E0728 /* AuthenticationViewModel.swift in Sources */,
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
+				682AE862304031D600DBA5DE /* AppContainer.swift in Sources */,
 				687CFC33303F7CD700968952 /* ProfileFormContent.swift in Sources */,
 				687ADC32303970460004166C /* GetInstitution.swift in Sources */,
 				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
@@ -1183,6 +1239,7 @@
 				68558A6D3039F6E700FE562D /* GetTransactionsByDateRange.swift in Sources */,
 				6839EA7930388EE8006E2AD4 /* AuthenticationProviding.swift in Sources */,
 				687A3B34303C166A00BC953A /* AccountProvider.swift in Sources */,
+				682AE86A3040321A00DBA5DE /* AuthenticationProfileViewModel.swift in Sources */,
 				6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */,
 				6839EA6B303888B5006E2AD4 /* TransactionError.swift in Sources */,
 				687ADC38303970610004166C /* UpdateInstitution.swift in Sources */,
@@ -1193,6 +1250,7 @@
 				68558A6B3039F6E000FE562D /* GetTransactionsByCategory.swift in Sources */,
 				68861CAF303AFAB0008E955B /* LinkAnonymousRegistration.swift in Sources */,
 				68558A623039F6B100FE562D /* UpdateTransactionInput.swift in Sources */,
+				682AE866304031F300DBA5DE /* AppEntryViewModel.swift in Sources */,
 				687ADC34303970500004166C /* GetInstitutions.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
 				687ADC363039705A0004166C /* AddInstitution.swift in Sources */,
@@ -1203,6 +1261,7 @@
 				6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */,
 				6839EA81303890B1006E2AD4 /* UpdateProfileInput.swift in Sources */,
 				68558A903039FD5600FE562D /* SignOut.swift in Sources */,
+				682AE864304031E800DBA5DE /* AppEntryView.swift in Sources */,
 				68861CBD303B0161008E955B /* CreateProfile.swift in Sources */,
 				687A3B36303C167500BC953A /* FirebaseAccountSource.swift in Sources */,
 				6839EA5130387BE5006E2AD4 /* Account.swift in Sources */,
@@ -1215,6 +1274,7 @@
 				68558A6F3039F6EF00FE562D /* AddTransaction.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
 				68558A713039F6F600FE562D /* UpdateTransaction.swift in Sources */,
+				682AE8683040320800DBA5DE /* AuthenticationProfileContainer.swift in Sources */,
 				68861CED303B4900008E955B /* AuthenticationProvider.swift in Sources */,
 				68861D12303B5D38008E955B /* ProfileProvider.swift in Sources */,
 				687ADC6F30397B820004166C /* ArchiveAccount.swift in Sources */,
