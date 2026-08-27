@@ -497,6 +497,40 @@
         }
       }
     },
+    "authProfileFeedback.accountCreated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your account has been created."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre compte a été créé."
+          }
+        }
+      }
+    },
+    "authProfileFeedback.continuedAsDemo" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You're using a demo session."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous utilisez une session démo."
+          }
+        }
+      }
+    },
     "CatLedger" : {
 
     },

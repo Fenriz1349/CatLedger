@@ -12,6 +12,11 @@
 		682AE866304031F300DBA5DE /* AppEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE865304031F300DBA5DE /* AppEntryViewModel.swift */; };
 		682AE8683040320800DBA5DE /* AuthenticationProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8673040320800DBA5DE /* AuthenticationProfileContainer.swift */; };
 		682AE86A3040321A00DBA5DE /* AuthenticationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */; };
+		682AE86C3040338B00DBA5DE /* AuthenticationProfileFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE86B3040338B00DBA5DE /* AuthenticationProfileFeedback.swift */; };
+		682AE8703040348E00DBA5DE /* AuthenticationProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE86F3040348E00DBA5DE /* AuthenticationProfileViewModelTests.swift */; };
+		682AE8723040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE8713040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift */; };
+		682AE875304034DC00DBA5DE /* ProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */; };
+		682AE877304034EE00DBA5DE /* ProfileFeedbackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */; };
 		6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */; };
 		6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA2F30386BAC006E2AD4 /* ContentView.swift */; };
 		6839EA3330386BAC006E2AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6839EA2D30386BAC006E2AD4 /* Assets.xcassets */; };
@@ -201,6 +206,11 @@
 		682AE865304031F300DBA5DE /* AppEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEntryViewModel.swift; sourceTree = "<group>"; };
 		682AE8673040320800DBA5DE /* AuthenticationProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileContainer.swift; sourceTree = "<group>"; };
 		682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileViewModel.swift; sourceTree = "<group>"; };
+		682AE86B3040338B00DBA5DE /* AuthenticationProfileFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileFeedback.swift; sourceTree = "<group>"; };
+		682AE86F3040348E00DBA5DE /* AuthenticationProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileViewModelTests.swift; sourceTree = "<group>"; };
+		682AE8713040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationProfileFeedbackTests.swift; sourceTree = "<group>"; };
+		682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelTests.swift; sourceTree = "<group>"; };
+		682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedbackTests.swift; sourceTree = "<group>"; };
 		6839EA1F30386BA2006E2AD4 /* CatLedger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CatLedger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6839EA2D30386BAC006E2AD4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6839EA2E30386BAC006E2AD4 /* CatLedgerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatLedgerApp.swift; sourceTree = "<group>"; };
@@ -436,6 +446,33 @@
 			isa = PBXGroup;
 			children = (
 				682AE8693040321A00DBA5DE /* AuthenticationProfileViewModel.swift */,
+				682AE86B3040338B00DBA5DE /* AuthenticationProfileFeedback.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		682AE86D3040345800DBA5DE /* CrossFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				682AE86E3040348000DBA5DE /* AuthenticationProfile */,
+			);
+			path = CrossFeatures;
+			sourceTree = "<group>";
+		};
+		682AE86E3040348000DBA5DE /* AuthenticationProfile */ = {
+			isa = PBXGroup;
+			children = (
+				682AE86F3040348E00DBA5DE /* AuthenticationProfileViewModelTests.swift */,
+				682AE8713040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift */,
+			);
+			path = AuthenticationProfile;
+			sourceTree = "<group>";
+		};
+		682AE873304034B700DBA5DE /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				682AE874304034DC00DBA5DE /* ProfileViewModelTests.swift */,
+				682AE876304034EE00DBA5DE /* ProfileFeedbackTests.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -466,7 +503,7 @@
 			children = (
 				6839EA3E3038743E006E2AD4 /* App */,
 				6839EA37303872F1006E2AD4 /* Features */,
-				68861CAC303AF26C008E955B /* CrossFeature */,
+				68861CAC303AF26C008E955B /* CrossFeatures */,
 				6839EA4230387543006E2AD4 /* Core */,
 				682AE85730402DDF00DBA5DE /* Screens */,
 				6839EA3430386BAF006E2AD4 /* Resources */,
@@ -791,6 +828,7 @@
 			children = (
 				68558ABF303A04DD00FE562D /* ProfileDouble.swift */,
 				68558ACA303A055200FE562D /* UseCases */,
+				682AE873304034B700DBA5DE /* Presentation */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -900,6 +938,7 @@
 				687ADC643039781B0004166C /* CatLedgerTests.xctestplan */,
 				687ADC4D3039724E0004166C /* TestData.swift */,
 				68861CD3303B0B11008E955B /* Features */,
+				682AE86D3040345800DBA5DE /* CrossFeatures */,
 				68861CD2303B0B0A008E955B /* Core */,
 			);
 			path = CatLedgerTests;
@@ -969,12 +1008,12 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		68861CAC303AF26C008E955B /* CrossFeature */ = {
+		68861CAC303AF26C008E955B /* CrossFeatures */ = {
 			isa = PBXGroup;
 			children = (
 				68861CAD303AF7EE008E955B /* AuthenticationProfile */,
 			);
-			path = CrossFeature;
+			path = CrossFeatures;
 			sourceTree = "<group>";
 		};
 		68861CAD303AF7EE008E955B /* AuthenticationProfile */ = {
@@ -1227,6 +1266,7 @@
 				682AE862304031D600DBA5DE /* AppContainer.swift in Sources */,
 				687CFC33303F7CD700968952 /* ProfileFormContent.swift in Sources */,
 				687ADC32303970460004166C /* GetInstitution.swift in Sources */,
+				682AE86C3040338B00DBA5DE /* AuthenticationProfileFeedback.swift in Sources */,
 				687ADC3E3039707A0004166C /* DeleteInstitution.swift in Sources */,
 				687ADC6930397B640004166C /* GetAccounts.swift in Sources */,
 				687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */,
@@ -1341,8 +1381,10 @@
 				687ADC5D303973EF0004166C /* UnarchiveInstitutionTests.swift in Sources */,
 				68558A5C3039931100FE562D /* DeleteAccountTests.swift in Sources */,
 				687ADC55303973BE0004166C /* GetInstitutionsTests.swift in Sources */,
+				682AE8723040349B00DBA5DE /* AuthenticationProfileFeedbackTests.swift in Sources */,
 				68861CDB303B0B78008E955B /* RegisterAnonymousProfileTests.swift in Sources */,
 				6883C1A3303EB2CA007A359E /* AuthenticationViewModelTests.swift in Sources */,
+				682AE875304034DC00DBA5DE /* ProfileViewModelTests.swift in Sources */,
 				68558ACE303A058600FE562D /* UpdateProfileTests.swift in Sources */,
 				68861CDD303B0B80008E955B /* LinkAnonymousProfileTests.swift in Sources */,
 				68558A813039FB1F00FE562D /* AddTransactionTests.swift in Sources */,
@@ -1353,11 +1395,13 @@
 				68861CBB303AFF1A008E955B /* SignUpTests.swift in Sources */,
 				6883C1A5303EB2E0007A359E /* AuthenticationFeedbackTests.swift in Sources */,
 				687ADC57303973C90004166C /* AddInstitutionTests.swift in Sources */,
+				682AE8703040348E00DBA5DE /* AuthenticationProfileViewModelTests.swift in Sources */,
 				68558A56303992EB00FE562D /* UpdateAccountTests.swift in Sources */,
 				68558A4D303992AC00FE562D /* AccountDouble.swift in Sources */,
 				68558AD0303A059300FE562D /* DeleteProfileTests.swift in Sources */,
 				68558AB23039FED600FE562D /* DeleteRegistrationTests.swift in Sources */,
 				68558A58303992F700FE562D /* ArchiveAccountTests.swift in Sources */,
+				682AE877304034EE00DBA5DE /* ProfileFeedbackTests.swift in Sources */,
 				68558A793039FAF000FE562D /* GetTransactionTests.swift in Sources */,
 				68558A7F3039FB1300FE562D /* GetTransactionsByDateRangeTests.swift in Sources */,
 				68558AA63039FE9100FE562D /* SignOutTests.swift in Sources */,
