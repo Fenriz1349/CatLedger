@@ -34,8 +34,8 @@ struct ProfileViewModelTests {
         #expect(viewModel.lastName.isEmpty)
     }
 
-    @Test("Submitting valid names persists the new profile and reports profileCreated")
-    func submit_createContext_validNames_reportsProfileCreated() async throws {
+    @Test("Submitting valid names persists the new profile and reports no feedback")
+    func submit_createContext_validNames_reportsNoFeedback() async throws {
         let registrationId = UUID()
         let viewModel = makeViewModel(context: .create(registrationId: registrationId))
         viewModel.firstName = TestData.firstName

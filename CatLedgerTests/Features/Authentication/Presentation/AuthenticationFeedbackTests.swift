@@ -21,12 +21,6 @@ struct AuthenticationFeedbackTests {
         #expect(toasty.currentToast?.type == .error)
     }
 
-    @Test("Presents a success toast when signed in")
-    func present_signedIn_showsSuccessToast() {
-        AuthenticationFeedback.signedIn.present(with: toasty)
-        #expect(toasty.currentToast?.type == .success)
-    }
-
     @Test("Presents a success toast when a password reset email is sent")
     func present_passwordResetSent_showsSuccessToast() {
         AuthenticationFeedback.passwordResetSent.present(with: toasty)

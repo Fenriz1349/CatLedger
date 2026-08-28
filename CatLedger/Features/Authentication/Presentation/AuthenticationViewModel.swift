@@ -73,7 +73,6 @@ final class AuthenticationViewModel {
         defer { isLoading = false }
         do {
             _ = try await logInWithEmail.execute(email: email, password: password)
-            feedback = .signedIn
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {

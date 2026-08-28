@@ -446,23 +446,6 @@
         }
       }
     },
-    "authFeedback.signedIn" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Signed in successfully."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connexion réussie."
-          }
-        }
-      }
-    },
     "authProfileFeedback.continuedAsDemo" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -754,40 +737,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La mise à jour du profil a échoué."
-          }
-        }
-      }
-    },
-    "profileFeedback.profileCreated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your profile has been created."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Votre profil a été créé."
-          }
-        }
-      }
-    },
-    "profileFeedback.profileUpdated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your profile has been updated."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Votre profil a été mis à jour."
           }
         }
       }

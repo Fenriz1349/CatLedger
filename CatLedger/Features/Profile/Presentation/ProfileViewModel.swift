@@ -80,7 +80,6 @@ final class ProfileViewModel {
                     firstName: firstName,
                     lastName: lastName
                 )
-                feedback = .profileCreated
             case .existing(let profile):
                 let input = UpdateProfileInput(
                     id: profile.id,
@@ -90,7 +89,6 @@ final class ProfileViewModel {
                     photoURL: profile.photoURL
                 )
                 try await updateProfileUseCase.execute(input)
-                feedback = .profileUpdated
             }
         } catch let error as ProfileError {
             feedback = .error(error)

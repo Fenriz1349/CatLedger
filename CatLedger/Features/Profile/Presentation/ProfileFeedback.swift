@@ -14,8 +14,6 @@ import Toasty
 enum ProfileFeedback: Equatable {
 
     case error(ProfileError)
-    case profileCreated
-    case profileUpdated
 
     /// Presents this feedback as a toast.
     /// - Parameter toasty: The shared toast notification manager.
@@ -23,10 +21,6 @@ enum ProfileFeedback: Equatable {
         switch self {
         case .error(let error):
             toasty.showError(error)
-        case .profileCreated:
-            toasty.showSuccess(String(localized: .profileFeedbackProfileCreated))
-        case .profileUpdated:
-            toasty.showSuccess(String(localized: .profileFeedbackProfileUpdated))
         }
     }
 }

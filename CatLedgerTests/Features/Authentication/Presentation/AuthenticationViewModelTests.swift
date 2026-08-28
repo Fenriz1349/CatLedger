@@ -56,12 +56,12 @@ struct AuthenticationViewModelTests {
 
     // MARK: logIn
 
-    @Test("Logging in with valid credentials reports signedIn")
-    func logIn_validCredentials_reportsSignedIn() async {
+    @Test("Logging in with valid credentials reports no feedback")
+    func logIn_validCredentials_reportsNoFeedback() async {
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         await viewModel.logIn()
-        #expect(viewModel.feedback == .signedIn)
+        #expect(viewModel.feedback == nil)
         #expect(!viewModel.isLoading)
     }
 
