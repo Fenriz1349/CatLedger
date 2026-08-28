@@ -43,7 +43,7 @@ struct ProfileViewModelTests {
 
         await viewModel.submit()
 
-        #expect(viewModel.feedback == .profileCreated)
+        #expect(viewModel.feedback == nil)
         let created = try await repository.fetch(by: registrationId)
         #expect(created.firstName == TestData.firstName)
         #expect(created.lastName == TestData.lastName)
@@ -78,8 +78,8 @@ struct ProfileViewModelTests {
         #expect(!viewModel.isFormValid)
     }
 
-    @Test("Submitting valid names persists the update and reports profileUpdated")
-    func submit_existingContext_validNames_reportsProfileUpdated() async throws {
+    @Test("Submitting valid names persists the update and reports no feedback")
+    func submit_existingContext_validNames_reportsNoFeedback() async throws {
         let profile = TestData.profile()
         try await repository.save(profile)
         let viewModel = makeViewModel(context: .existing(profile))
@@ -89,7 +89,7 @@ struct ProfileViewModelTests {
 
         await viewModel.submit()
 
-        #expect(viewModel.feedback == .profileUpdated)
+        #expect(viewModel.feedback == nil)
         let updated = try await repository.fetch(by: profile.registrationId)
         #expect(updated.firstName == newName.firstName)
     }

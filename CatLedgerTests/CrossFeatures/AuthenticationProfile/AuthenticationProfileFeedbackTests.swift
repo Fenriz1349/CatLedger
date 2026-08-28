@@ -26,16 +26,4 @@ struct AuthenticationProfileFeedbackTests {
         AuthenticationProfileFeedback.profileError(.notFound).present(with: toasty)
         #expect(toasty.currentToast?.type == .error)
     }
-
-    @Test("Presents a success toast when signed up")
-    func present_signedUp_showsSuccessToast() {
-        AuthenticationProfileFeedback.signedUp.present(with: toasty)
-        #expect(toasty.currentToast?.type == .success)
-    }
-
-    @Test("Presents an info toast when continuing as demo")
-    func present_continuedAsDemo_showsInfoToast() {
-        AuthenticationProfileFeedback.continuedAsDemo.present(with: toasty)
-        #expect(toasty.currentToast?.type == .info)
-    }
 }
