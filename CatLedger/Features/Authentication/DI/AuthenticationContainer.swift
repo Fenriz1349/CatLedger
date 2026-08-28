@@ -16,35 +16,37 @@ final class AuthenticationContainer {
     let provider: AuthenticationProviding
 
     let resolveSession: ResolveSession
-    let signInWithEmail: SignInWithEmail
+    let logInWithEmail: LogInWithEmail
     let signUp: SignUp
-    let signInAnonymously: SignInAnonymously
+    let signUpAnonymously: SignUpAnonymously
     let signOut: SignOut
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
-    let resetPassword: ResetPassword
+    let forgottenPassword: ForgottenPassword
 
     /// - Parameter provider: The Authentication provider to wire every use case to.
     /// Defaults to the Firebase-backed implementation; override with a double in tests.
     init(provider: AuthenticationProviding = AuthenticationProvider()) {
         self.provider = provider
         resolveSession = ResolveSession(repository: provider)
-        signInWithEmail = SignInWithEmail(repository: provider)
+        logInWithEmail = LogInWithEmail(repository: provider)
         signUp = SignUp(repository: provider)
-        signInAnonymously = SignInAnonymously(repository: provider)
+        signUpAnonymously = SignUpAnonymously(repository: provider)
         signOut = SignOut(repository: provider)
         deleteRegistration = DeleteRegistration(repository: provider)
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
-        resetPassword = ResetPassword(repository: provider)
+        forgottenPassword = ForgottenPassword(repository: provider)
     }
 
+    /// - Parameter onAuthenticated: Called after a successful log-in, with the resulting session.
     /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
-    func makeViewModel() -> AuthenticationViewModel {
+    func makeViewModel(onAuthenticated: @escaping (AuthenticationSession) async -> Void) -> AuthenticationViewModel {
         AuthenticationViewModel(
+            logInWithEmail: logInWithEmail,
             signUp: signUp,
-            signInWithEmail: signInWithEmail,
-            signInAnonymously: signInAnonymously,
-            resetPassword: resetPassword
+            signUpAnonymously: signUpAnonymously,
+            forgottenPassword: forgottenPassword,
+            onAuthenticated: onAuthenticated
         )
     }
 }

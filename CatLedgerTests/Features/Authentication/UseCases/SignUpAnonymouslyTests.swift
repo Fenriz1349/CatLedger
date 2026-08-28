@@ -1,5 +1,5 @@
 //
-//  SignInAnonymouslyTests.swift
+//  SignUpAnonymouslyTests.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,13 +9,13 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct SignInAnonymouslyTests {
+struct SignUpAnonymouslyTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: SignInAnonymously
+    private let useCase: SignUpAnonymously
 
     init() {
-        useCase = SignInAnonymously(repository: repository)
+        useCase = SignUpAnonymously(repository: repository)
     }
 
     @Test("Returns the anonymous session provided by the repository")
@@ -28,8 +28,8 @@ struct SignInAnonymouslyTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthenticationError.signInFailed
-        await #expect(throws: AuthenticationError.signInFailed) {
+        repository.errorToThrow = AuthenticationError.logInFailed
+        await #expect(throws: AuthenticationError.logInFailed) {
             try await useCase.execute()
         }
     }

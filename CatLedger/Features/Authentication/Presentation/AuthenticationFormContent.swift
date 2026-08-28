@@ -8,11 +8,11 @@
 import SwiftUI
 import CustomTextFields
 
-/// Reusable form fields for authentication and account linking.
+/// Reusable form fields for logging in and signing up.
 /// Purely presentational — contains no business logic.
 struct AuthenticationFormContent: View {
 
-    @Binding var isSignUp: Bool
+    @Binding var isSigningUp: Bool
     @Binding var email: String
     @Binding var password: String
     @Binding var confirmPassword: String
@@ -42,7 +42,7 @@ struct AuthenticationFormContent: View {
                 showErrorOnlyWhenTriggered: false
             )
             .accessibilityIdentifier("authenticationField.password")
-            if isSignUp {
+            if isSigningUp {
                 CustomTextField(
                     placeholder: "Confirmer le mot de passe",
                     text: $confirmPassword,
@@ -55,6 +55,6 @@ struct AuthenticationFormContent: View {
                 .accessibilityIdentifier("authenticationField.confirmPassword")
             }
         }
-        .animation(.easeInOut(duration: 0.2), value: isSignUp)
+        .animation(.easeInOut(duration: 0.2), value: isSigningUp)
     }
 }

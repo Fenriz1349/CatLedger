@@ -20,9 +20,9 @@ final class FirebaseAuthenticationSource {
     /// The currently signed-in Firebase user, if any.
     var currentUser: FirebaseAuth.User? { auth.currentUser }
 
-    /// Signs in with an existing email and password.
-    /// - Returns: The signed-in Firebase user.
-    func signIn(email: String, password: String) async throws -> FirebaseAuth.User {
+    /// Logs in with an existing email and password.
+    /// - Returns: The logged-in Firebase user.
+    func login(email: String, password: String) async throws -> FirebaseAuth.User {
         try await auth.signIn(withEmail: email, password: password).user
     }
 
@@ -32,9 +32,9 @@ final class FirebaseAuthenticationSource {
         try await auth.createUser(withEmail: email, password: password).user
     }
 
-    /// Signs in anonymously, creating a new anonymous account.
+    /// Creates a new anonymous account.
     /// - Returns: The newly created anonymous Firebase user.
-    func signInAnonymously() async throws -> FirebaseAuth.User {
+    func signUpAnonymously() async throws -> FirebaseAuth.User {
         try await auth.signInAnonymously().user
     }
 

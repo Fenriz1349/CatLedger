@@ -1,29 +1,29 @@
 //
-//  AuthenticationFeedback.swift
+//  AuthenticationProfileFeedback.swift
 //  CatLedger
 //
-//  Created by Julien Cotte on 25/08/2026.
+//  Created by Julien Cotte on 27/08/2026.
 //
 
 import Foundation
 import Toasty
 
-/// Every user-facing outcome the Authentication screen can produce.
+/// Every user-facing outcome the Authentication/Profile cross-feature actions can produce.
 /// Owns the toast text and style for each case, so the ViewModel only ever picks a case —
 /// it never builds UI text or talks to Toasty itself.
-enum AuthenticationFeedback: Equatable {
+enum AuthenticationProfileFeedback: Equatable {
 
-    case error(AuthenticationError)
-    case passwordResetSent
+    case authenticationError(AuthenticationError)
+    case profileError(ProfileError)
 
     /// Presents this feedback as a toast.
     /// - Parameter toasty: The shared toast notification manager.
     func present(with toasty: ToastyManager) {
         switch self {
-        case .error(let error):
+        case .authenticationError(let error):
             toasty.showError(error)
-        case .passwordResetSent:
-            toasty.showSuccess(String(localized: .authFeedbackPasswordResetSent))
+        case .profileError(let error):
+            toasty.showError(error)
         }
     }
 }

@@ -26,38 +26,38 @@ final class AuthenticationProvider: AuthenticationProviding {
         return session(for: user)
     }
 
-    /// Signs in with an existing email and password.
+    /// Logs in with an existing email and password.
     /// - Returns: A session for the authenticated registration.
     /// - Throws: `AuthenticationError.invalidCredentials` for a wrong email/password,
-    /// `AuthenticationError.signInFailed` otherwise.
-    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession {
+    /// `AuthenticationError.logInFailed` otherwise.
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession {
         do {
-            return session(for: try await source.signIn(email: email, password: password))
+            return session(for: try await source.login(email: email, password: password))
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 
     /// Creates a new permanent registration with email and password.
     /// - Returns: A session for the newly created registration.
     /// - Throws: `AuthenticationError.emailAlreadyInUse`/`weakPassword` when relevant,
-    /// `AuthenticationError.signInFailed` otherwise.
+    /// `AuthenticationError.logInFailed` otherwise.
     func signUp(email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.createUser(email: email, password: password))
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 
-    /// Signs in anonymously, creating a demo session without a permanent registration.
+    /// Creates a new anonymous registration to start a demo session.
     /// - Returns: An anonymous session.
-    /// - Throws: `AuthenticationError.signInFailed` if the anonymous sign-in fails.
-    func signInAnonymously() async throws -> AuthenticationSession {
+    /// - Throws: `AuthenticationError.logInFailed` if the anonymous registration fails.
+    func signUpAnonymously() async throws -> AuthenticationSession {
         do {
-            return session(for: try await source.signInAnonymously())
+            return session(for: try await source.signUpAnonymously())
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 
@@ -93,12 +93,12 @@ final class AuthenticationProvider: AuthenticationProviding {
     }
 
     /// Sends a password reset email to the given address.
-    /// - Throws: `AuthenticationError.resetPasswordFailed` if the email fails to send.
-    func resetPassword(email: String) async throws {
+    /// - Throws: `AuthenticationError.forgottenPasswordFailed` if the email fails to send.
+    func forgottenPassword(email: String) async throws {
         do {
             try await source.sendPasswordReset(email: email)
         } catch {
-            throw mapError(error, fallback: .resetPasswordFailed)
+            throw mapError(error, fallback: .forgottenPasswordFailed)
         }
     }
 

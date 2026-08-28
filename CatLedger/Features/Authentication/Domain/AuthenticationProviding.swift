@@ -16,12 +16,12 @@ protocol AuthenticationProviding {
     /// - Returns: The stored session, or nil if none exists (absence, not an error).
     func resolveSession() async -> AuthenticationSession?
 
-    /// Signs in with an existing email and password.
+    /// Logs in with an existing email and password.
     /// - Parameters:
-    ///   - email: The email address to sign in with.
-    ///   - password: The password to sign in with.
+    ///   - email: The email address to log in with.
+    ///   - password: The password to log in with.
     /// - Returns: A session for the authenticated registration.
-    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession
 
     /// Creates a new permanent registration with email and password.
     /// - Parameters:
@@ -30,9 +30,9 @@ protocol AuthenticationProviding {
     /// - Returns: A session for the newly created registration.
     func signUp(email: String, password: String) async throws -> AuthenticationSession
 
-    /// Signs in anonymously, creating a demo session without a permanent registration.
+    /// Creates a new anonymous registration to start a demo session.
     /// - Returns: An anonymous session.
-    func signInAnonymously() async throws -> AuthenticationSession
+    func signUpAnonymously() async throws -> AuthenticationSession
 
     /// Signs out the current registration and clears the local session.
     func signOut() async throws
@@ -49,5 +49,5 @@ protocol AuthenticationProviding {
 
     /// Sends a password reset email to the given address.
     /// - Parameter email: The email address of the registration to reset.
-    func resetPassword(email: String) async throws
+    func forgottenPassword(email: String) async throws
 }

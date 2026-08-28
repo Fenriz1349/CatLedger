@@ -11,20 +11,20 @@ import Foundation
 /// that requires no email or password.
 final class RegisterAnonymousProfile {
 
-    private let signInAnonymously: SignInAnonymously
+    private let signUpAnonymously: SignUpAnonymously
     private let createAnonymousProfile: CreateAnonymousProfile
 
     /// - Parameters:
-    ///   - signInAnonymously: The Authentication UseCase used to create the anonymous registration.
+    ///   - signUpAnonymously: The Authentication UseCase used to create the anonymous registration.
     ///   - createAnonymousProfile: The Profile UseCase used to create the placeholder profile.
-    init(signInAnonymously: SignInAnonymously, createAnonymousProfile: CreateAnonymousProfile) {
-        self.signInAnonymously = signInAnonymously
+    init(signUpAnonymously: SignUpAnonymously, createAnonymousProfile: CreateAnonymousProfile) {
+        self.signUpAnonymously = signUpAnonymously
         self.createAnonymousProfile = createAnonymousProfile
     }
 
     /// - Returns: An anonymous session.
     func execute() async throws -> AuthenticationSession {
-        let session = try await signInAnonymously.execute()
+        let session = try await signUpAnonymously.execute()
         _ = try await createAnonymousProfile.execute(registrationId: session.registrationId)
         return session
     }

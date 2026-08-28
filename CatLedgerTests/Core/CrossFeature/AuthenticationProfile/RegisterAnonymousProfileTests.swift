@@ -17,7 +17,7 @@ struct RegisterAnonymousProfileTests {
 
     init() {
         useCase = RegisterAnonymousProfile(
-            signInAnonymously: SignInAnonymously(repository: authRepository),
+            signUpAnonymously: SignUpAnonymously(repository: authRepository),
             createAnonymousProfile: CreateAnonymousProfile(repository: profileRepository)
         )
     }
@@ -36,8 +36,8 @@ struct RegisterAnonymousProfileTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        authRepository.errorToThrow = AuthenticationError.signInFailed
-        await #expect(throws: AuthenticationError.signInFailed) {
+        authRepository.errorToThrow = AuthenticationError.logInFailed
+        await #expect(throws: AuthenticationError.logInFailed) {
             try await useCase.execute()
         }
     }

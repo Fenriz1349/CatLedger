@@ -10,8 +10,8 @@ import Foundation
 /// Errors that can occur during authentication operations.
 enum AuthenticationError: Error, Equatable, LocalizedError {
 
-    /// Thrown when the sign-in process fails.
-    case signInFailed
+    /// Thrown when the log-in process fails.
+    case logInFailed
     /// Thrown when the sign-out process fails.
     case signOutFailed
     /// Thrown when no active session is found.
@@ -29,13 +29,13 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
     /// Thrown when the registration deletion process fails.
     case deletionFailed
     /// Thrown when the password reset email fails to send.
-    case resetPasswordFailed
+    case forgottenPasswordFailed
 
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
         switch self {
-        case .signInFailed:
-            return String(localized: .authErrorSignInFailed)
+        case .logInFailed:
+            return String(localized: .authErrorLogInFailed)
         case .signOutFailed:
             return String(localized: .authErrorSignOutFailed)
         case .noSessionFound:
@@ -52,8 +52,8 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
             return String(localized: .authErrorRegistrationLinkingFailed)
         case .deletionFailed:
             return String(localized: .authErrorDeletionFailed)
-        case .resetPasswordFailed:
-            return String(localized: .authErrorResetPasswordFailed)
+        case .forgottenPasswordFailed:
+            return String(localized: .authErrorForgottenPasswordFailed)
         }
     }
 }

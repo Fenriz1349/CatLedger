@@ -29,7 +29,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         sessionToResolve
     }
 
-    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession {
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
@@ -39,7 +39,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         return sessionToReturn
     }
 
-    func signInAnonymously() async throws -> AuthenticationSession {
+    func signUpAnonymously() async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
@@ -59,7 +59,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         return sessionToReturn
     }
 
-    func resetPassword(email: String) async throws {
+    func forgottenPassword(email: String) async throws {
         if let error = errorToThrow { throw error }
     }
 }
