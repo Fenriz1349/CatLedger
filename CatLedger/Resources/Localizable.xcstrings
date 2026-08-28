@@ -758,6 +758,23 @@
         }
       }
     },
+    "profileFeedback.profileCreated" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your profile has been created."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre profil a été créé."
+          }
+        }
+      }
+    },
     "profileFeedback.profileUpdated" : {
       "extractionState" : "manual",
       "localizations" : {

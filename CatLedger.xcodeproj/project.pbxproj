@@ -183,7 +183,6 @@
 		68861D12303B5D38008E955B /* ProfileProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D11303B5D38008E955B /* ProfileProvider.swift */; };
 		68861D14303B5D51008E955B /* FirebaseProfileSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D13303B5D51008E955B /* FirebaseProfileSource.swift */; };
 		68861D16303B5DFA008E955B /* ProfileE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68861D15303B5DFA008E955B /* ProfileE2ETests.swift */; };
-		689E945030406916008E8CE6 /* CreateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 689E944F30406915008E8CE6 /* CreateProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -379,7 +378,6 @@
 		68861D11303B5D38008E955B /* ProfileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProvider.swift; sourceTree = "<group>"; };
 		68861D13303B5D51008E955B /* FirebaseProfileSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProfileSource.swift; sourceTree = "<group>"; };
 		68861D15303B5DFA008E955B /* ProfileE2ETests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileE2ETests.swift; sourceTree = "<group>"; };
-		689E944F30406915008E8CE6 /* CreateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1028,7 +1026,6 @@
 			isa = PBXGroup;
 			children = (
 				687CFC28303F780400968952 /* ProfileViewModel.swift */,
-				689E944F30406915008E8CE6 /* CreateProfileViewModel.swift */,
 				687CFC2B303F780400968952 /* ProfileFeedback.swift */,
 				687CFC32303F7CD700968952 /* ProfileFormContent.swift */,
 			);
@@ -1297,7 +1294,6 @@
 				68785DAC303E2CF1002E0728 /* AuthenticationFormContent.swift in Sources */,
 				68785DAA303E2CD2002E0728 /* AuthenticationViewModel.swift in Sources */,
 				6839EA3B3038734E006E2AD4 /* Institution.swift in Sources */,
-				689E945030406916008E8CE6 /* CreateProfileViewModel.swift in Sources */,
 				682AE862304031D600DBA5DE /* AppContainer.swift in Sources */,
 				687CFC33303F7CD700968952 /* ProfileFormContent.swift in Sources */,
 				687ADC32303970460004166C /* GetInstitution.swift in Sources */,

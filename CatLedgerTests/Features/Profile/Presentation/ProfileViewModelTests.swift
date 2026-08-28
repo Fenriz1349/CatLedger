@@ -16,40 +16,87 @@ struct ProfileViewModelTests {
     private struct GenericError: Error {}
 
     private let repository = ProfileDouble()
-    private let profile: Profile
-    private let viewModel: ProfileViewModel
 
-    init() {
-        profile = TestData.profile()
-        viewModel = ProfileViewModel(profile: profile, updateProfile: UpdateProfile(repository: repository))
+    private func makeViewModel(context: ProfileViewModel.Context) -> ProfileViewModel {
+        ProfileViewModel(
+            context: context,
+            createProfile: CreateProfile(repository: repository),
+            updateProfile: UpdateProfile(repository: repository)
+        )
     }
 
+    // MARK: create context
+
+    @Test("Starts with empty fields when creating a new profile")
+    func init_createContext_startsWithEmptyFields() {
+        let viewModel = makeViewModel(context: .create(registrationId: UUID()))
+        #expect(viewModel.firstName.isEmpty)
+        #expect(viewModel.lastName.isEmpty)
+    }
+
+    @Test("Submitting valid names persists the new profile and reports profileCreated")
+    func submit_createContext_validNames_reportsProfileCreated() async throws {
+        let registrationId = UUID()
+        let viewModel = makeViewModel(context: .create(registrationId: registrationId))
+        viewModel.firstName = TestData.firstName
+        viewModel.lastName = TestData.lastName
+
+        await viewModel.submit()
+
+        #expect(viewModel.feedback == .profileCreated)
+        let created = try await repository.fetch(by: registrationId)
+        #expect(created.firstName == TestData.firstName)
+        #expect(created.lastName == TestData.lastName)
+    }
+
+    @Test("A non-ProfileError repository failure falls back to creationFailed")
+    func submit_createContext_repositoryThrowsGenericError_fallsBackToCreationFailed() async {
+        let viewModel = makeViewModel(context: .create(registrationId: UUID()))
+        viewModel.firstName = TestData.firstName
+        viewModel.lastName = TestData.lastName
+        repository.errorToThrow = GenericError()
+
+        await viewModel.submit()
+
+        #expect(viewModel.feedback == .error(.creationFailed))
+    }
+
+    // MARK: existing context
+
     @Test("Pre-fills the form with the profile's current name")
-    func init_prefillsNameFromProfile() {
+    func init_existingContext_prefillsNameFromProfile() {
+        let profile = TestData.profile()
+        let viewModel = makeViewModel(context: .existing(profile))
         #expect(viewModel.firstName == profile.firstName)
         #expect(viewModel.lastName == profile.lastName)
     }
 
     @Test("isFormValid is false when a name field is empty")
     func isFormValid_emptyFirstName_returnsFalse() {
+        let viewModel = makeViewModel(context: .existing(TestData.profile()))
         viewModel.firstName = ""
         #expect(!viewModel.isFormValid)
     }
 
     @Test("Submitting valid names persists the update and reports profileUpdated")
-    func submit_validNames_reportsProfileUpdated() async throws {
+    func submit_existingContext_validNames_reportsProfileUpdated() async throws {
+        let profile = TestData.profile()
         try await repository.save(profile)
+        let viewModel = makeViewModel(context: .existing(profile))
         let newName = TestData.updateProfileInput()
         viewModel.firstName = newName.firstName
         viewModel.lastName = newName.lastName
+
         await viewModel.submit()
+
         #expect(viewModel.feedback == .profileUpdated)
         let updated = try await repository.fetch(by: profile.registrationId)
         #expect(updated.firstName == newName.firstName)
     }
 
     @Test("An invalid form is not submitted and reports no feedback")
-    func submit_invalidForm_reportsNoFeedback() async {
+    func submit_existingContext_invalidForm_reportsNoFeedback() async {
+        let viewModel = makeViewModel(context: .existing(TestData.profile()))
         viewModel.firstName = ""
         await viewModel.submit()
         #expect(viewModel.feedback == nil)
@@ -57,14 +104,16 @@ struct ProfileViewModelTests {
     }
 
     @Test("A repository error is reported as error feedback")
-    func submit_repositoryThrowsProfileError_reportsError() async {
+    func submit_existingContext_repositoryThrowsProfileError_reportsError() async {
+        let viewModel = makeViewModel(context: .existing(TestData.profile()))
         repository.errorToThrow = ProfileError.notFound
         await viewModel.submit()
         #expect(viewModel.feedback == .error(.notFound))
     }
 
     @Test("A non-ProfileError repository failure falls back to updateFailed")
-    func submit_repositoryThrowsGenericError_fallsBackToUpdateFailed() async {
+    func submit_existingContext_repositoryThrowsGenericError_fallsBackToUpdateFailed() async {
+        let viewModel = makeViewModel(context: .existing(TestData.profile()))
         repository.errorToThrow = GenericError()
         await viewModel.submit()
         #expect(viewModel.feedback == .error(.updateFailed))

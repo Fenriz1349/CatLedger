@@ -20,6 +20,9 @@ enum ProfileError: Error, Equatable, LocalizedError {
     /// Thrown when persisting a profile update fails for a reason with no more specific case.
     case updateFailed
 
+    /// Thrown when persisting a new profile fails for a reason with no more specific case.
+    case creationFailed
+
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
         switch self {
@@ -29,6 +32,8 @@ enum ProfileError: Error, Equatable, LocalizedError {
             return String(localized: .profileErrorNameTooLong)
         case .updateFailed:
             return String(localized: .profileErrorUpdateFailed)
+        case .creationFailed:
+            return String(localized: .profileErrorCreationFailed)
         }
     }
 }

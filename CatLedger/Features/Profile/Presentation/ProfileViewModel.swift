@@ -8,11 +8,18 @@
 import Foundation
 import CustomTextFields
 
-/// Drives the profile editing form (first and last name).
+/// Drives the profile form, for both creating a new profile and editing an existing one.
 /// Reports outcomes through `feedback` — it never talks to Toasty or builds UI text itself.
 @Observable
 @MainActor
 final class ProfileViewModel {
+
+    /// Which profile this form acts on: a brand-new one for the given registration,
+    /// or an already-existing one being edited.
+    enum Context {
+        case create(registrationId: UUID)
+        case existing(Profile)
+    }
 
     // MARK: Form Fields
     var firstName: String
@@ -27,17 +34,26 @@ final class ProfileViewModel {
     private(set) var feedback: ProfileFeedback?
 
     // MARK: Dependencies
-    private let profile: Profile
-    private let updateProfile: UpdateProfile
+    private let context: Context
+    private let createProfileUseCase: CreateProfile
+    private let updateProfileUseCase: UpdateProfile
 
     /// - Parameters:
-    ///   - profile: The profile being edited, pre-filling the form.
-    ///   - updateProfile: Use case for persisting the edited name.
-    init(profile: Profile, updateProfile: UpdateProfile) {
-        self.profile = profile
-        self.updateProfile = updateProfile
-        firstName = profile.firstName
-        lastName = profile.lastName
+    ///   - context: Whether this form creates a new profile or edits an existing one.
+    ///   - createProfile: Use case for persisting a newly created profile.
+    ///   - updateProfile: Use case for persisting an edited profile.
+    init(context: Context, createProfile: CreateProfile, updateProfile: UpdateProfile) {
+        self.context = context
+        self.createProfileUseCase = createProfile
+        self.updateProfileUseCase = updateProfile
+        switch context {
+        case .create:
+            firstName = ""
+            lastName = ""
+        case .existing(let profile):
+            firstName = profile.firstName
+            lastName = profile.lastName
+        }
     }
 
     /// A name is valid when it is not empty (ignoring whitespace).
@@ -51,25 +67,40 @@ final class ProfileViewModel {
         isValidName(firstName) && isValidName(lastName)
     }
 
-    /// Validates and submits the form, persisting the edited name.
+    /// Validates and submits the form, creating or persisting the name depending on `context`.
     func submit() async {
         guard validateForm() else { return }
         isLoading = true
         defer { isLoading = false }
         do {
-            let input = UpdateProfileInput(
-                id: profile.id,
-                registrationId: profile.registrationId,
-                firstName: firstName,
-                lastName: lastName,
-                photoURL: profile.photoURL
-            )
-            try await updateProfile.execute(input)
-            feedback = .profileUpdated
+            switch context {
+            case .create(let registrationId):
+                _ = try await createProfileUseCase.execute(
+                    registrationId: registrationId,
+                    firstName: firstName,
+                    lastName: lastName
+                )
+                feedback = .profileCreated
+            case .existing(let profile):
+                let input = UpdateProfileInput(
+                    id: profile.id,
+                    registrationId: profile.registrationId,
+                    firstName: firstName,
+                    lastName: lastName,
+                    photoURL: profile.photoURL
+                )
+                try await updateProfileUseCase.execute(input)
+                feedback = .profileUpdated
+            }
         } catch let error as ProfileError {
             feedback = .error(error)
         } catch {
-            feedback = .error(.updateFailed)
+            switch context {
+            case .create:
+                feedback = .error(.creationFailed)
+            case .existing:
+                feedback = .error(.updateFailed)
+            }
         }
     }
 

@@ -32,10 +32,24 @@ final class ProfileContainer {
         deleteProfile = DeleteProfile(repository: provider)
     }
 
+    /// - Parameter registrationId: The registration the new profile will belong to.
+    /// - Returns: A configured ProfileViewModel, in create mode, wired with every use case it needs.
+    func makeViewModel(registrationId: UUID) -> ProfileViewModel {
+        ProfileViewModel(
+            context: .create(registrationId: registrationId),
+            createProfile: createProfile,
+            updateProfile: updateProfile
+        )
+    }
+
     /// - Parameter profile: The profile to edit, pre-filling the form.
-    /// - Returns: A configured ProfileViewModel, wired with every use case it needs.
+    /// - Returns: A configured ProfileViewModel, in edit mode, wired with every use case it needs.
     func makeViewModel(profile: Profile) -> ProfileViewModel {
-        ProfileViewModel(profile: profile, updateProfile: updateProfile)
+        ProfileViewModel(
+            context: .existing(profile),
+            createProfile: createProfile,
+            updateProfile: updateProfile
+        )
     }
 }
 

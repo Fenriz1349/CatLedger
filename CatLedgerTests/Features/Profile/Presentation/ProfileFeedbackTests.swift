@@ -21,6 +21,12 @@ struct ProfileFeedbackTests {
         #expect(toasty.currentToast?.type == .error)
     }
 
+    @Test("Presents a success toast when the profile is created")
+    func present_profileCreated_showsSuccessToast() {
+        ProfileFeedback.profileCreated.present(with: toasty)
+        #expect(toasty.currentToast?.type == .success)
+    }
+
     @Test("Presents a success toast when the profile is updated")
     func present_profileUpdated_showsSuccessToast() {
         ProfileFeedback.profileUpdated.present(with: toasty)
