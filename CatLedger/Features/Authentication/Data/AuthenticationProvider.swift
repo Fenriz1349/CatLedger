@@ -29,35 +29,35 @@ final class AuthenticationProvider: AuthenticationProviding {
     /// Logs in with an existing email and password.
     /// - Returns: A session for the authenticated registration.
     /// - Throws: `AuthenticationError.invalidCredentials` for a wrong email/password,
-    /// `AuthenticationError.signInFailed` otherwise.
+    /// `AuthenticationError.logInFailed` otherwise.
     func login(withEmail email: String, password: String) async throws -> AuthenticationSession {
         do {
-            return session(for: try await source.signIn(email: email, password: password))
+            return session(for: try await source.login(email: email, password: password))
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 
     /// Creates a new permanent registration with email and password.
     /// - Returns: A session for the newly created registration.
     /// - Throws: `AuthenticationError.emailAlreadyInUse`/`weakPassword` when relevant,
-    /// `AuthenticationError.signInFailed` otherwise.
+    /// `AuthenticationError.logInFailed` otherwise.
     func signUp(email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.createUser(email: email, password: password))
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 
-    /// Signs in anonymously, creating a demo session without a permanent registration.
+    /// Logs in anonymously, creating a demo session without a permanent registration.
     /// - Returns: An anonymous session.
-    /// - Throws: `AuthenticationError.signInFailed` if the anonymous sign-in fails.
-    func signInAnonymously() async throws -> AuthenticationSession {
+    /// - Throws: `AuthenticationError.logInFailed` if the anonymous login fails.
+    func logInAnonymously() async throws -> AuthenticationSession {
         do {
-            return session(for: try await source.signInAnonymously())
+            return session(for: try await source.loginAnonymously())
         } catch {
-            throw mapError(error, fallback: .signInFailed)
+            throw mapError(error, fallback: .logInFailed)
         }
     }
 

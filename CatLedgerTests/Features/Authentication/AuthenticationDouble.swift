@@ -39,7 +39,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         return sessionToReturn
     }
 
-    func signInAnonymously() async throws -> AuthenticationSession {
+    func logInAnonymously() async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }

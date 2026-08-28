@@ -17,7 +17,7 @@ struct AuthenticationProfileFeedbackTests {
 
     @Test("Presents an error toast for a wrapped AuthenticationError")
     func present_authenticationError_showsErrorToast() {
-        AuthenticationProfileFeedback.authenticationError(.signInFailed).present(with: toasty)
+        AuthenticationProfileFeedback.authenticationError(.logInFailed).present(with: toasty)
         #expect(toasty.currentToast?.type == .error)
     }
 
@@ -27,9 +27,9 @@ struct AuthenticationProfileFeedbackTests {
         #expect(toasty.currentToast?.type == .error)
     }
 
-    @Test("Presents a success toast when an account is created")
-    func present_accountCreated_showsSuccessToast() {
-        AuthenticationProfileFeedback.accountCreated.present(with: toasty)
+    @Test("Presents a success toast when signed up")
+    func present_signedUp_showsSuccessToast() {
+        AuthenticationProfileFeedback.signedUp.present(with: toasty)
         #expect(toasty.currentToast?.type == .success)
     }
 

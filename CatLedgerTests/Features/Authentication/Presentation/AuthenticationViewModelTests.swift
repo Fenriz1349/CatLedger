@@ -35,59 +35,59 @@ struct AuthenticationViewModelTests {
         #expect(viewModel.isFormValid)
     }
 
-    @Test("Creating-registration mode is invalid when the confirmation doesn't match the password")
-    func isFormValid_creatingRegistration_mismatchedConfirmation_returnsFalse() {
-        viewModel.isCreatingRegistration = true
+    @Test("Signing-up mode is invalid when the confirmation doesn't match the password")
+    func isFormValid_signingUp_mismatchedConfirmation_returnsFalse() {
+        viewModel.isSigningUp = true
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         viewModel.confirmPassword = "Mismatch123!"
         #expect(!viewModel.isFormValid)
     }
 
-    @Test("Creating-registration mode is valid once every field matches")
-    func isFormValid_creatingRegistration_allFieldsValid_returnsTrue() {
-        viewModel.isCreatingRegistration = true
+    @Test("Signing-up mode is valid once every field matches")
+    func isFormValid_signingUp_allFieldsValid_returnsTrue() {
+        viewModel.isSigningUp = true
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         viewModel.confirmPassword = TestData.password
         #expect(viewModel.isFormValid)
     }
 
-    // MARK: login
+    // MARK: logIn
 
     @Test("Logging in with valid credentials reports signedIn")
-    func login_validCredentials_reportsSignedIn() async {
+    func logIn_validCredentials_reportsSignedIn() async {
         viewModel.email = TestData.email
         viewModel.password = TestData.password
-        await viewModel.login()
+        await viewModel.logIn()
         #expect(viewModel.feedback == .signedIn)
         #expect(!viewModel.isLoading)
     }
 
     @Test("An invalid form is not submitted and reports no feedback")
-    func login_invalidForm_reportsNoFeedback() async {
+    func logIn_invalidForm_reportsNoFeedback() async {
         viewModel.email = "not-an-email"
-        await viewModel.login()
+        await viewModel.logIn()
         #expect(viewModel.feedback == nil)
         #expect(viewModel.emailState == .invalid)
     }
 
     @Test("A repository error is reported as error feedback")
-    func login_repositoryThrowsAuthenticationError_reportsError() async {
+    func logIn_repositoryThrowsAuthenticationError_reportsError() async {
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         repository.errorToThrow = AuthenticationError.invalidCredentials
-        await viewModel.login()
+        await viewModel.logIn()
         #expect(viewModel.feedback == .error(.invalidCredentials))
     }
 
-    @Test("A non-AuthenticationError repository failure falls back to signInFailed")
-    func login_repositoryThrowsGenericError_fallsBackToSignInFailed() async {
+    @Test("A non-AuthenticationError repository failure falls back to logInFailed")
+    func logIn_repositoryThrowsGenericError_fallsBackToLogInFailed() async {
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         repository.errorToThrow = GenericError()
-        await viewModel.login()
-        #expect(viewModel.feedback == .error(.signInFailed))
+        await viewModel.logIn()
+        #expect(viewModel.feedback == .error(.logInFailed))
     }
 
     // MARK: signUp

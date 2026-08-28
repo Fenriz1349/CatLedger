@@ -15,7 +15,7 @@ enum AuthenticationProfileFeedback: Equatable {
 
     case authenticationError(AuthenticationError)
     case profileError(ProfileError)
-    case accountCreated
+    case signedUp
     case continuedAsDemo
 
     /// Presents this feedback as a toast.
@@ -26,8 +26,8 @@ enum AuthenticationProfileFeedback: Equatable {
             toasty.showError(error)
         case .profileError(let error):
             toasty.showError(error)
-        case .accountCreated:
-            toasty.showSuccess(String(localized: .authProfileFeedbackAccountCreated))
+        case .signedUp:
+            toasty.showSuccess(String(localized: .authProfileFeedbackSignedUp))
         case .continuedAsDemo:
             toasty.showInfo(String(localized: .authProfileFeedbackContinuedAsDemo))
         }

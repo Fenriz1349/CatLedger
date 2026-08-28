@@ -27,7 +27,7 @@ final class AuthenticationProfileContainer {
             createProfile: profile.createProfile
         )
         registerAnonymousProfile = RegisterAnonymousProfile(
-            signInAnonymously: authentication.signInAnonymously,
+            logInAnonymously: authentication.logInAnonymously,
             createAnonymousProfile: profile.createAnonymousProfile
         )
         linkAnonymousProfile = LinkAnonymousProfile(

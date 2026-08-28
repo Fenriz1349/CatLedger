@@ -18,7 +18,7 @@ final class AuthenticationContainer {
     let resolveSession: ResolveSession
     let logInWithEmail: LogInWithEmail
     let signUp: SignUp
-    let signInAnonymously: SignInAnonymously
+    let logInAnonymously: LogInAnonymously
     let signOut: SignOut
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
@@ -31,7 +31,7 @@ final class AuthenticationContainer {
         resolveSession = ResolveSession(repository: provider)
         logInWithEmail = LogInWithEmail(repository: provider)
         signUp = SignUp(repository: provider)
-        signInAnonymously = SignInAnonymously(repository: provider)
+        logInAnonymously = LogInAnonymously(repository: provider)
         signOut = SignOut(repository: provider)
         deleteRegistration = DeleteRegistration(repository: provider)
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)

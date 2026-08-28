@@ -26,7 +26,7 @@ struct AuthenticationProfileViewModelTests {
                 createProfile: CreateProfile(repository: profileRepository)
             ),
             registerAnonymousProfile: RegisterAnonymousProfile(
-                signInAnonymously: SignInAnonymously(repository: authRepository),
+                signInAnonymously: LogInAnonymously(repository: authRepository),
                 createAnonymousProfile: CreateAnonymousProfile(repository: profileRepository)
             )
         )

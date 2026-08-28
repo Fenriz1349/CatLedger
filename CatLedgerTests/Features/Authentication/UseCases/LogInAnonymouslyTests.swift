@@ -9,13 +9,13 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct SignInAnonymouslyTests {
+struct LogInAnonymouslyTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: SignInAnonymously
+    private let useCase: LogInAnonymously
 
     init() {
-        useCase = SignInAnonymously(repository: repository)
+        useCase = LogInAnonymously(repository: repository)
     }
 
     @Test("Returns the anonymous session provided by the repository")
@@ -28,8 +28,8 @@ struct SignInAnonymouslyTests {
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthenticationError.signInFailed
-        await #expect(throws: AuthenticationError.signInFailed) {
+        repository.errorToThrow = AuthenticationError.logInFailed
+        await #expect(throws: AuthenticationError.logInFailed) {
             try await useCase.execute()
         }
     }

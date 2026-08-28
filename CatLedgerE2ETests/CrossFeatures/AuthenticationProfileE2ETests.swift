@@ -39,7 +39,7 @@ struct AuthenticationProfileE2ETests {
             createProfile: CreateProfile(repository: profileProvider)
         )
         registerAnonymousProfile = RegisterAnonymousProfile(
-            signInAnonymously: SignInAnonymously(repository: authenticationProvider),
+            logInAnonymously: LogInAnonymously(repository: authenticationProvider),
             createAnonymousProfile: CreateAnonymousProfile(repository: profileProvider)
         )
         deleteFirebaseRegistration = DeleteFirebaseRegistration(
