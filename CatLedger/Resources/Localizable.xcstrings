@@ -344,6 +344,23 @@
         }
       }
     },
+    "authError.logOutFailed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log out failed."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La déconnexion a échoué."
+          }
+        }
+      }
+    },
     "authError.noSessionFound" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -391,23 +408,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La migration du compte démo a échoué."
-          }
-        }
-      }
-    },
-    "authError.signOutFailed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign-out failed."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La déconnexion a échoué."
           }
         }
       }

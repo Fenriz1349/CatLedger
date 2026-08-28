@@ -19,7 +19,7 @@ final class AuthenticationContainer {
     let logInWithEmail: LogInWithEmail
     let signUp: SignUp
     let signUpAnonymously: SignUpAnonymously
-    let signOut: SignOut
+    let logOut: LogOut
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
     let forgottenPassword: ForgottenPassword
@@ -32,7 +32,7 @@ final class AuthenticationContainer {
         logInWithEmail = LogInWithEmail(repository: provider)
         signUp = SignUp(repository: provider)
         signUpAnonymously = SignUpAnonymously(repository: provider)
-        signOut = SignOut(repository: provider)
+        logOut = LogOut(repository: provider)
         deleteRegistration = DeleteRegistration(repository: provider)
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
         forgottenPassword = ForgottenPassword(repository: provider)

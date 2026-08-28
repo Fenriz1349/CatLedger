@@ -61,13 +61,13 @@ final class AuthenticationProvider: AuthenticationProviding {
         }
     }
 
-    /// Signs out the current registration and clears the local session.
-    /// - Throws: `AuthenticationError.signOutFailed` if the sign-out fails.
-    func signOut() async throws {
+    /// Logs out the current registration and clears the local session.
+    /// - Throws: `AuthenticationError.logOutFailed` if the log-out fails.
+    func logOut() async throws {
         do {
-            try source.signOut()
+            try source.logOut()
         } catch {
-            throw mapError(error, fallback: .signOutFailed)
+            throw mapError(error, fallback: .logOutFailed)
         }
     }
 

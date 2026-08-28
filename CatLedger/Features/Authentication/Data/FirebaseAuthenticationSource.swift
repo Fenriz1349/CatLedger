@@ -38,8 +38,8 @@ final class FirebaseAuthenticationSource {
         try await auth.signInAnonymously().user
     }
 
-    /// Signs out the current user.
-    func signOut() throws {
+    /// Logs out the current user.
+    func logOut() throws {
         try auth.signOut()
     }
 

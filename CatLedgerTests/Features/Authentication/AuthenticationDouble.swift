@@ -19,8 +19,8 @@ final class AuthenticationDouble: AuthenticationProviding {
     /// Tracks whether deleteRegistration() was called.
     var didCallDeleteRegistration = false
 
-    /// Tracks whether signOut() was called.
-    var didCallSignOut = false
+    /// Tracks whether logOut() was called.
+    var didCallLogOut = false
 
     /// Set this to force any throwing method to throw a specific error.
     var errorToThrow: Error?
@@ -44,9 +44,9 @@ final class AuthenticationDouble: AuthenticationProviding {
         return sessionToReturn
     }
 
-    func signOut() async throws {
+    func logOut() async throws {
         if let error = errorToThrow { throw error }
-        didCallSignOut = true
+        didCallLogOut = true
     }
 
     func deleteRegistration() async throws {

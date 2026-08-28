@@ -39,14 +39,14 @@ struct AuthenticationE2ETests {
         #expect(afterDeletion == nil)
     }
 
-    @Test("Signs out, then logs back in with the same email and password")
-    func signOut_login_resolveSession_roundTrips() async throws {
+    @Test("Logs out, then logs back in with the same email and password")
+    func logOut_login_resolveSession_roundTrips() async throws {
         let email = TestHelperE2E.uniqueEmail()
         let session = try await provider.signUp(email: email, password: TestData.password)
 
-        try await provider.signOut()
-        let afterSignOut = await provider.resolveSession()
-        #expect(afterSignOut == nil)
+        try await provider.logOut()
+        let afterLogOut = await provider.resolveSession()
+        #expect(afterLogOut == nil)
 
         let loggedIn = try await provider.login(withEmail: email, password: TestData.password)
         #expect(loggedIn.registrationId == session.registrationId)
