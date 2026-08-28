@@ -59,7 +59,7 @@ final class AuthenticationDouble: AuthenticationProviding {
         return sessionToReturn
     }
 
-    func resetPassword(email: String) async throws {
+    func forgottenPassword(email: String) async throws {
         if let error = errorToThrow { throw error }
     }
 }

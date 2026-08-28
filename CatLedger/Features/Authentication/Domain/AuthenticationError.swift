@@ -29,7 +29,7 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
     /// Thrown when the registration deletion process fails.
     case deletionFailed
     /// Thrown when the password reset email fails to send.
-    case resetPasswordFailed
+    case forgottenPasswordFailed
 
     /// Returns a localized, human-readable description of the error.
     var errorDescription: String? {
@@ -52,8 +52,8 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
             return String(localized: .authErrorRegistrationLinkingFailed)
         case .deletionFailed:
             return String(localized: .authErrorDeletionFailed)
-        case .resetPasswordFailed:
-            return String(localized: .authErrorResetPasswordFailed)
+        case .forgottenPasswordFailed:
+            return String(localized: .authErrorForgottenPasswordFailed)
         }
     }
 }

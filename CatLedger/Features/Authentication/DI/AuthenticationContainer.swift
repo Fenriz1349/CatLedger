@@ -22,7 +22,7 @@ final class AuthenticationContainer {
     let signOut: SignOut
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
-    let resetPassword: ResetPassword
+    let forgottenPassword: ForgottenPassword
 
     /// - Parameter provider: The Authentication provider to wire every use case to.
     /// Defaults to the Firebase-backed implementation; override with a double in tests.
@@ -35,11 +35,16 @@ final class AuthenticationContainer {
         signOut = SignOut(repository: provider)
         deleteRegistration = DeleteRegistration(repository: provider)
         linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
-        resetPassword = ResetPassword(repository: provider)
+        forgottenPassword = ForgottenPassword(repository: provider)
     }
 
     /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
     func makeViewModel() -> AuthenticationViewModel {
-        AuthenticationViewModel(logInWithEmail: logInWithEmail, signUp: signUp, resetPassword: resetPassword)
+        AuthenticationViewModel(
+            logInWithEmail: logInWithEmail,
+            signUp: signUp,
+            logInAnonymously: logInAnonymously,
+            forgottenPassword: forgottenPassword
+        )
     }
 }

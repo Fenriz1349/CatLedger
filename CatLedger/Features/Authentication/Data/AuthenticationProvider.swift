@@ -93,12 +93,12 @@ final class AuthenticationProvider: AuthenticationProviding {
     }
 
     /// Sends a password reset email to the given address.
-    /// - Throws: `AuthenticationError.resetPasswordFailed` if the email fails to send.
-    func resetPassword(email: String) async throws {
+    /// - Throws: `AuthenticationError.forgottenPasswordFailed` if the email fails to send.
+    func forgottenPassword(email: String) async throws {
         do {
             try await source.sendPasswordReset(email: email)
         } catch {
-            throw mapError(error, fallback: .resetPasswordFailed)
+            throw mapError(error, fallback: .forgottenPasswordFailed)
         }
     }
 

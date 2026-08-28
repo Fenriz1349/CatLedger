@@ -1,5 +1,5 @@
 //
-//  ResetPassword.swift
+//  ForgottenPassword.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -8,7 +8,7 @@
 import Foundation
 
 /// Sends a password reset email to the given address.
-final class ResetPassword {
+final class ForgottenPassword {
 
     private let repository: AuthenticationProviding
 
@@ -19,6 +19,6 @@ final class ResetPassword {
 
     /// - Parameter email: The email address of the registration to reset.
     func execute(email: String) async throws {
-        try await repository.resetPassword(email: email)
+        try await repository.forgottenPassword(email: email)
     }
 }

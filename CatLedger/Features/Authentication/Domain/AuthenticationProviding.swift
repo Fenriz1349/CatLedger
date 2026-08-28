@@ -49,5 +49,5 @@ protocol AuthenticationProviding {
 
     /// Sends a password reset email to the given address.
     /// - Parameter email: The email address of the registration to reset.
-    func resetPassword(email: String) async throws
+    func forgottenPassword(email: String) async throws
 }

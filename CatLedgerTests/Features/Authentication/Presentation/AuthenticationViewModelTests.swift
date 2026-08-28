@@ -22,7 +22,8 @@ struct AuthenticationViewModelTests {
         viewModel = AuthenticationViewModel(
             logInWithEmail: LogInWithEmail(repository: repository),
             signUp: SignUp(repository: repository),
-            resetPassword: ResetPassword(repository: repository)
+            logInAnonymously: LogInAnonymously(repository: repository),
+            forgottenPassword: ForgottenPassword(repository: repository)
         )
     }
 
@@ -108,28 +109,45 @@ struct AuthenticationViewModelTests {
         }
     }
 
-    // MARK: forgotPassword
+    // MARK: logInAnonymously
+
+    @Test("Logs in anonymously and returns an anonymous session")
+    func logInAnonymously_returnsAnonymousSession() async throws {
+        repository.sessionToReturn = AuthenticationSession(registrationId: UUID(), email: nil)
+        let session = try await viewModel.logInAnonymously()
+        #expect(session.isAnonymous)
+    }
+
+    @Test("Propagates a repository error")
+    func logInAnonymously_repositoryThrows_propagatesError() async {
+        repository.errorToThrow = AuthenticationError.logInFailed
+        await #expect(throws: AuthenticationError.logInFailed) {
+            try await viewModel.logInAnonymously()
+        }
+    }
+
+    // MARK: forgottenPassword
 
     @Test("An invalid email blocks the reset without calling the repository")
-    func forgotPassword_invalidEmail_marksFieldInvalid() async {
+    func forgottenPassword_invalidEmail_marksFieldInvalid() async {
         viewModel.email = "not-an-email"
-        await viewModel.forgotPassword()
+        await viewModel.forgottenPassword()
         #expect(viewModel.emailState == .invalid)
         #expect(viewModel.feedback == nil)
     }
 
     @Test("A valid email reports passwordResetSent")
-    func forgotPassword_validEmail_reportsPasswordResetSent() async {
+    func forgottenPassword_validEmail_reportsPasswordResetSent() async {
         viewModel.email = TestData.email
-        await viewModel.forgotPassword()
+        await viewModel.forgottenPassword()
         #expect(viewModel.feedback == .passwordResetSent)
     }
 
     @Test("A repository error while resetting the password is reported as error feedback")
-    func forgotPassword_repositoryThrows_reportsError() async {
+    func forgottenPassword_repositoryThrows_reportsError() async {
         viewModel.email = TestData.email
-        repository.errorToThrow = AuthenticationError.resetPasswordFailed
-        await viewModel.forgotPassword()
-        #expect(viewModel.feedback == .error(.resetPasswordFailed))
+        repository.errorToThrow = AuthenticationError.forgottenPasswordFailed
+        await viewModel.forgottenPassword()
+        #expect(viewModel.feedback == .error(.forgottenPasswordFailed))
     }
 }
