@@ -20,7 +20,14 @@ struct AppEntryView: View {
             case .none:
                 ProgressView()
             case .authentication:
-                AuthenticationView(viewModel: appContainer.authentication.makeViewModel())
+                RegistrationHandlingView(
+                    authenticationViewModel: appContainer.authentication.makeViewModel(
+                        onAuthenticated: { _ in await viewModel.resolve() }
+                    ),
+                    authenticationProfileViewModel: appContainer.authenticationProfile.makeViewModel(
+                        onAuthenticated: { _ in await viewModel.resolve() }
+                    )
+                )
             case .profile(let profile, _):
                 ProfileView(viewModel: appContainer.profile.makeViewModel(profile: profile))
             }

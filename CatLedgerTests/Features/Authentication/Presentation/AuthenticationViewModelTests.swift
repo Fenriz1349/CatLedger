@@ -15,15 +15,25 @@ struct AuthenticationViewModelTests {
 
     private struct GenericError: Error {}
 
+    /// Captures the session passed to `onAuthenticated`, so tests can assert whether and with
+    /// what it was called.
+    @MainActor
+    private final class AuthenticatedSpy {
+        var session: AuthenticationSession?
+    }
+
     private let repository = AuthenticationDouble()
+    private let authenticatedSpy = AuthenticatedSpy()
     private let viewModel: AuthenticationViewModel
 
     init() {
+        let spy = authenticatedSpy
         viewModel = AuthenticationViewModel(
             logInWithEmail: LogInWithEmail(repository: repository),
             signUp: SignUp(repository: repository),
             signUpAnonymously: SignUpAnonymously(repository: repository),
-            forgottenPassword: ForgottenPassword(repository: repository)
+            forgottenPassword: ForgottenPassword(repository: repository),
+            onAuthenticated: { session in spy.session = session }
         )
     }
 
@@ -56,11 +66,12 @@ struct AuthenticationViewModelTests {
 
     // MARK: logIn
 
-    @Test("Logging in with valid credentials reports no feedback")
-    func logIn_validCredentials_reportsNoFeedback() async {
+    @Test("Logging in with valid credentials calls onAuthenticated and reports no feedback")
+    func logIn_validCredentials_callsOnAuthenticatedAndReportsNoFeedback() async {
         viewModel.email = TestData.email
         viewModel.password = TestData.password
         await viewModel.logIn()
+        #expect(authenticatedSpy.session != nil)
         #expect(viewModel.feedback == nil)
         #expect(!viewModel.isLoading)
     }
@@ -69,6 +80,7 @@ struct AuthenticationViewModelTests {
     func logIn_invalidForm_reportsNoFeedback() async {
         viewModel.email = "not-an-email"
         await viewModel.logIn()
+        #expect(authenticatedSpy.session == nil)
         #expect(viewModel.feedback == nil)
         #expect(viewModel.emailState == .invalid)
     }
@@ -79,6 +91,7 @@ struct AuthenticationViewModelTests {
         viewModel.password = TestData.password
         repository.errorToThrow = AuthenticationError.invalidCredentials
         await viewModel.logIn()
+        #expect(authenticatedSpy.session == nil)
         #expect(viewModel.feedback == .error(.invalidCredentials))
     }
 
@@ -88,6 +101,7 @@ struct AuthenticationViewModelTests {
         viewModel.password = TestData.password
         repository.errorToThrow = GenericError()
         await viewModel.logIn()
+        #expect(authenticatedSpy.session == nil)
         #expect(viewModel.feedback == .error(.logInFailed))
     }
 

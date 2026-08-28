@@ -42,11 +42,16 @@ final class AuthenticationProfileContainer {
         )
     }
 
+    /// - Parameter onAuthenticated: Called after a successful sign-up or demo entry, with the
+    /// resulting session.
     /// - Returns: A configured AuthenticationProfileViewModel, wired with every use case it needs.
-    func makeViewModel() -> AuthenticationProfileViewModel {
+    func makeViewModel(
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void
+    ) -> AuthenticationProfileViewModel {
         AuthenticationProfileViewModel(
             registerProfile: registerProfile,
-            registerAnonymousProfile: registerAnonymousProfile
+            registerAnonymousProfile: registerAnonymousProfile,
+            onAuthenticated: onAuthenticated
         )
     }
 }

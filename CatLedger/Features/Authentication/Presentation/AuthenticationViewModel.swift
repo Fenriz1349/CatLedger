@@ -35,22 +35,26 @@ final class AuthenticationViewModel {
     private let signUpUseCase: SignUp
     private let signUpAnonymouslyUseCase: SignUpAnonymously
     private let forgottenPasswordUseCase: ForgottenPassword
+    private let onAuthenticated: (AuthenticationSession) async -> Void
 
     /// - Parameters:
     ///   - logInWithEmail: Use case for logging in with email and password.
     ///   - signUp: Use case for creating a new registration.
     ///   - signUpAnonymously: Use case for creating a new anonymous registration.
     ///   - forgottenPassword: Use case for sending a password reset email.
+    ///   - onAuthenticated: Called after a successful log-in, with the resulting session.
     init(
         logInWithEmail: LogInWithEmail,
         signUp: SignUp,
         signUpAnonymously: SignUpAnonymously,
-        forgottenPassword: ForgottenPassword
+        forgottenPassword: ForgottenPassword,
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void
     ) {
         self.logInWithEmail = logInWithEmail
         self.signUpUseCase = signUp
         self.signUpAnonymouslyUseCase = signUpAnonymously
         self.forgottenPasswordUseCase = forgottenPassword
+        self.onAuthenticated = onAuthenticated
     }
 
     /// The confirmation is valid when it is not empty and matches the password.
@@ -67,12 +71,14 @@ final class AuthenticationViewModel {
     }
 
     /// Validates and logs in with the current email and password.
+    /// Calls `onAuthenticated` with the resulting session on success.
     func logIn() async {
         guard validateForm() else { return }
         isLoading = true
         defer { isLoading = false }
         do {
-            _ = try await logInWithEmail.execute(email: email, password: password)
+            let session = try await logInWithEmail.execute(email: email, password: password)
+            await onAuthenticated(session)
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {
@@ -131,4 +137,3 @@ final class AuthenticationViewModel {
         return isValid
     }
 }
-

@@ -38,13 +38,15 @@ final class AuthenticationContainer {
         forgottenPassword = ForgottenPassword(repository: provider)
     }
 
+    /// - Parameter onAuthenticated: Called after a successful log-in, with the resulting session.
     /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
-    func makeViewModel() -> AuthenticationViewModel {
+    func makeViewModel(onAuthenticated: @escaping (AuthenticationSession) async -> Void) -> AuthenticationViewModel {
         AuthenticationViewModel(
             logInWithEmail: logInWithEmail,
             signUp: signUp,
             signUpAnonymously: signUpAnonymously,
-            forgottenPassword: forgottenPassword
+            forgottenPassword: forgottenPassword,
+            onAuthenticated: onAuthenticated
         )
     }
 }
