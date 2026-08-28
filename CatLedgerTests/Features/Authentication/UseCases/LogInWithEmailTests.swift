@@ -1,5 +1,5 @@
 //
-//  SignInWithEmailTests.swift
+//  LogInWithEmail.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,13 +9,13 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct SignInWithEmailTests {
+struct LogInWithEmailTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: SignInWithEmail
+    private let useCase: LogInWithEmail
 
     init() {
-        useCase = SignInWithEmail(repository: repository)
+        useCase = LogInWithEmail(repository: repository)
     }
 
     @Test("Returns the session provided by the repository")

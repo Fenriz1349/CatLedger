@@ -26,11 +26,11 @@ final class AuthenticationProvider: AuthenticationProviding {
         return session(for: user)
     }
 
-    /// Signs in with an existing email and password.
+    /// Logs in with an existing email and password.
     /// - Returns: A session for the authenticated registration.
     /// - Throws: `AuthenticationError.invalidCredentials` for a wrong email/password,
     /// `AuthenticationError.signInFailed` otherwise.
-    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession {
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession {
         do {
             return session(for: try await source.signIn(email: email, password: password))
         } catch {

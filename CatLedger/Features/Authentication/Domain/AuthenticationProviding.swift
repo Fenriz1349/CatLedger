@@ -16,12 +16,12 @@ protocol AuthenticationProviding {
     /// - Returns: The stored session, or nil if none exists (absence, not an error).
     func resolveSession() async -> AuthenticationSession?
 
-    /// Signs in with an existing email and password.
+    /// Logs in with an existing email and password.
     /// - Parameters:
-    ///   - email: The email address to sign in with.
-    ///   - password: The password to sign in with.
+    ///   - email: The email address to log in with.
+    ///   - password: The password to log in with.
     /// - Returns: A session for the authenticated registration.
-    func signInWithEmail(email: String, password: String) async throws -> AuthenticationSession
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession
 
     /// Creates a new permanent registration with email and password.
     /// - Parameters:

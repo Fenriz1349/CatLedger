@@ -16,7 +16,7 @@ final class AuthenticationContainer {
     let provider: AuthenticationProviding
 
     let resolveSession: ResolveSession
-    let signInWithEmail: SignInWithEmail
+    let logInWithEmail: LogInWithEmail
     let signUp: SignUp
     let signInAnonymously: SignInAnonymously
     let signOut: SignOut
@@ -29,7 +29,7 @@ final class AuthenticationContainer {
     init(provider: AuthenticationProviding = AuthenticationProvider()) {
         self.provider = provider
         resolveSession = ResolveSession(repository: provider)
-        signInWithEmail = SignInWithEmail(repository: provider)
+        logInWithEmail = LogInWithEmail(repository: provider)
         signUp = SignUp(repository: provider)
         signInAnonymously = SignInAnonymously(repository: provider)
         signOut = SignOut(repository: provider)
@@ -40,11 +40,6 @@ final class AuthenticationContainer {
 
     /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
     func makeViewModel() -> AuthenticationViewModel {
-        AuthenticationViewModel(
-            signUp: signUp,
-            signInWithEmail: signInWithEmail,
-            signInAnonymously: signInAnonymously,
-            resetPassword: resetPassword
-        )
+        AuthenticationViewModel(logInWithEmail: logInWithEmail, signUp: signUp, resetPassword: resetPassword)
     }
 }
