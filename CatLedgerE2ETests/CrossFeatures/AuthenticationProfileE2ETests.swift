@@ -12,7 +12,7 @@ import Testing
 /// End-to-end tests running `RegisterProfile`/`RegisterAnonymousProfile`/`DeleteFirebaseRegistration`
 /// against real Firebase Auth and Firestore instances, confirming the registration and its profile
 /// are actually created and deleted together — not just individually, as already covered by
-/// AuthE2ETests/ProfileE2ETests.
+/// AuthenticationE2ETests/ProfileE2ETests.
 ///
 /// Requires the Firebase Local Emulator Suite running locally before executing this test plan:
 ///   `firebase emulators:start`
