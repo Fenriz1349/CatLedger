@@ -21,13 +21,21 @@ struct AuthenticationProfileViewModelTests {
         var session: AuthenticationSession?
     }
 
+    /// Tracks whether `onSessionEnded` was called.
+    @MainActor
+    private final class SessionEndedSpy {
+        var didCallSessionEnded = false
+    }
+
     private let authRepository = AuthenticationDouble()
     private let profileRepository = ProfileDouble()
     private let authenticatedSpy = AuthenticatedSpy()
+    private let sessionEndedSpy = SessionEndedSpy()
     private let viewModel: AuthenticationProfileViewModel
 
     init() {
-        let spy = authenticatedSpy
+        let authenticated = authenticatedSpy
+        let sessionEnded = sessionEndedSpy
         viewModel = AuthenticationProfileViewModel(
             registerProfile: RegisterProfile(
                 signUp: SignUp(repository: authRepository),
@@ -37,7 +45,13 @@ struct AuthenticationProfileViewModelTests {
                 signUpAnonymously: SignUpAnonymously(repository: authRepository),
                 createAnonymousProfile: CreateAnonymousProfile(repository: profileRepository)
             ),
-            onAuthenticated: { session in spy.session = session }
+            deleteFirebaseRegistration: DeleteFirebaseRegistration(
+                getCurrentProfile: GetCurrentProfile(repository: profileRepository),
+                deleteProfile: DeleteProfile(repository: profileRepository),
+                deleteRegistration: DeleteRegistration(repository: authRepository)
+            ),
+            onAuthenticated: { session in authenticated.session = session },
+            onSessionEnded: { sessionEnded.didCallSessionEnded = true }
         )
     }
 
@@ -116,5 +130,37 @@ struct AuthenticationProfileViewModelTests {
         await viewModel.continueAsDemo()
         #expect(authenticatedSpy.session == nil)
         #expect(viewModel.feedback == .authenticationError(.logInFailed))
+    }
+
+    // MARK: deleteFirebaseRegistration
+
+    @Test("Deleting the registration calls onSessionEnded and reports no feedback")
+    func deleteFirebaseRegistration_succeeds_callsOnSessionEndedAndReportsNoFeedback() async throws {
+        let profile = TestData.profile()
+        try await profileRepository.save(profile)
+
+        await viewModel.deleteFirebaseRegistration(registrationId: profile.registrationId)
+
+        #expect(sessionEndedSpy.didCallSessionEnded)
+        #expect(viewModel.feedback == nil)
+    }
+
+    @Test("A profile lookup failure is reported as a profile error")
+    func deleteFirebaseRegistration_profileNotFound_reportsProfileError() async {
+        await viewModel.deleteFirebaseRegistration(registrationId: UUID())
+        #expect(!sessionEndedSpy.didCallSessionEnded)
+        #expect(viewModel.feedback == .profileError(.notFound))
+    }
+
+    @Test("A registration deletion failure is reported as an authentication error")
+    func deleteFirebaseRegistration_deleteRegistrationThrows_reportsAuthenticationError() async throws {
+        let profile = TestData.profile()
+        try await profileRepository.save(profile)
+        authRepository.errorToThrow = AuthenticationError.logOutFailed
+
+        await viewModel.deleteFirebaseRegistration(registrationId: profile.registrationId)
+
+        #expect(!sessionEndedSpy.didCallSessionEnded)
+        #expect(viewModel.feedback == .authenticationError(.logOutFailed))
     }
 }

@@ -8,12 +8,20 @@
 import Foundation
 import CustomTextFields
 
-/// Drives the log-in form, password reset, sign-up, and anonymous sign-up. Purely Authentication —
-/// knows nothing about Profile. Its role is limited to calling its own use cases and reporting
-/// whether they succeeded or failed; it never decides what else should happen as a result.
+/// Drives every purely-Authentication action, for both a not-yet-authenticated session
+/// (log-in form, password reset, sign-up, anonymous sign-up) and an already-authenticated one
+/// (log-out). Knows nothing about Profile. Its role is limited to calling its own use cases and
+/// reporting whether they succeeded or failed; it never decides what else should happen as a result.
 @Observable
 @MainActor
 final class AuthenticationViewModel {
+
+    /// Whether this view model drives the not-yet-authenticated form, or an already-authenticated
+    /// session's actions.
+    enum Context: Equatable {
+        case unauthenticated
+        case authenticated
+    }
 
     // MARK: Form Fields
     var email = ""
@@ -31,30 +39,43 @@ final class AuthenticationViewModel {
     private(set) var feedback: AuthenticationFeedback?
 
     // MARK: Dependencies
+    private let context: Context
     private let logInWithEmail: LogInWithEmail
     private let signUpUseCase: SignUp
     private let signUpAnonymouslyUseCase: SignUpAnonymously
     private let forgottenPasswordUseCase: ForgottenPassword
+    private let logOutUseCase: LogOut
     private let onAuthenticated: (AuthenticationSession) async -> Void
+    private let onLoggedOut: () async -> Void
 
     /// - Parameters:
+    ///   - context: Whether this view model drives the not-yet-authenticated form or an
+    ///   already-authenticated session's actions.
     ///   - logInWithEmail: Use case for logging in with email and password.
     ///   - signUp: Use case for creating a new registration.
     ///   - signUpAnonymously: Use case for creating a new anonymous registration.
     ///   - forgottenPassword: Use case for sending a password reset email.
+    ///   - logOut: Use case for logging out of the current registration.
     ///   - onAuthenticated: Called after a successful log-in, with the resulting session.
+    ///   - onLoggedOut: Called after a successful log-out.
     init(
+        context: Context,
         logInWithEmail: LogInWithEmail,
         signUp: SignUp,
         signUpAnonymously: SignUpAnonymously,
         forgottenPassword: ForgottenPassword,
-        onAuthenticated: @escaping (AuthenticationSession) async -> Void
+        logOut: LogOut,
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void,
+        onLoggedOut: @escaping () async -> Void
     ) {
+        self.context = context
         self.logInWithEmail = logInWithEmail
         self.signUpUseCase = signUp
         self.signUpAnonymouslyUseCase = signUpAnonymously
         self.forgottenPasswordUseCase = forgottenPassword
+        self.logOutUseCase = logOut
         self.onAuthenticated = onAuthenticated
+        self.onLoggedOut = onLoggedOut
     }
 
     /// The confirmation is valid when it is not empty and matches the password.
@@ -96,6 +117,20 @@ final class AuthenticationViewModel {
     /// - Returns: An anonymous session.
     func signUpAnonymously() async throws -> AuthenticationSession {
         try await signUpAnonymouslyUseCase.execute()
+    }
+
+    /// Logs out of the current registration. Calls `onLoggedOut` on success.
+    func logOut() async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            try await logOutUseCase.execute()
+            await onLoggedOut()
+        } catch let error as AuthenticationError {
+            feedback = .error(error)
+        } catch {
+            feedback = .error(.logOutFailed)
+        }
     }
 
     /// Sends a password reset email using the current email field value.

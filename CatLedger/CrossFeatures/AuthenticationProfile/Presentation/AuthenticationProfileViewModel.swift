@@ -9,13 +9,18 @@ import Foundation
 import CustomTextFields
 
 /// Drives the actions that need both Authentication and Profile together: signing up with a
-/// profile, and continuing as a demo. Holds only the cross-feature use cases it needs — it never
-/// reaches into `AuthenticationViewModel` or `ProfileViewModel`, and it never decides what the
-/// app does after a use case succeeds; it only reports whether it failed.
+/// profile, continuing as a demo, and deleting the current registration and its profile. Holds
+/// only the cross-feature use cases it needs — it never reaches into `AuthenticationViewModel` or
+/// `ProfileViewModel`, and it never decides what the app does after a use case succeeds; it only
+/// reports whether it failed.
 ///
 /// Owns `firstName`/`lastName` itself, rather than going through `ProfileViewModel`: at sign-up
 /// time no registration exists yet, so there is no `registrationId` to build a `ProfileViewModel`
 /// with. These fields exist only to feed `signUp(email:password:)`.
+///
+/// Used by two different screens for disjoint halves of its actions: `RegistrationHandlingView`
+/// (sign-up, demo entry) and `ProfileHandlingView` (deletion). Logging out is purely Authentication
+/// and lives on its own dedicated view model instead.
 @Observable
 @MainActor
 final class AuthenticationProfileViewModel {
@@ -35,21 +40,29 @@ final class AuthenticationProfileViewModel {
     // MARK: Dependencies
     private let registerProfile: RegisterProfile
     private let registerAnonymousProfile: RegisterAnonymousProfile
+    private let deleteFirebaseRegistrationUseCase: DeleteFirebaseRegistration
     private let onAuthenticated: (AuthenticationSession) async -> Void
+    private let onSessionEnded: () async -> Void
 
     /// - Parameters:
     ///   - registerProfile: Use case for creating a permanent registration and its profile together.
     ///   - registerAnonymousProfile: Use case for creating an anonymous registration and its
     ///   placeholder profile together.
+    ///   - deleteFirebaseRegistration: Use case for deleting the current profile and registration together.
     ///   - onAuthenticated: Called after a successful sign-up or demo entry, with the resulting session.
+    ///   - onSessionEnded: Called after a successful deletion.
     init(
         registerProfile: RegisterProfile,
         registerAnonymousProfile: RegisterAnonymousProfile,
-        onAuthenticated: @escaping (AuthenticationSession) async -> Void
+        deleteFirebaseRegistration: DeleteFirebaseRegistration,
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void,
+        onSessionEnded: @escaping () async -> Void
     ) {
         self.registerProfile = registerProfile
         self.registerAnonymousProfile = registerAnonymousProfile
+        self.deleteFirebaseRegistrationUseCase = deleteFirebaseRegistration
         self.onAuthenticated = onAuthenticated
+        self.onSessionEnded = onSessionEnded
     }
 
     /// A name is valid when it is not empty (ignoring whitespace).
@@ -102,6 +115,24 @@ final class AuthenticationProfileViewModel {
             feedback = .profileError(error)
         } catch {
             feedback = .authenticationError(.logInFailed)
+        }
+    }
+
+    /// Deletes the current profile, then the registration that owns it.
+    /// Calls `onSessionEnded` on success.
+    /// - Parameter registrationId: The registration whose profile and registration to delete.
+    func deleteFirebaseRegistration(registrationId: UUID) async {
+        isLoading = true
+        defer { isLoading = false }
+        do {
+            try await deleteFirebaseRegistrationUseCase.execute(registrationId: registrationId)
+            await onSessionEnded()
+        } catch let error as AuthenticationError {
+            feedback = .authenticationError(error)
+        } catch let error as ProfileError {
+            feedback = .profileError(error)
+        } catch {
+            feedback = .authenticationError(.logOutFailed)
         }
     }
 }

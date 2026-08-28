@@ -22,18 +22,29 @@ struct AuthenticationViewModelTests {
         var session: AuthenticationSession?
     }
 
+    /// Tracks whether `onLoggedOut` was called.
+    @MainActor
+    private final class LoggedOutSpy {
+        var didCallLoggedOut = false
+    }
+
     private let repository = AuthenticationDouble()
     private let authenticatedSpy = AuthenticatedSpy()
+    private let loggedOutSpy = LoggedOutSpy()
     private let viewModel: AuthenticationViewModel
 
     init() {
-        let spy = authenticatedSpy
+        let authenticated = authenticatedSpy
+        let loggedOut = loggedOutSpy
         viewModel = AuthenticationViewModel(
+            context: .unauthenticated,
             logInWithEmail: LogInWithEmail(repository: repository),
             signUp: SignUp(repository: repository),
             signUpAnonymously: SignUpAnonymously(repository: repository),
             forgottenPassword: ForgottenPassword(repository: repository),
-            onAuthenticated: { session in spy.session = session }
+            logOut: LogOut(repository: repository),
+            onAuthenticated: { session in authenticated.session = session },
+            onLoggedOut: { loggedOut.didCallLoggedOut = true }
         )
     }
 
@@ -138,6 +149,31 @@ struct AuthenticationViewModelTests {
         await #expect(throws: AuthenticationError.logInFailed) {
             try await viewModel.signUpAnonymously()
         }
+    }
+
+    // MARK: logOut
+
+    @Test("Logging out calls onLoggedOut and reports no feedback")
+    func logOut_succeeds_callsOnLoggedOutAndReportsNoFeedback() async {
+        await viewModel.logOut()
+        #expect(loggedOutSpy.didCallLoggedOut)
+        #expect(viewModel.feedback == nil)
+    }
+
+    @Test("A repository error is reported as error feedback")
+    func logOut_repositoryThrowsAuthenticationError_reportsError() async {
+        repository.errorToThrow = AuthenticationError.logOutFailed
+        await viewModel.logOut()
+        #expect(!loggedOutSpy.didCallLoggedOut)
+        #expect(viewModel.feedback == .error(.logOutFailed))
+    }
+
+    @Test("A non-AuthenticationError repository failure falls back to logOutFailed")
+    func logOut_repositoryThrowsGenericError_fallsBackToLogOutFailed() async {
+        repository.errorToThrow = GenericError()
+        await viewModel.logOut()
+        #expect(!loggedOutSpy.didCallLoggedOut)
+        #expect(viewModel.feedback == .error(.logOutFailed))
     }
 
     // MARK: forgottenPassword

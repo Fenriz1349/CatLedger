@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ProfileHandlingView.swift
 //  CatLedger
 //
 //  Created by Julien Cotte on 25/08/2026.
@@ -11,7 +11,7 @@ import Toasty
 /// Profile editing screen (first and last name).
 /// UI is placeholder SwiftUI for now — branded components (header, buttons, background)
 /// land once they're ported from EchoLedger.
-struct ProfileView: View {
+struct ProfileHandlingView: View {
 
     @State var viewModel: ProfileViewModel
     @EnvironmentObject var toasty: ToastyManager
@@ -59,6 +59,6 @@ struct ProfileView: View {
 
 #Preview {
     let profile = Profile(registrationId: UUID(), displayName: "Bruce|Wayne")
-    ProfileView(viewModel: ProfileContainer().makeViewModel(profile: profile))
+    ProfileHandlingView(viewModel: ProfileContainer().makeViewModel(profile: profile))
         .environmentObject(ToastyManager())
 }
