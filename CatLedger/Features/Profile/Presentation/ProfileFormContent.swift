@@ -23,21 +23,21 @@ struct ProfileFormContent: View {
     var body: some View {
         VStack(spacing: 16) {
             CustomTextField(
-                placeholder: "Prénom",
+                placeholder: String(localized: .profileFormFirstNamePlaceholder),
                 text: $firstName,
                 type: .lettersOnly,
                 validator: firstNameValidator,
-                errorMessage: "Le prénom est requis.",
+                errorMessage: String(localized: .profileFormFirstNameRequired),
                 validationState: $firstNameState,
                 showErrorOnlyWhenTriggered: false
             )
             .accessibilityIdentifier("profileField.firstName")
             CustomTextField(
-                placeholder: "Nom",
+                placeholder: String(localized: .profileFormLastNamePlaceholder),
                 text: $lastName,
                 type: .lettersOnly,
                 validator: lastNameValidator,
-                errorMessage: "Le nom est requis.",
+                errorMessage: String(localized: .profileFormLastNameRequired),
                 validationState: $lastNameState,
                 showErrorOnlyWhenTriggered: false
             )
