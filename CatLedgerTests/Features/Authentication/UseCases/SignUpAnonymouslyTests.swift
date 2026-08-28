@@ -1,5 +1,5 @@
 //
-//  LogInAnonymouslyTests.swift
+//  SignUpAnonymouslyTests.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,13 +9,13 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct LogInAnonymouslyTests {
+struct SignUpAnonymouslyTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: LogInAnonymously
+    private let useCase: SignUpAnonymously
 
     init() {
-        useCase = LogInAnonymously(repository: repository)
+        useCase = SignUpAnonymously(repository: repository)
     }
 
     @Test("Returns the anonymous session provided by the repository")

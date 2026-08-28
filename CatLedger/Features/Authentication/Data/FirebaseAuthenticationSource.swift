@@ -32,9 +32,9 @@ final class FirebaseAuthenticationSource {
         try await auth.createUser(withEmail: email, password: password).user
     }
 
-    /// Logs in anonymously, creating a new anonymous account.
+    /// Creates a new anonymous account.
     /// - Returns: The newly created anonymous Firebase user.
-    func loginAnonymously() async throws -> FirebaseAuth.User {
+    func signUpAnonymously() async throws -> FirebaseAuth.User {
         try await auth.signInAnonymously().user
     }
 

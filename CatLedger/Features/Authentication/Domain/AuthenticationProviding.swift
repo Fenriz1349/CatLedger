@@ -30,9 +30,9 @@ protocol AuthenticationProviding {
     /// - Returns: A session for the newly created registration.
     func signUp(email: String, password: String) async throws -> AuthenticationSession
 
-    /// Logs in anonymously, creating a demo session without a permanent registration.
+    /// Creates a new anonymous registration to start a demo session.
     /// - Returns: An anonymous session.
-    func logInAnonymously() async throws -> AuthenticationSession
+    func signUpAnonymously() async throws -> AuthenticationSession
 
     /// Signs out the current registration and clears the local session.
     func signOut() async throws

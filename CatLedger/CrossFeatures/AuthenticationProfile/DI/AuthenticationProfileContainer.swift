@@ -27,7 +27,7 @@ final class AuthenticationProfileContainer {
             createProfile: profile.createProfile
         )
         registerAnonymousProfile = RegisterAnonymousProfile(
-            logInAnonymously: authentication.logInAnonymously,
+            signUpAnonymously: authentication.signUpAnonymously,
             createAnonymousProfile: profile.createAnonymousProfile
         )
         linkAnonymousProfile = LinkAnonymousProfile(
@@ -43,10 +43,10 @@ final class AuthenticationProfileContainer {
     }
 
     /// - Returns: A configured AuthenticationProfileViewModel, wired with every use case it needs.
-    func makeViewModel() -> AuthenticationProfileViewModel {
-        AuthenticationProfileViewModel(
-            registerProfile: registerProfile,
-            registerAnonymousProfile: registerAnonymousProfile
-        )
-    }
+//    func makeViewModel() -> AuthenticationProfileViewModel {
+//        AuthenticationProfileViewModel(
+//            registerProfile: registerProfile,
+//            registerAnonymousProfile: registerAnonymousProfile
+//        )
+//    }
 }

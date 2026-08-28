@@ -22,7 +22,7 @@ struct AuthenticationViewModelTests {
         viewModel = AuthenticationViewModel(
             logInWithEmail: LogInWithEmail(repository: repository),
             signUp: SignUp(repository: repository),
-            logInAnonymously: LogInAnonymously(repository: repository),
+            signUpAnonymously: SignUpAnonymously(repository: repository),
             forgottenPassword: ForgottenPassword(repository: repository)
         )
     }
@@ -109,20 +109,20 @@ struct AuthenticationViewModelTests {
         }
     }
 
-    // MARK: logInAnonymously
+    // MARK: signUpAnonymously
 
-    @Test("Logs in anonymously and returns an anonymous session")
-    func logInAnonymously_returnsAnonymousSession() async throws {
+    @Test("Creates an anonymous registration and returns an anonymous session")
+    func signUpAnonymously_returnsAnonymousSession() async throws {
         repository.sessionToReturn = AuthenticationSession(registrationId: UUID(), email: nil)
-        let session = try await viewModel.logInAnonymously()
+        let session = try await viewModel.signUpAnonymously()
         #expect(session.isAnonymous)
     }
 
     @Test("Propagates a repository error")
-    func logInAnonymously_repositoryThrows_propagatesError() async {
+    func signUpAnonymously_repositoryThrows_propagatesError() async {
         repository.errorToThrow = AuthenticationError.logInFailed
         await #expect(throws: AuthenticationError.logInFailed) {
-            try await viewModel.logInAnonymously()
+            try await viewModel.signUpAnonymously()
         }
     }
 

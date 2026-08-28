@@ -17,7 +17,7 @@ struct RegisterAnonymousProfileTests {
 
     init() {
         useCase = RegisterAnonymousProfile(
-            logInAnonymously: LogInAnonymously(repository: authRepository),
+            signUpAnonymously: SignUpAnonymously(repository: authRepository),
             createAnonymousProfile: CreateAnonymousProfile(repository: profileRepository)
         )
     }

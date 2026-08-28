@@ -50,12 +50,12 @@ final class AuthenticationProvider: AuthenticationProviding {
         }
     }
 
-    /// Logs in anonymously, creating a demo session without a permanent registration.
+    /// Creates a new anonymous registration to start a demo session.
     /// - Returns: An anonymous session.
-    /// - Throws: `AuthenticationError.logInFailed` if the anonymous login fails.
-    func logInAnonymously() async throws -> AuthenticationSession {
+    /// - Throws: `AuthenticationError.logInFailed` if the anonymous registration fails.
+    func signUpAnonymously() async throws -> AuthenticationSession {
         do {
-            return session(for: try await source.loginAnonymously())
+            return session(for: try await source.signUpAnonymously())
         } catch {
             throw mapError(error, fallback: .logInFailed)
         }
