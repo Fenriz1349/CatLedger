@@ -42,16 +42,20 @@ final class AuthenticationProfileContainer {
         )
     }
 
-    /// - Parameter onAuthenticated: Called after a successful sign-up or demo entry, with the
-    /// resulting session.
+    /// - Parameters:
+    ///   - onAuthenticated: Called after a successful sign-up or demo entry, with the resulting session.
+    ///   - onSessionEnded: Called after a successful deletion.
     /// - Returns: A configured AuthenticationProfileViewModel, wired with every use case it needs.
     func makeViewModel(
-        onAuthenticated: @escaping (AuthenticationSession) async -> Void
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void,
+        onSessionEnded: @escaping () async -> Void
     ) -> AuthenticationProfileViewModel {
         AuthenticationProfileViewModel(
             registerProfile: registerProfile,
             registerAnonymousProfile: registerAnonymousProfile,
-            onAuthenticated: onAuthenticated
+            deleteFirebaseRegistration: deleteFirebaseRegistration,
+            onAuthenticated: onAuthenticated,
+            onSessionEnded: onSessionEnded
         )
     }
 }

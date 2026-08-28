@@ -34,8 +34,8 @@ protocol AuthenticationProviding {
     /// - Returns: An anonymous session.
     func signUpAnonymously() async throws -> AuthenticationSession
 
-    /// Signs out the current registration and clears the local session.
-    func signOut() async throws
+    /// Logs out the current registration and clears the local session.
+    func logOut() async throws
 
     /// Permanently deletes the current registration.
     func deleteRegistration() async throws

@@ -1,5 +1,5 @@
 //
-//  SignOutTests.swift
+//  LogOutTests.swift
 //  CatLedgerTests
 //
 //  Created by Julien Cotte on 22/08/2026.
@@ -9,25 +9,25 @@ import Foundation
 import Testing
 @testable import CatLedger
 
-struct SignOutTests {
+struct LogOutTests {
 
     private let repository = AuthenticationDouble()
-    private let useCase: SignOut
+    private let useCase: LogOut
 
     init() {
-        useCase = SignOut(repository: repository)
+        useCase = LogOut(repository: repository)
     }
 
-    @Test("Calls signOut on the repository")
-    func execute_callsSignOut() async throws {
+    @Test("Calls logOut on the repository")
+    func execute_callsLogOut() async throws {
         try await useCase.execute()
-        #expect(repository.didCallSignOut)
+        #expect(repository.didCallLogOut)
     }
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthenticationError.signOutFailed
-        await #expect(throws: AuthenticationError.signOutFailed) {
+        repository.errorToThrow = AuthenticationError.logOutFailed
+        await #expect(throws: AuthenticationError.logOutFailed) {
             try await useCase.execute()
         }
     }

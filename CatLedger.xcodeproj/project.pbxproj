@@ -85,7 +85,7 @@
 		68558A873039FBF100FE562D /* GetTransactionsByCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A863039FBF100FE562D /* GetTransactionsByCategoryTests.swift */; };
 		68558A8A3039FD3000FE562D /* LogInWithEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A893039FD3000FE562D /* LogInWithEmail.swift */; };
 		68558A8E3039FD4700FE562D /* SignUpAnonymously.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8D3039FD4700FE562D /* SignUpAnonymously.swift */; };
-		68558A903039FD5600FE562D /* SignOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8F3039FD5600FE562D /* SignOut.swift */; };
+		68558A903039FD5600FE562D /* LogOut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A8F3039FD5600FE562D /* LogOut.swift */; };
 		68558A963039FD7D00FE562D /* ForgottenPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A953039FD7D00FE562D /* ForgottenPassword.swift */; };
 		68558A983039FD8E00FE562D /* ResolveSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A973039FD8E00FE562D /* ResolveSession.swift */; };
 		68558A9D3039FE5600FE562D /* AuthenticationDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A9C3039FE5600FE562D /* AuthenticationDouble.swift */; };
@@ -151,7 +151,7 @@
 		687ADC7330397B930004166C /* DeleteAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7230397B930004166C /* DeleteAccount.swift */; };
 		687CFC2D303F780400968952 /* ProfileFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC2B303F780400968952 /* ProfileFeedback.swift */; };
 		687CFC2E303F780400968952 /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC26303F780400968952 /* ProfileContainer.swift */; };
-		687CFC30303F780400968952 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC29303F780400968952 /* ProfileView.swift */; };
+		687CFC30303F780400968952 /* ProfileHandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC29303F780400968952 /* ProfileHandlingView.swift */; };
 		687CFC31303F780400968952 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC28303F780400968952 /* ProfileViewModel.swift */; };
 		687CFC33303F7CD700968952 /* ProfileFormContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC32303F7CD700968952 /* ProfileFormContent.swift */; };
 		6883C1A3303EB2CA007A359E /* AuthenticationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883C1A2303EB2CA007A359E /* AuthenticationViewModelTests.swift */; };
@@ -282,7 +282,7 @@
 		68558A863039FBF100FE562D /* GetTransactionsByCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTransactionsByCategoryTests.swift; sourceTree = "<group>"; };
 		68558A893039FD3000FE562D /* LogInWithEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInWithEmail.swift; sourceTree = "<group>"; };
 		68558A8D3039FD4700FE562D /* SignUpAnonymously.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAnonymously.swift; sourceTree = "<group>"; };
-		68558A8F3039FD5600FE562D /* SignOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignOut.swift; sourceTree = "<group>"; };
+		68558A8F3039FD5600FE562D /* LogOut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOut.swift; sourceTree = "<group>"; };
 		68558A953039FD7D00FE562D /* ForgottenPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgottenPassword.swift; sourceTree = "<group>"; };
 		68558A973039FD8E00FE562D /* ResolveSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveSession.swift; sourceTree = "<group>"; };
 		68558A9C3039FE5600FE562D /* AuthenticationDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationDouble.swift; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 		687ADC7230397B930004166C /* DeleteAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccount.swift; sourceTree = "<group>"; };
 		687CFC26303F780400968952 /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		687CFC28303F780400968952 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		687CFC29303F780400968952 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		687CFC29303F780400968952 /* ProfileHandlingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHandlingView.swift; sourceTree = "<group>"; };
 		687CFC2B303F780400968952 /* ProfileFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedback.swift; sourceTree = "<group>"; };
 		687CFC32303F7CD700968952 /* ProfileFormContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFormContent.swift; sourceTree = "<group>"; };
 		6883C1A2303EB2CA007A359E /* AuthenticationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelTests.swift; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				68785DAD303E2D12002E0728 /* RegistrationHandlingView.swift */,
-				687CFC29303F780400968952 /* ProfileView.swift */,
+				687CFC29303F780400968952 /* ProfileHandlingView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -809,7 +809,7 @@
 				68861CB6303AFEF8008E955B /* SignUp.swift */,
 				68558A893039FD3000FE562D /* LogInWithEmail.swift */,
 				68558A8D3039FD4700FE562D /* SignUpAnonymously.swift */,
-				68558A8F3039FD5600FE562D /* SignOut.swift */,
+				68558A8F3039FD5600FE562D /* LogOut.swift */,
 				68558A953039FD7D00FE562D /* ForgottenPassword.swift */,
 				68558A973039FD8E00FE562D /* ResolveSession.swift */,
 				68861CAE303AFAB0008E955B /* LinkAnonymousRegistration.swift */,
@@ -1331,7 +1331,7 @@
 				687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */,
 				6839EA5B30387C19006E2AD4 /* AccountProviding.swift in Sources */,
 				6839EA81303890B1006E2AD4 /* UpdateProfileInput.swift in Sources */,
-				68558A903039FD5600FE562D /* SignOut.swift in Sources */,
+				68558A903039FD5600FE562D /* LogOut.swift in Sources */,
 				682AE864304031E800DBA5DE /* AppEntryView.swift in Sources */,
 				68861CBD303B0161008E955B /* CreateProfile.swift in Sources */,
 				687A3B36303C167500BC953A /* FirebaseAccountSource.swift in Sources */,
@@ -1372,7 +1372,7 @@
 				68558A653039F6C800FE562D /* GetTransaction.swift in Sources */,
 				687CFC2D303F780400968952 /* ProfileFeedback.swift in Sources */,
 				687CFC2E303F780400968952 /* ProfileContainer.swift in Sources */,
-				687CFC30303F780400968952 /* ProfileView.swift in Sources */,
+				687CFC30303F780400968952 /* ProfileHandlingView.swift in Sources */,
 				687CFC31303F780400968952 /* ProfileViewModel.swift in Sources */,
 				68785DB3303E2F9A002E0728 /* AuthenticationFeedback.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,

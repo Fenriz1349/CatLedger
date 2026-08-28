@@ -30,6 +30,9 @@ final class ProfileViewModel {
     var lastNameState: ValidationState = .neutral
 
     // MARK: UI State
+    /// Whether the edit form is shown instead of the plain name display. Only meaningful for
+    /// `.existing` — `.create` is always shown as a form.
+    var isEditing = false
     var isLoading = false
     private(set) var feedback: ProfileFeedback?
 
@@ -89,6 +92,7 @@ final class ProfileViewModel {
                     photoURL: profile.photoURL
                 )
                 try await updateProfileUseCase.execute(input)
+                isEditing = false
             }
         } catch let error as ProfileError {
             feedback = .error(error)

@@ -12,8 +12,8 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
 
     /// Thrown when the log-in process fails.
     case logInFailed
-    /// Thrown when the sign-out process fails.
-    case signOutFailed
+    /// Thrown when the log-out process fails.
+    case logOutFailed
     /// Thrown when no active session is found.
     case noSessionFound
     /// Thrown when the email address is already linked to an existing registration.
@@ -36,8 +36,8 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
         switch self {
         case .logInFailed:
             return String(localized: .authErrorLogInFailed)
-        case .signOutFailed:
-            return String(localized: .authErrorSignOutFailed)
+        case .logOutFailed:
+            return String(localized: .authErrorLogOutFailed)
         case .noSessionFound:
             return String(localized: .authErrorNoSessionFound)
         case .emailAlreadyInUse:

@@ -78,11 +78,12 @@ struct ProfileViewModelTests {
         #expect(!viewModel.isFormValid)
     }
 
-    @Test("Submitting valid names persists the update and reports no feedback")
-    func submit_existingContext_validNames_reportsNoFeedback() async throws {
+    @Test("Submitting valid names persists the update, reports no feedback, and exits edit mode")
+    func submit_existingContext_validNames_reportsNoFeedbackAndExitsEditMode() async throws {
         let profile = TestData.profile()
         try await repository.save(profile)
         let viewModel = makeViewModel(context: .existing(profile))
+        viewModel.isEditing = true
         let newName = TestData.updateProfileInput()
         viewModel.firstName = newName.firstName
         viewModel.lastName = newName.lastName
@@ -90,6 +91,7 @@ struct ProfileViewModelTests {
         await viewModel.submit()
 
         #expect(viewModel.feedback == nil)
+        #expect(!viewModel.isEditing)
         let updated = try await repository.fetch(by: profile.registrationId)
         #expect(updated.firstName == newName.firstName)
     }

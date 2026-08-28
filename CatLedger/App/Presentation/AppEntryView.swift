@@ -22,14 +22,30 @@ struct AppEntryView: View {
             case .authentication:
                 RegistrationHandlingView(
                     authenticationViewModel: appContainer.authentication.makeViewModel(
-                        onAuthenticated: { _ in await viewModel.resolve() }
+                        context: .unauthenticated,
+                        onAuthenticated: { _ in await viewModel.resolve() },
+                        onLoggedOut: {}
                     ),
                     authenticationProfileViewModel: appContainer.authenticationProfile.makeViewModel(
-                        onAuthenticated: { _ in await viewModel.resolve() }
+                        onAuthenticated: { _ in await viewModel.resolve() },
+                        onSessionEnded: {}
                     )
                 )
-            case .profile(let profile, _):
-                ProfileView(viewModel: appContainer.profile.makeViewModel(profile: profile))
+            case .profile(let profile, let email):
+                ProfileHandlingView(
+                    viewModel: appContainer.profile.makeViewModel(profile: profile),
+                    authenticationViewModel: appContainer.authentication.makeViewModel(
+                        context: .authenticated,
+                        onAuthenticated: { _ in },
+                        onLoggedOut: { await viewModel.resolve() }
+                    ),
+                    authenticationProfileViewModel: appContainer.authenticationProfile.makeViewModel(
+                        onAuthenticated: { _ in },
+                        onSessionEnded: { await viewModel.resolve() }
+                    ),
+                    registrationId: profile.registrationId,
+                    email: email
+                )
             }
         }
         .task {

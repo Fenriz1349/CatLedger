@@ -133,11 +133,15 @@ struct RegistrationHandlingView: View {
     let authenticationContainer = AuthenticationContainer()
     let profileContainer = ProfileContainer()
     RegistrationHandlingView(
-        authenticationViewModel: authenticationContainer.makeViewModel(onAuthenticated: { _ in }),
+        authenticationViewModel: authenticationContainer.makeViewModel(
+            context: .unauthenticated,
+            onAuthenticated: { _ in },
+            onLoggedOut: {}
+        ),
         authenticationProfileViewModel: AuthenticationProfileContainer(
             authentication: authenticationContainer,
             profile: profileContainer
-        ).makeViewModel(onAuthenticated: { _ in })
+        ).makeViewModel(onAuthenticated: { _ in }, onSessionEnded: {})
     )
     .environmentObject(ToastyManager())
 }
