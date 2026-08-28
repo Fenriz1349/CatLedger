@@ -8,8 +8,9 @@
 import Foundation
 import CustomTextFields
 
-/// Drives the sign-in / sign-up form and the anonymous demo entry point.
-/// Reports outcomes through `feedback` — it never talks to Toasty or builds UI text itself.
+/// Drives the log-in form, password reset, sign-up, and anonymous sign-up. Purely Authentication —
+/// knows nothing about Profile. Its role is limited to calling its own use cases and reporting
+/// whether they succeeded or failed; it never decides what else should happen as a result.
 @Observable
 @MainActor
 final class AuthenticationViewModel {
@@ -25,31 +26,31 @@ final class AuthenticationViewModel {
     var confirmPasswordState: ValidationState = .neutral
 
     // MARK: UI State
-    var isSignUp = false
+    var isSigningUp = false
     var isLoading = false
     private(set) var feedback: AuthenticationFeedback?
 
     // MARK: Dependencies
-    private let signUp: SignUp
-    private let signInWithEmail: SignInWithEmail
-    private let signInAnonymously: SignInAnonymously
-    private let resetPassword: ResetPassword
+    private let logInWithEmail: LogInWithEmail
+    private let signUpUseCase: SignUp
+    private let signUpAnonymouslyUseCase: SignUpAnonymously
+    private let forgottenPasswordUseCase: ForgottenPassword
 
     /// - Parameters:
+    ///   - logInWithEmail: Use case for logging in with email and password.
     ///   - signUp: Use case for creating a new registration.
-    ///   - signInWithEmail: Use case for email/password sign-in.
-    ///   - signInAnonymously: Use case for starting an anonymous demo session.
-    ///   - resetPassword: Use case for sending a password reset email.
+    ///   - signUpAnonymously: Use case for creating a new anonymous registration.
+    ///   - forgottenPassword: Use case for sending a password reset email.
     init(
+        logInWithEmail: LogInWithEmail,
         signUp: SignUp,
-        signInWithEmail: SignInWithEmail,
-        signInAnonymously: SignInAnonymously,
-        resetPassword: ResetPassword
+        signUpAnonymously: SignUpAnonymously,
+        forgottenPassword: ForgottenPassword
     ) {
-        self.signUp = signUp
-        self.signInWithEmail = signInWithEmail
-        self.signInAnonymously = signInAnonymously
-        self.resetPassword = resetPassword
+        self.logInWithEmail = logInWithEmail
+        self.signUpUseCase = signUp
+        self.signUpAnonymouslyUseCase = signUpAnonymously
+        self.forgottenPasswordUseCase = forgottenPassword
     }
 
     /// The confirmation is valid when it is not empty and matches the password.
@@ -61,46 +62,39 @@ final class AuthenticationViewModel {
     /// Returns true when all required fields are filled and valid.
     var isFormValid: Bool {
         let base = Validators.isValidEmail(email) && Validators.isStrongPassword(password)
-        guard isSignUp else { return base }
+        guard isSigningUp else { return base }
         return base && password == confirmPassword
     }
 
-    /// Validates and submits the form, signing in or creating an account depending on the current mode.
-    func submit() async {
+    /// Validates and logs in with the current email and password.
+    func logIn() async {
         guard validateForm() else { return }
         isLoading = true
         defer { isLoading = false }
         do {
-            if isSignUp {
-                _ = try await signUp.execute(email: email, password: password)
-                feedback = .accountCreated
-            } else {
-                _ = try await signInWithEmail.execute(email: email, password: password)
-                feedback = .signedIn
-            }
+            _ = try await logInWithEmail.execute(email: email, password: password)
+            feedback = .signedIn
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {
-            feedback = .error(.signInFailed)
+            feedback = .error(.logInFailed)
         }
     }
 
-    /// Starts an anonymous demo session.
-    func continueAnonymously() async {
-        isLoading = true
-        defer { isLoading = false }
-        do {
-            _ = try await signInAnonymously.execute()
-            feedback = .continuedAsDemo
-        } catch let error as AuthenticationError {
-            feedback = .error(error)
-        } catch {
-            feedback = .error(.signInFailed)
-        }
+    /// Creates a new Firebase registration from the current email and password.
+    /// - Returns: A session for the newly created registration.
+    func signUp() async throws -> AuthenticationSession {
+        try await signUpUseCase.execute(email: email, password: password)
+    }
+
+    /// Creates a new anonymous Firebase registration.
+    /// - Returns: An anonymous session.
+    func signUpAnonymously() async throws -> AuthenticationSession {
+        try await signUpAnonymouslyUseCase.execute()
     }
 
     /// Sends a password reset email using the current email field value.
-    func forgotPassword() async {
+    func forgottenPassword() async {
         guard Validators.isValidEmail(email) else {
             emailState = .invalid
             return
@@ -108,12 +102,12 @@ final class AuthenticationViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
-            try await resetPassword.execute(email: email)
+            try await forgottenPasswordUseCase.execute(email: email)
             feedback = .passwordResetSent
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {
-            feedback = .error(.resetPasswordFailed)
+            feedback = .error(.forgottenPasswordFailed)
         }
     }
 
@@ -131,10 +125,11 @@ final class AuthenticationViewModel {
             passwordState = .invalid
             isValid = false
         }
-        if isSignUp, password != confirmPassword {
+        if isSigningUp, password != confirmPassword {
             confirmPasswordState = .invalid
             isValid = false
         }
         return isValid
     }
 }
+

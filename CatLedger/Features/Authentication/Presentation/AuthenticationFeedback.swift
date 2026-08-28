@@ -14,9 +14,7 @@ import Toasty
 enum AuthenticationFeedback: Equatable {
 
     case error(AuthenticationError)
-    case accountCreated
     case signedIn
-    case continuedAsDemo
     case passwordResetSent
 
     /// Presents this feedback as a toast.
@@ -25,12 +23,8 @@ enum AuthenticationFeedback: Equatable {
         switch self {
         case .error(let error):
             toasty.showError(error)
-        case .accountCreated:
-            toasty.showSuccess(String(localized: .authFeedbackAccountCreated))
         case .signedIn:
             toasty.showSuccess(String(localized: .authFeedbackSignedIn))
-        case .continuedAsDemo:
-            toasty.showInfo(String(localized: .authFeedbackContinuedAsDemo))
         case .passwordResetSent:
             toasty.showSuccess(String(localized: .authFeedbackPasswordResetSent))
         }
