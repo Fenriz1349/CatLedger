@@ -10,5 +10,5 @@
 
 // Single source of truth for the app's marketing version.
 // Bumped automatically by release-please based on Conventional Commits.
-MARKETING_VERSION = 0.3.0 // x-release-please-version
+MARKETING_VERSION = 0.4.0 // x-release-please-version
 CURRENT_PROJECT_VERSION = 1
