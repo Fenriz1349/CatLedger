@@ -151,7 +151,7 @@
 		687ADC7330397B930004166C /* DeleteAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687ADC7230397B930004166C /* DeleteAccount.swift */; };
 		687CFC2D303F780400968952 /* ProfileFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC2B303F780400968952 /* ProfileFeedback.swift */; };
 		687CFC2E303F780400968952 /* ProfileContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC26303F780400968952 /* ProfileContainer.swift */; };
-		687CFC30303F780400968952 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC29303F780400968952 /* ProfileView.swift */; };
+		687CFC30303F780400968952 /* ProfileHandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC29303F780400968952 /* ProfileHandlingView.swift */; };
 		687CFC31303F780400968952 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC28303F780400968952 /* ProfileViewModel.swift */; };
 		687CFC33303F7CD700968952 /* ProfileFormContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687CFC32303F7CD700968952 /* ProfileFormContent.swift */; };
 		6883C1A3303EB2CA007A359E /* AuthenticationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883C1A2303EB2CA007A359E /* AuthenticationViewModelTests.swift */; };
@@ -347,7 +347,7 @@
 		687ADC7230397B930004166C /* DeleteAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccount.swift; sourceTree = "<group>"; };
 		687CFC26303F780400968952 /* ProfileContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileContainer.swift; sourceTree = "<group>"; };
 		687CFC28303F780400968952 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		687CFC29303F780400968952 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		687CFC29303F780400968952 /* ProfileHandlingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHandlingView.swift; sourceTree = "<group>"; };
 		687CFC2B303F780400968952 /* ProfileFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFeedback.swift; sourceTree = "<group>"; };
 		687CFC32303F7CD700968952 /* ProfileFormContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileFormContent.swift; sourceTree = "<group>"; };
 		6883C1A2303EB2CA007A359E /* AuthenticationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelTests.swift; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 			isa = PBXGroup;
 			children = (
 				68785DAD303E2D12002E0728 /* RegistrationHandlingView.swift */,
-				687CFC29303F780400968952 /* ProfileView.swift */,
+				687CFC29303F780400968952 /* ProfileHandlingView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -1372,7 +1372,7 @@
 				68558A653039F6C800FE562D /* GetTransaction.swift in Sources */,
 				687CFC2D303F780400968952 /* ProfileFeedback.swift in Sources */,
 				687CFC2E303F780400968952 /* ProfileContainer.swift in Sources */,
-				687CFC30303F780400968952 /* ProfileView.swift in Sources */,
+				687CFC30303F780400968952 /* ProfileHandlingView.swift in Sources */,
 				687CFC31303F780400968952 /* ProfileViewModel.swift in Sources */,
 				68785DB3303E2F9A002E0728 /* AuthenticationFeedback.swift in Sources */,
 				6839EA5930387C10006E2AD4 /* AccountError.swift in Sources */,
