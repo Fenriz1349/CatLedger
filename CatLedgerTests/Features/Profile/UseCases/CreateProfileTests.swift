@@ -23,14 +23,13 @@ struct CreateProfileTests {
     func execute_validInput_savesProfile() async throws {
         let profile = try await useCase.execute(
             registrationId: registrationId,
-            firstName: "Bruce",
-            lastName: "Wayne",
-            email: "batman@gotham.com"
+            firstName: TestData.firstName,
+            lastName: TestData.lastName
         )
         let saved = try await repository.fetch(by: registrationId)
         #expect(saved.id == profile.id)
-        #expect(saved.firstName == "Bruce")
-        #expect(saved.lastName == "Wayne")
+        #expect(saved.firstName == TestData.firstName)
+        #expect(saved.lastName == TestData.lastName)
     }
 
     @Test("Throws nameTooLong when the first name exceeds 50 characters")
@@ -39,8 +38,7 @@ struct CreateProfileTests {
             try await useCase.execute(
                 registrationId: registrationId,
                 firstName: String(repeating: "A", count: 51),
-                lastName: "Wayne",
-                email: "batman@gotham.com"
+                lastName: TestData.lastName
             )
         }
     }
@@ -50,21 +48,8 @@ struct CreateProfileTests {
         await #expect(throws: ProfileError.nameTooLong) {
             try await useCase.execute(
                 registrationId: registrationId,
-                firstName: "Bruce",
-                lastName: String(repeating: "A", count: 51),
-                email: "batman@gotham.com"
-            )
-        }
-    }
-
-    @Test("Throws invalidEmail for an email missing an @")
-    func execute_invalidEmail_throwsInvalidEmail() async throws {
-        await #expect(throws: ProfileError.invalidEmail) {
-            try await useCase.execute(
-                registrationId: registrationId,
-                firstName: "Bruce",
-                lastName: "Wayne",
-                email: "not-an-email"
+                firstName: TestData.firstName,
+                lastName: String(repeating: "A", count: 51)
             )
         }
     }

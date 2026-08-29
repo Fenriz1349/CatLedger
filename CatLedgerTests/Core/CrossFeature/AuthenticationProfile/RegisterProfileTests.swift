@@ -24,31 +24,30 @@ struct RegisterProfileTests {
 
     @Test("Creates the registration and its profile")
     func execute_validInput_createsRegistrationAndProfile() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: false)
+        let session = AuthenticationSession(registrationId: UUID(), email: TestData.email)
         authRepository.sessionToReturn = session
 
         let result = try await useCase.execute(
-            firstName: "Bruce",
-            lastName: "Wayne",
-            email: "batman@gotham.com",
-            password: "password123"
+            firstName: TestData.firstName,
+            lastName: TestData.lastName,
+            email: TestData.email,
+            password: TestData.password
         )
 
         #expect(result.registrationId == session.registrationId)
         let profile = try await profileRepository.fetch(by: session.registrationId)
-        #expect(profile.firstName == "Bruce")
-        #expect(profile.email == "batman@gotham.com")
+        #expect(profile.firstName == TestData.firstName)
     }
 
     @Test("Propagates a sign-up error without creating a profile")
     func execute_signUpThrows_propagatesError() async throws {
-        authRepository.errorToThrow = AuthError.emailAlreadyInUse
-        await #expect(throws: AuthError.emailAlreadyInUse) {
+        authRepository.errorToThrow = AuthenticationError.emailAlreadyInUse
+        await #expect(throws: AuthenticationError.emailAlreadyInUse) {
             try await useCase.execute(
-                firstName: "Bruce",
-                lastName: "Wayne",
-                email: "batman@gotham.com",
-                password: "password123"
+                firstName: TestData.firstName,
+                lastName: TestData.lastName,
+                email: TestData.email,
+                password: TestData.password
             )
         }
         await #expect(throws: ProfileError.notFound) {

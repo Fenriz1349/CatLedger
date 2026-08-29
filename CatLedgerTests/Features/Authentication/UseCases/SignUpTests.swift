@@ -20,17 +20,17 @@ struct SignUpTests {
 
     @Test("Returns the session provided by the repository")
     func execute_validInput_returnsSession() async throws {
-        let session = AuthSession(registrationId: UUID(), isAnonymous: false)
+        let session = AuthenticationSession(registrationId: UUID(), email: TestData.email)
         repository.sessionToReturn = session
-        let result = try await useCase.execute(email: "batman@gotham.com", password: "password123")
+        let result = try await useCase.execute(email: TestData.email, password: TestData.password)
         #expect(result.registrationId == session.registrationId)
     }
 
     @Test("Propagates a repository error")
     func execute_repositoryThrows_propagatesError() async throws {
-        repository.errorToThrow = AuthError.emailAlreadyInUse
-        await #expect(throws: AuthError.emailAlreadyInUse) {
-            try await useCase.execute(email: "batman@gotham.com", password: "password123")
+        repository.errorToThrow = AuthenticationError.emailAlreadyInUse
+        await #expect(throws: AuthenticationError.emailAlreadyInUse) {
+            try await useCase.execute(email: TestData.email, password: TestData.password)
         }
     }
 }

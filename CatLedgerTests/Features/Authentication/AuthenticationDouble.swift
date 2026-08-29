@@ -8,50 +8,45 @@
 import Foundation
 @testable import CatLedger
 
-/// Spy/stub test double implementation of AuthProviding.
+/// Spy/stub test double implementation of AuthenticationProviding.
 /// Used exclusively in unit tests to isolate UseCases from Firebase and local storage.
-final class AuthenticationDouble: AuthProviding {
+final class AuthenticationDouble: AuthenticationProviding {
 
-    var sessionToReturn = AuthSession(registrationId: UUID(), isAnonymous: false)
+    var sessionToReturn = AuthenticationSession(registrationId: UUID(), email: TestData.email)
     /// The value returned by resolveSession(). Defaults to nil (no stored session).
-    var sessionToResolve: AuthSession?
-    var isExpired = false
-    var daysRemaining: Int?
-
-    /// Tracks whether expireAnonymousSession() was called.
-    var didCallExpire = false
+    var sessionToResolve: AuthenticationSession?
 
     /// Tracks whether deleteRegistration() was called.
     var didCallDeleteRegistration = false
 
-    /// Tracks whether signOut() was called.
-    var didCallSignOut = false
+    /// Tracks whether logOut() was called.
+    var didCallLogOut = false
 
     /// Set this to force any throwing method to throw a specific error.
     var errorToThrow: Error?
 
-    func resolveSession() async -> AuthSession? {
+    func resolveSession() async -> AuthenticationSession? {
         sessionToResolve
     }
 
-    func signInWithEmail(email: String, password: String) async throws -> AuthSession {
+    func login(withEmail email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func signUp(email: String, password: String) async throws -> AuthSession {
+    func signUp(email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func signInAnonymously() async throws -> AuthSession {
+    func signUpAnonymously() async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func signOut() async throws {
+    func logOut() async throws {
         if let error = errorToThrow { throw error }
-        didCallSignOut = true
+        didCallLogOut = true
     }
 
     func deleteRegistration() async throws {
@@ -59,24 +54,12 @@ final class AuthenticationDouble: AuthProviding {
         didCallDeleteRegistration = true
     }
 
-    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthSession {
+    func linkAnonymousRegistration(toEmail email: String, password: String) async throws -> AuthenticationSession {
         if let error = errorToThrow { throw error }
         return sessionToReturn
     }
 
-    func resetPassword(email: String) async throws {
+    func forgottenPassword(email: String) async throws {
         if let error = errorToThrow { throw error }
-    }
-
-    func isAnonymousSessionExpired() -> Bool {
-        isExpired
-    }
-
-    func anonymousDaysRemaining() -> Int? {
-        daysRemaining
-    }
-
-    func expireAnonymousSession() async {
-        didCallExpire = true
     }
 }

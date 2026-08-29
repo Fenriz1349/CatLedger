@@ -10,10 +10,10 @@ import Foundation
 /// Links the current anonymous session to a permanent email/password registration.
 final class LinkAnonymousRegistration {
 
-    private let repository: AuthProviding
+    private let repository: AuthenticationProviding
 
     /// - Parameter repository: The authentication provider used to link the registration.
-    init(repository: AuthProviding) {
+    init(repository: AuthenticationProviding) {
         self.repository = repository
     }
 
@@ -21,7 +21,7 @@ final class LinkAnonymousRegistration {
     ///   - email: The email address for the new permanent registration.
     ///   - password: The password for the new permanent registration.
     /// - Returns: An updated, non-anonymous session.
-    func execute(email: String, password: String) async throws -> AuthSession {
+    func execute(email: String, password: String) async throws -> AuthenticationSession {
         try await repository.linkAnonymousRegistration(toEmail: email, password: password)
     }
 }

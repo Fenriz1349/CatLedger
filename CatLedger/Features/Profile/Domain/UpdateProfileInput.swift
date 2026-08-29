@@ -13,6 +13,5 @@ struct UpdateProfileInput {
     let registrationId: UUID
     let firstName: String
     let lastName: String
-    let email: String
     let photoURL: String?
 }

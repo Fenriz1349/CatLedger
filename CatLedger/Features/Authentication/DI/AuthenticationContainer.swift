@@ -1,0 +1,63 @@
+//
+//  AuthenticationContainer.swift
+//  CatLedger
+//
+//  Created by Julien Cotte on 25/08/2026.
+//
+
+import Foundation
+
+/// Composition root for the Authentication feature: builds the concrete `AuthenticationProviding`
+/// implementation once, then wires every Authentication use case on top of it.
+/// Holds no business logic itself — Presentation code reads its properties to get
+/// use cases already wired and ready to inject into view models.
+final class AuthenticationContainer {
+
+    let provider: AuthenticationProviding
+
+    let resolveSession: ResolveSession
+    let logInWithEmail: LogInWithEmail
+    let signUp: SignUp
+    let signUpAnonymously: SignUpAnonymously
+    let logOut: LogOut
+    let deleteRegistration: DeleteRegistration
+    let linkAnonymousRegistration: LinkAnonymousRegistration
+    let forgottenPassword: ForgottenPassword
+
+    /// - Parameter provider: The Authentication provider to wire every use case to.
+    /// Defaults to the Firebase-backed implementation; override with a double in tests.
+    init(provider: AuthenticationProviding = AuthenticationProvider()) {
+        self.provider = provider
+        resolveSession = ResolveSession(repository: provider)
+        logInWithEmail = LogInWithEmail(repository: provider)
+        signUp = SignUp(repository: provider)
+        signUpAnonymously = SignUpAnonymously(repository: provider)
+        logOut = LogOut(repository: provider)
+        deleteRegistration = DeleteRegistration(repository: provider)
+        linkAnonymousRegistration = LinkAnonymousRegistration(repository: provider)
+        forgottenPassword = ForgottenPassword(repository: provider)
+    }
+
+    /// - Parameters:
+    ///   - context: Whether the resulting view model drives the not-yet-authenticated form or an
+    ///   already-authenticated session's actions.
+    ///   - onAuthenticated: Called after a successful log-in, with the resulting session.
+    ///   - onLoggedOut: Called after a successful log-out.
+    /// - Returns: A configured AuthenticationViewModel, wired with every use case it needs.
+    func makeViewModel(
+        context: AuthenticationViewModel.Context,
+        onAuthenticated: @escaping (AuthenticationSession) async -> Void,
+        onLoggedOut: @escaping () async -> Void
+    ) -> AuthenticationViewModel {
+        AuthenticationViewModel(
+            context: context,
+            logInWithEmail: logInWithEmail,
+            signUp: signUp,
+            signUpAnonymously: signUpAnonymously,
+            forgottenPassword: forgottenPassword,
+            logOut: logOut,
+            onAuthenticated: onAuthenticated,
+            onLoggedOut: onLoggedOut
+        )
+    }
+}

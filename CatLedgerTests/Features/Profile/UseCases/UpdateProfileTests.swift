@@ -54,17 +54,4 @@ struct UpdateProfileTests {
             ))
         }
     }
-
-    @Test("Throws invalidEmail for an email missing an @")
-    func execute_invalidEmail_throwsInvalidEmail() async throws {
-        let profile = TestData.profile()
-        try await repository.save(profile)
-        await #expect(throws: ProfileError.invalidEmail) {
-            try await useCase.execute(TestData.updateProfileInput(
-                id: profile.id,
-                registrationId: profile.registrationId,
-                email: "not-an-email"
-            ))
-        }
-    }
 }
