@@ -37,3 +37,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "release-please's own PR, skipping the real tests."
+
+  lint:
+    if: github.event.pull_request.user.login == 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "release-please's own PR, skipping lint."
