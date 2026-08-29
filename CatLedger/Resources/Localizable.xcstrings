@@ -702,9 +702,6 @@
       }
     },
     "profileError.creationFailed" : {
-      "PLACEHOLDER_PROFILE_ERROR" : true
-    },
-    "profileError.creationFailed_REAL" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
