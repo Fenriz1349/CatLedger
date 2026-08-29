@@ -105,12 +105,14 @@ struct ProfileViewModelTests {
         #expect(viewModel.firstNameState == .invalid)
     }
 
-    @Test("A repository error is reported as error feedback")
-    func submit_existingContext_repositoryThrowsProfileError_reportsError() async {
+    @Test("A repository error is reported as error feedback and edit mode stays open")
+    func submit_existingContext_repositoryThrowsProfileError_reportsErrorAndStaysInEditMode() async {
         let viewModel = makeViewModel(context: .existing(TestData.profile()))
+        viewModel.isEditing = true
         repository.errorToThrow = ProfileError.notFound
         await viewModel.submit()
         #expect(viewModel.feedback == .error(.notFound))
+        #expect(viewModel.isEditing)
     }
 
     @Test("A non-ProfileError repository failure falls back to updateFailed")

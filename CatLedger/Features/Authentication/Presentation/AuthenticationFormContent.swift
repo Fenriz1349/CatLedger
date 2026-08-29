@@ -25,16 +25,16 @@ struct AuthenticationFormContent: View {
     var body: some View {
         VStack(spacing: 16) {
             CustomTextField(
-                placeholder: "Email",
+                placeholder: String(localized: .authenticationFormEmailPlaceholder),
                 text: $email,
                 type: .email,
-                errorMessage: "Adresse email invalide.",
+                errorMessage: String(localized: .authenticationFormEmailInvalid),
                 validationState: $emailState,
                 showErrorOnlyWhenTriggered: false
             )
             .accessibilityIdentifier("authenticationField.email")
             CustomTextField(
-                placeholder: "Mot de passe",
+                placeholder: String(localized: .authenticationFormPasswordPlaceholder),
                 text: $password,
                 type: .password,
                 errorMessage: AuthenticationError.weakPassword.errorDescription,
@@ -44,7 +44,7 @@ struct AuthenticationFormContent: View {
             .accessibilityIdentifier("authenticationField.password")
             if isSigningUp {
                 CustomTextField(
-                    placeholder: "Confirmer le mot de passe",
+                    placeholder: String(localized: .authenticationFormConfirmPasswordPlaceholder),
                     text: $confirmPassword,
                     type: .password,
                     validator: confirmPasswordValidator,

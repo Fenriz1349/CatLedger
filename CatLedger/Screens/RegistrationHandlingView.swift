@@ -22,13 +22,13 @@ struct RegistrationHandlingView: View {
     var body: some View {
         VStack(spacing: 24) {
 
-            Text("CatLedger")
+            Text(verbatim: "CatLedger")
                 .font(.largeTitle.bold())
                 .padding(.top, 40)
 
             Picker("", selection: $authenticationViewModel.isSigningUp) {
-                Text("Se connecter").tag(false)
-                Text("Créer un compte").tag(true)
+                Text(.registrationHandlingLogInTab).tag(false)
+                Text(.registrationHandlingSignUpTab).tag(true)
             }
             .pickerStyle(.segmented)
 
@@ -59,7 +59,7 @@ struct RegistrationHandlingView: View {
                 Button {
                     Task { await authenticationViewModel.forgottenPassword() }
                 } label: {
-                    Text("Mot de passe oublié ?")
+                    Text(.registrationHandlingForgotPassword)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .trailing)
@@ -77,7 +77,7 @@ struct RegistrationHandlingView: View {
                         )
                     }
                 } label: {
-                    Text("Créer mon compte")
+                    Text(.registrationHandlingSignUpButton)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -91,7 +91,7 @@ struct RegistrationHandlingView: View {
                 Button {
                     Task { await authenticationViewModel.logIn() }
                 } label: {
-                    Text("Se connecter")
+                    Text(.registrationHandlingLogInButton)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
@@ -105,7 +105,7 @@ struct RegistrationHandlingView: View {
             Button {
                 Task { await authenticationProfileViewModel.continueAsDemo() }
             } label: {
-                Text("Continuer en mode démo")
+                Text(.registrationHandlingDemoButton)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)

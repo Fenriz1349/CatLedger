@@ -25,11 +25,11 @@ struct ProfileHandlingView: View {
     var body: some View {
         VStack(spacing: 24) {
 
-            Text("Mon profil")
+            Text(.profileHandlingTitle)
                 .font(.largeTitle.bold())
                 .padding(.top, 40)
 
-            Text(email ?? "Mode démo")
+            Text(email ?? String(localized: .profileHandlingDemoModeLabel))
                 .font(.subheadline)
                 .foregroundColor(.secondary)
 
@@ -46,17 +46,17 @@ struct ProfileHandlingView: View {
                 Button {
                     Task { await viewModel.submit() }
                 } label: {
-                    Text("Enregistrer")
+                    Text(.profileHandlingSaveButton)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .accessibilityIdentifier("button.profileSubmit")
                 .disabled(!viewModel.isFormValid || viewModel.isLoading)
             } else {
-                Text("\(viewModel.firstName) \(viewModel.lastName)")
+                Text(verbatim: "\(viewModel.firstName) \(viewModel.lastName)")
                     .font(.title2)
 
-                Button("Modifier") {
+                Button(String(localized: .profileHandlingEditButton)) {
                     viewModel.isEditing = true
                 }
                 .buttonStyle(.bordered)
@@ -67,7 +67,7 @@ struct ProfileHandlingView: View {
             Button {
                 Task { await authenticationViewModel.logOut() }
             } label: {
-                Text("Se déconnecter")
+                Text(.profileHandlingLogOutButton)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -76,7 +76,7 @@ struct ProfileHandlingView: View {
             Button(role: .destructive) {
                 isConfirmingDeletion = true
             } label: {
-                Text("Supprimer mon compte")
+                Text(.profileHandlingDeleteButton)
                     .frame(maxWidth: .infinity)
             }
             .buttonStyle(.bordered)
@@ -90,14 +90,14 @@ struct ProfileHandlingView: View {
             }
         }
         .confirmationDialog(
-            "Supprimer définitivement votre compte et vos données ?",
+            Text(.profileHandlingDeleteConfirmationTitle),
             isPresented: $isConfirmingDeletion,
             titleVisibility: .visible
         ) {
-            Button("Supprimer", role: .destructive) {
+            Button(String(localized: .profileHandlingDeleteConfirmButton), role: .destructive) {
                 Task { await authenticationProfileViewModel.deleteFirebaseRegistration(registrationId: registrationId) }
             }
-            Button("Annuler", role: .cancel) {}
+            Button(String(localized: .profileHandlingCancelButton), role: .cancel) {}
         }
         .onChange(of: viewModel.feedback) { _, feedback in
             guard let feedback else { return }
