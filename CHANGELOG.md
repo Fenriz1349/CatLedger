@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/Fenriz1349/CatLedger/compare/v0.3.0...v0.4.0) (2026-08-28)
+
+
+### Features
+
+* rename ProfileView in ProfileHandlingView, add logOut and deleteAccount ([b7ad2e5](https://github.com/Fenriz1349/CatLedger/commit/b7ad2e5b793326a2a2730f88a1ec9a6e66346764))
+
+
+### Bug Fixes
+
+* rename signOut en logOut ([b94cab9](https://github.com/Fenriz1349/CatLedger/commit/b94cab995355fc921a51ed3528e9b987543d1797))
+
 ## [0.3.0](https://github.com/Fenriz1349/CatLedger/compare/v0.2.0...v0.3.0) (2026-08-28)
 
 
