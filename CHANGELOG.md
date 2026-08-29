@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/Fenriz1349/CatLedger/compare/v0.4.0...v0.4.1) (2026-08-29)
+
+
+### Bug Fixes
+
+* remove duplicate/corrupted profileError.creationFailed entry ([4ea5594](https://github.com/Fenriz1349/CatLedger/commit/4ea55945438627e2c1eea7bffc92be31a3e79838))
+* remove duplicate/corrupted profileError.creationFailed entry ([9987601](https://github.com/Fenriz1349/CatLedger/commit/9987601abfbc5ff77bcf63be95e6603d1a78858d))
+
 ## [0.4.0](https://github.com/Fenriz1349/CatLedger/compare/v0.3.0...v0.4.0) (2026-08-28)
 
 
