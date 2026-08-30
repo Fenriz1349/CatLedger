@@ -14,7 +14,8 @@ import Testing
 /// are actually created and deleted together — not just individually, as already covered by
 /// AuthenticationE2ETests/ProfileE2ETests.
 ///
-/// Requires the Firebase Local Emulator Suite running locally before executing this test plan:
+/// The CatLedger scheme's Test pre/post-actions start and stop the Firebase Local Emulator Suite
+/// automatically. Running outside that scheme requires starting it manually first:
 ///   `firebase emulators:start`
 ///
 /// Run only this suite, not the default unit tests, either from Xcode (Product → Test Plan →

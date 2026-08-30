@@ -28,6 +28,42 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "cd &quot;$SRCROOT&quot;&#10;if ! lsof -i :9099 -sTCP:LISTEN -t &gt;/dev/null 2&gt;&amp;1; then&#10;  /opt/homebrew/bin/firebase emulators:start --only auth,firestore &gt; /tmp/firebase-emulators.log 2&gt;&amp;1 &amp;&#10;  echo $! &gt; /tmp/firebase-emulators.pid&#10;  for i in $(seq 1 30); do&#10;    if lsof -i :9099 -sTCP:LISTEN -t &gt;/dev/null 2&gt;&amp;1 &amp;&amp; lsof -i :8080 -sTCP:LISTEN -t &gt;/dev/null 2&gt;&amp;1; then&#10;      break&#10;    fi&#10;    sleep 1&#10;  done&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "6839EA1E30386BA2006E2AD4"
+                     BuildableName = "CatLedger.app"
+                     BlueprintName = "CatLedger"
+                     ReferencedContainer = "container:CatLedger.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "if [ -f /tmp/firebase-emulators.pid ]; then&#10;  kill &quot;$(cat /tmp/firebase-emulators.pid)&quot; 2&gt;/dev/null&#10;  rm -f /tmp/firebase-emulators.pid&#10;fi&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "6839EA1E30386BA2006E2AD4"
+                     BuildableName = "CatLedger.app"
+                     BlueprintName = "CatLedger"
+                     ReferencedContainer = "container:CatLedger.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <TestPlans>
          <TestPlanReference
             reference = "container:CatLedgerTests.xctestplan"
