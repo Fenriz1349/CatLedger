@@ -20,13 +20,14 @@ struct UpdateProfileTests {
 
     @Test("Persists the new values for a valid update")
     func execute_validInput_updatesProfile() async throws {
-        let profile = TestData.profile()
+        let profile = TestData.profile(updatedAt: .distantPast)
         try await repository.save(profile)
         let input = TestData.updateProfileInput(id: profile.id, registrationId: profile.registrationId)
         try await useCase.execute(input)
         let updated = try await repository.fetch(by: profile.registrationId)
         #expect(updated.firstName == input.firstName)
         #expect(updated.lastName == input.lastName)
+        #expect(updated.updatedAt > profile.updatedAt)
     }
 
     @Test("Throws nameTooLong when the first name exceeds 50 characters")

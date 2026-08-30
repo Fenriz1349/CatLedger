@@ -29,6 +29,8 @@ struct Profile: Identifiable, Equatable, Codable, Sendable {
     let registrationId: UUID
     let displayName: String
     let photoURL: String?
+    /// Date of the last local or remote modification, used for sync conflict resolution.
+    let updatedAt: Date
 
     /// The first name extracted from `displayName` using the `|` separator.
     var firstName: String { displayName.components(separatedBy: "|").first ?? displayName }
@@ -42,15 +44,18 @@ struct Profile: Identifiable, Equatable, Codable, Sendable {
     ///   - registrationId: The registration this profile belongs to.
     ///   - displayName: Pipe-separated full name in the form `"firstName|lastName"`.
     ///   - photoURL: Optional URL string pointing to the profile's photo.
+    ///   - updatedAt: Last modification date. Defaults to the current date.
     init(
         id: UUID = UUID(),
         registrationId: UUID,
         displayName: String,
-        photoURL: String? = nil
+        photoURL: String? = nil,
+        updatedAt: Date = Date()
     ) {
         self.id = id
         self.registrationId = registrationId
         self.displayName = displayName
         self.photoURL = photoURL
+        self.updatedAt = updatedAt
     }
 }

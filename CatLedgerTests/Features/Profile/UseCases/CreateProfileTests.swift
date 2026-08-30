@@ -21,6 +21,7 @@ struct CreateProfileTests {
 
     @Test("Saves a valid profile to the repository")
     func execute_validInput_savesProfile() async throws {
+        let before = Date()
         let profile = try await useCase.execute(
             registrationId: registrationId,
             firstName: TestData.firstName,
@@ -30,6 +31,7 @@ struct CreateProfileTests {
         #expect(saved.id == profile.id)
         #expect(saved.firstName == TestData.firstName)
         #expect(saved.lastName == TestData.lastName)
+        #expect(saved.updatedAt >= before)
     }
 
     @Test("Throws nameTooLong when the first name exceeds 50 characters")

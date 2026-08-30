@@ -117,13 +117,15 @@ enum TestData {
         registrationId: UUID = UUID(),
         firstName: String = TestData.firstName,
         lastName: String = TestData.lastName,
-        photoURL: String? = nil
+        photoURL: String? = nil,
+        updatedAt: Date = Date()
     ) -> Profile {
         Profile(
             id: id,
             registrationId: registrationId,
             displayName: "\(firstName)|\(lastName)",
-            photoURL: photoURL
+            photoURL: photoURL,
+            updatedAt: updatedAt
         )
     }
 
