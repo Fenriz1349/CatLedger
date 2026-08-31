@@ -15,6 +15,7 @@ final class AppContainer {
     let authentication: AuthenticationContainer
     let profile: ProfileContainer
     let authenticationProfile: AuthenticationProfileContainer
+    let networkMonitor: NetworkMonitor
 
     init() {
         authentication = AuthenticationContainer()
@@ -23,5 +24,6 @@ final class AppContainer {
             authentication: authentication,
             profile: profile
         )
+        networkMonitor = NetworkMonitor()
     }
 }

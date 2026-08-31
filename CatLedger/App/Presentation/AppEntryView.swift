@@ -46,10 +46,15 @@ struct AppEntryView: View {
                     registrationId: profile.registrationId,
                     email: email
                 )
+            case .offline:
+                OfflineView(onRetry: { Task { await viewModel.resolve() } })
             }
         }
         .task {
             await viewModel.resolve()
+        }
+        .onChange(of: appContainer.networkMonitor.isConnected) { _, connected in
+            Task { await viewModel.connectivityChanged(isConnected: connected) }
         }
     }
 }
@@ -59,7 +64,8 @@ struct AppEntryView: View {
     AppEntryView(
         viewModel: AppEntryViewModel(
             resolveSession: appContainer.authentication.resolveSession,
-            getCurrentProfile: appContainer.profile.getCurrentProfile
+            getCurrentProfile: appContainer.profile.getCurrentProfile,
+            verifyReachable: appContainer.networkMonitor.verifyReachable
         ),
         appContainer: appContainer
     )

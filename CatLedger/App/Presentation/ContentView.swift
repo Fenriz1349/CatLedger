@@ -16,7 +16,8 @@ struct ContentView: View {
         AppEntryView(
             viewModel: AppEntryViewModel(
                 resolveSession: appContainer.authentication.resolveSession,
-                getCurrentProfile: appContainer.profile.getCurrentProfile
+                getCurrentProfile: appContainer.profile.getCurrentProfile,
+                verifyReachable: appContainer.networkMonitor.verifyReachable
             ),
             appContainer: appContainer
         )
