@@ -25,20 +25,51 @@ final class AppEntryViewModel {
     private let resolveSession: ResolveSession
     private let getCurrentProfile: GetCurrentProfile
     private let verifyReachable: () async throws -> Void
+    private let authenticationContainer: AuthenticationContainer
+    private let authenticationProfileContainer: AuthenticationProfileContainer
 
     /// - Parameters:
     ///   - resolveSession: Use case for resolving any existing Authentication session.
     ///   - getCurrentProfile: Use case for loading the profile that session owns.
     ///   - verifyReachable: Confirms the backend can actually be reached, before anything else.
+    ///   - authenticationContainer: Wires the not-yet-authenticated AuthenticationViewModel.
+    ///   - authenticationProfileContainer: Wires the sign-up/demo-entry AuthenticationProfileViewModel.
     init(
         resolveSession: ResolveSession,
         getCurrentProfile: GetCurrentProfile,
-        verifyReachable: @escaping () async throws -> Void
+        verifyReachable: @escaping () async throws -> Void,
+        authenticationContainer: AuthenticationContainer,
+        authenticationProfileContainer: AuthenticationProfileContainer
     ) {
         self.resolveSession = resolveSession
         self.getCurrentProfile = getCurrentProfile
         self.verifyReachable = verifyReachable
+        self.authenticationContainer = authenticationContainer
+        self.authenticationProfileContainer = authenticationProfileContainer
     }
+
+    // MARK: ViewModel factories
+
+    /// - Returns: A configured, not-yet-authenticated AuthenticationViewModel. Its success
+    /// callback feeds the resolved session back into the launch flow.
+    func makeAuthenticationViewModel() -> AuthenticationViewModel {
+        authenticationContainer.makeViewModel(
+            context: .unauthenticated,
+            onAuthenticated: { [weak self] _ in await self?.resolve() },
+            onLoggedOut: {}
+        )
+    }
+
+    /// - Returns: A configured AuthenticationProfileViewModel for signing up or entering demo
+    /// mode. Its success callback feeds the resolved session back into the launch flow.
+    func makeAuthenticationProfileViewModel() -> AuthenticationProfileViewModel {
+        authenticationProfileContainer.makeViewModel(
+            onAuthenticated: { [weak self] _ in await self?.resolve() },
+            onSessionEnded: {}
+        )
+    }
+
+    // MARK: Launch
 
     /// Verifies reachability, then resolves the current session and its profile — deciding which
     /// screen to show. Falls back to the Authentication screen if a session exists but its

@@ -21,30 +21,15 @@ struct AppEntryView: View {
                 ProgressView()
             case .authentication:
                 RegistrationHandlingView(
-                    authenticationViewModel: appContainer.authentication.makeViewModel(
-                        context: .unauthenticated,
-                        onAuthenticated: { _ in await viewModel.resolve() },
-                        onLoggedOut: {}
-                    ),
-                    authenticationProfileViewModel: appContainer.authenticationProfile.makeViewModel(
-                        onAuthenticated: { _ in await viewModel.resolve() },
-                        onSessionEnded: {}
-                    )
+                    authenticationViewModel: viewModel.makeAuthenticationViewModel(),
+                    authenticationProfileViewModel: viewModel.makeAuthenticationProfileViewModel()
                 )
             case .profile(let profile, let email):
-                ProfileHandlingView(
-                    viewModel: appContainer.profile.makeViewModel(profile: profile),
-                    authenticationViewModel: appContainer.authentication.makeViewModel(
-                        context: .authenticated,
-                        onAuthenticated: { _ in },
-                        onLoggedOut: { await viewModel.resolve() }
-                    ),
-                    authenticationProfileViewModel: appContainer.authenticationProfile.makeViewModel(
-                        onAuthenticated: { _ in },
-                        onSessionEnded: { await viewModel.resolve() }
-                    ),
-                    registrationId: profile.registrationId,
-                    email: email
+                ContentView(
+                    profile: profile,
+                    email: email,
+                    appContainer: appContainer,
+                    onSessionEnded: { await viewModel.resolve() }
                 )
             case .offline:
                 OfflineView(onRetry: { Task { await viewModel.resolve() } })
@@ -65,7 +50,9 @@ struct AppEntryView: View {
         viewModel: AppEntryViewModel(
             resolveSession: appContainer.authentication.resolveSession,
             getCurrentProfile: appContainer.profile.getCurrentProfile,
-            verifyReachable: appContainer.networkMonitor.verifyReachable
+            verifyReachable: appContainer.networkMonitor.verifyReachable,
+            authenticationContainer: appContainer.authentication,
+            authenticationProfileContainer: appContainer.authenticationProfile
         ),
         appContainer: appContainer
     )

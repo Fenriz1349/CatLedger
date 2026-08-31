@@ -30,10 +30,17 @@ struct AppEntryViewModelTests {
 
     init() {
         let reachability = reachabilitySpy
+        let authenticationContainer = AuthenticationContainer(provider: authRepository)
+        let profileContainer = ProfileContainer(provider: profileRepository)
         viewModel = AppEntryViewModel(
             resolveSession: ResolveSession(repository: authRepository),
             getCurrentProfile: GetCurrentProfile(repository: profileRepository),
-            verifyReachable: reachability.verifyReachable
+            verifyReachable: reachability.verifyReachable,
+            authenticationContainer: authenticationContainer,
+            authenticationProfileContainer: AuthenticationProfileContainer(
+                authentication: authenticationContainer,
+                profile: profileContainer
+            )
         )
     }
 
