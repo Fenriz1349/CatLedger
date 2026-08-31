@@ -35,25 +35,25 @@ enum AuthenticationError: Error, Equatable, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .logInFailed:
-            return String(localized: .authErrorLogInFailed)
+            return String(localized: .authenticationErrorLogInFailed)
         case .logOutFailed:
-            return String(localized: .authErrorLogOutFailed)
+            return String(localized: .authenticationErrorLogOutFailed)
         case .noSessionFound:
-            return String(localized: .authErrorNoSessionFound)
+            return String(localized: .authenticationErrorNoSessionFound)
         case .emailAlreadyInUse:
-            return String(localized: .authErrorEmailAlreadyInUse)
+            return String(localized: .authenticationErrorEmailAlreadyInUse)
         case .weakPassword:
-            return String(localized: .authErrorWeakPassword)
+            return String(localized: .authenticationErrorWeakPassword)
         case .invalidCredentials:
-            return String(localized: .authErrorInvalidCredentials)
+            return String(localized: .authenticationErrorInvalidCredentials)
         case .passwordsDoNotMatch:
-            return String(localized: .authErrorPasswordsDoNotMatch)
+            return String(localized: .authenticationErrorPasswordsDoNotMatch)
         case .registrationLinkingFailed:
-            return String(localized: .authErrorRegistrationLinkingFailed)
+            return String(localized: .authenticationErrorRegistrationLinkingFailed)
         case .deletionFailed:
-            return String(localized: .authErrorDeletionFailed)
+            return String(localized: .authenticationErrorDeletionFailed)
         case .forgottenPasswordFailed:
-            return String(localized: .authErrorForgottenPasswordFailed)
+            return String(localized: .authenticationErrorForgottenPasswordFailed)
         }
     }
 }

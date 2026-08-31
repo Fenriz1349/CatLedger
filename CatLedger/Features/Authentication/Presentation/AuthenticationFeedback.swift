@@ -23,7 +23,7 @@ enum AuthenticationFeedback: Equatable {
         case .error(let error):
             toasty.showError(error)
         case .passwordResetSent:
-            toasty.showSuccess(String(localized: .authFeedbackPasswordResetSent))
+            toasty.showSuccess(String(localized: .authenticationFeedbackPasswordResetSent))
         }
     }
 }
