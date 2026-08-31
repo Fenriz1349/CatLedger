@@ -701,6 +701,40 @@
         }
       }
     },
+    "offlineError.notConnected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection. Please try again once connected."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucune connexion internet. Réessayez une fois connecté."
+          }
+        }
+      }
+    },
+    "offlineError.serverUnreachable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server can't be reached. Please try again shortly."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur est injoignable. Réessayez dans un instant."
+          }
+        }
+      }
+    },
     "profileError.creationFailed" : {
       "extractionState" : "manual",
       "localizations" : {
