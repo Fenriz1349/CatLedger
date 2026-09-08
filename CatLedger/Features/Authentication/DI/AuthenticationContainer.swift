@@ -23,11 +23,19 @@ final class AuthenticationContainer {
     let deleteRegistration: DeleteRegistration
     let linkAnonymousRegistration: LinkAnonymousRegistration
     let forgottenPassword: ForgottenPassword
+    private let verifyReachable: () async throws -> Void
 
-    /// - Parameter provider: The Authentication provider to wire every use case to.
-    /// Defaults to the Firebase-backed implementation; override with a double in tests.
-    init(provider: AuthenticationProviding = AuthenticationProvider()) {
+    /// - Parameters:
+    ///   - provider: The Authentication provider to wire every use case to.
+    ///   Defaults to the Firebase-backed implementation; override with a double in tests.
+    ///   - verifyReachable: Confirms the backend can actually be reached, before any action.
+    ///   Defaults to the shared `NetworkMonitor`; override with a double in tests.
+    init(
+        provider: AuthenticationProviding = AuthenticationProvider(),
+        verifyReachable: @escaping () async throws -> Void = { try await NetworkMonitor.shared.verifyReachable() }
+    ) {
         self.provider = provider
+        self.verifyReachable = verifyReachable
         resolveSession = ResolveSession(repository: provider)
         logInWithEmail = LogInWithEmail(repository: provider)
         signUp = SignUp(repository: provider)
@@ -57,7 +65,8 @@ final class AuthenticationContainer {
             forgottenPassword: forgottenPassword,
             logOut: logOut,
             onAuthenticated: onAuthenticated,
-            onLoggedOut: onLoggedOut
+            onLoggedOut: onLoggedOut,
+            verifyReachable: verifyReachable
         )
     }
 }

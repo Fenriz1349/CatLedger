@@ -14,12 +14,15 @@ import Toasty
 enum ProfileFeedback: Equatable {
 
     case error(ProfileError)
+    case offline(OfflineError)
 
     /// Presents this feedback as a toast.
     /// - Parameter toasty: The shared toast notification manager.
     func present(with toasty: ToastyManager) {
         switch self {
         case .error(let error):
+            toasty.showError(error)
+        case .offline(let error):
             toasty.showError(error)
         }
     }

@@ -15,6 +15,7 @@ enum AuthenticationProfileFeedback: Equatable {
 
     case authenticationError(AuthenticationError)
     case profileError(ProfileError)
+    case offline(OfflineError)
 
     /// Presents this feedback as a toast.
     /// - Parameter toasty: The shared toast notification manager.
@@ -23,6 +24,8 @@ enum AuthenticationProfileFeedback: Equatable {
         case .authenticationError(let error):
             toasty.showError(error)
         case .profileError(let error):
+            toasty.showError(error)
+        case .offline(let error):
             toasty.showError(error)
         }
     }

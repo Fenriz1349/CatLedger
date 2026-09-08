@@ -25,8 +25,17 @@ struct CatLedgerApp: App {
     var body: some Scene {
         WindowGroup {
             ToastyContainer(manager: toasty) {
-                ContentView(appContainer: appContainer)
-                    .environmentObject(toasty)
+                AppEntryView(
+                    viewModel: AppEntryViewModel(
+                        resolveSession: appContainer.authentication.resolveSession,
+                        getCurrentProfile: appContainer.profile.getCurrentProfile,
+                        verifyReachable: appContainer.networkMonitor.verifyReachable,
+                        authenticationContainer: appContainer.authentication,
+                        authenticationProfileContainer: appContainer.authenticationProfile
+                    ),
+                    appContainer: appContainer
+                )
+                .environmentObject(toasty)
             }
         }
     }

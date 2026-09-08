@@ -125,16 +125,33 @@ jobs:
           name: test-build
           path: Products
 
+      # Diagnostic: logged unconditionally so a failure below always shows what was actually
+      # available on this runner, instead of guessing again from a destination-search error.
+      - name: List available simulators
+        run: xcrun simctl list devices available
+
+      # Picks whichever iPhone simulator the runner actually has, instead of a hardcoded model
+      # name like "iPhone 17" — that name depends on both the Xcode version's device-type
+      # catalog and this runner's simulator provisioning, both of which drift release to
+      # release. Resolving dynamically means this step never needs updating for a new iOS/Xcode.
+      - name: Select simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r '.devices | to_entries[] | .value[] | select(.name | startswith("iPhone")) | .udid' \
+            | head -n 1)
+          if [ -z "$UDID" ]; then
+            echo "::error::No available iPhone simulator found on this runner."
+            exit 1
+          fi
+          echo "SIMULATOR_UDID=$UDID" >> "$GITHUB_ENV"
+
       # The glob is scoped to the CatLedgerTests .xctestrun specifically: the shared artifact
       # also contains CatLedgerE2ETests', and an unscoped "*.xctestrun" would match both.
-      # Unlike "latest-stable" above, xcodebuild has no "any available device" keyword, so this
-      # device name is the one place that may need adjusting if it isn't on the runner (the
-      # failure log lists the actually available simulators).
       - name: Run unit tests
         run: |
           xcodebuild test-without-building \
             -xctestrun Products/*_CatLedgerTests_*.xctestrun \
-            -destination 'platform=iOS Simulator,name=iPhone 17' \
+            -destination "id=$SIMULATOR_UDID" \
             -resultBundlePath TestResults/unit.xcresult
 
       - name: Upload unit test results
@@ -181,6 +198,23 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      # Diagnostic: see the "List available simulators" step in the "test" job above for why.
+      - name: List available simulators
+        run: xcrun simctl list devices available
+
+      # See the "Select simulator" step in the "test" job above for why this is dynamic rather
+      # than a hardcoded device name.
+      - name: Select simulator
+        run: |
+          UDID=$(xcrun simctl list devices available -j \
+            | jq -r '.devices | to_entries[] | .value[] | select(.name | startswith("iPhone")) | .udid' \
+            | head -n 1)
+          if [ -z "$UDID" ]; then
+            echo "::error::No available iPhone simulator found on this runner."
+            exit 1
+          fi
+          echo "SIMULATOR_UDID=$UDID" >> "$GITHUB_ENV"
+
       # "emulators:exec" starts the emulators, waits until they're ready, runs the given command,
       # then tears the emulators down and propagates its exit code — no manual polling needed.
       # The xctestrun path is resolved into a variable *before* being handed to emulators:exec:
@@ -194,7 +228,7 @@ jobs:
           firebase emulators:exec --only auth,firestore \
             "xcodebuild test-without-building \
               -xctestrun '$XCTESTRUN' \
-              -destination 'platform=iOS Simulator,name=iPhone 17' \
+              -destination 'id=$SIMULATOR_UDID' \
               -resultBundlePath TestResults/e2e.xcresult"
 
       - name: Upload E2E test results

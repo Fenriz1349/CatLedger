@@ -40,15 +40,27 @@ final class ProfileViewModel {
     private let context: Context
     private let createProfileUseCase: CreateProfile
     private let updateProfileUseCase: UpdateProfile
+    /// TEMPORARY: writes are blocked offline until real offline-write support (a trusted
+    /// Firestore queue + tombstone deletes) is built — see the offline-strategy project memory.
+    /// Remove this call, not the dependency itself: `.offline` feedback stays relevant afterward,
+    /// for things like a failed avatar load.
+    private let verifyReachable: () async throws -> Void
 
     /// - Parameters:
     ///   - context: Whether this form creates a new profile or edits an existing one.
     ///   - createProfile: Use case for persisting a newly created profile.
     ///   - updateProfile: Use case for persisting an edited profile.
-    init(context: Context, createProfile: CreateProfile, updateProfile: UpdateProfile) {
+    ///   - verifyReachable: Confirms the backend can actually be reached, before writing.
+    init(
+        context: Context,
+        createProfile: CreateProfile,
+        updateProfile: UpdateProfile,
+        verifyReachable: @escaping () async throws -> Void
+    ) {
         self.context = context
         self.createProfileUseCase = createProfile
         self.updateProfileUseCase = updateProfile
+        self.verifyReachable = verifyReachable
         switch context {
         case .create:
             firstName = ""
@@ -76,6 +88,7 @@ final class ProfileViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             switch context {
             case .create(let registrationId):
                 _ = try await createProfileUseCase.execute(
@@ -94,6 +107,8 @@ final class ProfileViewModel {
                 try await updateProfileUseCase.execute(input)
                 isEditing = false
             }
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as ProfileError {
             feedback = .error(error)
         } catch {

@@ -26,4 +26,10 @@ struct AuthenticationFeedbackTests {
         AuthenticationFeedback.passwordResetSent.present(with: toasty)
         #expect(toasty.currentToast?.type == .success)
     }
+
+    @Test("Presents an error toast for a wrapped OfflineError")
+    func present_offline_showsErrorToast() {
+        AuthenticationFeedback.offline(.notConnected).present(with: toasty)
+        #expect(toasty.currentToast?.type == .error)
+    }
 }

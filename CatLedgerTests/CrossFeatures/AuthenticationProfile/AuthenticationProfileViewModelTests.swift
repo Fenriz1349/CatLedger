@@ -51,7 +51,8 @@ struct AuthenticationProfileViewModelTests {
                 deleteRegistration: DeleteRegistration(repository: authRepository)
             ),
             onAuthenticated: { session in authenticated.session = session },
-            onSessionEnded: { sessionEnded.didCallSessionEnded = true }
+            onSessionEnded: { sessionEnded.didCallSessionEnded = true },
+            verifyReachable: {}
         )
     }
 

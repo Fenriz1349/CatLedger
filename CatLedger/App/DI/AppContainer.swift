@@ -15,13 +15,11 @@ final class AppContainer {
     let authentication: AuthenticationContainer
     let profile: ProfileContainer
     let authenticationProfile: AuthenticationProfileContainer
+    let networkMonitor = NetworkMonitor.shared
 
     init() {
         authentication = AuthenticationContainer()
         profile = ProfileContainer()
-        authenticationProfile = AuthenticationProfileContainer(
-            authentication: authentication,
-            profile: profile
-        )
+        authenticationProfile = AuthenticationProfileContainer(authentication: authentication, profile: profile)
     }
 }

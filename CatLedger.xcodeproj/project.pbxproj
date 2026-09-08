@@ -56,6 +56,9 @@
 		6839EA83303890B8006E2AD4 /* ProfileProviding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA82303890B8006E2AD4 /* ProfileProviding.swift */; };
 		6839EA86303892BB006E2AD4 /* Transfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA85303892BB006E2AD4 /* Transfer.swift */; };
 		6839EA88303892C4006E2AD4 /* TransferFormInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6839EA87303892C4006E2AD4 /* TransferFormInput.swift */; };
+		6852808E30454919008A4079 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852808D30454919008A4079 /* NetworkMonitor.swift */; };
+		6852809030454925008A4079 /* OfflineError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852808F30454925008A4079 /* OfflineError.swift */; };
+		685280923045498D008A4079 /* OfflineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685280913045498D008A4079 /* OfflineView.swift */; };
 		68558A4D303992AC00FE562D /* AccountDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A4C303992AC00FE562D /* AccountDouble.swift */; };
 		68558A52303992D500FE562D /* GetAccountsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A51303992D500FE562D /* GetAccountsTests.swift */; };
 		68558A54303992DE00FE562D /* AddAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68558A53303992DE00FE562D /* AddAccountTests.swift */; };
@@ -118,7 +121,6 @@
 		68785DAE303E2D12002E0728 /* RegistrationHandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68785DAD303E2D12002E0728 /* RegistrationHandlingView.swift */; };
 		68785DB1303E2F86002E0728 /* Toasty in Frameworks */ = {isa = PBXBuildFile; productRef = 68785DB0303E2F86002E0728 /* Toasty */; };
 		68785DB3303E2F9A002E0728 /* AuthenticationFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68785DB2303E2F9A002E0728 /* AuthenticationFeedback.swift */; };
-		6878ABCE30417BAB00FFDEC8 /* LogInWithEmailTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6878ABCD30417BAB00FFDEC8 /* LogInWithEmailTests.swift */; };
 		687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2B303C113B00BC953A /* InstitutionProvider.swift */; };
 		687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */; };
 		687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */; };
@@ -253,6 +255,9 @@
 		6839EA82303890B8006E2AD4 /* ProfileProviding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProviding.swift; sourceTree = "<group>"; };
 		6839EA85303892BB006E2AD4 /* Transfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transfer.swift; sourceTree = "<group>"; };
 		6839EA87303892C4006E2AD4 /* TransferFormInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferFormInput.swift; sourceTree = "<group>"; };
+		6852808D30454919008A4079 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		6852808F30454925008A4079 /* OfflineError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineError.swift; sourceTree = "<group>"; };
+		685280913045498D008A4079 /* OfflineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineView.swift; sourceTree = "<group>"; };
 		68558A4C303992AC00FE562D /* AccountDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDouble.swift; sourceTree = "<group>"; };
 		68558A51303992D500FE562D /* GetAccountsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAccountsTests.swift; sourceTree = "<group>"; };
 		68558A53303992DE00FE562D /* AddAccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAccountTests.swift; sourceTree = "<group>"; };
@@ -421,6 +426,7 @@
 		682AE85730402DDF00DBA5DE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				685280913045498D008A4079 /* OfflineView.swift */,
 				68785DAD303E2D12002E0728 /* RegistrationHandlingView.swift */,
 				687CFC29303F780400968952 /* ProfileHandlingView.swift */,
 			);
@@ -614,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				6839EA4330387552006E2AD4 /* Branding */,
+				6852808C30454900008A4079 /* Network */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -739,6 +746,15 @@
 				68558AD1303A06F000FE562D /* UseCases */,
 			);
 			path = Domain;
+			sourceTree = "<group>";
+		};
+		6852808C30454900008A4079 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6852808D30454919008A4079 /* NetworkMonitor.swift */,
+				6852808F30454925008A4079 /* OfflineError.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		68558A4B3039929200FE562D /* Account */ = {
@@ -1267,7 +1283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6878ABCE30417BAB00FFDEC8 /* LogInWithEmailTests.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1323,6 +1338,7 @@
 				68558A623039F6B100FE562D /* UpdateTransactionInput.swift in Sources */,
 				682AE866304031F300DBA5DE /* AppEntryViewModel.swift in Sources */,
 				687ADC34303970500004166C /* GetInstitutions.swift in Sources */,
+				6852809030454925008A4079 /* OfflineError.swift in Sources */,
 				6839EA3130386BAC006E2AD4 /* CatLedgerApp.swift in Sources */,
 				687ADC363039705A0004166C /* AddInstitution.swift in Sources */,
 				68558A8E3039FD4700FE562D /* SignUpAnonymously.swift in Sources */,
@@ -1341,6 +1357,7 @@
 				68558A8A3039FD3000FE562D /* LogInWithEmail.swift in Sources */,
 				68558A693039F6D800FE562D /* GetTransactionsByAccount.swift in Sources */,
 				68861D14303B5D51008E955B /* FirebaseProfileSource.swift in Sources */,
+				685280923045498D008A4079 /* OfflineView.swift in Sources */,
 				6839EA3230386BAC006E2AD4 /* ContentView.swift in Sources */,
 				68558A6F3039F6EF00FE562D /* AddTransaction.swift in Sources */,
 				6839EA4530387567006E2AD4 /* InstitutionCategory+Display.swift in Sources */,
@@ -1382,6 +1399,7 @@
 				687ADC3A3039706A0004166C /* ArchiveInstitution.swift in Sources */,
 				68558A673039F6D100FE562D /* GetTransactions.swift in Sources */,
 				6839EA6F303888CD006E2AD4 /* TransactionProviding.swift in Sources */,
+				6852808E30454919008A4079 /* NetworkMonitor.swift in Sources */,
 				68861CC1303B023F008E955B /* RegisterProfile.swift in Sources */,
 				6839EA5730387C05006E2AD4 /* AccountDisplayItem.swift in Sources */,
 				6839EA7530388ED6006E2AD4 /* AuthenticationSession.swift in Sources */,
@@ -1749,7 +1767,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A9J8B8CPN4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1772,7 +1790,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = A9J8B8CPN4;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.juliencotte.CatLedger.CatLedgerE2ETests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
