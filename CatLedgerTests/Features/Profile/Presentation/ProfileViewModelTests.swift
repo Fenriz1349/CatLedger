@@ -21,7 +21,8 @@ struct ProfileViewModelTests {
         ProfileViewModel(
             context: context,
             createProfile: CreateProfile(repository: repository),
-            updateProfile: UpdateProfile(repository: repository)
+            updateProfile: UpdateProfile(repository: repository),
+            verifyReachable: {}
         )
     }
 

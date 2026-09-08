@@ -21,4 +21,9 @@ struct ProfileFeedbackTests {
         #expect(toasty.currentToast?.type == .error)
     }
 
+    @Test("Presents an error toast for a wrapped OfflineError")
+    func present_offline_showsErrorToast() {
+        ProfileFeedback.offline(.notConnected).present(with: toasty)
+        #expect(toasty.currentToast?.type == .error)
+    }
 }

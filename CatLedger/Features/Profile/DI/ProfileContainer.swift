@@ -29,7 +29,7 @@ final class ProfileContainer {
     ///   Defaults to the shared `NetworkMonitor`; override with a double in tests.
     init(
         provider: ProfileProviding = ProfileProvider(),
-        verifyReachable: @escaping () async throws -> Void = NetworkMonitor.shared.verifyReachable
+        verifyReachable: @escaping () async throws -> Void = { try await NetworkMonitor.shared.verifyReachable() }
     ) {
         self.provider = provider
         self.verifyReachable = verifyReachable

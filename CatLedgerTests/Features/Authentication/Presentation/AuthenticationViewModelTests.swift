@@ -28,14 +28,27 @@ struct AuthenticationViewModelTests {
         var didCallLoggedOut = false
     }
 
+    /// Stands in for `NetworkMonitor.verifyReachable`, so tests can force reachability to fail
+    /// without a real network call.
+    @MainActor
+    private final class ReachabilitySpy {
+        var errorToThrow: Error?
+
+        func verifyReachable() async throws {
+            if let errorToThrow { throw errorToThrow }
+        }
+    }
+
     private let repository = AuthenticationDouble()
     private let authenticatedSpy = AuthenticatedSpy()
     private let loggedOutSpy = LoggedOutSpy()
+    private let reachabilitySpy = ReachabilitySpy()
     private let viewModel: AuthenticationViewModel
 
     init() {
         let authenticated = authenticatedSpy
         let loggedOut = loggedOutSpy
+        let reachability = reachabilitySpy
         viewModel = AuthenticationViewModel(
             context: .unauthenticated,
             logInWithEmail: LogInWithEmail(repository: repository),
@@ -44,7 +57,8 @@ struct AuthenticationViewModelTests {
             forgottenPassword: ForgottenPassword(repository: repository),
             logOut: LogOut(repository: repository),
             onAuthenticated: { session in authenticated.session = session },
-            onLoggedOut: { loggedOut.didCallLoggedOut = true }
+            onLoggedOut: { loggedOut.didCallLoggedOut = true },
+            verifyReachable: reachability.verifyReachable
         )
     }
 
@@ -116,6 +130,16 @@ struct AuthenticationViewModelTests {
         #expect(viewModel.feedback == .error(.logInFailed))
     }
 
+    @Test("The backend being unreachable is reported as offline feedback")
+    func logIn_backendUnreachable_reportsOffline() async {
+        viewModel.email = TestData.email
+        viewModel.password = TestData.password
+        reachabilitySpy.errorToThrow = OfflineError.notConnected
+        await viewModel.logIn()
+        #expect(authenticatedSpy.session == nil)
+        #expect(viewModel.feedback == .offline(.notConnected))
+    }
+
     // MARK: signUp
 
     @Test("Creates a registration from the current email and password")
@@ -134,6 +158,14 @@ struct AuthenticationViewModelTests {
         }
     }
 
+    @Test("Propagates an offline error")
+    func signUp_backendUnreachable_propagatesOfflineError() async {
+        reachabilitySpy.errorToThrow = OfflineError.notConnected
+        await #expect(throws: OfflineError.notConnected) {
+            try await viewModel.signUp()
+        }
+    }
+
     // MARK: signUpAnonymously
 
     @Test("Creates an anonymous registration and returns an anonymous session")
@@ -147,6 +179,14 @@ struct AuthenticationViewModelTests {
     func signUpAnonymously_repositoryThrows_propagatesError() async {
         repository.errorToThrow = AuthenticationError.logInFailed
         await #expect(throws: AuthenticationError.logInFailed) {
+            try await viewModel.signUpAnonymously()
+        }
+    }
+
+    @Test("Propagates an offline error")
+    func signUpAnonymously_backendUnreachable_propagatesOfflineError() async {
+        reachabilitySpy.errorToThrow = OfflineError.notConnected
+        await #expect(throws: OfflineError.notConnected) {
             try await viewModel.signUpAnonymously()
         }
     }
@@ -176,6 +216,14 @@ struct AuthenticationViewModelTests {
         #expect(viewModel.feedback == .error(.logOutFailed))
     }
 
+    @Test("The backend being unreachable is reported as offline feedback")
+    func logOut_backendUnreachable_reportsOffline() async {
+        reachabilitySpy.errorToThrow = OfflineError.notConnected
+        await viewModel.logOut()
+        #expect(!loggedOutSpy.didCallLoggedOut)
+        #expect(viewModel.feedback == .offline(.notConnected))
+    }
+
     // MARK: forgottenPassword
 
     @Test("An invalid email blocks the reset without calling the repository")
@@ -199,5 +247,13 @@ struct AuthenticationViewModelTests {
         repository.errorToThrow = AuthenticationError.forgottenPasswordFailed
         await viewModel.forgottenPassword()
         #expect(viewModel.feedback == .error(.forgottenPasswordFailed))
+    }
+
+    @Test("The backend being unreachable is reported as offline feedback")
+    func forgottenPassword_backendUnreachable_reportsOffline() async {
+        viewModel.email = TestData.email
+        reachabilitySpy.errorToThrow = OfflineError.notConnected
+        await viewModel.forgottenPassword()
+        #expect(viewModel.feedback == .offline(.notConnected))
     }
 }

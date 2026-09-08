@@ -27,7 +27,7 @@ final class AuthenticationProfileContainer {
     init(
         authentication: AuthenticationContainer,
         profile: ProfileContainer,
-        verifyReachable: @escaping () async throws -> Void = NetworkMonitor.shared.verifyReachable
+        verifyReachable: @escaping () async throws -> Void = { try await NetworkMonitor.shared.verifyReachable() }
     ) {
         self.verifyReachable = verifyReachable
         registerProfile = RegisterProfile(
