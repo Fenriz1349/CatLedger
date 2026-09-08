@@ -14,6 +14,10 @@ import Network
 @Observable
 final class NetworkMonitor {
 
+    /// The app has exactly one meaningful network state, so every container defaults to this
+    /// instance instead of threading its own through every composition point.
+    static let shared = NetworkMonitor()
+
     /// Whether the device currently has an active network interface. Use it for the offline
     /// screen and as a free first gate — not as proof the backend is reachable.
     private(set) var isConnected = true

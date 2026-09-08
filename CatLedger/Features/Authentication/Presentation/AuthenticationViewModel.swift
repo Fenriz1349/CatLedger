@@ -47,6 +47,9 @@ final class AuthenticationViewModel {
     private let logOutUseCase: LogOut
     private let onAuthenticated: (AuthenticationSession) async -> Void
     private let onLoggedOut: () async -> Void
+    /// Authentication has no offline mode: every action here needs a real round-trip to Firebase
+    /// Auth, whatever offline support the rest of the app eventually gets for its own data.
+    private let verifyReachable: () async throws -> Void
 
     /// - Parameters:
     ///   - context: Whether this view model drives the not-yet-authenticated form or an
@@ -58,6 +61,7 @@ final class AuthenticationViewModel {
     ///   - logOut: Use case for logging out of the current registration.
     ///   - onAuthenticated: Called after a successful log-in, with the resulting session.
     ///   - onLoggedOut: Called after a successful log-out.
+    ///   - verifyReachable: Confirms the backend can actually be reached, before any action.
     init(
         context: Context,
         logInWithEmail: LogInWithEmail,
@@ -66,7 +70,8 @@ final class AuthenticationViewModel {
         forgottenPassword: ForgottenPassword,
         logOut: LogOut,
         onAuthenticated: @escaping (AuthenticationSession) async -> Void,
-        onLoggedOut: @escaping () async -> Void
+        onLoggedOut: @escaping () async -> Void,
+        verifyReachable: @escaping () async throws -> Void
     ) {
         self.context = context
         self.logInWithEmail = logInWithEmail
@@ -76,6 +81,7 @@ final class AuthenticationViewModel {
         self.logOutUseCase = logOut
         self.onAuthenticated = onAuthenticated
         self.onLoggedOut = onLoggedOut
+        self.verifyReachable = verifyReachable
     }
 
     /// The confirmation is valid when it is not empty and matches the password.
@@ -98,8 +104,11 @@ final class AuthenticationViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             let session = try await logInWithEmail.execute(email: email, password: password)
             await onAuthenticated(session)
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {
@@ -110,13 +119,15 @@ final class AuthenticationViewModel {
     /// Creates a new Firebase registration from the current email and password.
     /// - Returns: A session for the newly created registration.
     func signUp() async throws -> AuthenticationSession {
-        try await signUpUseCase.execute(email: email, password: password)
+        try await verifyReachable()
+        return try await signUpUseCase.execute(email: email, password: password)
     }
 
     /// Creates a new anonymous Firebase registration.
     /// - Returns: An anonymous session.
     func signUpAnonymously() async throws -> AuthenticationSession {
-        try await signUpAnonymouslyUseCase.execute()
+        try await verifyReachable()
+        return try await signUpAnonymouslyUseCase.execute()
     }
 
     /// Logs out of the current registration. Calls `onLoggedOut` on success.
@@ -124,8 +135,11 @@ final class AuthenticationViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             try await logOutUseCase.execute()
             await onLoggedOut()
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {
@@ -142,8 +156,11 @@ final class AuthenticationViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             try await forgottenPasswordUseCase.execute(email: email)
             feedback = .passwordResetSent
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .error(error)
         } catch {

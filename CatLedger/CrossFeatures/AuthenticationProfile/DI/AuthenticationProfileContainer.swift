@@ -17,11 +17,19 @@ final class AuthenticationProfileContainer {
     let registerAnonymousProfile: RegisterAnonymousProfile
     let linkAnonymousProfile: LinkAnonymousProfile
     let deleteFirebaseRegistration: DeleteFirebaseRegistration
+    private let verifyReachable: () async throws -> Void
 
     /// - Parameters:
     ///   - authentication: The Authentication feature container to pull use cases from.
     ///   - profile: The Profile feature container to pull use cases from.
-    init(authentication: AuthenticationContainer, profile: ProfileContainer) {
+    ///   - verifyReachable: Confirms the backend can actually be reached, before any action.
+    ///   Defaults to the shared `NetworkMonitor`; override with a double in tests.
+    init(
+        authentication: AuthenticationContainer,
+        profile: ProfileContainer,
+        verifyReachable: @escaping () async throws -> Void = NetworkMonitor.shared.verifyReachable
+    ) {
+        self.verifyReachable = verifyReachable
         registerProfile = RegisterProfile(
             signUp: authentication.signUp,
             createProfile: profile.createProfile
@@ -55,7 +63,8 @@ final class AuthenticationProfileContainer {
             registerAnonymousProfile: registerAnonymousProfile,
             deleteFirebaseRegistration: deleteFirebaseRegistration,
             onAuthenticated: onAuthenticated,
-            onSessionEnded: onSessionEnded
+            onSessionEnded: onSessionEnded,
+            verifyReachable: verifyReachable
         )
     }
 }

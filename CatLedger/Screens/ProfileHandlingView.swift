@@ -116,8 +116,8 @@ struct ProfileHandlingView: View {
 
 #Preview {
     let profile = Profile(registrationId: UUID(), displayName: "Bruce|Wayne")
-    let authenticationContainer = AuthenticationContainer()
-    let profileContainer = ProfileContainer()
+    let authenticationContainer = AuthenticationContainer(verifyReachable: {})
+    let profileContainer = ProfileContainer(verifyReachable: {})
     ProfileHandlingView(
         viewModel: profileContainer.makeViewModel(profile: profile),
         authenticationViewModel: authenticationContainer.makeViewModel(
@@ -127,7 +127,8 @@ struct ProfileHandlingView: View {
         ),
         authenticationProfileViewModel: AuthenticationProfileContainer(
             authentication: authenticationContainer,
-            profile: profileContainer
+            profile: profileContainer,
+            verifyReachable: {}
         ).makeViewModel(onAuthenticated: { _ in }, onSessionEnded: {}),
         registrationId: profile.registrationId,
         email: "bruce@wayne.com"

@@ -20,11 +20,19 @@ final class ProfileContainer {
     let createAnonymousProfile: CreateAnonymousProfile
     let updateProfile: UpdateProfile
     let deleteProfile: DeleteProfile
+    private let verifyReachable: () async throws -> Void
 
-    /// - Parameter provider: The Profile provider to wire every use case to.
-    /// Defaults to the Firebase-backed implementation; override with a double in tests.
-    init(provider: ProfileProviding = ProfileProvider()) {
+    /// - Parameters:
+    ///   - provider: The Profile provider to wire every use case to.
+    ///   Defaults to the Firebase-backed implementation; override with a double in tests.
+    ///   - verifyReachable: Confirms the backend can actually be reached, before any write.
+    ///   Defaults to the shared `NetworkMonitor`; override with a double in tests.
+    init(
+        provider: ProfileProviding = ProfileProvider(),
+        verifyReachable: @escaping () async throws -> Void = NetworkMonitor.shared.verifyReachable
+    ) {
         self.provider = provider
+        self.verifyReachable = verifyReachable
         getCurrentProfile = GetCurrentProfile(repository: provider)
         createProfile = CreateProfile(repository: provider)
         createAnonymousProfile = CreateAnonymousProfile(repository: provider)
@@ -38,7 +46,8 @@ final class ProfileContainer {
         ProfileViewModel(
             context: .create(registrationId: registrationId),
             createProfile: createProfile,
-            updateProfile: updateProfile
+            updateProfile: updateProfile,
+            verifyReachable: verifyReachable
         )
     }
 
@@ -48,7 +57,8 @@ final class ProfileContainer {
         ProfileViewModel(
             context: .existing(profile),
             createProfile: createProfile,
-            updateProfile: updateProfile
+            updateProfile: updateProfile,
+            verifyReachable: verifyReachable
         )
     }
 }

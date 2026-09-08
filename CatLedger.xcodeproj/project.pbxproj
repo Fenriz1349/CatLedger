@@ -121,7 +121,6 @@
 		68785DAE303E2D12002E0728 /* RegistrationHandlingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68785DAD303E2D12002E0728 /* RegistrationHandlingView.swift */; };
 		68785DB1303E2F86002E0728 /* Toasty in Frameworks */ = {isa = PBXBuildFile; productRef = 68785DB0303E2F86002E0728 /* Toasty */; };
 		68785DB3303E2F9A002E0728 /* AuthenticationFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68785DB2303E2F9A002E0728 /* AuthenticationFeedback.swift */; };
-		6878ABCE30417BAB00FFDEC8 /* LogInWithEmailTests.swift in Resources */ = {isa = PBXBuildFile; fileRef = 6878ABCD30417BAB00FFDEC8 /* LogInWithEmailTests.swift */; };
 		687A3B2C303C113B00BC953A /* InstitutionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2B303C113B00BC953A /* InstitutionProvider.swift */; };
 		687A3B2E303C114900BC953A /* FirebaseInstitutionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2D303C114900BC953A /* FirebaseInstitutionSource.swift */; };
 		687A3B30303C11AB00BC953A /* InstitutionE2ETests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687A3B2F303C11AB00BC953A /* InstitutionE2ETests.swift */; };
@@ -1284,7 +1283,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6878ABCE30417BAB00FFDEC8 /* LogInWithEmailTests.swift in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -43,6 +43,10 @@ final class AuthenticationProfileViewModel {
     private let deleteFirebaseRegistrationUseCase: DeleteFirebaseRegistration
     private let onAuthenticated: (AuthenticationSession) async -> Void
     private let onSessionEnded: () async -> Void
+    /// Authentication has no offline mode, and this VM's actions always create or delete a
+    /// registration — always needs a real round-trip, regardless of any offline support the rest
+    /// of the app eventually gets for its own data.
+    private let verifyReachable: () async throws -> Void
 
     /// - Parameters:
     ///   - registerProfile: Use case for creating a permanent registration and its profile together.
@@ -51,18 +55,21 @@ final class AuthenticationProfileViewModel {
     ///   - deleteFirebaseRegistration: Use case for deleting the current profile and registration together.
     ///   - onAuthenticated: Called after a successful sign-up or demo entry, with the resulting session.
     ///   - onSessionEnded: Called after a successful deletion.
+    ///   - verifyReachable: Confirms the backend can actually be reached, before any action.
     init(
         registerProfile: RegisterProfile,
         registerAnonymousProfile: RegisterAnonymousProfile,
         deleteFirebaseRegistration: DeleteFirebaseRegistration,
         onAuthenticated: @escaping (AuthenticationSession) async -> Void,
-        onSessionEnded: @escaping () async -> Void
+        onSessionEnded: @escaping () async -> Void,
+        verifyReachable: @escaping () async throws -> Void
     ) {
         self.registerProfile = registerProfile
         self.registerAnonymousProfile = registerAnonymousProfile
         self.deleteFirebaseRegistrationUseCase = deleteFirebaseRegistration
         self.onAuthenticated = onAuthenticated
         self.onSessionEnded = onSessionEnded
+        self.verifyReachable = verifyReachable
     }
 
     /// A name is valid when it is not empty (ignoring whitespace).
@@ -85,6 +92,7 @@ final class AuthenticationProfileViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             let session = try await registerProfile.execute(
                 firstName: firstName,
                 lastName: lastName,
@@ -92,6 +100,8 @@ final class AuthenticationProfileViewModel {
                 password: password
             )
             await onAuthenticated(session)
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .authenticationError(error)
         } catch let error as ProfileError {
@@ -107,8 +117,11 @@ final class AuthenticationProfileViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             let session = try await registerAnonymousProfile.execute()
             await onAuthenticated(session)
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .authenticationError(error)
         } catch let error as ProfileError {
@@ -125,8 +138,11 @@ final class AuthenticationProfileViewModel {
         isLoading = true
         defer { isLoading = false }
         do {
+            try await verifyReachable()
             try await deleteFirebaseRegistrationUseCase.execute(registrationId: registrationId)
             await onSessionEnded()
+        } catch let error as OfflineError {
+            feedback = .offline(error)
         } catch let error as AuthenticationError {
             feedback = .authenticationError(error)
         } catch let error as ProfileError {

@@ -130,8 +130,8 @@ struct RegistrationHandlingView: View {
 }
 
 #Preview {
-    let authenticationContainer = AuthenticationContainer()
-    let profileContainer = ProfileContainer()
+    let authenticationContainer = AuthenticationContainer(verifyReachable: {})
+    let profileContainer = ProfileContainer(verifyReachable: {})
     RegistrationHandlingView(
         authenticationViewModel: authenticationContainer.makeViewModel(
             context: .unauthenticated,
@@ -140,7 +140,8 @@ struct RegistrationHandlingView: View {
         ),
         authenticationProfileViewModel: AuthenticationProfileContainer(
             authentication: authenticationContainer,
-            profile: profileContainer
+            profile: profileContainer,
+            verifyReachable: {}
         ).makeViewModel(onAuthenticated: { _ in }, onSessionEnded: {})
     )
     .environmentObject(ToastyManager())

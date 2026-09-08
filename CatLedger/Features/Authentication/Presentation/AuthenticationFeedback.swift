@@ -15,6 +15,7 @@ enum AuthenticationFeedback: Equatable {
 
     case error(AuthenticationError)
     case passwordResetSent
+    case offline(OfflineError)
 
     /// Presents this feedback as a toast.
     /// - Parameter toasty: The shared toast notification manager.
@@ -24,6 +25,8 @@ enum AuthenticationFeedback: Equatable {
             toasty.showError(error)
         case .passwordResetSent:
             toasty.showSuccess(String(localized: .authenticationFeedbackPasswordResetSent))
+        case .offline(let error):
+            toasty.showError(error)
         }
     }
 }
