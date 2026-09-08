@@ -67,10 +67,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Pinned rather than "latest-stable": the runner image ships several Xcode versions side
+      # by side, and "latest-stable" can resolve differently between separate job runners
+      # depending on image-rollout timing — this caused the build job and a test job to land on
+      # different Xcode versions, so the test job's Xcode couldn't find a matching simulator
+      # runtime for the other's build. Bump this value deliberately when moving to a new Xcode.
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: "26.6"
 
       - name: Cache resolved Swift packages
         uses: actions/cache@v4
@@ -114,10 +119,15 @@ jobs:
     needs: build
     runs-on: macos-latest
     steps:
+      # Pinned rather than "latest-stable": the runner image ships several Xcode versions side
+      # by side, and "latest-stable" can resolve differently between separate job runners
+      # depending on image-rollout timing — this caused the build job and a test job to land on
+      # different Xcode versions, so the test job's Xcode couldn't find a matching simulator
+      # runtime for the other's build. Bump this value deliberately when moving to a new Xcode.
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: "26.6"
 
       - name: Download test build
         uses: actions/download-artifact@v4
@@ -165,10 +175,15 @@ jobs:
           sparse-checkout: firebase.json
           sparse-checkout-cone-mode: false
 
+      # Pinned rather than "latest-stable": the runner image ships several Xcode versions side
+      # by side, and "latest-stable" can resolve differently between separate job runners
+      # depending on image-rollout timing — this caused the build job and a test job to land on
+      # different Xcode versions, so the test job's Xcode couldn't find a matching simulator
+      # runtime for the other's build. Bump this value deliberately when moving to a new Xcode.
       - name: Select Xcode version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
+          xcode-version: "26.6"
 
       - name: Download test build
         uses: actions/download-artifact@v4
