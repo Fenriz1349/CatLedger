@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.5.0](https://github.com/Fenriz1349/CatLedger/compare/v0.4.1...v0.5.0) (2026-09-08)
+
+
+### Features
+
+* add offline feedbacks in Authentication and Profile, add verifyReachable before firebase calls ([d7a6097](https://github.com/Fenriz1349/CatLedger/commit/d7a60971d55d829913c72c65b71c13af5e980a45))
+* add OfflineView ([e469fd2](https://github.com/Fenriz1349/CatLedger/commit/e469fd2bf261106d8b00d8bd019c5efb8e02e3d7))
+* add OfflineView in AppEntry, dynamically switch when entering offline ([9e75008](https://github.com/Fenriz1349/CatLedger/commit/9e75008795fd1f83c5f6e6f5a50c408327feae97))
+* handle offline state across authentication and profile ([adcaa97](https://github.com/Fenriz1349/CatLedger/commit/adcaa97c021525adbaba32c38f0ce9fd1169a2d2))
+
+
+### Bug Fixes
+
+* add updatedAt in Profile ([52a6f4d](https://github.com/Fenriz1349/CatLedger/commit/52a6f4de6aab8e3adb3379dbf5cf49dbb165a743))
+
 ## [0.4.1](https://github.com/Fenriz1349/CatLedger/compare/v0.4.0...v0.4.1) (2026-08-29)
 
 
